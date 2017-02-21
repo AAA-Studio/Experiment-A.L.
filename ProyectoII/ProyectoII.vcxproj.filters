@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de encabezado">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Archivos de código fuente">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Estados">
+      <UniqueIdentifier>{bd5a0e92-1ce0-4b1c-ace0-2fa46303b690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Estados">
+      <UniqueIdentifier>{8ffc2eeb-72ea-476c-890b-e815e521f681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades">
+      <UniqueIdentifier>{956a8015-de11-4153-8c8b-4d2f838c4d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Entidades">
+      <UniqueIdentifier>{6deeee89-f058-4549-bb58-0ca1a1ca8376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Media">
+      <UniqueIdentifier>{212d8423-dc43-4208-8202-e6e75fdf97bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Media">
+      <UniqueIdentifier>{f784dec1-26ae-4c56-bb09-ad7074d095c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Errores">
+      <UniqueIdentifier>{5263f787-128c-450d-bf66-81e66fefea8c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Juego.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Estado.cpp">
+      <Filter>Archivos de código fuente\Estados</Filter>
+    </ClCompile>
+    <ClCompile Include="Fuente.cpp">
+      <Filter>Archivos de código fuente\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="Musica.cpp">
+      <Filter>Archivos de código fuente\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="TexturasSDL.cpp">
+      <Filter>Archivos de código fuente\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="Entidad.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="Pausa.cpp">
+      <Filter>Archivos de código fuente\Estados</Filter>
+    </ClCompile>
+    <ClCompile Include="Mundo.cpp">
+      <Filter>Archivos de código fuente\Estados</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Archivos de código fuente\Estados</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>Archivos de código fuente\Estados</Filter>
+    </ClCompile>
+    <ClCompile Include="Boton.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="Personaje.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Juego.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Estado.h">
+      <Filter>Archivos de encabezado\Estados</Filter>
+    </ClInclude>
+    <ClInclude Include="EstadoJuego.h">
+      <Filter>Archivos de encabezado\Estados</Filter>
+    </ClInclude>
+    <ClInclude Include="Fuente.h">
+      <Filter>Archivos de encabezado\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="Musica.h">
+      <Filter>Archivos de encabezado\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturasSDL.h">
+      <Filter>Archivos de encabezado\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="checkML.h">
+      <Filter>Archivos de encabezado\Errores</Filter>
+    </ClInclude>
+    <ClInclude Include="EntidadJuego.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Entidad.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>Archivos de encabezado\Errores</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>Archivos de encabezado\Estados</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Archivos de encabezado\Estados</Filter>
+    </ClInclude>
+    <ClInclude Include="Mundo.h">
+      <Filter>Archivos de encabezado\Estados</Filter>
+    </ClInclude>
+    <ClInclude Include="Pausa.h">
+      <Filter>Archivos de encabezado\Estados</Filter>
+    </ClInclude>
+    <ClInclude Include="Boton.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Personaje.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

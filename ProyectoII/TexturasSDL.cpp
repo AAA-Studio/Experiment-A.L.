@@ -1,0 +1,118 @@
+#include "TexturasSDL.h"
+#include "Error.h"
+
+//Constructora
+TexturasSDL::TexturasSDL()
+{
+	pTexture = nullptr;//Puntero de la textura
+	alto = ancho = 0;//Tamaño de la textura
+}
+
+//Destructora
+TexturasSDL::~TexturasSDL()
+{
+	SDL_DestroyTexture(pTexture);
+	pTexture = nullptr;
+	alto = ancho = 0;
+}
+
+//Función para cargar el archivo
+static SDL_Surface * loadArc(string nombreArchivo)
+{
+	SDL_Surface* pTempSurface = nullptr;
+	pTempSurface = IMG_Load(nombreArchivo.c_str());
+
+	return pTempSurface;
+}
+
+//Método para cargar una textura y aplicar la transparencia, detecta caso de error y devuelve false
+//Una vez cargado el archivo, y antes de generar la textura, pone el color colKey transparente
+void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
+
+	SDL_Surface* pTempSurface = loadArc(nombArch);//Puntero a la imagen
+
+	//Caso de error
+	if (pTempSurface == nullptr)
+	{
+		ErrorImagen errorE("Error en la carga de la textura " + nombArch + "!SDL Error: " + IMG_GetError());
+		throw errorE;
+	}
+	//Ha encontrado la imagen
+	else
+	{
+		//Coge el ancho y el alto de la imagen 
+		ancho = pTempSurface->w;
+		alto = pTempSurface->h;
+
+		texRect = { 0, 0, ancho, alto};
+
+		pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);//Crea la textura
+		if (pTexture == nullptr)
+		{
+			ErrorImagen errorE("Error al crear la textura " + nombArch);
+			throw errorE;
+		}
+
+		SDL_FreeSurface(pTempSurface);
+	}
+
+}
+
+//Método para dibujar la textura en el rectángulo winRect
+void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect)const
+{
+	SDL_RenderCopy(pRenderer, pTexture, &texRect, &winRect);
+}
+
+void TexturasSDL::setRectText(int numFrame){
+	// 7 no vale, tiene que ser especifico de cada personaje
+	texRect = { ancho / 7 * (numFrame % 7), 0, ancho / 7, alto };//Posición actual delJugador
+}
+
+//Fuente
+void TexturasSDL::loadFromText(SDL_Renderer * pRender, string const& texto, SDL_Color color, Fuente fuente)
+{
+	SDL_Surface* pTempSurface = fuente.textSolid(texto, color);//Puntero a la imagen
+
+	//Caso de error
+	if (pTempSurface == nullptr)
+	{
+		string errorSDL = IMG_GetError();
+		ErrorFuente errorE("Error en la carga de la textura FUENTE, !SDL Error: " + errorSDL+ "");
+		throw errorE;
+	}
+	//Ha encontrado la imagen
+	else
+	{
+		//Coge el ancho y el alto de la imagen 
+		ancho = pTempSurface->w;
+		alto = pTempSurface->h;
+
+		//ESTO HABRÍA QUE CAMBIARLO
+		texRect = { 0, 0, ancho, alto };
+
+		SDL_DestroyTexture(pTexture);
+		pTexture = SDL_CreateTextureFromSurface(pRender, pTempSurface);//Crea la textura
+
+		if (pTexture == nullptr)
+		{
+			ErrorFuente errorE("Error al crear la fuente");
+			throw errorE;
+		}
+		SDL_FreeSurface(pTempSurface);
+	
+	}
+
+}
+
+//Que primero genera la textura, a partir del texto y la fuente, y luego la muestra.
+void TexturasSDL::render(SDL_Renderer * pRenderer, int px, int py, string const& texto, Fuente fuente)
+{
+	SDL_Color color = { 255, 255, 255, 0 };
+	loadFromText(pRenderer, texto, color, fuente);
+
+	SDL_Rect winRect;// Rectangulo que ocupa en la ventana
+	winRect = { px, py, 40, 40 };
+	draw(pRenderer, winRect);
+}
+
