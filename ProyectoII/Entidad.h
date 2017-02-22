@@ -11,7 +11,7 @@ class Entidad : public EntidadJuego
 protected:
 
 	virtual void draw() const;
-	virtual void onInput(const char& c) {};
+	virtual void onInput(const Controles_t & c) {};
 
 	//El update no se modifica
 
@@ -19,11 +19,13 @@ protected:
 	Texturas_t pTextura;
 	Efectos_t sonido;
 
-	int posX, posY, ancho, alto;
+	double posX, posY;
+	int  ancho, alto;
 	SDL_Rect rect;//Rectángulo para cada textura
 
 public:
-	Entidad(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto);
+	const SDL_Rect getRect(){ return rect; }
+	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto);
 	virtual ~Entidad();
 
 };

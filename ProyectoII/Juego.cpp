@@ -25,6 +25,7 @@ Juego::Juego()
 	initMedia();
 
 	vectorEstados.push_back(new Menu(this));//Primer estado de la pila
+	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
 
 }
 
@@ -41,7 +42,7 @@ Juego::~Juego()
 void Juego::run()
 {
 	// La necesitaremos con un valor menor 
-	Uint32 MSxUpdate = 500;
+	Uint32 MSxUpdate = 5000;
 
 	SDL_ShowWindow(pWin);
 	Uint32 lastUpdate = SDL_GetTicks(); //tiempo transcurrido desde el ultimo update()
@@ -224,15 +225,17 @@ void Juego::getMousePos(int & mpx, int & mpy) const
 // Comprueba si hay un evento en la cola de eventos y procesa el metodo correspondiente
 void Juego::handle_event(){
 	SDL_Event e;
-	while (SDL_PollEvent(&e)) {
+	while (SDL_PollEvent(&e) != 0 ) {
 		if (e.type == SDL_QUIT)
 		{
 			exit = true;//X para salir
 		}
 
-		topEstado()->onInput(e);
-		/*
-		
-		*/
+		if (e.button.button == SDL_BUTTON_LEFT)
+		{
+			posMouseX = e.button.x;
+			posMouseY = e.button.y;
+		}
 	}
+	topEstado()->onInput(e);
 }

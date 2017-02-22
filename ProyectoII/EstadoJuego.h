@@ -1,6 +1,7 @@
 #ifndef EstadoJuego_H
 #define EstadoJuego_H
 #include "checkML.h"
+#include <SDL.h>
 
 class EstadoJuego
 {

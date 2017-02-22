@@ -1,7 +1,7 @@
 #include "Entidad.h"
 
 
-Entidad::Entidad(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto)
+Entidad::Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto)
 {
 	ancho = alto = 100;
 	posX = x;

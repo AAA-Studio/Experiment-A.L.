@@ -1,5 +1,5 @@
 #include "Boton.h"
-
+#include <iostream>
 Boton::Boton(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, CallBack_t * cb) : Entidad(pJ, x, y, textura, efecto)
 {
 	cboton = cb;
@@ -10,8 +10,9 @@ Boton::~Boton()
 {
 }
 
-void Boton::onInput(const char & c){
+void Boton::onInput(const Controles_t & c){
 	
+	std::cout << "jugar";
 	int posMouseX, posMouseY;
 	pJuego->getMousePos(posMouseX, posMouseY);
 
@@ -23,6 +24,7 @@ void Boton::onInput(const char & c){
 
 bool Boton::dentro(int x, int y)const
 {
+	
 	return (x >= posX && x <= (posX + ancho) && y >= posY && y <= (posY + alto));
 }
 

@@ -3,13 +3,12 @@
 #include "Pausa.h"
 #include <typeinfo>
 #include "Personaje.h"
-
-
+#include <iostream>
+#include <SDL.h>
 
 Mundo::Mundo(Juego * pJ) : Estado(pJ)
 {
 	pausa = false;
-
 	objetos.resize(1);
 	initObjetos();
 	//pJuego->getMusica(MPlay)->play();
@@ -52,35 +51,31 @@ void Mundo::update(){
 }
 
 void Mundo::onInput(SDL_Event &e){
-
-	if (e.type == SDL_KEYUP)
-	{
-		if (e.key.keysym.sym == SDLK_ESCAPE){
+	
+	//Declaramos el array con los estados de teclado
+	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
+	
+	
+	if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
 			Pausa * pausa = new Pausa(pJuego);
 			pJuego->goToPausa(pausa);
-		}
-		else if (e.key.keysym.sym == SDLK_w)
-		{
+	}
+	if (keyStatesActuales[SDL_SCANCODE_W])
 			objetos[0]->onInput(JArriba);
-
-		}
-		else if (e.key.keysym.sym == SDLK_a)
-		{
+		
+	if (keyStatesActuales[SDL_SCANCODE_A])
 			objetos[0]->onInput(JIzquierda);
 
-		}
-		else if (e.key.keysym.sym == SDLK_s)
-		{
-			objetos[0]->onInput(JAbajo);
+	if (keyStatesActuales[SDL_SCANCODE_S])
+		objetos[0]->onInput(JAbajo);
+		
+	if (keyStatesActuales[SDL_SCANCODE_D])
+		objetos[0]->onInput(JDerecha);
+		
 
-		}
-		else if (e.key.keysym.sym == SDLK_d)
-		{
-			objetos[0]->onInput(JDerecha);
+	
+	//objetos[0]->onInput(pila);
 
-		}
-
-	}
 
 }
 

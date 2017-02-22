@@ -18,6 +18,7 @@ private:
 	void initObjetos();
 
 	static void goPlay(Juego * pj){
+		
 		Mundo * ePlay = new Mundo(pj);
 		pj->changeState(ePlay);
 	};

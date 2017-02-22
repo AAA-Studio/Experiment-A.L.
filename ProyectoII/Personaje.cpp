@@ -19,9 +19,48 @@ void Personaje::update()
 	
 }
 
-void Personaje::onInput(const char& c)
+void Personaje::onInput(const Controles_t &c)
 {
+	double x = 0, y = 0;
 
+	
+		switch (c)
+		{
+		case SuperNULL:
+			break;
+
+		case JArriba:
+			y += -0.01;
+			break;
+
+		case JAbajo:
+			y += 0.01;
+			break;
+
+		case JIzquierda:
+			x += -0.01;
+			break;
+
+		case JDerecha:
+			x += 0.01;
+			break;
+		}
+		
+	
+
+	move(x, y);
 
 }
+
+void Personaje::move(double x, double y)
+{
+	posX += x;
+	posY += y;
+
+	rect = { posX, posY, ancho, alto };
+
+}
+
+
+
 
