@@ -96,6 +96,7 @@
     <ClInclude Include="Mundo.h" />
     <ClInclude Include="Musica.h" />
     <ClInclude Include="Objetos.h" />
+    <ClInclude Include="ObjetosJuego.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
     <ClInclude Include="TexturasSDL.h" />
