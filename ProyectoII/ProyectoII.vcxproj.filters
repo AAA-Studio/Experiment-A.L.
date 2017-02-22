@@ -75,6 +75,9 @@
     <ClCompile Include="Personaje.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
+    <ClCompile Include="Objetos.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -123,6 +126,9 @@
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
     <ClInclude Include="Personaje.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Objetos.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
   </ItemGroup>
