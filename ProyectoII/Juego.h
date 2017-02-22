@@ -13,7 +13,7 @@
 
 using namespace std;
 
-enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, /*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
+enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, /*TFondoMenu,*/ TFuente, TLLave, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
 

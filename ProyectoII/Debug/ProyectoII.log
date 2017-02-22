@@ -1,24 +1,8 @@
-﻿Build started 22/02/2017 15:32:08.
+﻿Build started 22/02/2017 16:38:00.
      1>Project "C:\hlocal\ProyectoII\ProyectoII\ProyectoII.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Boton.cpp Entidad.cpp Estado.cpp Fuente.cpp GameOver.cpp Juego.cpp Menu.cpp Mundo.cpp Musica.cpp Pausa.cpp Personaje.cpp TexturasSDL.cpp main.cpp
-         main.cpp
-         TexturasSDL.cpp
+         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Personaje.cpp
          Personaje.cpp
-         Pausa.cpp
-         Musica.cpp
-         Mundo.cpp
-         Menu.cpp
-         Juego.cpp
-         GameOver.cpp
-         Fuente.cpp
-         Estado.cpp
-     1>c:\hlocal\proyectoii\proyectoii\estado.cpp(16): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\hlocal\proyectoii\proyectoii\estado.cpp(25): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\hlocal\proyectoii\proyectoii\estado.cpp(45): warning C4018: '<' : signed/unsigned mismatch
-         Entidad.cpp
-         Boton.cpp
-         Generating Code...
        Link:
          C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\ProyectoII\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\ProyectoII\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\ProyectoII\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Boton.obj
          Debug\Entidad.obj
@@ -30,13 +14,13 @@
          Debug\Menu.obj
          Debug\Mundo.obj
          Debug\Musica.obj
+         Debug\Objetos.obj
          Debug\Pausa.obj
          Debug\Personaje.obj
          Debug\TexturasSDL.obj
-         LINK : C:\hlocal\ProyectoII\bin\ProyectoIIDebug.exe not found or not built by the last incremental link; performing full link
          ProyectoII.vcxproj -> C:\hlocal\ProyectoII\bin\ProyectoIIDebug.exe
      1>Done Building Project "C:\hlocal\ProyectoII\ProyectoII\ProyectoII.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:09.69
+Time Elapsed 00:00:00.65

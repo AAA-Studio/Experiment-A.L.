@@ -1,10 +1,11 @@
 #include "Objetos.h"
 
 
-Objetos::Objetos(int px, int py) 
+Objetos::Objetos(int px, int py, Texturas_t text)
 {
-	x = px;
-	y = py;
+	rectObjeto.x = px;
+	rectObjeto.y = py;
+	textura = text;
 }
 
 //dibuja el objeto si es visible y sino no
@@ -22,10 +23,8 @@ void Objetos::coger(){
 
 //si el jugador suelta un objeto desde la mochila llama a este método para que sea visible y 
 //se asignan sus nueva posicion x e y
-void Objetos::soltar(int px, int py){
-	visible = true;
-	x = px;
-	y = py;
+void Objetos::soltar(){
+	//destruir
 }
 
 Objetos::~Objetos()

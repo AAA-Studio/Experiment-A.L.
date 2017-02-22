@@ -72,6 +72,7 @@
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Juego.cpp" />
+    <ClCompile Include="Llave.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mundo.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Juego.h" />
+    <ClInclude Include="Llave.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Mundo.h" />
     <ClInclude Include="Musica.h" />

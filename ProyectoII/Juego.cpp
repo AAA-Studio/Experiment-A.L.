@@ -132,7 +132,8 @@ void Juego::initMedia()
 {
 	//TEXTURAS
 
-	nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png", "..\\bmps\\menu.png", "..\\bmps\\exit.png" };
+	nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png", "..\\bmps\\menu.png", "..\\bmps\\exit.png", 
+		"..\\bmps\\key.png" };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{
