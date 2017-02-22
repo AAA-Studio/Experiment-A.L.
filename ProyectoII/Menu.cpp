@@ -26,5 +26,25 @@ void Menu::initObjetos(){
 	objetos[1] = new Boton(pJuego, 270, 150, TPlay, ENull, goPlay);
 }
 
+void Menu::onInput(SDL_Event &e){
+
+	if (e.type == SDL_MOUSEBUTTONUP)
+	{
+		if (e.button.button == SDL_BUTTON_LEFT)
+		{
+			int i = 0;
+			while (i < objetos.size())
+			{
+				objetos[i]->onInput(SuperNULL);
+				i++;
+			}
+
+		}
+
+	}
+
+}
+
+
 
 

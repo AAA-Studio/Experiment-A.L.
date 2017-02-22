@@ -16,7 +16,7 @@ using namespace std;
 enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, /*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
-
+enum Controles_t {SuperNULL,JArriba,JAbajo,JIzquierda,JDerecha};
 
 class Juego
 {
@@ -43,9 +43,6 @@ public:
 	//Sale del programa
 	void setSalir(){ exit = true; };
 
-	void setPausaFalse(){ pausa = false; };
-	bool getPausa()const{ return pausa; };
-
 	SDL_Renderer * getRender() const{ return pRenderer; };
 	TexturasSDL * getTextura(Texturas_t et) const { return texturas[et]; }
 
@@ -61,7 +58,7 @@ public:
 private:
 
 	//Atributos
-	bool pausa, exit;
+	bool exit;
 	int posMouseX, posMouseY;
 
 	SDL_Window *pWin;//Puntero de la ventana

@@ -16,7 +16,7 @@ public:
 
 	virtual void update() = 0;
 
-	virtual void onClick() = 0;
+	virtual void onInput(SDL_Event &e) = 0;
 
 };
 

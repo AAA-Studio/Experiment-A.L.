@@ -26,3 +26,22 @@ void Pausa::draw()const
 
 	Estado::draw();
 }
+
+void Pausa::onInput(SDL_Event &e){
+
+	if (e.type == SDL_MOUSEBUTTONUP)
+	{
+		if (e.button.button == SDL_BUTTON_LEFT)
+		{
+			int i = 0;
+			while (i < objetos.size())
+			{
+				objetos[i]->onInput(SuperNULL);
+				i++;
+			}
+
+		}
+
+	}
+
+}

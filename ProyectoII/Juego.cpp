@@ -12,7 +12,7 @@ using namespace std; // Para cualificar automaticamente con std:: los identifica
 Juego::Juego()
 {
 	srand(SDL_GetTicks());//Inicializamos los números aleatorios de manera que cada vez se van modificando
-	pausa = exit = false;
+	exit = false;
 	pWin = nullptr;
 	pRenderer = nullptr;
 	colorWin = { 0, 0, 0, 255 };
@@ -229,20 +229,10 @@ void Juego::handle_event(){
 		{
 			exit = true;//X para salir
 		}
-		else if (e.type == SDL_MOUSEBUTTONUP) {
-			if (e.button.button == SDL_BUTTON_LEFT) {
-				posMouseX = e.button.x;
-				posMouseY = e.button.y;
-				topEstado()->onClick();
-			}
-		}
-		else if (e.type == SDL_KEYUP)
-		{
-			if (e.key.keysym.sym == SDLK_ESCAPE){
-				pausa = true;
-				topEstado()->onClick();
-			}
 
-		}
+		topEstado()->onInput(e);
+		/*
+		
+		*/
 	}
 }

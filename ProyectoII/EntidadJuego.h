@@ -16,7 +16,7 @@ public:
 
 	virtual void update() = 0;
 
-	virtual bool onClick() = 0;
+	virtual void onInput(const char& c) = 0;
 
 };
 

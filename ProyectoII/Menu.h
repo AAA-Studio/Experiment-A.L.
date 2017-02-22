@@ -11,7 +11,8 @@ class Menu : public Estado
 public:
 	Menu(Juego * pJ);
 	~Menu();
-	void draw()const;
+	virtual void draw()const;
+	virtual void onInput(SDL_Event &e);
 
 private:
 	void initObjetos();

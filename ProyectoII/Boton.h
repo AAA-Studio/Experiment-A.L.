@@ -10,12 +10,12 @@ class Boton : public Entidad
 public:
 	Boton(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, CallBack_t * cb);
 	~Boton();
-	virtual bool onClick();
+	virtual void onInput(const char& c);
 	virtual void update(){};
 
 private:
 	CallBack_t * cboton;
-
+	bool dentro(int x, int y)const;//Comprueba si se ha hecho click en el objeto
 };
 
 #endif

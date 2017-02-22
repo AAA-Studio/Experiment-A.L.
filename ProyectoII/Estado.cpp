@@ -6,7 +6,6 @@ Estado::Estado(Juego * pJ)
 	pJuego = pJ;
 }
 
-
 Estado::~Estado()
 {
 	freeObjetos();
@@ -34,20 +33,6 @@ void Estado::draw() const
 	//Dibujar objetos del juego
 	for (int i = objetos.size() - 1; i >= 0; i--)
 		objetos[i]->draw();
-
-}
-
-//Pide a cada objeto que compruebe si lo han pinchado (máximo uno)
-void Estado::onClick()
-{
-	int i = 0;
-	bool click = false;
-	while (!click && i < objetos.size())
-	{
-		if (objetos[i]->onClick())
-			click = true;
-		i++;
-	}
 
 }
 

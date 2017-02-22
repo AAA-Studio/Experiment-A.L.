@@ -8,7 +8,7 @@
 
 Mundo::Mundo(Juego * pJ) : Estado(pJ)
 {
-	pJuego->setPausaFalse();
+	pausa = false;
 
 	objetos.resize(1);
 	initObjetos();
@@ -51,14 +51,37 @@ void Mundo::update(){
 	Estado::update();
 }
 
-void Mundo::onClick(){
-	if (pJuego->getPausa())
+void Mundo::onInput(SDL_Event &e){
+
+	if (e.type == SDL_KEYUP)
 	{
-		Pausa * pausa = new Pausa(pJuego);
-		pJuego->goToPausa(pausa);
+		if (e.key.keysym.sym == SDLK_ESCAPE){
+			Pausa * pausa = new Pausa(pJuego);
+			pJuego->goToPausa(pausa);
+		}
+		else if (e.key.keysym.sym == SDLK_w)
+		{
+			objetos[0]->onInput(JArriba);
+
+		}
+		else if (e.key.keysym.sym == SDLK_a)
+		{
+			objetos[0]->onInput(JIzquierda);
+
+		}
+		else if (e.key.keysym.sym == SDLK_s)
+		{
+			objetos[0]->onInput(JAbajo);
+
+		}
+		else if (e.key.keysym.sym == SDLK_d)
+		{
+			objetos[0]->onInput(JDerecha);
+
+		}
+
 	}
-	else
-		Estado::onClick();
+
 }
 
 

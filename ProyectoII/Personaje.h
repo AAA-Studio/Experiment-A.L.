@@ -11,6 +11,6 @@ public:
 	virtual ~Personaje();//Destructora
 
 	virtual void update();//Actualiza el estado y devuelve false si el globo queda desinflado
-
+	virtual void onInput(const char& c);
 };
 #endif
