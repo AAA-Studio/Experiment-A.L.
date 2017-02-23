@@ -66,6 +66,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="Entidad.cpp" />
     <ClCompile Include="Estado.cpp" />
@@ -81,6 +82,7 @@
     <ClCompile Include="TexturasSDL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bala.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="Entidad.h" />

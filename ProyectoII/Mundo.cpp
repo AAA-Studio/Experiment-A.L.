@@ -71,6 +71,8 @@ void Mundo::onInput(SDL_Event &e){
 		
 	if (keyStatesActuales[SDL_SCANCODE_D])
 		objetos[0]->onInput(JDerecha);
+	if (keyStatesActuales[SDL_SCANCODE_E])
+		objetos[0]->onInput(JPIUM);
 		
 
 	

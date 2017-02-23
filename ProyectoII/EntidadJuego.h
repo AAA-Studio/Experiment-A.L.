@@ -2,7 +2,7 @@
 #define EntidadJuego_H
 #include "checkML.h"
 #include <stack>
-enum Controles_t { SuperNULL, JArriba, JAbajo, JIzquierda, JDerecha };
+enum Controles_t { SuperNULL, JArriba, JAbajo, JIzquierda, JDerecha,JPIUM};
 
 
 

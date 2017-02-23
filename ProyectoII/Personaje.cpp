@@ -44,6 +44,9 @@ void Personaje::onInput(const Controles_t &c)
 		case JDerecha:
 			x += 0.01;
 			break;
+		case JPIUM:
+			disparo();
+			break;
 		}
 		
 	
@@ -60,6 +63,12 @@ void Personaje::move(double x, double y)
 	rect = { posX, posY, ancho, alto };
 
 }
+
+void Personaje::disparo(int angulo){
+
+
+}
+
 
 
 
