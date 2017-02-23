@@ -34,6 +34,12 @@
     <Filter Include="Archivos de encabezado\Errores">
       <UniqueIdentifier>{5263f787-128c-450d-bf66-81e66fefea8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Pathfinding">
+      <UniqueIdentifier>{eaaf0a39-e70b-41aa-8335-9bfe433258a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Pathfinding">
+      <UniqueIdentifier>{2cfa9ad6-f896-4d98-bc3f-91584cf70d39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,6 +80,15 @@
     </ClCompile>
     <ClCompile Include="Personaje.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemigo.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchCell.cpp">
+      <Filter>Archivos de código fuente\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFinding.cpp">
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +139,15 @@
     </ClInclude>
     <ClInclude Include="Personaje.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemigo.h">
+      <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchCell.h">
+      <Filter>Archivos de encabezado\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinding.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

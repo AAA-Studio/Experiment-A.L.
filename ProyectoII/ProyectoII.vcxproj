@@ -67,6 +67,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Boton.cpp" />
+    <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Entidad.cpp" />
     <ClCompile Include="Estado.cpp" />
     <ClCompile Include="Fuente.cpp" />
@@ -76,13 +77,16 @@
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mundo.cpp" />
     <ClCompile Include="Musica.cpp" />
+    <ClCompile Include="PathFinding.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
+    <ClCompile Include="SearchCell.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boton.h" />
     <ClInclude Include="checkML.h" />
+    <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Entidad.h" />
     <ClInclude Include="EntidadJuego.h" />
     <ClInclude Include="Error.h" />
@@ -94,8 +98,10 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Mundo.h" />
     <ClInclude Include="Musica.h" />
+    <ClInclude Include="PathFinding.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
+    <ClInclude Include="SearchCell.h" />
     <ClInclude Include="TexturasSDL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
