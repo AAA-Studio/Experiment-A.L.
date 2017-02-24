@@ -90,6 +90,9 @@
     <ClCompile Include="PathFinding.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="MathCore.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -147,6 +150,9 @@
       <Filter>Archivos de encabezado\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="PathFinding.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MathCore.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
