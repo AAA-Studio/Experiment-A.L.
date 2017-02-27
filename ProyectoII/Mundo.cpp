@@ -5,11 +5,13 @@
 #include "Personaje.h"
 #include <iostream>
 #include <SDL.h>
+#include "Bala.h"
+
 
 Mundo::Mundo(Juego * pJ) : Estado(pJ)
 {
 	pausa = false;
-	objetos.resize(1);
+	objetos.resize(2);
 	initObjetos();
 	//pJuego->getMusica(MPlay)->play();
 }
@@ -29,6 +31,8 @@ void Mundo::initObjetos()
 	y = rand() % (pJuego->getAlto() - 100);
 	// Personaje
 	objetos[0] = new Personaje(pJuego, x, y, TJugador, ENull);
+
+	objetos[1] = new Bala(pJuego, 0, 0, TPlay, ENull);
 
 }
 
@@ -108,6 +112,18 @@ void Mundo::newBaja(EntidadJuego* po)
 			pJuego->changeState(go);
 		}
 	}*/
+}
+
+void Mundo::newBala(EntidadJuego* po)
+{
+	int x, y, ang;
+	x = static_cast<Personaje*> (po)->getX();
+	y = static_cast<Personaje*> (po)->getY();
+	ang = static_cast<Personaje*> (po)->getAngulo();
+
+	static_cast<Bala*> (objetos[1])->setPos(x, y);
+	static_cast<Bala*> (objetos[1])->setAngulo(ang);
+
 }
 
 

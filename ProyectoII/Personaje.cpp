@@ -31,52 +31,52 @@ void Personaje::onInput(const Controles_t &c)
 
 
 		case WA:
-			y += -0.01;
-			x += -0.01;
-			angulo = 125;
+			y += -0.1;
+			x += -0.1;
+			angulo = 135;
 			break;
 
 		case WD:
-			y += -0.01;
-			x += 0.01;
+			y += -0.1;
+			x += 0.1;
 			angulo = 45;
 
 			break;
 
 		case SA:
-			y += 0.01;
-			x += -0.01;
-			angulo = 235;
+			y += 0.1;
+			x += -0.1;
+			angulo = 225;
 			break;
 
 		case SD:
-			y += 0.01;
-			x += 0.01;
+			y += 0.1;
+			x += 0.1;
 			angulo = 315;
 
 			break;
 
 		case W:
-			y += -0.01;
+			y += -0.1;
 			angulo = 90;
 			break;
 
 		case S:
-			y += 0.01;
+			y += 0.1;
 			angulo = 270;
 			break;
 
 		case A:
-			x += -0.01;
+			x += -0.1;
 			angulo = 180;
 			break;
 
 		case D:
-			x += 0.01;
+			x += 0.1;
 			angulo = 0;
 			break;
 		case JPIUM:
-			disparo(5);
+			disparo();
 			break;
 		}
 		
@@ -93,9 +93,8 @@ void Personaje::move(double x, double y)
 
 }
 
-void Personaje::disparo(int angulo){
-	std::cout << angulo;
-
+void Personaje::disparo(){
+	static_cast <Mundo*> (pJuego->topEstado())->newBala(this);
 }
 
 
