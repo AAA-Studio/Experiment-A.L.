@@ -22,12 +22,12 @@ protected:
 	SDL_Rect rect;//Rectángulo para cada textura
 
 public:
+	virtual SDL_Rect dameRect();//da el rectagulo necesario para las colisiones
 	Entidad(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto);
 	virtual ~Entidad();
 
 private:
 	bool dentro(int x, int y)const;//Comprueba si se ha hecho click en el objeto
-
 };
 
 #endif

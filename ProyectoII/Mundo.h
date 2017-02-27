@@ -11,6 +11,7 @@ protected:
 	virtual void draw() const;
 	virtual void onClick();
 	virtual void update();
+	virtual bool colisionando(EntidadJuego * po1, EntidadJuego * po2);
 
 public:
 	Mundo(Juego * pJ);
