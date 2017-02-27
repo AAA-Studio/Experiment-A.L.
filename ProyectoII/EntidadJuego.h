@@ -20,7 +20,7 @@ public:
 
 	virtual void update() = 0;
 
-	virtual void onInput(const Controles_t &c) = 0;
+	virtual void onInput() = 0;
 
 };
 

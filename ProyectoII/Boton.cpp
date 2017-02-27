@@ -10,7 +10,7 @@ Boton::~Boton()
 {
 }
 
-void Boton::onInput(const Controles_t & c){
+void Boton::onInput(){
 	
 	std::cout << "jugar";
 	int posMouseX, posMouseY;

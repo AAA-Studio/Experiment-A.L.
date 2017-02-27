@@ -11,7 +11,7 @@
 Mundo::Mundo(Juego * pJ) : Estado(pJ)
 {
 	pausa = false;
-	objetos.resize(2);
+	objetos.resize(1);
 	initObjetos();
 	//pJuego->getMusica(MPlay)->play();
 }
@@ -31,9 +31,6 @@ void Mundo::initObjetos()
 	y = rand() % (pJuego->getAlto() - 100);
 	// Personaje
 	objetos[0] = new Personaje(pJuego, x, y, TJugador, ENull);
-
-	objetos[1] = new Bala(pJuego, 0, 0, TPlay, ENull);
-
 }
 
 
@@ -63,34 +60,8 @@ void Mundo::onInput(SDL_Event &e){
 			Pausa * pausa = new Pausa(pJuego);
 			pJuego->goToPausa(pausa);
 	}
-	else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_A])
-		objetos[0]->onInput(WA);
 
-	else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_D])
-		objetos[0]->onInput(WD);
-
-	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_A])
-		objetos[0]->onInput(SA);
-
-	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_D])
-		objetos[0]->onInput(SD);
-
-	else if (keyStatesActuales[SDL_SCANCODE_W])
-			objetos[0]->onInput(W);
-		
-	else if (keyStatesActuales[SDL_SCANCODE_A])
-			objetos[0]->onInput(A);
-
-	else if (keyStatesActuales[SDL_SCANCODE_S])
-		objetos[0]->onInput(S);
-		
-	else if (keyStatesActuales[SDL_SCANCODE_D])
-		objetos[0]->onInput(D);
-	if (keyStatesActuales[SDL_SCANCODE_E])
-		objetos[0]->onInput(JPIUM);
-		
-	
-	//objetos[0]->onInput(pila);
+	objetos[0]->onInput();
 
 
 }
@@ -112,18 +83,6 @@ void Mundo::newBaja(EntidadJuego* po)
 			pJuego->changeState(go);
 		}
 	}*/
-}
-
-void Mundo::newBala(EntidadJuego* po)
-{
-	int x, y, ang;
-	x = static_cast<Personaje*> (po)->getX();
-	y = static_cast<Personaje*> (po)->getY();
-	ang = static_cast<Personaje*> (po)->getAngulo();
-
-	static_cast<Bala*> (objetos[1])->setPos(x, y);
-	static_cast<Bala*> (objetos[1])->setAngulo(ang);
-
 }
 
 

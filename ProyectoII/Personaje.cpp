@@ -1,9 +1,9 @@
 #include "Personaje.h"
 #include <iostream>
-
 //Constructora
 Personaje::Personaje(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pJ, x, y, textura, efecto)
 {
+	ultimaBala = SDL_GetTicks();
 }
 
 //Destructora
@@ -13,75 +13,88 @@ Personaje::~Personaje()
 
 
 //Actualiza el estado y devuelve false si el globo queda desinflado
-void Personaje::update()
-{
-
+void Personaje::update()  
+{	
+	list<Bala*>::iterator it = balas.begin();
+	while (it != balas.end())
+	{
+		(*it)->update();
+		it++;
+	}
 	
 }
 
-void Personaje::onInput(const Controles_t &c)
+void Personaje::draw()const
+{
+	Entidad::draw();
+
+	list<Bala*>::const_iterator it = balas.cbegin();
+	while (it != balas.cend())
+	{
+		(*it)->draw();
+		it++;
+	}
+
+}
+
+void Personaje::onInput()
 {
 	double x = 0, y = 0;
 
-	
-		switch (c)
-		{
-		case SuperNULL:
-			break;
+	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 
+	if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_A])
+	{
+		y += -0.1;
+		x += -0.1;
+		angulo = 135;
+	}
+	else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_D])
+	{
+		y += -0.1;
+		x += 0.1;
+		angulo = 45;
 
-		case WA:
-			y += -0.1;
-			x += -0.1;
-			angulo = 135;
-			break;
+	}
+	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_A])
+	{
+		y += 0.1;
+		x += -0.1;
+		angulo = 225;
+	}
+	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_D])
+	{
+		y += 0.1;
+		x += 0.1;
+		angulo = 315;
+	}
+	else if (keyStatesActuales[SDL_SCANCODE_W])
+	{
+		y += -0.1;
+		angulo = 90;
+	}
+	else if (keyStatesActuales[SDL_SCANCODE_A])
+	{
+		x += -0.1;
+		angulo = 180;
+	}
+	else if (keyStatesActuales[SDL_SCANCODE_S])
+	{
+		y += 0.1;
+		angulo = 270;
+	}
+	else if (keyStatesActuales[SDL_SCANCODE_D])
+	{
+		x += 0.1;
+		angulo = 0;
+	}
 
-		case WD:
-			y += -0.1;
-			x += 0.1;
-			angulo = 45;
-
-			break;
-
-		case SA:
-			y += 0.1;
-			x += -0.1;
-			angulo = 225;
-			break;
-
-		case SD:
-			y += 0.1;
-			x += 0.1;
-			angulo = 315;
-
-			break;
-
-		case W:
-			y += -0.1;
-			angulo = 90;
-			break;
-
-		case S:
-			y += 0.1;
-			angulo = 270;
-			break;
-
-		case A:
-			x += -0.1;
-			angulo = 180;
-			break;
-
-		case D:
-			x += 0.1;
-			angulo = 0;
-			break;
-		case JPIUM:
-			disparo();
-			break;
-		}
+	if (keyStatesActuales[SDL_SCANCODE_E])
+	{
+		disparo();
+	}
 		
 	move(x, y);
-
 }
 
 void Personaje::move(double x, double y)
@@ -94,8 +107,29 @@ void Personaje::move(double x, double y)
 }
 
 void Personaje::disparo(){
-	static_cast <Mundo*> (pJuego->topEstado())->newBala(this);
+	if (SDL_GetTicks() - ultimaBala >= tiempoBala)//Se pide la hora y se compara con la última 
+	{
+		balas.push_back(new Bala(pJuego, posX, posY, TPlay, ENull,angulo));
+
+		ultimaBala = SDL_GetTicks();
+	}
 }
+
+void Personaje::destruyeBala(Bala * bala)
+{
+
+	list<Bala*>::iterator it = balas.begin();
+	while (it != balas.end() &&(*it) != bala)
+	{
+		it++;
+
+	}
+
+	delete (*it);
+	balas.erase(it);
+
+}
+
 
 
 

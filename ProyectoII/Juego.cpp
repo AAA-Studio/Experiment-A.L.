@@ -43,7 +43,7 @@ void Juego::run()
 {
 	// La necesitaremos con un valor menor 
 	Uint32 MSxUpdate = 5;
-	Uint32 MSxInput = 50;
+	Uint32 MSxInput = 1;
 
 	SDL_ShowWindow(pWin);
 	Uint32 lastUpdate = SDL_GetTicks(); //tiempo transcurrido desde el ultimo update()
@@ -63,13 +63,14 @@ void Juego::run()
 		render();
 		//Mix_PlayChannel( -1, pChunk,3 ); 
 
-		if (SDL_GetTicks() - lastInput >= MSxInput)
-		{
+		//if (SDL_GetTicks() - lastInput >= MSxInput)
+		
+		//{
 
 			handle_event();
 
 			lastInput = SDL_GetTicks();
-		}
+		//}
 	}
 	//render();
 	SDL_HideWindow(pWin);
