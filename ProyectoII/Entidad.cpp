@@ -22,3 +22,11 @@ void Entidad::draw()const
 	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect);//Dibujamos la textura
 }
 
+SDL_Rect Entidad::dameRect(){
+	SDL_Rect rectangulo;
+	rectangulo.x = posX;
+	rectangulo.y = posY;
+	rectangulo.w = rect.w;
+	rectangulo.h = rect.h;
+	return rectangulo;
+}

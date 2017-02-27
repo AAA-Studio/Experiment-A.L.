@@ -15,7 +15,7 @@ protected:
 public:
 	Mundo(Juego * pJ);
 	virtual ~Mundo();
-
+	virtual bool colisionando(EntidadJuego* po1, EntidadJuego* po2);
 	void newBala(EntidadJuego * po);
 	void newBaja(EntidadJuego * po); // Los objetos informarán al juego cuando causen baja
 

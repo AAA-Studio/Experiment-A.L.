@@ -126,4 +126,34 @@ void Mundo::newBala(EntidadJuego* po)
 
 }
 
+bool Mundo::colisionando(EntidadJuego* po1, EntidadJuego* po2){
+	SDL_Rect rectA, rectB;
+	rectA = po1->dameRect();
+	rectB = po2->dameRect();
+	
+		if ((rectA.y + rectA.h) <= rectB.y)
+		{
+		return false;
+		}
+	
+		if (rectA.y >= (rectB.y + rectB.h))
+		{
+		return false;
+		}
+	
+		if ((rectA.x + rectA.w) <= rectB.x)
+		{
+		return false;
+		}
+	
+		if (rectA.x >= (rectB.x + rectB.w))
+		{
+		return false;
+		}
+	
+			//If none of the sides from A are outside B
+		return true;
+	
+}
+
 

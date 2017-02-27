@@ -27,7 +27,7 @@ public:
 	const SDL_Rect getRect(){ return rect; }
 	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto);
 	virtual ~Entidad();
-
+	virtual SDL_Rect dameRect();
 };
 
 #endif
