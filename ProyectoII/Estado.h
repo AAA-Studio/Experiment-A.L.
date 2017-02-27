@@ -13,7 +13,7 @@ class Estado : public EstadoJuego
 {
 protected:
 	virtual void draw() const;
-	virtual void onClick();
+	virtual void onInput(SDL_Event &e){};
 	virtual void update();
 
 	void freeObjetos();
@@ -24,7 +24,6 @@ protected:
 public:
 	Estado(Juego * pJ);
 	virtual ~Estado();
-private:
 };
 
 #endif

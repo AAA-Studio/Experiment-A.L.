@@ -12,7 +12,7 @@ using namespace std; // Para cualificar automaticamente con std:: los identifica
 Juego::Juego()
 {
 	srand(SDL_GetTicks());//Inicializamos los números aleatorios de manera que cada vez se van modificando
-	pausa = exit = false;
+	exit = false;
 	pWin = nullptr;
 	pRenderer = nullptr;
 	colorWin = { 0, 0, 0, 255 };
@@ -25,6 +25,7 @@ Juego::Juego()
 	initMedia();
 
 	vectorEstados.push_back(new Menu(this));//Primer estado de la pila
+	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
 
 }
 
@@ -41,10 +42,13 @@ Juego::~Juego()
 void Juego::run()
 {
 	// La necesitaremos con un valor menor 
-	Uint32 MSxUpdate = 500;
+	Uint32 MSxUpdate = 5;
+	Uint32 MSxInput = 50;
 
 	SDL_ShowWindow(pWin);
 	Uint32 lastUpdate = SDL_GetTicks(); //tiempo transcurrido desde el ultimo update()
+	Uint32 lastInput = SDL_GetTicks(); //tiempo transcurrido desde el ultimo update()
+
 	render();
 	handle_event();
 	while (!exit)
@@ -58,7 +62,14 @@ void Juego::run()
 
 		render();
 		//Mix_PlayChannel( -1, pChunk,3 ); 
-		handle_event();
+
+		if (SDL_GetTicks() - lastInput >= MSxInput)
+		{
+
+			handle_event();
+
+			lastInput = SDL_GetTicks();
+		}
 	}
 	//render();
 	SDL_HideWindow(pWin);
@@ -132,7 +143,8 @@ void Juego::initMedia()
 {
 	//TEXTURAS
 
-	nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png", "..\\bmps\\menu.png", "..\\bmps\\exit.png" };
+	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png",
+		"..\\bmps\\menu.png", "..\\bmps\\exit.png" };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{
@@ -224,25 +236,20 @@ void Juego::getMousePos(int & mpx, int & mpy) const
 // Comprueba si hay un evento en la cola de eventos y procesa el metodo correspondiente
 void Juego::handle_event(){
 	SDL_Event e;
-	while (SDL_PollEvent(&e)) {
+	while (SDL_PollEvent(&e) != 0 ) {
 		if (e.type == SDL_QUIT)
 		{
 			exit = true;//X para salir
 		}
-		else if (e.type == SDL_MOUSEBUTTONUP) {
-			if (e.button.button == SDL_BUTTON_LEFT) {
-				posMouseX = e.button.x;
-				posMouseY = e.button.y;
-				topEstado()->onClick();
-			}
-		}
-		else if (e.type == SDL_KEYUP)
-		{
-			if (e.key.keysym.sym == SDLK_ESCAPE){
-				pausa = true;
-				topEstado()->onClick();
-			}
 
+		if (e.button.button == SDL_BUTTON_LEFT)
+		{
+			posMouseX = e.button.x;
+			posMouseY = e.button.y;
 		}
+
 	}
+
+	topEstado()->onInput(e);
+
 }

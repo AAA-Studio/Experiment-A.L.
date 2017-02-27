@@ -1,6 +1,10 @@
 #ifndef EntidadJuego_H
 #define EntidadJuego_H
 #include "checkML.h"
+#include <stack>
+
+enum Controles_t { SuperNULL, W, S, A, D,WA,WD,SA,SD, JPIUM };
+
 
 class EntidadJuego
 {
@@ -16,7 +20,7 @@ public:
 
 	virtual void update() = 0;
 
-	virtual bool onClick() = 0;
+	virtual void onInput(const Controles_t &c) = 0;
 
 };
 

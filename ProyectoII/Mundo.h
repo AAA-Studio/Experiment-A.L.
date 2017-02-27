@@ -9,17 +9,18 @@ class Mundo : public Estado
 {
 protected:
 	virtual void draw() const;
-	virtual void onClick();
+	virtual void onInput(SDL_Event &e);
 	virtual void update();
 
 public:
 	Mundo(Juego * pJ);
 	virtual ~Mundo();
 
+	void newBala(EntidadJuego * po);
 	void newBaja(EntidadJuego * po); // Los objetos informarán al juego cuando causen baja
 
 private:
-
+	bool pausa;
 	void initObjetos();
 
 };

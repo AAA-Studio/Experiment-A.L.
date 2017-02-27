@@ -17,7 +17,6 @@ enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, /*TFondoMenu,*/ TFuente, Textur
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
 
-
 class Juego
 {
 public:
@@ -37,14 +36,14 @@ public:
 
 	void changeState(EstadoJuego *estado);
 
+	//Elimina el último estado
+	void popState();
+
 	// en duda
 	void goToPausa(EstadoJuego * estado);
 
 	//Sale del programa
 	void setSalir(){ exit = true; };
-
-	void setPausaFalse(){ pausa = false; };
-	bool getPausa()const{ return pausa; };
 
 	SDL_Renderer * getRender() const{ return pRenderer; };
 	TexturasSDL * getTextura(Texturas_t et) const { return texturas[et]; }
@@ -61,7 +60,7 @@ public:
 private:
 
 	//Atributos
-	bool pausa, exit;
+	bool exit;
 	int posMouseX, posMouseY;
 
 	SDL_Window *pWin;//Puntero de la ventana
@@ -72,7 +71,6 @@ private:
 
 	vector <EstadoJuego*> vectorEstados;
 
-	vector <string> nombArchTex;
 	TexturasSDL*  texturas[Texturas_t_SIZE];
 
 	//AMPLIACIONES
@@ -98,8 +96,7 @@ private:
 
 	//Añade un nuevo estado
 	void pushState(EstadoJuego * nuevoEstado);
-	//Elimina el último estado
-	void popState();
+
 
 };
 
