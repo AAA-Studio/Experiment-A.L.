@@ -1,6 +1,7 @@
 #include "GameOver.h"
 #include "Boton.h"
 #include <iostream>
+#include "Menu.h"
 
 GameOver::GameOver(Juego * pJ) : Estado(pJ)
 {
@@ -13,6 +14,11 @@ GameOver::~GameOver()
 {
 	
 }
+
+static void goMenu(Juego * pj){
+	Menu * eMenu = new Menu(pj);
+	pj->changeState(eMenu);
+};
 
 void GameOver::initObjetos(){
 	objetos[0] = new Boton(pJuego, 270, 150, TMenu, ENull, goMenu);

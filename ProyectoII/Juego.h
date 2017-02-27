@@ -36,6 +36,9 @@ public:
 
 	void changeState(EstadoJuego *estado);
 
+	//Elimina el último estado
+	void popState();
+
 	// en duda
 	void goToPausa(EstadoJuego * estado);
 
@@ -68,7 +71,6 @@ private:
 
 	vector <EstadoJuego*> vectorEstados;
 
-	vector <string> nombArchTex;
 	TexturasSDL*  texturas[Texturas_t_SIZE];
 
 	//AMPLIACIONES
@@ -94,8 +96,7 @@ private:
 
 	//Añade un nuevo estado
 	void pushState(EstadoJuego * nuevoEstado);
-	//Elimina el último estado
-	void popState();
+
 
 };
 

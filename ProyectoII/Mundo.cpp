@@ -55,26 +55,36 @@ void Mundo::onInput(SDL_Event &e){
 	//Declaramos el array con los estados de teclado
 	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 	
-	
 	if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
 			Pausa * pausa = new Pausa(pJuego);
 			pJuego->goToPausa(pausa);
 	}
-	if (keyStatesActuales[SDL_SCANCODE_W])
-			objetos[0]->onInput(JArriba);
-		
-	if (keyStatesActuales[SDL_SCANCODE_A])
-			objetos[0]->onInput(JIzquierda);
+	else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_A])
+		objetos[0]->onInput(WA);
 
-	if (keyStatesActuales[SDL_SCANCODE_S])
-		objetos[0]->onInput(JAbajo);
+	else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_D])
+		objetos[0]->onInput(WD);
+
+	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_A])
+		objetos[0]->onInput(SA);
+
+	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_D])
+		objetos[0]->onInput(SD);
+
+	else if (keyStatesActuales[SDL_SCANCODE_W])
+			objetos[0]->onInput(W);
 		
-	if (keyStatesActuales[SDL_SCANCODE_D])
-		objetos[0]->onInput(JDerecha);
+	else if (keyStatesActuales[SDL_SCANCODE_A])
+			objetos[0]->onInput(A);
+
+	else if (keyStatesActuales[SDL_SCANCODE_S])
+		objetos[0]->onInput(S);
+		
+	else if (keyStatesActuales[SDL_SCANCODE_D])
+		objetos[0]->onInput(D);
 	if (keyStatesActuales[SDL_SCANCODE_E])
 		objetos[0]->onInput(JPIUM);
 		
-
 	
 	//objetos[0]->onInput(pila);
 

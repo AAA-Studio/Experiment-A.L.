@@ -1,6 +1,7 @@
 #include "Pausa.h"
 #include "Boton.h"
-
+#include "Menu.h"
+#include "Mundo.h"
 
 Pausa::Pausa(Juego * pJ) : Estado(pJ)
 {
@@ -12,6 +13,14 @@ Pausa::Pausa(Juego * pJ) : Estado(pJ)
 Pausa::~Pausa()
 {
 }
+
+static void goPlay(Juego * pj){
+	pj->popState();;
+};
+static void goMenu(Juego * pj){
+	Menu * eMenu = new Menu(pj);
+	pj->changeState(eMenu);
+};
 
 void Pausa::initObjetos(){
 	objetos[0] = new Boton(pJuego, 270, 150, TMenu, ENull, goMenu);

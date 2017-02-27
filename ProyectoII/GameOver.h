@@ -2,7 +2,6 @@
 #define GameOver_H
 #include "checkML.h"
 #include "Estado.h"
-#include "Menu.h"
 
 
 class GameOver : public Estado
@@ -16,10 +15,6 @@ public:
 private:
 	void initObjetos();
 
-	static void goMenu(Juego * pj){
-		Menu * eMenu = new Menu(pj);
-		pj->changeState(eMenu);
-	};
 };
 
 #endif

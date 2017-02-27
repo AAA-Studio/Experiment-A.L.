@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "Boton.h"
+#include "Mundo.h"
 
 
 Menu::Menu(Juego * pJ) : Estado(pJ)
@@ -19,6 +20,15 @@ void Menu::draw()const
 	//pJuego->getTextura(TFondoMenu)->draw(pJuego->getRender(), fondoRect);
 
 	Estado::draw();
+}
+
+static void goPlay(Juego * pj){
+
+	Mundo * ePlay = new Mundo(pj);
+	pj->changeState(ePlay);
+};
+static void goSalir(Juego * pj){
+	pj->setSalir();
 }
 
 void Menu::initObjetos(){

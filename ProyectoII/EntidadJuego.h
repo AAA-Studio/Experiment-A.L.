@@ -2,8 +2,8 @@
 #define EntidadJuego_H
 #include "checkML.h"
 #include <stack>
-enum Controles_t { SuperNULL, JArriba, JAbajo, JIzquierda, JDerecha,JPIUM};
 
+enum Controles_t { SuperNULL, W, S, A, D,WA,WD,SA,SD, JPIUM };
 
 
 class EntidadJuego

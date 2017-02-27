@@ -133,7 +133,8 @@ void Juego::initMedia()
 {
 	//TEXTURAS
 
-	nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png", "..\\bmps\\menu.png", "..\\bmps\\exit.png" };
+	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png",
+		"..\\bmps\\menu.png", "..\\bmps\\exit.png" };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{
@@ -236,6 +237,9 @@ void Juego::handle_event(){
 			posMouseX = e.button.x;
 			posMouseY = e.button.y;
 		}
+
 	}
+
 	topEstado()->onInput(e);
+
 }

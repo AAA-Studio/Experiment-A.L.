@@ -14,6 +14,7 @@ public:
 	virtual void onInput(const Controles_t &c);
 
 private:
+	int angulo;
 	void disparo(int angulo);
 	void move(double x, double y);
 };
