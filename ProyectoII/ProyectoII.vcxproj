@@ -74,14 +74,12 @@
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Juego.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MathCore.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Mundo.cpp" />
     <ClCompile Include="Musica.cpp" />
     <ClCompile Include="PathFinding.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
-    <ClCompile Include="SearchCell.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
   </ItemGroup>
   <ItemGroup>

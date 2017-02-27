@@ -10,6 +10,7 @@ PathFinding::PathFinding()
 void PathFinding::FindPath(Vector3 currentPos, Vector3 targetPos) {
 	
 	if (!m_initializedStartGoal) {
+
 		for (int i = 0; i < m_openList.size(); i++) {
 			delete m_openList[i];
 		}
@@ -23,16 +24,22 @@ void PathFinding::FindPath(Vector3 currentPos, Vector3 targetPos) {
 		for (int i = 0; m_pathToGoal.size(); i++) {
 			delete m_pathToGoal[i];
 		}
-
 		m_pathToGoal.clear();
 
 		// Inicializacion del start
 		SearchCell start;
+
+		//start.m_xcoord = m_GAmeWorld->GetCellX(currentPos.m_x); x/CELL_SIZE;
+		//start.m_zcoord = m_GAmeWorld->GetCellZ(currentPos.m_z);
+
 		start.m_xcoord = currentPos.m_x;
 		start.m_zcoord = currentPos.m_z;
 
 		// Inicializacion del Goal
 		SearchCell goal;
+
+		//goal.m_xcoord = m_GAmeWorld->GetCellX(currentPos.m_x);
+		//goal.m_zcoord = m_GAmeWorld->GetCellZ(currentPos.m_z);
 		goal.m_xcoord = targetPos.m_x;
 		goal.m_zcoord = targetPos.m_z;
 
@@ -59,7 +66,10 @@ void PathFinding::SetStartAndGoal(SearchCell start, SearchCell goal){
 
 SearchCell * PathFinding::GetNextCell(){
 	
+	// Comprueba la mejor F de la lista, 
+	// con este numero obligamos a que se cambie por lo menos 1 vez
 	float bestF = 999999.0f;
+
 	int cellIndex = -1;
 	SearchCell * nextCell = nullptr;
 
@@ -78,7 +88,7 @@ SearchCell * PathFinding::GetNextCell(){
 	return nextCell;
 }
 
-void PathFinding::PathoOpened(int x, int z, float newCost, SearchCell *pPadre){
+void PathFinding::PathOpened(int x, int z, float newCost, SearchCell *pPadre){
 	
 	// Cuando haya paredes ignora esas celdas
 	/*if (CELL_BLOCKED)
@@ -134,43 +144,67 @@ void PathFinding::ContinuePath() {
 		// Va por todas las celdas comprobando cual es el camino mas corto y las mete en la lista
 		for (getPath = m_goalCell; getPath != NULL; getPath = getPath->pPadre) {
 
-			m_pathToGoal.push_back(new Vector3(getPath->m_xcoord, 0, getPath->m_zcoord));
+			m_pathToGoal.push_back(new Vector3(getPath->m_xcoord * CELL_SIZE, 0, getPath->m_zcoord));
 		}
 
 		m_foundGoal = true;
 	}
 	else {
 		// Celda derecha
-		PathoOpened(currentCell->m_xcoord + 1, currentCell->m_zcoord, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->m_xcoord + 1, currentCell->m_zcoord, currentCell->G + 1, currentCell);
 
 		//Celda izquierda
-		PathoOpened(currentCell->m_xcoord - 1, currentCell->m_zcoord, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->m_xcoord - 1, currentCell->m_zcoord, currentCell->G + 1, currentCell);
 		
 		// Celda superior
-		PathoOpened(currentCell->m_xcoord, currentCell->m_zcoord - 1, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->m_xcoord, currentCell->m_zcoord - 1, currentCell->G + 1, currentCell);
 
 		// Celda inferior
-		PathoOpened(currentCell->m_xcoord, currentCell->m_zcoord + 1, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->m_xcoord, currentCell->m_zcoord + 1, currentCell->G + 1, currentCell);
 
 		// Celda diagonal izquierda superior
-		PathoOpened(currentCell->m_xcoord - 1, currentCell->m_zcoord - 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->m_xcoord - 1, currentCell->m_zcoord - 1, currentCell->G + 1.4f, currentCell);
 
 		// Celda diagonal izquierda inferior
-		PathoOpened(currentCell->m_xcoord - 1, currentCell->m_zcoord + 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->m_xcoord - 1, currentCell->m_zcoord + 1, currentCell->G + 1.4f, currentCell);
 		
 		// Celda diagonal derecha superior
-		PathoOpened(currentCell->m_xcoord + 1, currentCell->m_zcoord - 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->m_xcoord + 1, currentCell->m_zcoord - 1, currentCell->G + 1.4f, currentCell);
 
 		// Celda diagonal derecha inferior
-		PathoOpened(currentCell->m_xcoord + 1, currentCell->m_zcoord + 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->m_xcoord + 1, currentCell->m_zcoord + 1, currentCell->G + 1.4f, currentCell);
 		
 		for (int i = 0; i < m_openList.size(); i++)
 		{	
-			if (currentCell->m_id == m_openList[i]->m_id)
+			if (currentCell->m_id == m_openList[i]->m_id){
+				
 				m_openList.erase(m_openList.begin + i);
-			// 10:37 del 4 video
+
+			}
+				
 		}
 	}
+}
+
+Vector3 PathFinding::NextPathPos(Enemigo enemigo) {
+	
+	int index = 1; 
+
+	Vector3 nextPos;
+	nextPos.m_x = m_pathToGoal[m_pathToGoal.size() - index]->m_x;
+	nextPos.m_z = m_pathToGoal[m_pathToGoal.size() - index]->m_z;
+
+	// pos es la actual posicion del enemigo
+	Vector3 distance = nextPos - enemigo.pos;
+	if (distance.Length() < m_pathToGoal.size()) {
+
+		// Si el enemigo consigue avanzar en el radio de celdas elimina la que ya estaba
+		if (distance.Length() < enemigo.radius) {
+			m_pathToGoal.erase(m_pathToGoal.end() - index);
+		}
+	}
+
+	return nextPos;
 }
 
 PathFinding::~PathFinding()

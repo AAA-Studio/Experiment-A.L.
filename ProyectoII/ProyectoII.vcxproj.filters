@@ -84,14 +84,8 @@
     <ClCompile Include="Enemigo.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
-    <ClCompile Include="SearchCell.cpp">
-      <Filter>Archivos de código fuente\Pathfinding</Filter>
-    </ClCompile>
     <ClCompile Include="PathFinding.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="MathCore.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Pathfinding</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,11 +143,11 @@
     <ClInclude Include="SearchCell.h">
       <Filter>Archivos de encabezado\Pathfinding</Filter>
     </ClInclude>
-    <ClInclude Include="PathFinding.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="MathCore.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinding.h">
+      <Filter>Archivos de encabezado\Pathfinding</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
