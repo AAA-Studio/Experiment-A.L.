@@ -16,10 +16,13 @@ Personaje::~Personaje()
 void Personaje::update()  
 {	
 	list<Bala*>::iterator it = balas.begin();
-	while (it != balas.end())
+
+
+	while (!balas.empty() && it != balas.end())
 	{
 		(*it)->update();
-		it++;
+		if (!balas.empty())
+			it++;
 	}
 	
 }
@@ -29,7 +32,7 @@ void Personaje::draw()const
 	Entidad::draw();
 
 	list<Bala*>::const_iterator it = balas.cbegin();
-	while (it != balas.cend())
+	while (!balas.empty() && it != balas.cend())
 	{
 		(*it)->draw();
 		it++;
@@ -109,7 +112,7 @@ void Personaje::move(double x, double y)
 void Personaje::disparo(){
 	if (SDL_GetTicks() - ultimaBala >= tiempoBala)//Se pide la hora y se compara con la última 
 	{
-		balas.push_back(new Bala(pJuego, posX, posY, TPlay, ENull,angulo));
+		balas.push_back(new Bala(pJuego, posX, posY, TPlay, ENull,angulo,this));
 
 		ultimaBala = SDL_GetTicks();
 	}
@@ -117,16 +120,15 @@ void Personaje::disparo(){
 
 void Personaje::destruyeBala(Bala * bala)
 {
-
 	list<Bala*>::iterator it = balas.begin();
 	while (it != balas.end() &&(*it) != bala)
 	{
 		it++;
-
 	}
 
-	delete (*it);
 	balas.erase(it);
+	delete (bala);
+	bala = nullptr;
 
 }
 

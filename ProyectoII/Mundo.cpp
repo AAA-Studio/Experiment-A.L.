@@ -85,4 +85,3 @@ void Mundo::newBaja(EntidadJuego* po)
 	}*/
 }
 
-

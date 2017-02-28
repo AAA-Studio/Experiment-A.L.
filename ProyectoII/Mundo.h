@@ -16,7 +16,6 @@ public:
 	Mundo(Juego * pJ);
 	virtual ~Mundo();
 
-	void newBala(EntidadJuego * po);
 	void newBaja(EntidadJuego * po); // Los objetos informarán al juego cuando causen baja
 
 private:
