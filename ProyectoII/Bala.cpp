@@ -68,7 +68,6 @@ void Bala::update(){
 	if (SDL_GetTicks() - time >= duracion)//Se pide la hora y se compara con la última 
 	{
 		static_cast<Personaje*> (personaje)->destruyeBala(this);
-
 	}
 
 }

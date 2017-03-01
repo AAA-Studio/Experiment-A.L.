@@ -63,14 +63,12 @@ void Juego::run()
 		render();
 		//Mix_PlayChannel( -1, pChunk,3 ); 
 
-		//if (SDL_GetTicks() - lastInput >= MSxInput)
-		
-		//{
-
+		if (SDL_GetTicks() - lastInput >= MSxInput)
+		{
 			handle_event();
 
 			lastInput = SDL_GetTicks();
-		//}
+		}
 	}
 	//render();
 	SDL_HideWindow(pWin);

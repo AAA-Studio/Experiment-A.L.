@@ -19,17 +19,18 @@ public:
 
 	void destruyeBala(Bala * bala);
 
-
 	int getX(){ return posX; };
 	int getY(){ return posY; };
 	int getAngulo(){ return angulo; };
 
 private:
-
+	
 	list <Bala*> balas;
 	const float tiempoBala = 1000;
 	float ultimaBala;
 	int angulo;
+	bool balaDestruida;
+
 	void disparo();
 	void move(double x, double y);
 };

@@ -4,6 +4,7 @@
 Personaje::Personaje(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pJ, x, y, textura, efecto)
 {
 	ultimaBala = SDL_GetTicks();
+	balaDestruida = false;
 }
 
 //Destructora
@@ -16,13 +17,17 @@ Personaje::~Personaje()
 void Personaje::update()  
 {	
 	list<Bala*>::iterator it = balas.begin();
+	balaDestruida = false;
 
-
-	while (!balas.empty() && it != balas.end())
+	while (!balaDestruida && !balas.empty() && it != balas.end())
 	{
 		(*it)->update();
-		if (!balas.empty())
+		if (!balaDestruida)
+		{
 			it++;
+
+		}
+
 	}
 	
 }
@@ -48,47 +53,47 @@ void Personaje::onInput()
 
 	if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_A])
 	{
-		y += -0.1;
-		x += -0.1;
+		y += -0.5;
+		x += -0.5;
 		angulo = 135;
 	}
 	else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_D])
 	{
-		y += -0.1;
-		x += 0.1;
+		y += -0.5;
+		x += 0.5;
 		angulo = 45;
 
 	}
 	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_A])
 	{
-		y += 0.1;
-		x += -0.1;
+		y += 0.5;
+		x += -0.5;
 		angulo = 225;
 	}
 	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_D])
 	{
-		y += 0.1;
-		x += 0.1;
+		y += 0.5;
+		x += 0.5;
 		angulo = 315;
 	}
 	else if (keyStatesActuales[SDL_SCANCODE_W])
 	{
-		y += -0.1;
+		y += -0.5;
 		angulo = 90;
 	}
 	else if (keyStatesActuales[SDL_SCANCODE_A])
 	{
-		x += -0.1;
+		x += -0.5;
 		angulo = 180;
 	}
 	else if (keyStatesActuales[SDL_SCANCODE_S])
 	{
-		y += 0.1;
+		y += 0.5;
 		angulo = 270;
 	}
 	else if (keyStatesActuales[SDL_SCANCODE_D])
 	{
-		x += 0.1;
+		x += 0.5;
 		angulo = 0;
 	}
 
@@ -125,7 +130,7 @@ void Personaje::destruyeBala(Bala * bala)
 	{
 		it++;
 	}
-
+	balaDestruida = true;
 	balas.erase(it);
 	delete (bala);
 	bala = nullptr;
