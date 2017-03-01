@@ -1,11 +1,14 @@
 #ifndef _H_SearchCell_H_
 #define _H_SearchCell_H_
 
+#include "checkML.h"
 #include <SDL.h>
 #include <math.h>
 
+// Tamaño del mundo
 #define WORLD_SIZE 80
-#define CELL_SIZE 20
+// El mundo se divide en celdas donde el enemigo puede estar
+#define CELL_SIZE 20  
 
 class SearchCell
 {
@@ -23,6 +26,8 @@ public:
 
 
 	float GetF(){ return G + H; }
+	int GetCellX(float x) { return x / CELL_SIZE; }
+	int GetCellZ(float z) { return z / CELL_SIZE; }
 
 	// ¿por que ManHattanDistance?: https://es.wikipedia.org/wiki/Geometr%C3%ADa_del_taxista
 	float ManHattanDistance(SearchCell * nodeEnd) { // Distancia en la que esta el enemigo al personaje

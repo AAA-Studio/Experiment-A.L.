@@ -1,11 +1,18 @@
 #ifndef _H_PathFinding_H_
 #define _H_PathFinding_H_
 
+#include "checkML.h"
 #include "SearchCell.h"
 #include "MathCore.h"
 #include "Enemigo.h"
 #include <vector>
 using namespace std;
+
+/*
+Pathfinding por niveles para que sea rapido
+Hay que ver si hat linea recta contra el personaje, buscar lo qye hay que esquivar
+NathPoints, hago una lista de nathpoints y eso es lo que comprueba el enemigo
+*/
 
 class PathFinding
 {
@@ -15,6 +22,9 @@ public:
 
 	// Este metodo utiliza las coordenadas del enemigo y las del jugador para crear el camino optimo
 	void FindPath(Vector3 currentPos, Vector3 targetPos);
+
+	void DrawDebug();
+
 	// Devuelve la posicion del camino mas corto
 	Vector3 NextPathPos(Enemigo enemigo);
 	// Limpia las diferentes listas
@@ -26,6 +36,7 @@ public:
 	// Personaje encontrado
 	bool m_foundGoal;
 
+
 private:
 
 	void SetStartAndGoal(SearchCell start, SearchCell goal);
@@ -34,6 +45,8 @@ private:
 	// Busca a lo largo del mundo el Goal para seguir en el camino optimo
 	void ContinuePath();
 
+	
+
 	SearchCell * GetNextCell();
 
 	// Primera celda donde se encuentra el enemigo
@@ -41,6 +54,8 @@ private:
 
 	// Celda donde se encuentra el personaje
 	SearchCell * m_goalCell;
+
+	SearchCell * m_GameWorld;
 
 	// Celdas sin visitar
 	vector <SearchCell*> m_openList;

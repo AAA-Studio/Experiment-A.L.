@@ -1,5 +1,7 @@
 #ifndef _H_MathCore_H_
 #define _H_MathCore_H_
+
+#include "checkML.h"
 #include <iostream>
 using namespace std;
 template <class T>
@@ -10,17 +12,17 @@ public:
 	Vector2(float _x, float _y) : m_x(_x), m_y(_y);
 	~Vector2();
 
-	Vector2 Vector2::operator - (const Vector2 &v1, const Vector2 &v2) {
-		return Vector2(v1.m_x - v2.m_x, v1.m_y - v2.m_y);
-		//return *(new Vector2(v1.m_x - v2.m_x, v1.m_y - v2.m_y));
+	// sobrecarga necesaria para determinar distancias entre puntos
+	Vector2 Vector2::operator - (const Vector2 &v2) {
+		return Vector2(m_x - v2.m_x, m_y - v2.m_y);
 	}
 
 	float m_x;
 	float m_y;
-	float Length = sqrt((x*x) + (y*y));
+	// tamaño del vector
+	float Length = sqrt((m_x*m_x) + (m_y*m_y));
 };
 
-// template <class T>
 class Vector3
 {
 public:
@@ -28,16 +30,16 @@ public:
 	Vector3(float _x, float _y, float _z) : m_x(_x), m_y(_y), m_z(_z){}
 	~Vector3();
 
-	//Vector3& Vector3::operator - (const Vector3 &v1, const Vector3 &v2) {
+	// sobrecarga necesaria para determinar distancias entre puntos
 	Vector3 Vector3::operator- (const Vector3 &v2) {
-		//return *(new Vector3(v1.m_x - v2.m_x, v1.m_y - v2.m_y, v1.m_z - v2.m_z));
 		return Vector3(m_x - v2.m_x, m_y - v2.m_y, m_z - v2.m_z);
 	}
 
 	float m_x;
 	float m_y;
 	float m_z;
-	float Length; // = sqrt((x*x) + (y*y) + (z*z));
+	// tamaño del vector
+	float Length = sqrt((m_x*m_x) + (m_y*m_y) + (m_z*m_z));
 };
 
 class MathCore

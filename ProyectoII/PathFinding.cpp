@@ -29,20 +29,16 @@ void PathFinding::FindPath(Vector3 currentPos, Vector3 targetPos) {
 		// Inicializacion del start
 		SearchCell start;
 
-		//start.m_xcoord = m_GAmeWorld->GetCellX(currentPos.m_x); x/CELL_SIZE;
-		//start.m_zcoord = m_GAmeWorld->GetCellZ(currentPos.m_z);
-
-		start.m_xcoord = currentPos.m_x;
-		start.m_zcoord = currentPos.m_z;
+		start.m_xcoord = m_GameWorld->GetCellX(currentPos.m_x);
+		start.m_zcoord = m_GameWorld->GetCellZ(currentPos.m_z);
 
 		// Inicializacion del Goal
 		SearchCell goal;
 
-		//goal.m_xcoord = m_GAmeWorld->GetCellX(currentPos.m_x);
-		//goal.m_zcoord = m_GAmeWorld->GetCellZ(currentPos.m_z);
-		goal.m_xcoord = targetPos.m_x;
-		goal.m_zcoord = targetPos.m_z;
+		goal.m_xcoord = m_GameWorld->GetCellX(currentPos.m_x);
+		goal.m_zcoord = m_GameWorld->GetCellZ(currentPos.m_z);
 
+		m_foundGoal = false;
 		SetStartAndGoal(start, goal);
 		m_initializedStartGoal = true;
 	}
@@ -205,6 +201,20 @@ Vector3 PathFinding::NextPathPos(Enemigo enemigo) {
 	}
 
 	return nextPos;
+}
+
+void PathFinding::DrawDebug() {
+	for (unsigned int i = 0; i < m_openList.size(); i++) {
+		//m_GameWorld->DrawSquare(m_openList[i]->m_xcoord, m_openList[i]->m_zcoord, tColor(0.0f, 1.0f, 0.0f));
+	}
+
+	for (unsigned int i = 0; i < m_visitedList.size(); i++) {
+		//m_GameWorld->DrawSquare(m_visitedList[i]->m_xcoord, m_visitedList[i]->m_zcoord, tColor(0.0f, 0.0f, 1.0f));
+	}
+
+	for (unsigned int i = 0; i < m_pathToGoal.size(); i++) {
+		//m_GameWorld->DrawSquare(m_pathToGoal[i]->m_xcoord, m_pathToGoal[i]->m_zcoord, tColor(1.0f, 1.0f, 0.0f));
+	}
 }
 
 PathFinding::~PathFinding()
