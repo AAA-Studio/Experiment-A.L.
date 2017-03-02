@@ -10,7 +10,7 @@ class Boton : public Entidad
 public:
 	Boton(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, CallBack_t * cb);
 	~Boton();
-	virtual void onInput(const Controles_t & c);
+	virtual void onInput();
 	virtual void update(){};
 
 private:

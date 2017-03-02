@@ -1,13 +1,18 @@
 #include "Bala.h"
 #include <iostream>
+#include "Mundo.h"
+#include "Personaje.h"
 
 
-Bala::Bala(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pJ, x, y, textura, efecto)
+Bala::Bala(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, EntidadJuego* per) : Entidad(pJ, x, y, textura, efecto)
 {
 	incrX = incrY = 0;
 	velocidad = 1;
-	angulo = 0;
-	
+	angulo = ang;
+	setAngulo();
+	time = SDL_GetTicks();
+	personaje = per;
+
 }
 
 
@@ -15,8 +20,8 @@ Bala::~Bala()
 {
 }
 
-void Bala::setAngulo(int angulo){
-	incrX = incrY = 0;
+//Dependiendo del ángulo recibido, establece el incremento en x e y
+void Bala::setAngulo(){
 	switch (angulo)
 	{
 	case 0:
@@ -32,6 +37,7 @@ void Bala::setAngulo(int angulo){
 	case 135:
 		incrX = -1;
 		incrY = -1;
+		break;
 	case 180:
 		incrX = -1;
 		break;
@@ -52,16 +58,16 @@ void Bala::setAngulo(int angulo){
 
 }
 
-void Bala::setPos(int x,int y){
-	posX = x;
-	posY = y;
-	rect = { posX, posY, ancho, alto };
-
-}
 
 
 void Bala::update(){
+
 	posX += velocidad * incrX;
 	posY += velocidad * incrY;
 	rect = { posX, posY, ancho, alto };
+	if (SDL_GetTicks() - time >= duracion)//Se pide la hora y se compara con la última 
+	{
+		static_cast<Personaje*> (personaje)->destruyeBala(this);
+	}
+
 }

@@ -9,10 +9,6 @@
 class Entidad : public EntidadJuego
 {
 protected:
-
-	virtual void draw() const;
-	virtual void onInput(const Controles_t & c) {};
-
 	//El update no se modifica
 
 	Juego * pJuego;//Sustituye al puntero a la textura y al renderizador de la clase globo
@@ -24,10 +20,13 @@ protected:
 	SDL_Rect rect;//Rectángulo para cada textura
 
 public:
+	virtual void draw() const;
+	virtual void onInput() {};
+
 	const SDL_Rect getRect(){ return rect; }
 	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto);
 	virtual ~Entidad();
-	virtual SDL_Rect dameRect();
+
 };
 
 #endif

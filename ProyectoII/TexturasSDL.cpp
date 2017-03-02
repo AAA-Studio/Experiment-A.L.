@@ -40,6 +40,9 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 	//Ha encontrado la imagen
 	else
 	{
+		//Color key image
+		//SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+
 		//Coge el ancho y el alto de la imagen 
 		ancho = pTempSurface->w;
 		alto = pTempSurface->h;
@@ -59,9 +62,9 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 }
 
 //Método para dibujar la textura en el rectángulo winRect
-void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect)const
+void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, SDL_Rect* texRect)const
 {
-	SDL_RenderCopy(pRenderer, pTexture, &texRect, &winRect);
+	SDL_RenderCopy(pRenderer, pTexture, texRect, &winRect);
 }
 
 void TexturasSDL::setRectText(int numFrame){
@@ -116,3 +119,22 @@ void TexturasSDL::render(SDL_Renderer * pRenderer, int px, int py, string const&
 	draw(pRenderer, winRect);
 }
 
+//TILE
+
+void TexturasSDL::setColor(Uint8 red, Uint8 green, Uint8 blue)
+{
+	//Modulate texture rgb
+	SDL_SetTextureColorMod(pTexture, red, green, blue);
+}
+
+void TexturasSDL::setBlendMode(SDL_BlendMode blending)
+{
+	//Set blending function
+	SDL_SetTextureBlendMode(pTexture, blending);
+}
+
+void TexturasSDL::setAlpha(Uint8 alpha)
+{
+	//Modulate texture alpha
+	SDL_SetTextureAlphaMod(pTexture, alpha);
+}

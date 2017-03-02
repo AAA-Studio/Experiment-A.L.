@@ -9,13 +9,42 @@
 #include <string>
 #include <SDL.h>
 
+//The dimensions of the level
+const int LEVEL_WIDTH = 1280;
+const int LEVEL_HEIGHT = 768;
+
+//Tile constants
+const int TILE_WIDTH = 32;
+const int TILE_HEIGHT = 32;
+const int TOTAL_TILES = 960;
+const int TOTAL_TILE_SPRITES = 12;
+
+//The different tile sprites
+const int TILE_0 = 0;
+const int TILE_1 = 1;
+const int TILE_2 = 2;
+const int TILE_3 = 3;
+const int TILE_4 = 4;
+const int TILE_5 = 5;
+const int TILE_6 = 6;
+const int TILE_7 = 7;
+const int TILE_8 = 8;
+const int TILE_9 = 9;
+const int TILE_10 = 10;
+const int TILE_11 = 11;
+
 
 
 using namespace std;
 
-enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, /*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
+enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
+
+//----------------------------------------------------
+
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 768;
 
 class Juego
 {
@@ -57,6 +86,20 @@ public:
 	int getAncho(){ return winRect.w; }
 	int getAlto(){ return winRect.h; }
 
+
+	//-------------------------------------
+
+	SDL_Rect gTileClips[TOTAL_TILE_SPRITES];
+
+	SDL_Rect getRectTile(int numTile){ return gTileClips[numTile]; };
+
+	//Sets tiles from tile map
+	void recortarTiles();
+
+	//---------------------------------------
+
+
+
 private:
 
 	//Atributos
@@ -97,7 +140,10 @@ private:
 	//Añade un nuevo estado
 	void pushState(EstadoJuego * nuevoEstado);
 
+	//---------------------
 
+
+	//---------------------
 };
 
 #endif

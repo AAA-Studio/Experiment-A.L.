@@ -45,7 +45,7 @@ void Menu::onInput(SDL_Event &e){
 			int i = 0;
 			while (i < objetos.size())
 			{
-				objetos[i]->onInput(SuperNULL);
+				objetos[i]->onInput();
 				i++;
 			}
 
