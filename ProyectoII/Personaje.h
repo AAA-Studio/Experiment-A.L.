@@ -23,6 +23,10 @@ public:
 	int getY(){ return posY; };
 	int getAngulo(){ return angulo; };
 
+	//Centers the camera over the dot
+	void setCamera(SDL_Rect& camera);
+
+
 private:
 	
 	list <Bala*> balas;

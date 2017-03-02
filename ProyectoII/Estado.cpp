@@ -1,5 +1,5 @@
 #include "Estado.h"
-
+#include <iostream>
 
 Estado::Estado(Juego * pJ)
 {
@@ -8,6 +8,7 @@ Estado::Estado(Juego * pJ)
 
 Estado::~Estado()
 {
+	std::cout << "entro";
 	freeObjetos();
 }
 

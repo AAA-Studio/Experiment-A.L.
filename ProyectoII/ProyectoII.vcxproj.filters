@@ -34,6 +34,12 @@
     <Filter Include="Archivos de encabezado\Errores">
       <UniqueIdentifier>{5263f787-128c-450d-bf66-81e66fefea8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Mapa">
+      <UniqueIdentifier>{d8e37ec1-a928-42dc-9bee-c4ca566ef5d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Mapa">
+      <UniqueIdentifier>{9a4d6594-c831-4060-9f65-b81d2cea3c6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -77,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="Bala.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Archivos de código fuente\Mapa</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="Bala.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Archivos de encabezado\Mapa</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

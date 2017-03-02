@@ -18,7 +18,7 @@ Juego::Juego()
 	colorWin = { 0, 0, 0, 255 };
 
 	//Rectángulo de la ventana
-	winRect = { 200, 200, 640, 480 };
+	winRect = { 200, 200, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	initSDL();//Inicializamos el renderizador
 
@@ -61,6 +61,8 @@ void Juego::run()
 		}
 
 		render();
+
+
 		//Mix_PlayChannel( -1, pChunk,3 ); 
 
 		if (SDL_GetTicks() - lastInput >= MSxInput)
@@ -96,6 +98,16 @@ void Juego::initSDL()
 
 		Mix_Init(27);//Iniciamos el mixer
 		Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
+
+		//NO SABEMOS QUE HACE ESTA MIERDA, A LO MEJOR ES IMPORTANTE
+		/*
+		//Set texture filtering to linear
+		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+		{
+			printf("Warning: Linear texture filtering not enabled!");
+		}
+		*/
+
 
 		//Creamos la ventana con unas dimensiones específicas y al principio se encuentra escondida
 		pWin = SDL_CreateWindow("Nombre del juego", winRect.x, winRect.y, winRect.w, winRect.h, SDL_WINDOW_HIDDEN);
@@ -143,7 +155,7 @@ void Juego::initMedia()
 	//TEXTURAS
 
 	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png",
-		"..\\bmps\\menu.png", "..\\bmps\\exit.png" };
+		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\tiles3.png" };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{
@@ -151,6 +163,9 @@ void Juego::initMedia()
 		texturas[i]->load(pRenderer, nombArchTex[i]);
 	}
 	//Fondo de la ventana
+
+	recortarTiles();
+
 
 	//FUENTE
 
@@ -174,6 +189,7 @@ void Juego::initMedia()
 
 void Juego::freeMedia()
 {
+
 	//TEXTURAS
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{
@@ -251,4 +267,69 @@ void Juego::handle_event(){
 
 	topEstado()->onInput(e);
 
+}
+
+
+//---------------------------------------------
+void Juego::recortarTiles()
+{
+	gTileClips[TILE_0].x = 0;
+	gTileClips[TILE_0].y = 0;
+	gTileClips[TILE_0].w = TILE_WIDTH;
+	gTileClips[TILE_0].h = TILE_HEIGHT;
+
+	gTileClips[TILE_1].x = 0;
+	gTileClips[TILE_1].y = 32;
+	gTileClips[TILE_1].w = TILE_WIDTH;
+	gTileClips[TILE_1].h = TILE_HEIGHT;
+
+	gTileClips[TILE_2].x = 0;
+	gTileClips[TILE_2].y = 64;
+	gTileClips[TILE_2].w = TILE_WIDTH;
+	gTileClips[TILE_2].h = TILE_HEIGHT;
+
+	gTileClips[TILE_3].x = 32;
+	gTileClips[TILE_3].y = 0;
+	gTileClips[TILE_3].w = TILE_WIDTH;
+	gTileClips[TILE_3].h = TILE_HEIGHT;
+
+	gTileClips[TILE_4].x = 32;
+	gTileClips[TILE_4].y = 32;
+	gTileClips[TILE_4].w = TILE_WIDTH;
+	gTileClips[TILE_4].h = TILE_HEIGHT;
+
+	gTileClips[TILE_5].x = 32;
+	gTileClips[TILE_5].y = 64;
+	gTileClips[TILE_5].w = TILE_WIDTH;
+	gTileClips[TILE_5].h = TILE_HEIGHT;
+
+	gTileClips[TILE_6].x = 64;
+	gTileClips[TILE_6].y = 0;
+	gTileClips[TILE_6].w = TILE_WIDTH;
+	gTileClips[TILE_6].h = TILE_HEIGHT;
+
+	gTileClips[TILE_7].x = 64;
+	gTileClips[TILE_7].y = 32;
+	gTileClips[TILE_7].w = TILE_WIDTH;
+	gTileClips[TILE_7].h = TILE_HEIGHT;
+
+	gTileClips[TILE_8].x = 64;
+	gTileClips[TILE_8].y = 64;
+	gTileClips[TILE_8].w = TILE_WIDTH;
+	gTileClips[TILE_8].h = TILE_HEIGHT;
+
+	gTileClips[TILE_9].x = 96;
+	gTileClips[TILE_9].y = 0;
+	gTileClips[TILE_9].w = TILE_WIDTH;
+	gTileClips[TILE_9].h = TILE_HEIGHT;
+
+	gTileClips[TILE_10].x = 96;
+	gTileClips[TILE_10].y = 32;
+	gTileClips[TILE_10].w = TILE_WIDTH;
+	gTileClips[TILE_10].h = TILE_HEIGHT;
+
+	gTileClips[TILE_11].x = 96;
+	gTileClips[TILE_11].y = 64;
+	gTileClips[TILE_11].w = TILE_WIDTH;
+	gTileClips[TILE_11].h = TILE_HEIGHT;
 }

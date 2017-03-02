@@ -80,6 +80,7 @@
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bala.h" />
@@ -99,6 +100,7 @@
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
     <ClInclude Include="TexturasSDL.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
