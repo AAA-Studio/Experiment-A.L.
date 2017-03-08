@@ -17,14 +17,17 @@ public:
 	bool touchesWall(SDL_Rect box);
 	void draw()const;
 	Tile** getTileMap(){ return tileMap; };
-	bool cargarMapa();
+	bool cargarMapa(int n);
 	SDL_Rect getCamera(){ return camera; };
 	Juego * pJuego;
+	
 
 
 private:
+	int nivel;
 	SDL_Rect camera;
 	Tile* tileMap[TOTAL_TILES];
+	
 };
 #endif
 
