@@ -1,5 +1,5 @@
-#ifndef Boton_H
-#define Boton_H
+#ifndef Bala_H
+#define Bala_H
 #include "checkML.h"
 #include "Entidad.h"
 

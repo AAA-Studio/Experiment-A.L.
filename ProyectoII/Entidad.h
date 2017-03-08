@@ -23,6 +23,7 @@ public:
 	virtual void draw() const;
 	virtual void onInput() {};
 
+
 	const SDL_Rect getRect(){ return rect; }
 	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto);
 	virtual ~Entidad();

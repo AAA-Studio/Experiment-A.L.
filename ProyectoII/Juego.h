@@ -89,9 +89,9 @@ public:
 
 	//-------------------------------------
 
-	SDL_Rect gTileClips[TOTAL_TILE_SPRITES];
+	SDL_Rect gTileClips[TOTAL_TILE_SPRITES]; //Array con los rectángulos de las colisiones
 
-	SDL_Rect getRectTile(int numTile){ return gTileClips[numTile]; };
+	SDL_Rect getRectTile(int numTile){ return gTileClips[numTile]; };//Devuelve la colision del tile pasado como parametro
 
 	//Sets tiles from tile map
 	void recortarTiles();

@@ -5,6 +5,7 @@ Personaje::Personaje(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efect
 {
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
+	vida = 100;
 }
 
 //Destructora
@@ -111,13 +112,13 @@ void Personaje::move(double x, double y)
 	rect.x += x;
 
 	//Si no colisiona con los tiles, me muevo
-	if (static_cast<Mundo*> (pJuego->topEstado())->touchesWall(rect))
+	if (static_cast<Mundo*> (pJuego->topEstado())->getMapa()->touchesWall(rect))
 	{
 		rect.x -= x;
 	}
 
 	rect.y += y;
-	if (static_cast<Mundo*> (pJuego->topEstado())->touchesWall(rect))
+	if (static_cast<Mundo*> (pJuego->topEstado())->getMapa()->touchesWall(rect))
 	{
 		rect.y -= y;
 	}

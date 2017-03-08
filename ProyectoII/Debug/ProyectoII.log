@@ -1,18 +1,16 @@
-﻿Build started 02/03/2017 12:38:19.
-     1>Project "C:\hlocal\ProyectoII -s\ProyectoII\ProyectoII.vcxproj" on node 2 (Build target(s)).
+﻿Compilación iniciada a las 08/03/2017 13:59:37.
+     1>Proyecto "C:\hlocal\ProyectoII\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Personaje.cpp
+         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Bala.cpp Mundo.cpp Personaje.cpp
+         Mundo.cpp
+     1>c:\hlocal\proyectoii\proyectoii\personaje.h(24): warning C4244: 'return' : conversión de 'double' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyectoii\proyectoii\personaje.h(25): warning C4244: 'return' : conversión de 'double' a 'int'; posible pérdida de datos
+         Generando código...
+         Omitiendo... (no se detectaron cambios relevantes)
          Personaje.cpp
-     1>c:\hlocal\proyectoii -s\proyectoii\personaje.h(22): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
-     1>c:\hlocal\proyectoii -s\proyectoii\personaje.h(23): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
-     1>c:\hlocal\proyectoii -s\proyectoii\personaje.cpp(6): warning C4244: '=' : conversion from 'Uint32' to 'float', possible loss of data
-     1>c:\hlocal\proyectoii -s\proyectoii\personaje.cpp(111): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\hlocal\proyectoii -s\proyectoii\personaje.cpp(116): warning C4244: '-=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\hlocal\proyectoii -s\proyectoii\personaje.cpp(119): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\hlocal\proyectoii -s\proyectoii\personaje.cpp(122): warning C4244: '-=' : conversion from 'double' to 'int', possible loss of data
-     1>c:\hlocal\proyectoii -s\proyectoii\personaje.cpp(131): warning C4244: '=' : conversion from 'Uint32' to 'float', possible loss of data
+         Bala.cpp
        Link:
-         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\ProyectoII -s\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\ProyectoII -s\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\ProyectoII -s\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Bala.obj
+         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\ProyectoII\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\ProyectoII\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\ProyectoII\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Bala.obj
          Debug\Boton.obj
          Debug\Entidad.obj
          Debug\Estado.obj
@@ -20,6 +18,7 @@
          Debug\GameOver.obj
          Debug\Juego.obj
          Debug\main.obj
+         Debug\Mapa.obj
          Debug\Menu.obj
          Debug\Mundo.obj
          Debug\Musica.obj
@@ -27,9 +26,9 @@
          Debug\Personaje.obj
          Debug\TexturasSDL.obj
          Debug\Tile.obj
-         ProyectoII.vcxproj -> C:\hlocal\ProyectoII -s\bin\ProyectoIIDebug.exe
-     1>Done Building Project "C:\hlocal\ProyectoII -s\ProyectoII\ProyectoII.vcxproj" (Build target(s)).
+         ProyectoII.vcxproj -> C:\hlocal\ProyectoII\bin\ProyectoIIDebug.exe
+     1>Compilación del proyecto terminada "C:\hlocal\ProyectoII\ProyectoII\ProyectoII.vcxproj" (Build destinos).
 
-Build succeeded.
+Compilación correcta.
 
-Time Elapsed 00:00:01.05
+Tiempo transcurrido 00:00:00.69
