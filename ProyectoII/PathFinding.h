@@ -26,11 +26,12 @@ public:
 	void DrawDebug();
 
 	// Devuelve la posicion del camino mas corto
-	Vector3 NextPathPos(Enemigo enemigo);
+	Vector3 NextPathPos(Enemigo* enemigo);
 	// Limpia las diferentes listas
 	void ClearOpenList() { m_openList.clear(); }
 	void ClearVisitedList() { m_visitedList.clear(); }
 	void ClearPathToGoal() { m_pathToGoal.clear(); }
+	void DrawDebug();
 	// Comprueba que se han inicializado el personaje
 	bool m_initializedStartGoal;
 	// Personaje encontrado

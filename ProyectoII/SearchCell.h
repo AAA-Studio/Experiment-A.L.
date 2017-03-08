@@ -35,6 +35,12 @@ public:
 		float z = (float)(fabsf((this->m_zcoord - nodeEnd->m_zcoord)));
 		return x + z;
 	}
+	// ChebySev Distance: https://en.wikipedia.org/wiki/Chebyshev_distance
+	unsigned int ChebySevDistance(SearchCell * nodeEnd) { // Distancia en la que esta el enemigo al personaje
+		float x = (float)(fabsf((this->m_xcoord - nodeEnd->m_xcoord)));
+		float z = (float)(fabsf((this->m_zcoord - nodeEnd->m_zcoord)));
+		return (unsigned int)(x - z);
+	}
 	
 	~SearchCell();
 };

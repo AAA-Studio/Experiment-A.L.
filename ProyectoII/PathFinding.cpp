@@ -1,8 +1,9 @@
 #include "PathFinding.h"
 
 
-PathFinding::PathFinding()
+PathFinding::PathFinding(/*Puntero mapa*/)
 {
+	m_GameWorld = m_GameWorld; // se iguala al parametro de la constructora
 	m_initializedStartGoal = false;
 	m_foundGoal = false;
 }
@@ -87,10 +88,10 @@ SearchCell * PathFinding::GetNextCell(){
 void PathFinding::PathOpened(int x, int z, float newCost, SearchCell *pPadre){
 	
 	// Cuando haya paredes ignora esas celdas
-	/*if (CELL_BLOCKED)
+	if (m_GameWorld -> GetCellState(x, y) == CELL_BLOCKED)
 	{
 		return;
-	}*/
+	}
 
 	int id = z * WORLD_SIZE + x;
 	for (int i = 0; i < m_visitedList.size(); i++) {
@@ -182,7 +183,7 @@ void PathFinding::ContinuePath() {
 	}
 }
 
-Vector3 PathFinding::NextPathPos(Enemigo enemigo) {
+Vector3 PathFinding::NextPathPos(Enemigo*  enemigo) {
 	
 	int index = 1; 
 
@@ -191,11 +192,11 @@ Vector3 PathFinding::NextPathPos(Enemigo enemigo) {
 	nextPos.m_z = m_pathToGoal[m_pathToGoal.size() - index]->m_z;
 
 	// pos es la actual posicion del enemigo
-	Vector3 distance = nextPos - enemigo.pos;
-	if (distance.Length() < m_pathToGoal.size()) {
+	Vector3 distance = nextPos - enemigo->pos;
+	if (distance.Length < m_pathToGoal.size()) {
 
 		// Si el enemigo consigue avanzar en el radio de celdas elimina la que ya estaba
-		if (distance.Length() < enemigo.radius) {
+		if (distance.Length < enemigo->radius) {
 			m_pathToGoal.erase(m_pathToGoal.end() - index);
 		}
 	}
@@ -204,16 +205,16 @@ Vector3 PathFinding::NextPathPos(Enemigo enemigo) {
 }
 
 void PathFinding::DrawDebug() {
+	// static void *****::DrawSquare(int posX, int posY, tColor color) || static void *****::DrawSquare(float posX, float posY, tColor color)
+
 	for (unsigned int i = 0; i < m_openList.size(); i++) {
-		//m_GameWorld->DrawSquare(m_openList[i]->m_xcoord, m_openList[i]->m_zcoord, tColor(0.0f, 1.0f, 0.0f));
+		m_GameWorld->DrawSquare(m_openList[i]->m_xcoord, m_openList[i]->m_zcoord, tColor(0.0f, 1.0f. 0.0f));
 	}
-
 	for (unsigned int i = 0; i < m_visitedList.size(); i++) {
-		//m_GameWorld->DrawSquare(m_visitedList[i]->m_xcoord, m_visitedList[i]->m_zcoord, tColor(0.0f, 0.0f, 1.0f));
+		m_GameWorld->DrawSquare(m_visitedList[i]->m_xcoord, m_visitedList[i]->m_zcoord, tColor(0.0f, 0.0f. 1.0f));
 	}
-
 	for (unsigned int i = 0; i < m_pathToGoal.size(); i++) {
-		//m_GameWorld->DrawSquare(m_pathToGoal[i]->m_xcoord, m_pathToGoal[i]->m_zcoord, tColor(1.0f, 1.0f, 0.0f));
+		m_GameWorld->DrawSquare(m_pathToGoal[i]->m_x, m_pathToGoal[i]->m_z, tColor(1.0f, 0.0f. 0.0f));
 	}
 }
 

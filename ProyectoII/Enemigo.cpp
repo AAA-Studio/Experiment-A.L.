@@ -1,4 +1,7 @@
 #include "Enemigo.h"
+#include <math.h>
+#include <stdio.h>
+#include <gl/GL.h> // Core Opengl dunctions
 
 
 Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pJ, x, y, textura, efecto)
@@ -13,18 +16,119 @@ void Enemigo::RandomizeGoal()
 }
 
 void Enemigo::Draw() {
+
+	//Hay que dibujar el enemigo
 	
 	m_pathfinding->DrawDebug();
 
 }
 
 void Enemigo::Update(float deltaTime) {
-	
+
 	if (hasBeenHit) {
 		regainControllerTimer += deltaTime / 10;
-		// minuto 3:23 del video y tengo que crear la clase rectangulo
-	}
 
+		if (regainControllerTimer > 0.5f) {
+			hasBeenHit = false;
+			m_pathfinding->m_initializedStartGoal = false;
+			m_pathfinding->m_foundGoal = false;
+			m_pathfinding->ClearPathToGoal();
+			isAtGoal = false;
+			lockedGuard = false;
+			Stop();
+			m_pathState = RANDOMIZE;
+			regainControllerTimer = 0;
+
+		}
+	}
+	else {
+		if (!lockedGuard)
+			SetTargetTurretAngle(GetTTargetTurretAngle() + 7.0f);
+
+		switch (m_pathState)
+		{
+			case RANDOMIZE: // Si no hay objetivo se mueve a una posicion aleatoria
+			{
+				isAtGoal = false;
+				RandomizeGoal();
+				m_pathState = SEARCHING;
+				break;
+			}
+			case SEARCHING: // busca el mejor camino
+			{
+				// Si en el camino al objetivo hay una pared o se sale de los limites
+				if (GetGameWorld()->GetCellState(GetGameWorld()->GetCellX(targetPos.m_x), GetGameWorld()->GetCellZ(targetPos.m_z)) ||
+					targetPos.m_x < 0 || targetPos.m_x > WORLD_SIZE * CELL_SIZE || targetPos.m_z < 0 || targetPos.m_z > WORLD_SIZE * CELL_SIZE) {
+
+					m_pathfinding->m_initializedStartGoal = false;
+					m_pathfinding->m_foundGoal = false;
+					m_pathfinding->ClearOpenList();
+					m_pathfinding->ClearVisitedList();
+					Stop();
+					m_pathState = RANDOMIZE;
+				}
+				Vector3 newTargetPos;
+				// GetEnemyView(Vector3 targetPos, unsigned int checkTypeMask = 7)
+				if (GetEnemyView(&newTargetPos, TYPE_PICKUP)) {
+					targetPos = newTargetPos;
+					m_pathfinding->ClearPathToGoal();
+					Stop();
+					m_pathfinding->m_initializedStartGoal = false;
+					m_pathfinding->m_foundGoal = false;
+					m_pathfinding->FindPath(pos, targetPos);
+					isAtGoal = false;
+					if (m_pathfinding->m_foundGoal) {
+						m_pathState = FOUND_GOAL;
+					}
+					else {
+						m_pathfinding->FindPath(pos, targetPos);
+						isAtGoal = false;
+						if (m_pathfinding->m_foundGoal) {
+							m_pathState = FOUND_GOAL;
+						}
+					}
+				}
+			}
+			break;
+
+			case FOUND_GOAL: // una vez haya encontrado el camino a seguir, lo sigue
+				Vector3 distanceToTarget = targetPos - pos;
+
+				if (!isAtGoal) {
+					Vector3 dist2Target = m_pathfinding->NextPathPos(this) - pos;
+					float angle = RADTOEG(atan2(dist2Target.m_x, dist2Target.m_z));
+					SetDesiredRot(Vector3(0, angle, 0)); // Rota en la Y
+					Accelerate(2.0f);
+					Vector3 newTargetPos;
+
+					if (GetEnemyView(&newTargetPos, TYPE_PICKUP)) {
+						targetPos = newTargetPos;
+						m_pathfinding->ClearPathToGoal();
+						Stop();
+						m_pathfinding->m_initializedStartGoal = false;
+						m_pathfinding->m_foundGoal = false;
+						m_pathState = SEARCHING;
+					}
+
+					if (distanceToTarget.Length < radius *2.0f) {
+						// llega
+						m_pathfinding->ClearPathToGoal();
+						isAtGoal = true;
+						Stop();
+						m_pathfinding->m_foundGoal = false;
+						m_pathfinding->m_initializedStartGoal = false;
+						lockedGuard = false;
+						m_pathState = RANDOMIZE;
+					}
+
+				}
+
+			break;
+
+		}
+
+
+	}
 }
 
 Enemigo::~Enemigo()

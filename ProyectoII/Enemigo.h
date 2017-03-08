@@ -15,7 +15,7 @@ class Enemigo: public Entidad
 		SEARCHING,
 		FOUND_GOAL,
 	};
-	PathState m_pathstate;
+	PathState m_pathState;
 	PathFinding * m_pathfinding;
 public:
 	Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto);
@@ -32,8 +32,10 @@ public:
 
 private: 
 	bool hasBeenHit;
+	bool isAtGoal;
+	bool lockedGuard;
 	float regainControllerTimer;
-	static float LASER_SIGTH_DIST = 500.0f;
+	const float LASER_SIGTH_DIST = 500.0f;
 	void RandomizeGoal();
 
 	Vector3 targetPos;

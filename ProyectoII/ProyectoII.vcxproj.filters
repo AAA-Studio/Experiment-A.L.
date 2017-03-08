@@ -149,5 +149,8 @@
     <ClInclude Include="PathFinding.h">
       <Filter>Archivos de encabezado\Pathfinding</Filter>
     </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Archivos de encabezado\Pathfinding</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
