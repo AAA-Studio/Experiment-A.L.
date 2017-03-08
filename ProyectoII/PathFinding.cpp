@@ -1,9 +1,8 @@
 #include "PathFinding.h"
 
 
-PathFinding::PathFinding(/*Puntero mapa*/)
+PathFinding::PathFinding(Mapa * pGameWorld) : m_GameWorld(pGameWorld)
 {
-	m_GameWorld = m_GameWorld; // se iguala al parametro de la constructora
 	m_initializedStartGoal = false;
 	m_foundGoal = false;
 }
@@ -88,7 +87,7 @@ SearchCell * PathFinding::GetNextCell(){
 void PathFinding::PathOpened(int x, int z, float newCost, SearchCell *pPadre){
 	
 	// Cuando haya paredes ignora esas celdas
-	if (m_GameWorld -> GetCellState(x, y) == CELL_BLOCKED)
+	if (m_GameWorld -> GetCellState(x, z) == CELL_BLOCKED)
 	{
 		return;
 	}

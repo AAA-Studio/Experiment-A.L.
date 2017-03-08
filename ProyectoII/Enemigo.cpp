@@ -1,7 +1,7 @@
 #include "Enemigo.h"
 #include <math.h>
 #include <stdio.h>
-#include <gl/GL.h> // Core Opengl dunctions
+#include <gl/GL.h> // Core Opengl functions
 
 
 Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pJ, x, y, textura, efecto)
@@ -68,8 +68,8 @@ void Enemigo::Update(float deltaTime) {
 					m_pathState = RANDOMIZE;
 				}
 				Vector3 newTargetPos;
-				// GetEnemyView(Vector3 targetPos, unsigned int checkTypeMask = 7)
-				if (GetEnemyView(&newTargetPos, TYPE_PICKUP)) {
+				
+				if (GetEnemyView(&newTargetPos/*, TYPE_PICKUP*/)) {
 					targetPos = newTargetPos;
 					m_pathfinding->ClearPathToGoal();
 					Stop();
@@ -96,12 +96,12 @@ void Enemigo::Update(float deltaTime) {
 
 				if (!isAtGoal) {
 					Vector3 dist2Target = m_pathfinding->NextPathPos(this) - pos;
-					float angle = RADTOEG(atan2(dist2Target.m_x, dist2Target.m_z));
+					float angle = rad2deg(atan2(dist2Target.m_x, dist2Target.m_z));
 					SetDesiredRot(Vector3(0, angle, 0)); // Rota en la Y
 					Accelerate(2.0f);
 					Vector3 newTargetPos;
 
-					if (GetEnemyView(&newTargetPos, TYPE_PICKUP)) {
+					if (GetEnemyView(&newTargetPos)) {
 						targetPos = newTargetPos;
 						m_pathfinding->ClearPathToGoal();
 						Stop();

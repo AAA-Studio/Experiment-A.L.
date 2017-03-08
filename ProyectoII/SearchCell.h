@@ -25,9 +25,9 @@ public:
 		pPadre(parent), m_id(z * WORLD_SIZE + x), G(0), H(0){};
 
 
-	float GetF(){ return G + H; }
-	int GetCellX(float x) { return x / CELL_SIZE; }
-	int GetCellZ(float z) { return z / CELL_SIZE; }
+	inline float GetF() const { return G + H; }
+	inline int GetCellX(float x) const { return floor(x / CELL_SIZE); }
+	inline int GetCellZ(float z) const { return floor(z / CELL_SIZE); }
 
 	// ¿por que ManHattanDistance?: https://es.wikipedia.org/wiki/Geometr%C3%ADa_del_taxista
 	float ManHattanDistance(SearchCell * nodeEnd) { // Distancia en la que esta el enemigo al personaje
@@ -39,7 +39,7 @@ public:
 	unsigned int ChebySevDistance(SearchCell * nodeEnd) { // Distancia en la que esta el enemigo al personaje
 		float x = (float)(fabsf((this->m_xcoord - nodeEnd->m_xcoord)));
 		float z = (float)(fabsf((this->m_zcoord - nodeEnd->m_zcoord)));
-		return (unsigned int)(x - z);
+		return floor(x - z);
 	}
 	
 	~SearchCell();

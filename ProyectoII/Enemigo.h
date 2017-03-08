@@ -6,6 +6,8 @@
 #include "MathCore.h"
 #include "Pathfinding.h"
 
+#define M_PI 3.1416
+
 class Enemigo: public Entidad
 {
 	enum PathState
@@ -35,8 +37,18 @@ private:
 	bool isAtGoal;
 	bool lockedGuard;
 	float regainControllerTimer;
+	int angle;
 	const float LASER_SIGTH_DIST = 500.0f;
+
 	void RandomizeGoal();
+	bool GetEnemyView(const Vector3 &targetPos);
+	void SetTargetTurretAngle(float angulos) { angle = angulos; }
+	float GetTargetTurretAngle() const { return angulos; }
+	float rad2deg(double rad) { // de radianes a grados
+		double rad = 0;
+		deg = rad * (180/M_PI);
+		return deg;
+	}
 
 	Vector3 targetPos;
 };

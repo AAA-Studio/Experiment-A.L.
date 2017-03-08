@@ -5,6 +5,7 @@
 #include "SearchCell.h"
 #include "MathCore.h"
 #include "Enemigo.h"
+#include "Mapa.h"
 #include <vector>
 using namespace std;
 
@@ -17,7 +18,7 @@ NathPoints, hago una lista de nathpoints y eso es lo que comprueba el enemigo
 class PathFinding
 {
 public:
-	PathFinding();
+	PathFinding(Mapa * pGameWorld);
 	~PathFinding();
 
 	// Este metodo utiliza las coordenadas del enemigo y las del jugador para crear el camino optimo
@@ -46,7 +47,7 @@ private:
 	// Busca a lo largo del mundo el Goal para seguir en el camino optimo
 	void ContinuePath();
 
-	
+	Mapa * _pGameWorld;
 
 	SearchCell * GetNextCell();
 

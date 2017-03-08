@@ -4,7 +4,7 @@
 #include "checkML.h"
 #include <iostream>
 using namespace std;
-template <class T>
+
 class Vector2
 {
 public:
@@ -13,7 +13,7 @@ public:
 	~Vector2();
 
 	// sobrecarga necesaria para determinar distancias entre puntos
-	Vector2 Vector2::operator - (const Vector2 &v2) {
+	Vector2 operator - (const Vector2 &v2) {
 		return Vector2(m_x - v2.m_x, m_y - v2.m_y);
 	}
 
@@ -31,7 +31,7 @@ public:
 	~Vector3();
 
 	// sobrecarga necesaria para determinar distancias entre puntos
-	Vector3 Vector3::operator- (const Vector3 &v2) {
+	Vector3 operator- (const Vector3 &v2) {
 		return Vector3(m_x - v2.m_x, m_y - v2.m_y, m_z - v2.m_z);
 	}
 
