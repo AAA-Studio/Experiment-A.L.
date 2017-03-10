@@ -2,8 +2,9 @@
 #define EntidadJuego_H
 #include "checkML.h"
 #include <stack>
+#include "SDL.h"
 
-enum Controles_t { SuperNULL, W, S, A, D,WA,WD,SA,SD, JPIUM };
+enum Controles_t { SuperNULL, W, S, A, D,WA,WD,SA,SD, JPIUM, E, F };
 
 
 class EntidadJuego
@@ -22,6 +23,11 @@ public:
 
 	virtual void onInput() = 0;
 
+	virtual void coger() = 0;
+
+	virtual void soltar(double x, double y) = 0;
+
+	virtual const SDL_Rect getRect() = 0;
 };
 
 #endif

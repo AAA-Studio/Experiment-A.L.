@@ -5,6 +5,7 @@ Personaje::Personaje(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efect
 {
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
+	visible = true;
 }
 
 //Destructora

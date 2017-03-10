@@ -19,6 +19,7 @@ Entidad::~Entidad()
 
 void Entidad::draw()const
 {
-	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect);//Dibujamos la textura
+	if (visible)
+		pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect);//Dibujamos la textura
 }
 

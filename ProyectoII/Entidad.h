@@ -19,6 +19,9 @@ protected:
 	int  ancho, alto;
 	SDL_Rect rect;//Rectángulo para cada textura
 
+	virtual void coger(){}
+	virtual void soltar(double x, double y){}
+
 public:
 	virtual void draw() const;
 	virtual void onInput() {};
@@ -26,7 +29,7 @@ public:
 	const SDL_Rect getRect(){ return rect; }
 	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto);
 	virtual ~Entidad();
-
+	bool visible;
 };
 
 #endif
