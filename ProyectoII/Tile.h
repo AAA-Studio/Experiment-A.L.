@@ -11,10 +11,10 @@ public:
 	void render(const SDL_Rect& camera);
 
 	//Get the tile type
-	int getType();
+	inline int getType(){return mType;};
 
 	//Get the collision box
-	SDL_Rect getBox();
+	inline SDL_Rect getBox(){return mBox;};
 
 private:
 	//The attributes of the tile

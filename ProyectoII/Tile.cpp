@@ -26,13 +26,3 @@ void Tile::render(const SDL_Rect& camera)
 		pJuego->getTextura(TTilemap)->draw(pJuego->getRender(),mBox, &pJuego->getRectTile(mType));
 	}
 }
-
-int Tile::getType()
-{
-	return mType;
-}
-
-SDL_Rect Tile::getBox()
-{
-	return mBox;
-}

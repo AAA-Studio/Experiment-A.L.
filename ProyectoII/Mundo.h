@@ -20,7 +20,7 @@ public:
 	virtual ~Mundo();
 	void newBaja(EntidadJuego * po); // Los objetos informarán al juego cuando causen baja
 	bool checkCollision(SDL_Rect a, SDL_Rect b);
-	Mapa* getMapa(){ return mapa; };
+	inline Mapa* getMapa(){ return mapa; };
 private:
 	bool pausa;
 	void initObjetos();

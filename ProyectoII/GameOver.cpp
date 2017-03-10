@@ -10,11 +10,6 @@ GameOver::GameOver(Juego * pJ) : Estado(pJ)
 }
 
 
-GameOver::~GameOver()
-{
-	
-}
-
 static void goMenu(Juego * pj){
 	Menu * eMenu = new Menu(pj);
 	pj->changeState(eMenu);

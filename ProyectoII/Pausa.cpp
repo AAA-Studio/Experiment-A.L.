@@ -15,7 +15,7 @@ Pausa::~Pausa()
 }
 
 static void goPlay(Juego * pj){
-	pj->popState();;
+	pj->popState();
 };
 static void goMenu(Juego * pj){
 	Menu * eMenu = new Menu(pj);

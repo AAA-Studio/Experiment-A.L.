@@ -8,7 +8,6 @@ Estado::Estado(Juego * pJ)
 
 Estado::~Estado()
 {
-	std::cout << "entro";
 	freeObjetos();
 }
 

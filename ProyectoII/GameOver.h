@@ -8,7 +8,7 @@ class GameOver : public Estado
 {
 public:
 	GameOver(Juego * pJ);
-	~GameOver();
+	~GameOver(){};
 
 	virtual void draw() const;
 	virtual void onInput(SDL_Event &e);

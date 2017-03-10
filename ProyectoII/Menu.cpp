@@ -1,40 +1,11 @@
 #include "Menu.h"
-#include "Boton.h"
-#include "Mundo.h"
 
-
-Menu::Menu(Juego * pJ) : Estado(pJ)
+Menu::Menu(Juego * pJ)
 {
-	objetos.resize(2);
-	initObjetos();
+	pJuego = pJ;
+
 }
 
-
-Menu::~Menu()
-{
-}
-
-void Menu::draw()const
-{
-	//SDL_Rect fondoRect = { 0, 0, pJuego->getAncho(), pJuego->getAlto() };
-	//pJuego->getTextura(TFondoMenu)->draw(pJuego->getRender(), fondoRect);
-
-	Estado::draw();
-}
-
-static void goPlay(Juego * pj){
-
-	Mundo * ePlay = new Mundo(pj);
-	pj->changeState(ePlay);
-};
-static void goSalir(Juego * pj){
-	pj->setSalir();
-}
-
-void Menu::initObjetos(){
-	objetos[0] = new Boton(pJuego, 270, 250, TExit, ENull, goSalir);
-	objetos[1] = new Boton(pJuego, 270, 150, TPlay, ENull, goPlay);
-}
 
 void Menu::onInput(SDL_Event &e){
 
@@ -55,6 +26,27 @@ void Menu::onInput(SDL_Event &e){
 
 }
 
+void Menu::freeObjetos(){
+	for (int i = 0; i < objetos.size(); i++)
+	{
+		delete(objetos[i]);
+		objetos[i] = nullptr;
+	}
+}
+
+void Menu::update()
+{
+	for (int i = 0; i < objetos.size(); i++)
+		objetos[i]->update();
+
+}
 
 
+//Limpia el buffer y dibuja los objetos
+void Menu::draw() const
+{
+	//Dibujar objetos del juego
+	for (int i = objetos.size() - 1; i >= 0; i--)
+		objetos[i]->draw();
 
+}

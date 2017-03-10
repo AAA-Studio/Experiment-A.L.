@@ -5,7 +5,7 @@
 
 class EstadoJuego
 {
-	//Métodos publicos abstractos
+	//Padre supremo
 
 public:
 
@@ -17,7 +17,7 @@ public:
 
 	virtual void update() = 0;
 
-	virtual void onInput(SDL_Event &e) = 0;
+	virtual bool onInput() = 0;
 
 };
 

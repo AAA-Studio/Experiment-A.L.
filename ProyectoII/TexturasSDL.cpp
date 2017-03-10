@@ -5,7 +5,6 @@
 TexturasSDL::TexturasSDL()
 {
 	pTexture = nullptr;//Puntero de la textura
-	alto = ancho = 0;//Tamaño de la textura
 }
 
 //Destructora
@@ -13,7 +12,6 @@ TexturasSDL::~TexturasSDL()
 {
 	SDL_DestroyTexture(pTexture);
 	pTexture = nullptr;
-	alto = ancho = 0;
 }
 
 //Función para cargar el archivo
@@ -44,10 +42,7 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 		//SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 
 		//Coge el ancho y el alto de la imagen 
-		ancho = pTempSurface->w;
-		alto = pTempSurface->h;
-
-		texRect = { 0, 0, ancho, alto};
+		texRect = { 0, 0, pTempSurface->w, pTempSurface->h };
 
 		pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);//Crea la textura
 		if (pTexture == nullptr)
@@ -69,7 +64,7 @@ void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, SDL_Rec
 
 void TexturasSDL::setRectText(int numFrame){
 	// 7 no vale, tiene que ser especifico de cada personaje
-	texRect = { ancho / 7 * (numFrame % 7), 0, ancho / 7, alto };//Posición actual delJugador
+	texRect = { texRect.w / 7 * (numFrame % 7), 0, texRect.w / 7, texRect.h };//Posición actual delJugador
 }
 
 //Fuente
@@ -87,12 +82,7 @@ void TexturasSDL::loadFromText(SDL_Renderer * pRender, string const& texto, SDL_
 	//Ha encontrado la imagen
 	else
 	{
-		//Coge el ancho y el alto de la imagen 
-		ancho = pTempSurface->w;
-		alto = pTempSurface->h;
-
-		//ESTO HABRÍA QUE CAMBIARLO
-		texRect = { 0, 0, ancho, alto };
+		texRect = { 0, 0, pTempSurface->w, pTempSurface->h };
 
 		SDL_DestroyTexture(pTexture);
 		pTexture = SDL_CreateTextureFromSurface(pRender, pTempSurface);//Crea la textura

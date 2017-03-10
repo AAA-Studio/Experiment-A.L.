@@ -9,6 +9,13 @@
 #include <string>
 #include <SDL.h>
 
+using namespace std;
+
+//-----------------CONSTANTES----------------------
+
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 768;
+
 //The dimensions of the level
 const int LEVEL_WIDTH = 1280;
 const int LEVEL_HEIGHT = 768;
@@ -33,9 +40,10 @@ const int TILE_9 = 9;
 const int TILE_10 = 10;
 const int TILE_11 = 11;
 
+//----------------------------------------------------
 
 
-using namespace std;
+//------------------ENUMS--------------------------
 
 enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
@@ -43,8 +51,6 @@ enum  Musica_t{ Musica_t_SIZE};
 
 //----------------------------------------------------
 
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 768;
 
 class Juego
 {
@@ -57,11 +63,11 @@ public:
 	// Arranca el bucle principal y, si se termina el juego. Tambien puede terminar si se cierra la ventana
 	void run();
 
-	// detectara la posicion del jugador
-	void getMousePos(int & mpx, int & mpy) const;
+
+	//----------------ESTADOS---------------------
 
 	//Devuelve el estado actual
-	EstadoJuego * topEstado(){ return vectorEstados[vectorEstados.size() - 1]; };
+	inline EstadoJuego * topEstado(){ return vectorEstados[vectorEstados.size() - 1]; };
 
 	void changeState(EstadoJuego *estado);
 
@@ -74,30 +80,37 @@ public:
 	//Sale del programa
 	void setSalir(){ exit = true; };
 
-	SDL_Renderer * getRender() const{ return pRenderer; };
-	TexturasSDL * getTextura(Texturas_t et) const { return texturas[et]; }
+	//----------------------------------------------------
 
-	Efecto * getEfecto(Efectos_t et) const { return efectos[et]; }
-	//no hay música todavía
+	//---------------GETTER----------------------
+
+	//Detecta posición del raton
+	void getMousePos(int & mpx, int & mpy) const;
+
+	//Dibujado
+	inline SDL_Renderer * getRender() const{ return pRenderer; };
+	inline TexturasSDL * getTextura(Texturas_t et) const { return texturas[et]; }
+
+	//Musica
+	inline Efecto * getEfecto(Efectos_t et) const { return efectos[et]; }
 	//Musica * getMusica(Musica_t et) const { return musica[et]; }
 
-	Fuente getFuente() const { return fuente; }
+	//Fuente
+	inline Fuente getFuente() const { return fuente; }
 
-	int getAncho(){ return winRect.w; }
-	int getAlto(){ return winRect.h; }
+	//Ventana
+	inline int getAncho(){ return winRect.w; }
+	inline int getAlto(){ return winRect.h; }
 
-
-	//-------------------------------------
+	//-----------TILE----------------
 
 	SDL_Rect gTileClips[TOTAL_TILE_SPRITES]; //Array con los rectángulos de las colisiones
 
-	SDL_Rect getRectTile(int numTile){ return gTileClips[numTile]; };//Devuelve la colision del tile pasado como parametro
+	inline SDL_Rect getRectTile(int numTile){ return gTileClips[numTile]; };//Devuelve la colision del tile pasado como parametro
 
-	//Sets tiles from tile map
 	void recortarTiles();
 
 	//---------------------------------------
-
 
 
 private:
@@ -120,7 +133,6 @@ private:
 	Fuente fuente;
 	TexturasSDL * textFuente;
 
-	//No hay música todavía
 	//Musica * musica[Musica_t_SIZE];
 	Efecto * efectos[Efectos_t_SIZE];
 
@@ -140,10 +152,6 @@ private:
 	//Añade un nuevo estado
 	void pushState(EstadoJuego * nuevoEstado);
 
-	//---------------------
-
-
-	//---------------------
 };
 
 #endif
