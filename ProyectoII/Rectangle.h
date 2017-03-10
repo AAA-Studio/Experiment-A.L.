@@ -11,12 +11,12 @@ public:
 	}
 	~Rectangle();
 
-	float GetLeft() { return m_left; }
-	float GetRight(){ return m_right; }
-	float GetTop(){ return m_top; }
-	float GetBottom(){ return m_bottom; }
-	float GetWidth(){ return m_width; }
-	float GetHeight(){ return m_height; }
+	inline float GetLeft() const { return m_left; }
+	inline float GetRight() const { return m_right; }
+	inline float GetTop() const { return m_top; }
+	inline float GetBottom() const { return m_bottom; }
+	inline float GetWidth() const { return m_width; }
+	inline float GetHeight() const { return m_height; }
 
 private: 
 	float m_left;

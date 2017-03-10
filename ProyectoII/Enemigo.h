@@ -5,12 +5,13 @@
 #include "Entidad.h"
 #include "MathCore.h"
 #include "Pathfinding.h"
+#include <vector>
 
 #define M_PI 3.1416
 
 class Enemigo: public Entidad
 {
-	enum PathState
+	/*enum PathState
 	{
 		CHECK_AROUND,
 		RANDOMIZE,
@@ -18,18 +19,36 @@ class Enemigo: public Entidad
 		FOUND_GOAL,
 	};
 	PathState m_pathState;
-	PathFinding * m_pathfinding;
+	PathFinding * m_pathfinding;*/
 public:
-	Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto);
-	~Enemigo();
 
-	virtual void Draw();
-	virtual void Update(float deltaTime);
-	virtual bool HandleKeydown(int key);
+	enum State {
+		IDLE, 
+		PATROL,
+	};
+
+	Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints);
+	//Enemigo(vector <Vector2> waypoints);
+	virtual ~Enemigo();
+
+	//virtual void Draw();
+	virtual void Initialize();
+	virtual void Update();
+
+private: 
+
+	Vector2 findNextWayPoints();
+
+	State m_currentState;
+	vector <Vector2> m_waypoints;
+	Vector2 m_currentWayPoint;
+	int m_currentIndex;
+	float m_idleTime;
+	/*virtual bool HandleKeydown(int key);
 	virtual bool HandleKeyUp(int key);
-	virtual void HandleMouseDown(bool isLeft, Vector3 mouseWorldPos);
+	virtual void HandleMouseDown(bool isLeft, Vector3 mouseWorldPos);*/
 
-	double radius;
+	/*double radius;
 	Vector3 pos;
 
 private: 
@@ -43,13 +62,13 @@ private:
 	void RandomizeGoal();
 	bool GetEnemyView(const Vector3 &targetPos);
 	void SetTargetTurretAngle(float angulos) { angle = angulos; }
-	float GetTargetTurretAngle() const { return angulos; }
+	inline float GetTargetTurretAngle() const { return angle; }
 	float rad2deg(double rad) { // de radianes a grados
-		double rad = 0;
+		double deg = 0;
 		deg = rad * (180/M_PI);
 		return deg;
 	}
 
-	Vector3 targetPos;
+	Vector3 targetPos;*/
 };
 #endif

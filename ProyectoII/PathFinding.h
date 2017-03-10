@@ -18,7 +18,7 @@ NathPoints, hago una lista de nathpoints y eso es lo que comprueba el enemigo
 class PathFinding
 {
 public:
-	PathFinding(Mapa * pGameWorld);
+	PathFinding(/*Mapa * pGameWorld*/);
 	~PathFinding();
 
 	// Este metodo utiliza las coordenadas del enemigo y las del jugador para crear el camino optimo
@@ -47,7 +47,7 @@ private:
 	// Busca a lo largo del mundo el Goal para seguir en el camino optimo
 	void ContinuePath();
 
-	Mapa * _pGameWorld;
+	// Mapa * _pGameWorld;
 
 	SearchCell * GetNextCell();
 

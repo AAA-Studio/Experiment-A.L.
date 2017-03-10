@@ -1,7 +1,7 @@
 #include "PathFinding.h"
 
 
-PathFinding::PathFinding(Mapa * pGameWorld) : m_GameWorld(pGameWorld)
+PathFinding::PathFinding(/*Mapa * pGameWorld*/) /*: m_GameWorld(pGameWorld)*/
 {
 	m_initializedStartGoal = false;
 	m_foundGoal = false;

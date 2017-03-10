@@ -4,26 +4,49 @@
 #include <gl/GL.h> // Core Opengl functions
 
 
-Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pJ, x, y, textura, efecto)
+Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints) : Entidad(pJ, x, y, textura, efecto)
 {
+	m_currentState = IDLE;
+	m_currentIndex = 0;
+	m_idleTime = 3.0f;
 }
 
-void Enemigo::RandomizeGoal()
+void Enemigo::Initialize() {
+	
+}
+void Enemigo::Update() {
+
+}
+
+Vector2 Enemigo::findNextWayPoints(){
+
+}
+
+
+
+
+
+
+
+
+
+
+/*void Enemigo::RandomizeGoal()
 {
 	int random_integerX = (int)(rand() % WORLD_SIZE*CELL_SIZE);
 	int random_integerZ = (int)(rand() % WORLD_SIZE*CELL_SIZE);
 	targetPos = Vector3((float)random_integerX, 0, (float)random_integerZ);
-}
+}*/
 
-void Enemigo::Draw() {
+/*void Enemigo::Draw() {
 
 	//Hay que dibujar el enemigo
 	
 	m_pathfinding->DrawDebug();
 
-}
+}*/
 
-void Enemigo::Update(float deltaTime) {
+/*void Enemigo::Update(float deltaTime) {
 
 	if (hasBeenHit) {
 		regainControllerTimer += deltaTime / 10;
@@ -69,7 +92,7 @@ void Enemigo::Update(float deltaTime) {
 				}
 				Vector3 newTargetPos;
 				
-				if (GetEnemyView(&newTargetPos/*, TYPE_PICKUP*/)) {
+				if (GetEnemyView(&newTargetPos, TYPE_PICKUP)) {
 					targetPos = newTargetPos;
 					m_pathfinding->ClearPathToGoal();
 					Stop();
@@ -129,7 +152,7 @@ void Enemigo::Update(float deltaTime) {
 
 
 	}
-}
+}*/
 
 Enemigo::~Enemigo()
 {
