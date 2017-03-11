@@ -7,12 +7,12 @@
 #include <SDL.h>
 #include "Bala.h"
 #include <fstream>
-
+#include "Llave.h"
 
 Mundo::Mundo(Juego * pJ) : Estado(pJ)
 {
 	pausa = false;
-	objetos.resize(1);
+	objetos.resize(2);
 	initObjetos();
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	setTiles();
@@ -43,6 +43,7 @@ void Mundo::initObjetos()
 	y = rand() % (pJuego->getAlto() - 100);
 	// Personaje
 	objetos[0] = new Personaje(pJuego, x, y, TJugador, ENull);
+	objetos[1] = new Llave(pJuego, 400, 300, TLlave, ENull);
 }
 
 
@@ -77,6 +78,45 @@ void Mundo::onInput(SDL_Event &e){
 	if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
 			Pausa * pausa = new Pausa(pJuego);
 			pJuego->goToPausa(pausa);
+	}
+
+	if (keyStatesActuales[SDL_SCANCODE_C]){ //coger objetos
+		SDL_Rect rect1 = objetos[0]->getRect(); //rect del personaje
+		SDL_Rect rect2; //rect del objeto
+		bool coger = false; //para saber si se ha cogido o no el objeto
+		bool colision = false; //para saber si hay colision entre un objeto y el personaje
+
+		for (int i = objetos.size() - 1; i > 0 && (!coger); i--){//recorre los objetos con los que se puede colisionar
+			SDL_Rect rect2 = objetos[i]->getRect(); //obtiene el rect del objeto
+			//comprueba si hay colision entre el personaje y el objeto
+			if (rect1.y + rect1.h >= rect2.y && rect1.y <= rect2.y + rect2.h && rect1.x + rect1.w >= rect2.x && rect1.x <= rect2.x + rect2.w)
+				colision = true;
+			else
+				colision = false;
+			//comprueba que son los tipos de objetos que se pueden coger
+			if (/*colision && typeid(*objetos[i]) == typeid(Informe) && dynamic_cast<Informe*> (objetos[i])->visible
+				|| */colision && typeid(*objetos[i]) == typeid(Llave) && dynamic_cast<Llave*> (objetos[i])->visible){
+				//if (dynamic_cast<Informe*> (objetos[i])->visible){
+				objetos[i]->coger();
+				coger = true;
+				//}
+			}
+			/*else if (colision && typeid(*objetos[i]) == typeid(Llave)){
+			if (dynamic_cast<Llave*> (objetos[i])->visible){
+			objetos[i]->coger();
+			coger = true;
+			}
+			}*/
+		}
+
+
+	}
+
+	//suelta el objeto en la posicion actual del jugador
+	if (keyStatesActuales[SDL_SCANCODE_V]){
+		double x = dynamic_cast<Personaje*> (objetos[0])->getX();
+		double y = dynamic_cast<Personaje*> (objetos[0])->getY();
+		objetos[1]->soltar(x, y);
 	}
 
 	objetos[0]->onInput();

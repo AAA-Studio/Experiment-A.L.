@@ -4,7 +4,7 @@
 #include <stack>
 #include "SDL.h"
 
-enum Controles_t { SuperNULL, W, S, A, D,WA,WD,SA,SD, JPIUM, E, F };
+enum Controles_t { SuperNULL, W, S, A, D,WA,WD,SA,SD, JPIUM, C, V };
 
 
 class EntidadJuego

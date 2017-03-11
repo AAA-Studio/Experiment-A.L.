@@ -19,8 +19,8 @@ public:
 
 	void destruyeBala(Bala * bala);
 
-	int getX(){ return posX; };
-	int getY(){ return posY; };
+	int getX(){ return rect.x; };
+	int getY(){ return rect.y; };
 	int getAngulo(){ return angulo; };
 
 	//Centers the camera over the dot
