@@ -87,6 +87,9 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Archivos de código fuente\Mapa</Filter>
     </ClCompile>
+    <ClCompile Include="Llave.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -142,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Archivos de encabezado\Mapa</Filter>
+    </ClInclude>
+    <ClInclude Include="Llave.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

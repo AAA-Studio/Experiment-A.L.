@@ -155,7 +155,9 @@ void Juego::initMedia()
 	//TEXTURAS
 
 	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png",
-		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\tiles3.png" };
+		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\key.png",
+		"..\\bmps\\tiles3.png"
+		/*, "..\\bmps\\informe.png", "..\\bmps\\newspaper.jpeg"*/ };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{

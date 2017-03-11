@@ -37,7 +37,7 @@ const int TILE_11 = 11;
 
 using namespace std;
 
-enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
+enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TLlave, TTilemap,/*TFondoMenu,*/ /*TInforme, TNewspaper,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
 
