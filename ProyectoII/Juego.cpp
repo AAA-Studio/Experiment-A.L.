@@ -4,7 +4,10 @@
 #include <SDL_ttf.h>
 
 #include "Error.h"
-#include "Menu.h"
+#include "MenuInicio.h"
+#include "GameOver.h"
+#include "Pausa.h"
+#include "Mundo.h"
 
 using namespace std; // Para cualificar automaticamente con std:: los identificadores de la librería estandar 
 
@@ -16,6 +19,7 @@ Juego::Juego()
 	pWin = nullptr;
 	pRenderer = nullptr;
 	colorWin = { 0, 0, 0, 255 };
+	borraEstado = false;
 
 	//Rectángulo de la ventana
 	winRect = { 200, 200, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -24,7 +28,8 @@ Juego::Juego()
 
 	initMedia();
 
-	vectorEstados.push_back(new Menu(this));//Primer estado de la pila
+	estadoEnum = MInicio;
+	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
 	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
 
 }
@@ -36,6 +41,45 @@ Juego::~Juego()
 
 	//Liberamos el renderizador
 	closeSDL();
+}
+
+void Juego::gestionaEstados(Estados_t estado){
+	EstadoJuego *aux; //Estado auxiliar que va a ser el estado a crear
+	bool pausa = false;
+
+	switch (estado){
+		//Menus
+	case MInicio:
+		aux = new MenuInicio(this);
+		break;
+
+	case MGameOver:
+		aux = new GameOver(this);
+
+	case MPausa:
+		aux = new Pausa(this);
+		pausa = true;
+		break;
+
+		//Mundos
+
+	case MundoReal:
+		aux = new Mundo(this);
+		break;
+
+	default:
+		aux = new MenuInicio(this);
+		break;
+	
+	}
+
+	if (!pausa)
+		changeState(aux);
+	else
+		goToPausa(aux);
+
+	pausa = false;
+
 }
 
 /*Arranca el bucle principal y controla si acaba la ejecución*/
@@ -53,6 +97,7 @@ void Juego::run()
 	handle_event();
 	while (!exit)
 	{
+		//if (!)
 		if (SDL_GetTicks() - lastUpdate >= MSxUpdate)//Se pide la hora y se compara con la última 
 		{
 			topEstado()->update();

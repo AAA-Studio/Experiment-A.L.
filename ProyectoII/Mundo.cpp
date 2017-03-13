@@ -1,6 +1,4 @@
 #include "Mundo.h"
-#include "GameOver.h"
-#include "Pausa.h"
 #include <typeinfo>
 #include "Personaje.h"
 #include <iostream>
@@ -9,8 +7,9 @@
 #include "Boton.h"
 
 
-Mundo::Mundo(Juego * pJ) : Estado(pJ)
+Mundo::Mundo(Juego * pJ)
 {
+	pJuego = pJ;
 	pausa = false;
 	objetos.resize(2);
 	initObjetos();
@@ -21,7 +20,7 @@ Mundo::Mundo(Juego * pJ) : Estado(pJ)
 
 Mundo::~Mundo()
 {
-
+	freeObjetos();
 
 }
 
@@ -42,16 +41,23 @@ void Mundo::initObjetos()
 	objetos[1] = new Boton(pJuego, 500, 500, TPlay, ENull, goPlay);
 }
 
+void Mundo::freeObjetos(){
+	for (int i = 0; i < objetos.size(); i++)
+	{
+		delete(objetos[i]);
+		objetos[i] = nullptr;
+	}
+}
+
 
 void Mundo::draw()const{
 
-	//SDL_Rect fondoRect = { 0, 0, pJuego->getAncho(), pJuego->getAlto() };
-	//pJuego->getTextura(TFondo)->draw(pJuego->getRender(), fondoRect);
 	//Render level
 	//DIBUJAR MAPA
 	mapa->draw();
 	//Dibujar objetos del juego
-	Estado::draw();
+	for (int i = objetos.size() - 1; i >= 0; i--)
+		objetos[i]->draw();
 
 	pJuego->getTextura(TFuente)->render(pJuego->getRender(), 0, 0, "Hola", pJuego->getFuente());
 
@@ -59,21 +65,25 @@ void Mundo::draw()const{
 
 
 void Mundo::update(){
-	Estado::update();
+	for (int i = 0; i < objetos.size(); i++)
+		objetos[i]->update();
+
 	if (checkCollision(static_cast<Entidad*>(objetos[0])->getRect(), static_cast<Entidad*>(objetos[1])->getRect()))//Si el psj colisiona con el boton truleano
 		static_cast<Personaje*> (objetos[0])->restaVida();
 }
 
+//Detecta el input del jugador y la pausa
 void Mundo::onInput(SDL_Event &e){
 	
 	//Declaramos el array con los estados de teclado
 	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 	
+	//Pausa
 	if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
-			Pausa * pausa = new Pausa(pJuego);
-			pJuego->goToPausa(pausa);
+			pJuego->gestionaEstados(MPausa);
 	}
-
+	
+	//Personaje
 	objetos[0]->onInput();
 	static_cast<Personaje*>(objetos[0])->setCamera(mapa->getCamera());
 
@@ -84,8 +94,8 @@ void Mundo::onInput(SDL_Event &e){
 // Los objetos informarán al juego cuando causen baja
 void Mundo::newBaja(EntidadJuego* po)
 {
-	GameOver *go = new GameOver(pJuego);
-	pJuego->changeState(go);
+	pJuego->borraEstado = true;
+	pJuego->estadoEnum = MGameOver;
 }
 
 bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)

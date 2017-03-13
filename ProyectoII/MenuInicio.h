@@ -2,16 +2,16 @@
 #ifndef MenuInicio_H
 #define MenuInicio_H
 #include "checkML.h"
-#include "Estado.h"
+#include "Menu.h"
+#include "Juego.h"
 
 
-class MenuInicio : public Estado
+class MenuInicio : public Menu
 {
 public:
 	MenuInicio(Juego * pJ);
 	~MenuInicio(){};
 	virtual void draw()const;
-	virtual void onInput(SDL_Event &e);
 
 private:
 	void initObjetos();

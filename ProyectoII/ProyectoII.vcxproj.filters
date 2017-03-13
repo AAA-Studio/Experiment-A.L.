@@ -40,6 +40,18 @@
     <Filter Include="Archivos de encabezado\Mapa">
       <UniqueIdentifier>{9a4d6594-c831-4060-9f65-b81d2cea3c6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Estados\Menu">
+      <UniqueIdentifier>{421c3335-fd0f-4fa3-820b-e80c2362bc4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Estados\Mundo">
+      <UniqueIdentifier>{39566681-d55a-40f1-994c-37c61ebafa73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Estados\Menu">
+      <UniqueIdentifier>{775c98df-b1fd-4dd0-abdd-1b47d2edfb95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Estados\Mundo">
+      <UniqueIdentifier>{bb9e9f7d-16c7-4043-8962-816dbdd72f30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="Juego.cpp">
       <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Estado.cpp">
-      <Filter>Archivos de código fuente\Estados</Filter>
     </ClCompile>
     <ClCompile Include="Fuente.cpp">
       <Filter>Archivos de código fuente\Media</Filter>
@@ -63,16 +72,7 @@
     <ClCompile Include="Entidad.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
-    <ClCompile Include="Pausa.cpp">
-      <Filter>Archivos de código fuente\Estados</Filter>
-    </ClCompile>
     <ClCompile Include="Mundo.cpp">
-      <Filter>Archivos de código fuente\Estados</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Archivos de código fuente\Estados</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOver.cpp">
       <Filter>Archivos de código fuente\Estados</Filter>
     </ClCompile>
     <ClCompile Include="Boton.cpp">
@@ -90,13 +90,22 @@
     <ClCompile Include="Mapa.cpp">
       <Filter>Archivos de código fuente\Mapa</Filter>
     </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>Archivos de código fuente\Estados\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Archivos de código fuente\Estados\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuInicio.cpp">
+      <Filter>Archivos de código fuente\Estados\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Pausa.cpp">
+      <Filter>Archivos de código fuente\Estados\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
       <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Estado.h">
-      <Filter>Archivos de encabezado\Estados</Filter>
     </ClInclude>
     <ClInclude Include="EstadoJuego.h">
       <Filter>Archivos de encabezado\Estados</Filter>
@@ -122,16 +131,7 @@
     <ClInclude Include="Error.h">
       <Filter>Archivos de encabezado\Errores</Filter>
     </ClInclude>
-    <ClInclude Include="GameOver.h">
-      <Filter>Archivos de encabezado\Estados</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Archivos de encabezado\Estados</Filter>
-    </ClInclude>
     <ClInclude Include="Mundo.h">
-      <Filter>Archivos de encabezado\Estados</Filter>
-    </ClInclude>
-    <ClInclude Include="Pausa.h">
       <Filter>Archivos de encabezado\Estados</Filter>
     </ClInclude>
     <ClInclude Include="Boton.h">
@@ -148,6 +148,21 @@
     </ClInclude>
     <ClInclude Include="Mapa.h">
       <Filter>Archivos de encabezado\Mapa</Filter>
+    </ClInclude>
+    <ClInclude Include="MundoVirtual.h">
+      <Filter>Archivos de encabezado\Estados</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>Archivos de encabezado\Estados\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Archivos de encabezado\Estados\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuInicio.h">
+      <Filter>Archivos de encabezado\Estados\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Pausa.h">
+      <Filter>Archivos de encabezado\Estados\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

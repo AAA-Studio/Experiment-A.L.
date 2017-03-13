@@ -1,9 +1,8 @@
 #include "GameOver.h"
 #include "Boton.h"
 #include <iostream>
-#include "Menu.h"
 
-GameOver::GameOver(Juego * pJ) : Estado(pJ)
+GameOver::GameOver(Juego * pJ) : Menu(pJ)
 {
 	objetos.resize(1);
 	initObjetos();
@@ -11,8 +10,7 @@ GameOver::GameOver(Juego * pJ) : Estado(pJ)
 
 
 static void goMenu(Juego * pj){
-	Menu * eMenu = new Menu(pj);
-	pj->changeState(eMenu);
+	pj->gestionaEstados(MInicio);
 };
 
 void GameOver::initObjetos(){
@@ -24,25 +22,6 @@ void GameOver::draw() const
 	//SDL_Rect fondoRect = { 0, 0, pJuego->getAncho(), pJuego->getAlto() };
 	//pJuego->getTextura(TFondoGameOver)->draw(pJuego->getRender(), fondoRect);
 
-	Estado::draw();
-
-}
-
-void GameOver::onInput(SDL_Event &e){
-
-	if (e.type == SDL_MOUSEBUTTONUP)
-	{
-		if (e.button.button == SDL_BUTTON_LEFT)
-		{
-			int i = 0;
-			while (i < objetos.size())
-			{
-				objetos[i]->onInput();
-				i++;
-			}
-
-		}
-
-	}
+	Menu::draw();
 
 }

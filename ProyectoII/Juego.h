@@ -48,6 +48,7 @@ const int TILE_11 = 11;
 enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
+enum Estados_t{MInicio,MGameOver,MPausa,MundoReal,MundoOscuro};
 
 //----------------------------------------------------
 
@@ -112,6 +113,10 @@ public:
 
 	//---------------------------------------
 
+	bool borraEstado;
+	Estados_t estadoEnum;
+
+	void gestionaEstados(Estados_t estado);
 
 private:
 
