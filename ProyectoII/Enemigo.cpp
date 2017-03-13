@@ -14,22 +14,12 @@ Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, v
 void Enemigo::Initialize() {
 	
 }
+
 void Enemigo::Update() {
 	switch (m_currentState) {
 	case IDLE:
 		{
 			m_idleTime -= (float)SDL_GetTicks();
-				 /*
-					Dos estados con su diagrama de estados. 
-					En esta clase hay un int thastacambio
-					tick de enemigo con delta del juego, 
-					int tHastaCambio;
-					tick(dt);
-					tHastaCambio -= dt;
-					if (tHastaCambio == 0) {
-						tHastaCambio = 20;
-					}
-				 */
 			if (m_idleTime <= 0.0f) {
 				m_currentState = PATROL;
 				m_idleTime = 3.0f;
@@ -39,11 +29,24 @@ void Enemigo::Update() {
 		break;
 	case PATROL:
 		{
+
+			// Transform& transform = m_entidad->GetTransform();
 			Vector2 position = m_entidad->getPosition();
 			Vector2 toTarget = m_currentWayPoint - Vector2 (position.GetX(), position.GetY());
-			toTarget.m_x -= position.GetX();
-			//toTarget.setY()
+			float distance = toTarget.Length;
+			if (distance != 0.0f) {
+				toTarget /= distance;
+			}
+
+			if (distance >= 4.0f) {
+				m_currentState = IDLE;
+				return;
+			}
+
+			Vector2 velocity = toTarget * 50.0f;
+			// addVelocity(velocity.m_x, velocity.m_y);
 		}
+		break;
 	}
 }
 

@@ -16,6 +16,12 @@ public:
 	Vector2 operator - (const Vector2 &v2) {
 		return Vector2(m_x - v2.m_x, m_y - v2.m_y);
 	}
+	Vector2 operator * (const float incR) {
+		return Vector2(m_x * incR, m_y * incR);
+	}
+	Vector2 operator /= (const float incR) {
+		return Vector2(m_x = m_x/ incR, m_y = m_y / incR);
+	}
 
 	float m_x;
 	float m_y;
