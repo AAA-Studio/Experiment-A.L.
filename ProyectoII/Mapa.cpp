@@ -5,7 +5,6 @@ Mapa::Mapa(Juego*pJ)
 {
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	pJuego = pJ;
-	nivel = 1;
 	cargarMapa(nivel);
 }
 
@@ -25,30 +24,29 @@ Mapa::~Mapa()
 
 
 bool Mapa::cargarMapa(int lvl)
-{	
-	nivel = lvl;
+{
 	//Success flag
+	nivel = lvl;
 	bool tilesLoaded = true;
 
 	//The tile offsets
 	int x = 0, y = 0;
 
-
-	std::ifstream map("..\\bmps\\lazy.map");
 	//Open the map
+	std::ifstream map("..\\bmps\\hab.map");
+
 	switch (nivel)
 	{
 	case 1:
-		map = ifstream("..\\bmps\\lazy.map");
+		map = ifstream("..\\bmps\\hab.map");
 		break;
 	case 2:
-		map = ifstream("..\\bmps\\lazy2.map");
+		map = ifstream("..\\bmps\\hab2.map");
 		break;
 	default:
-		map = ifstream("..\\bmps\\lazy.map");
+		map = ifstream("..\\bmps\\hab.map");
 		break;
 	}
-	
 
 	//If the map couldn't be loaded
 	if (!map.is_open())
@@ -121,7 +119,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
 		//If the tile is a wall type tile
-		if ((tileMap[i]->getType() > TILE_1)) //&& (tiles[i]->getType() <= TILE_3))
+		if ((tileMap[i]->getType() >= TILE_1)) //&& (tiles[i]->getType() <= TILE_3))
+
 		{
 			//If the collision box touches the wall tile
 			if (static_cast<Mundo*>(pJuego->topEstado())->checkCollision(box, tileMap[i]->getBox()))
@@ -129,7 +128,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 				return true;
 			}
 		}
-		if ((tileMap[i]->getType() == TILE_1)) 
+		//Colision con determinado tile para cambiar de mapa (trigger)
+		if ((tileMap[i]->getType() == TILE_99)) 
 		{
 			//If the collision box touches the wall tile
 			if (static_cast<Mundo*>(pJuego->topEstado())->checkCollision(box, tileMap[i]->getBox()))

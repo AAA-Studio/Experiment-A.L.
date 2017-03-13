@@ -20,14 +20,12 @@ public:
 	bool cargarMapa(int n);
 	SDL_Rect getCamera(){ return camera; };
 	Juego * pJuego;
-	
 
 
 private:
 	int nivel;
 	SDL_Rect camera;
 	Tile* tileMap[TOTAL_TILES];
-	
 };
 #endif
 
