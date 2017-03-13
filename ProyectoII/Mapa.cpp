@@ -5,6 +5,7 @@ Mapa::Mapa(Juego*pJ)
 {
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	pJuego = pJ;
+	nivel = 1;
 	cargarMapa(nivel);
 }
 
@@ -119,7 +120,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
 		//If the tile is a wall type tile
-		if ((tileMap[i]->getType() >= TILE_1)) //&& (tiles[i]->getType() <= TILE_3))
+		if ((tileMap[i]->getType() == TILE_36)) //&& (tiles[i]->getType() <= TILE_3))
 
 		{
 			//If the collision box touches the wall tile
@@ -129,12 +130,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 			}
 		}
 		//Colision con determinado tile para cambiar de mapa (trigger)
-		if ((tileMap[i]->getType() == TILE_99)) 
+		if ((tileMap[i]->getType() == TILE_20)) 
 		{
 			//If the collision box touches the wall tile
 			if (static_cast<Mundo*>(pJuego->topEstado())->checkCollision(box, tileMap[i]->getBox()))
 			{
 				nivel += 1;
+	
 				cargarMapa(nivel);
 				return true;
 			}
