@@ -1,5 +1,4 @@
 #include "Enemigo.h"
-#include "cuda_runtime.h"
 #include <math.h>
 #include <stdio.h>
 #include <gl/GL.h> // Core Opengl functions
@@ -19,9 +18,32 @@ void Enemigo::Update() {
 	switch (m_currentState) {
 	case IDLE:
 		{
-				 m_idleTime -= Timer::GetDEltaTime();
+			m_idleTime -= (float)SDL_GetTicks();
+				 /*
+					Dos estados con su diagrama de estados. 
+					En esta clase hay un int thastacambio
+					tick de enemigo con delta del juego, 
+					int tHastaCambio;
+					tick(dt);
+					tHastaCambio -= dt;
+					if (tHastaCambio == 0) {
+						tHastaCambio = 20;
+					}
+				 */
+			if (m_idleTime <= 0.0f) {
+				m_currentState = PATROL;
+				m_idleTime = 3.0f;
+				m_currentWayPoint = findNextWayPoints();
+			}
 		}
 		break;
+	case PATROL:
+		{
+			Vector2 position = m_entidad->getPosition();
+			Vector2 toTarget = m_currentWayPoint - Vector2 (position.GetX(), position.GetY());
+			toTarget.m_x -= position.GetX();
+			//toTarget.setY()
+		}
 	}
 }
 

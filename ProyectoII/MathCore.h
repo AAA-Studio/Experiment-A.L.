@@ -9,7 +9,7 @@ class Vector2
 {
 public:
 	Vector2(){ m_x = m_y = 0.0f; }
-	Vector2(float _x, float _y) : m_x(_x), m_y(_y);
+	Vector2(float _x, float _y) : m_x(_x), m_y(_y){}
 	~Vector2();
 
 	// sobrecarga necesaria para determinar distancias entre puntos
@@ -21,6 +21,9 @@ public:
 	float m_y;
 	// tamaño del vector
 	float Length = sqrt((m_x*m_x) + (m_y*m_y));
+	inline float GetX() const { return m_x; }
+	inline float GetY() const { return m_y; }
+
 };
 
 class Vector3
@@ -40,6 +43,10 @@ public:
 	float m_z;
 	// tamaño del vector
 	float Length = sqrt((m_x*m_x) + (m_y*m_y) + (m_z*m_z));
+	inline float GetX() const { return m_x; }
+	inline float GetY() const { return m_y; }
+	inline float GetZ() const { return m_z; }
+
 };
 
 class MathCore

@@ -25,6 +25,9 @@ protected:
 
 public:
 	const SDL_Rect getRect(){ return rect; }
+
+	inline Vector2 getPosition() const { return Vector2(posX, posY); }
+
 	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto);
 	virtual ~Entidad();
 

@@ -1,5 +1,5 @@
-#ifndef _H_Enemigo_H_
-#define _H_Enemigo_H_
+#ifndef Enemigo_H
+#define Enemigo_H
 
 #include "checkML.h"
 #include "Entidad.h"
@@ -28,7 +28,6 @@ public:
 	};
 
 	Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints);
-	//Enemigo(vector <Vector2> waypoints);
 	virtual ~Enemigo();
 
 	//virtual void Draw();
@@ -38,7 +37,8 @@ public:
 private: 
 
 	Vector2 findNextWayPoints();
-
+	
+	Entidad * m_entidad;
 	State m_currentState;
 	vector <Vector2> m_waypoints;
 	Vector2 m_currentWayPoint;
