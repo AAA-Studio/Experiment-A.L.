@@ -1,4 +1,5 @@
 #include "Enemigo.h"
+#include "cuda_runtime.h"
 #include <math.h>
 #include <stdio.h>
 #include <gl/GL.h> // Core Opengl functions
@@ -15,19 +16,23 @@ void Enemigo::Initialize() {
 	
 }
 void Enemigo::Update() {
-
+	switch (m_currentState) {
+	case IDLE:
+		{
+				 m_idleTime -= Timer::GetDEltaTime();
+		}
+		break;
+	}
 }
 
 Vector2 Enemigo::findNextWayPoints(){
 
+	Vector2 waypoint = m_waypoints[m_currentIndex];
+	m_currentIndex++;
+	if (m_currentIndex >= (int)m_waypoints.size()) {
+		m_currentIndex = 0;
+	}
 }
-
-
-
-
-
-
-
 
 
 
