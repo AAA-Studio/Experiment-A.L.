@@ -11,6 +11,7 @@ public:
 	}
 	~Rectangle();
 
+	// dimensiones y coordenadas del rectangulo
 	inline float GetLeft() const { return m_left; }
 	inline float GetRight() const { return m_right; }
 	inline float GetTop() const { return m_top; }

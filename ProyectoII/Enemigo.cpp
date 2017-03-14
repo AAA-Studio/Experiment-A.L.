@@ -27,14 +27,18 @@ void Enemigo::Update() {
 			}
 		}
 		break;
-	case PATROL:
-		{
+
+	case PATROL: {
 
 			// Transform& transform = m_entidad->GetTransform();
+			
+			// Posicion del enemigo
 			Vector2 position = m_entidad->getPosition();
+			// Distancia enemigo - personaje
 			Vector2 toTarget = m_currentWayPoint - Vector2 (position.GetX(), position.GetY());
 			float distance = toTarget.Length;
 			if (distance != 0.0f) {
+				// Se acerca el enemigo al personaje
 				toTarget /= distance;
 			}
 
@@ -44,7 +48,7 @@ void Enemigo::Update() {
 			}
 
 			Vector2 velocity = toTarget * 50.0f;
-			// addVelocity(velocity.m_x, velocity.m_y);
+			
 		}
 		break;
 	}

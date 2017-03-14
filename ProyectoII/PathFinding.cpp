@@ -11,6 +11,7 @@ void PathFinding::FindPath(Vector3 currentPos, Vector3 targetPos) {
 	
 	if (!m_initializedStartGoal) {
 
+		// Resetea las listas de celdas para elegir el nuevo camino
 		for (int i = 0; i < m_openList.size(); i++) {
 			delete m_openList[i];
 		}

@@ -40,7 +40,7 @@ private:
 	
 	Entidad * m_entidad;
 	State m_currentState;
-	vector <Vector2> m_waypoints;
+	vector <Vector2> m_waypoints; // Celdas por donde pasa el enmeigo
 	Vector2 m_currentWayPoint;
 	int m_currentIndex;
 	float m_idleTime;
