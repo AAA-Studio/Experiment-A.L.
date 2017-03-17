@@ -5,7 +5,7 @@
 #include "SearchCell.h"
 #include "MathCore.h"
 #include "Enemigo.h"
-#include "Mapa.h"
+// #include "Mapa.h"
 #include <vector>
 using namespace std;
 
@@ -22,16 +22,14 @@ public:
 	~PathFinding();
 
 	// Este metodo utiliza las coordenadas del enemigo y las del jugador para crear el camino optimo
-	void FindPath(Vector3 currentPos, Vector3 targetPos);
-
-	void DrawDebug();
-
+	void FindPath(Vector2 currentPos, Vector2 targetPos);
 	// Devuelve la posicion del camino mas corto
-	Vector3 NextPathPos(Enemigo* enemigo);
+	Vector2 NextPathPos(Enemigo *enemigo);
 	// Limpia las diferentes listas
 	void ClearOpenList() { m_openList.clear(); }
 	void ClearVisitedList() { m_visitedList.clear(); }
 	void ClearPathToGoal() { m_pathToGoal.clear(); }
+
 	void DrawDebug();
 	// Comprueba que se han inicializado el personaje
 	bool m_initializedStartGoal;
@@ -43,7 +41,7 @@ private:
 
 	void SetStartAndGoal(SearchCell start, SearchCell goal);
 	// Comprueba que la actual celda esta en m_openList
-	void PathOpened(int x, int z, float newCost, SearchCell *pPadre);
+	void PathOpened(int x, int y, float newCost, SearchCell *pPadre);
 	// Busca a lo largo del mundo el Goal para seguir en el camino optimo
 	void ContinuePath();
 
@@ -66,7 +64,7 @@ private:
 	vector <SearchCell*> m_visitedList;
 
 	// Camino optimo al personaje
-	vector <Vector3 *> m_pathToGoal;
+	vector <Vector2 *> m_pathToGoal;
 
 };
 #endif

@@ -7,7 +7,7 @@ PathFinding::PathFinding(/*Mapa * pGameWorld*/) /*: m_GameWorld(pGameWorld)*/
 	m_foundGoal = false;
 }
 
-void PathFinding::FindPath(Vector3 currentPos, Vector3 targetPos) {
+void PathFinding::FindPath(Vector2 currentPos, Vector2 targetPos) {
 	
 	if (!m_initializedStartGoal) {
 
@@ -31,13 +31,13 @@ void PathFinding::FindPath(Vector3 currentPos, Vector3 targetPos) {
 		SearchCell start;
 
 		start.m_xcoord = m_GameWorld->GetCellX(currentPos.m_x);
-		start.m_zcoord = m_GameWorld->GetCellZ(currentPos.m_z);
+		start.m_ycoord = m_GameWorld->GetCellY(currentPos.m_y);
 
 		// Inicializacion del Goal
 		SearchCell goal;
 
 		goal.m_xcoord = m_GameWorld->GetCellX(currentPos.m_x);
-		goal.m_zcoord = m_GameWorld->GetCellZ(currentPos.m_z);
+		goal.m_ycoord = m_GameWorld->GetCellY(currentPos.m_y);
 
 		m_foundGoal = false;
 		SetStartAndGoal(start, goal);
@@ -51,8 +51,8 @@ void PathFinding::FindPath(Vector3 currentPos, Vector3 targetPos) {
 
 void PathFinding::SetStartAndGoal(SearchCell start, SearchCell goal){
 	
-	m_startCell = new SearchCell(start.m_xcoord, start.m_zcoord, NULL);
-	m_goalCell = new SearchCell(goal.m_xcoord, goal.m_zcoord, &goal);
+	m_startCell = new SearchCell(start.m_xcoord, start.m_ycoord, NULL);
+	m_goalCell = new SearchCell(goal.m_xcoord, goal.m_ycoord, &goal);
 
 	m_startCell->G = 0;
 	m_startCell->H = m_startCell->ManHattanDistance(m_goalCell);
@@ -85,22 +85,29 @@ SearchCell * PathFinding::GetNextCell(){
 	return nextCell;
 }
 
-void PathFinding::PathOpened(int x, int z, float newCost, SearchCell *pPadre){
+void PathFinding::PathOpened(int x, int y, float newCost, SearchCell *pPadre){
 	
 	// Cuando haya paredes ignora esas celdas
-	if (m_GameWorld -> GetCellState(x, z) == CELL_BLOCKED)
+	/*if (m_GameWorld -> GetCellState(x, y) == CELL_BLOCKED)
+	{
+		return;
+	}*/
+
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// Corregir para que quede como arriba
+	if (m_GameWorld->GetCellState(x, y) == m_GameWorld->CELL_BLOCKED)
 	{
 		return;
 	}
 
-	int id = z * WORLD_SIZE + x;
+	int id = y * WORLD_SIZE + x;
 	for (int i = 0; i < m_visitedList.size(); i++) {
 		if (id == m_visitedList[i]->m_id) {
 			return;
 		}
 	}
 
-	SearchCell * newChild = new SearchCell(x, z, pPadre);
+	SearchCell * newChild = new SearchCell(x, y, pPadre);
 	newChild->G = newCost;
 	newChild->H = pPadre->ManHattanDistance(m_goalCell);
 
@@ -141,41 +148,41 @@ void PathFinding::ContinuePath() {
 		// Va por todas las celdas comprobando cual es el camino mas corto y las mete en la lista
 		for (getPath = m_goalCell; getPath != NULL; getPath = getPath->pPadre) {
 
-			m_pathToGoal.push_back(new Vector3(getPath->m_xcoord * CELL_SIZE, 0, getPath->m_zcoord));
+			m_pathToGoal.push_back(new Vector2(getPath->m_xcoord * CELL_SIZE, getPath->m_ycoord));
 		}
 
 		m_foundGoal = true;
 	}
 	else {
 		// Celda derecha
-		PathOpened(currentCell->m_xcoord + 1, currentCell->m_zcoord, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->m_xcoord + 1, currentCell->m_ycoord, currentCell->G + 1, currentCell);
 
 		//Celda izquierda
-		PathOpened(currentCell->m_xcoord - 1, currentCell->m_zcoord, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->m_xcoord - 1, currentCell->m_ycoord, currentCell->G + 1, currentCell);
 		
 		// Celda superior
-		PathOpened(currentCell->m_xcoord, currentCell->m_zcoord - 1, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->m_xcoord, currentCell->m_ycoord - 1, currentCell->G + 1, currentCell);
 
 		// Celda inferior
-		PathOpened(currentCell->m_xcoord, currentCell->m_zcoord + 1, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->m_xcoord, currentCell->m_ycoord + 1, currentCell->G + 1, currentCell);
 
 		// Celda diagonal izquierda superior
-		PathOpened(currentCell->m_xcoord - 1, currentCell->m_zcoord - 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->m_xcoord - 1, currentCell->m_ycoord - 1, currentCell->G + 1.4f, currentCell);
 
 		// Celda diagonal izquierda inferior
-		PathOpened(currentCell->m_xcoord - 1, currentCell->m_zcoord + 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->m_xcoord - 1, currentCell->m_ycoord + 1, currentCell->G + 1.4f, currentCell);
 		
 		// Celda diagonal derecha superior
-		PathOpened(currentCell->m_xcoord + 1, currentCell->m_zcoord - 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->m_xcoord + 1, currentCell->m_ycoord - 1, currentCell->G + 1.4f, currentCell);
 
 		// Celda diagonal derecha inferior
-		PathOpened(currentCell->m_xcoord + 1, currentCell->m_zcoord + 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->m_xcoord + 1, currentCell->m_ycoord + 1, currentCell->G + 1.4f, currentCell);
 		
 		for (int i = 0; i < m_openList.size(); i++)
 		{	
 			if (currentCell->m_id == m_openList[i]->m_id){
 				
-				m_openList.erase(m_openList.begin + i);
+				m_openList.erase(m_openList.begin() + i);
 
 			}
 				
@@ -183,16 +190,16 @@ void PathFinding::ContinuePath() {
 	}
 }
 
-Vector3 PathFinding::NextPathPos(Enemigo*  enemigo) {
+Vector2 PathFinding::NextPathPos(Enemigo  *enemigo) {
 	
 	int index = 1; 
 
-	Vector3 nextPos;
+	Vector2 nextPos;
 	nextPos.m_x = m_pathToGoal[m_pathToGoal.size() - index]->m_x;
-	nextPos.m_z = m_pathToGoal[m_pathToGoal.size() - index]->m_z;
+	nextPos.m_y = m_pathToGoal[m_pathToGoal.size() - index]->m_y;
 
 	// pos es la actual posicion del enemigo
-	Vector3 distance = nextPos - enemigo->pos;
+	Vector2 distance = nextPos - enemigo->pos;
 	if (distance.Length < m_pathToGoal.size()) {
 
 		// Si el enemigo consigue avanzar en el radio de celdas elimina la que ya estaba
@@ -208,13 +215,13 @@ void PathFinding::DrawDebug() {
 	// static void *****::DrawSquare(int posX, int posY, tColor color) || static void *****::DrawSquare(float posX, float posY, tColor color)
 
 	for (unsigned int i = 0; i < m_openList.size(); i++) {
-		m_GameWorld->DrawSquare(m_openList[i]->m_xcoord, m_openList[i]->m_zcoord, tColor(0.0f, 1.0f. 0.0f));
+		m_GameWorld->DrawSquare(m_openList[i]->m_xcoord, m_openList[i]->m_ycoord, m_GameWorld->VERDE/*tColor(0.0f, 1.0f. 0.0f)*/);
 	}
 	for (unsigned int i = 0; i < m_visitedList.size(); i++) {
-		m_GameWorld->DrawSquare(m_visitedList[i]->m_xcoord, m_visitedList[i]->m_zcoord, tColor(0.0f, 0.0f. 1.0f));
+		m_GameWorld->DrawSquare(m_visitedList[i]->m_xcoord, m_visitedList[i]->m_ycoord, m_GameWorld->AZUL/*tColor(0.0f, 0.0f. 1.0f)*/);
 	}
 	for (unsigned int i = 0; i < m_pathToGoal.size(); i++) {
-		m_GameWorld->DrawSquare(m_pathToGoal[i]->m_x, m_pathToGoal[i]->m_z, tColor(1.0f, 0.0f. 0.0f));
+		m_GameWorld->DrawSquare(m_pathToGoal[i]->m_x, m_pathToGoal[i]->m_y, m_GameWorld->ROJO/*tColor(1.0f, 0.0f. 0.0f)*/);
 	}
 }
 

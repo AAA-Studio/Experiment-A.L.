@@ -1,6 +1,7 @@
 #include "Enemigo.h"
 #include <math.h>
 #include <stdio.h>
+#include <windows.h>
 #include <gl/GL.h> // Core Opengl functions
 
 
@@ -9,10 +10,11 @@ Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, v
 	m_currentState = IDLE;
 	m_currentIndex = 0;
 	m_idleTime = 3.0f;
+	m_waypoints = waypoints;
 }
 
 void Enemigo::Initialize() {
-	
+	m_maxVelocity = 50.0f;
 }
 
 void Enemigo::Update() {
@@ -21,6 +23,7 @@ void Enemigo::Update() {
 		{
 			m_idleTime -= (float)SDL_GetTicks();
 			if (m_idleTime <= 0.0f) {
+
 				m_currentState = PATROL;
 				m_idleTime = 3.0f;
 				m_currentWayPoint = findNextWayPoints();
@@ -39,7 +42,8 @@ void Enemigo::Update() {
 			float distance = toTarget.Length;
 			if (distance != 0.0f) {
 				// Se acerca el enemigo al personaje
-				toTarget /= distance;
+				toTarget.SetX(toTarget.GetX() / distance);
+				toTarget.SetY(toTarget.GetY() / distance);
 			}
 
 			if (distance >= 4.0f) {
@@ -48,6 +52,7 @@ void Enemigo::Update() {
 			}
 
 			Vector2 velocity = toTarget * 50.0f;
+			// setVelocity(velocity.GetX(), velocity.GetY()):
 			
 		}
 		break;
@@ -61,6 +66,8 @@ Vector2 Enemigo::findNextWayPoints(){
 	if (m_currentIndex >= (int)m_waypoints.size()) {
 		m_currentIndex = 0;
 	}
+
+	return waypoint;
 }
 
 
@@ -69,7 +76,7 @@ Vector2 Enemigo::findNextWayPoints(){
 {
 	int random_integerX = (int)(rand() % WORLD_SIZE*CELL_SIZE);
 	int random_integerZ = (int)(rand() % WORLD_SIZE*CELL_SIZE);
-	targetPos = Vector3((float)random_integerX, 0, (float)random_integerZ);
+	targetPos = Vector2((float)random_integerX, 0, (float)random_integerZ);
 }*/
 
 /*void Enemigo::Draw() {
@@ -124,7 +131,7 @@ Vector2 Enemigo::findNextWayPoints(){
 					Stop();
 					m_pathState = RANDOMIZE;
 				}
-				Vector3 newTargetPos;
+				Vector2 newTargetPos;
 				
 				if (GetEnemyView(&newTargetPos, TYPE_PICKUP)) {
 					targetPos = newTargetPos;
@@ -149,14 +156,14 @@ Vector2 Enemigo::findNextWayPoints(){
 			break;
 
 			case FOUND_GOAL: // una vez haya encontrado el camino a seguir, lo sigue
-				Vector3 distanceToTarget = targetPos - pos;
+				Vector2 distanceToTarget = targetPos - pos;
 
 				if (!isAtGoal) {
-					Vector3 dist2Target = m_pathfinding->NextPathPos(this) - pos;
+					Vector2 dist2Target = m_pathfinding->NextPathPos(this) - pos;
 					float angle = rad2deg(atan2(dist2Target.m_x, dist2Target.m_z));
-					SetDesiredRot(Vector3(0, angle, 0)); // Rota en la Y
+					SetDesiredRot(Vector2(0, angle, 0)); // Rota en la Y
 					Accelerate(2.0f);
-					Vector3 newTargetPos;
+					Vector2 newTargetPos;
 
 					if (GetEnemyView(&newTargetPos)) {
 						targetPos = newTargetPos;
@@ -190,4 +197,6 @@ Vector2 Enemigo::findNextWayPoints(){
 
 Enemigo::~Enemigo()
 {
+
+
 }

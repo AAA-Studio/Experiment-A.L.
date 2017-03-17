@@ -4,6 +4,7 @@
 #include "EntidadJuego.h"
 #include "SDL.h"
 #include "Mundo.h"
+#include "MathCore.h"
 
 //Clase abstracta que hereda de la raiz ObjetoJuego e implementa utilidades para las subclases
 class Entidad : public EntidadJuego
@@ -26,7 +27,10 @@ protected:
 public:
 	const SDL_Rect getRect(){ return rect; }
 
-	inline Vector2 getPosition() const { return Vector2(posX, posY); }
+	Vector2 getPosition() const 
+	{ 
+		return Vector2(posX, posY); 
+	}
 
 	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto);
 	virtual ~Entidad();

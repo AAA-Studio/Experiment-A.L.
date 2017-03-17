@@ -4,7 +4,6 @@
 #include "checkML.h"
 #include "Entidad.h"
 #include "MathCore.h"
-#include "Pathfinding.h"
 #include <vector>
 
 #define M_PI 3.1416
@@ -34,7 +33,10 @@ public:
 	virtual void Initialize();
 	virtual void Update();
 
-private: 
+	Vector2 pos;
+	double radius;
+
+protected: 
 
 	Vector2 findNextWayPoints();
 	
@@ -44,13 +46,11 @@ private:
 	Vector2 m_currentWayPoint;
 	int m_currentIndex;
 	float m_idleTime;
+	float m_maxVelocity;
 	/*virtual bool HandleKeydown(int key);
 	virtual bool HandleKeyUp(int key);
-	virtual void HandleMouseDown(bool isLeft, Vector3 mouseWorldPos);*/
-
-	/*double radius;
-	Vector3 pos;
-
+	virtual void HandleMouseDown(bool isLeft, Vector2 mouseWorldPos);*/
+	/*
 private: 
 	bool hasBeenHit;
 	bool isAtGoal;
@@ -60,7 +60,7 @@ private:
 	const float LASER_SIGTH_DIST = 500.0f;
 
 	void RandomizeGoal();
-	bool GetEnemyView(const Vector3 &targetPos);
+	bool GetEnemyView(const Vector2 &targetPos);
 	void SetTargetTurretAngle(float angulos) { angle = angulos; }
 	inline float GetTargetTurretAngle() const { return angle; }
 	float rad2deg(double rad) { // de radianes a grados
@@ -69,6 +69,6 @@ private:
 		return deg;
 	}
 
-	Vector3 targetPos;*/
+	Vector2 targetPos;*/
 };
 #endif

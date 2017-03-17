@@ -1,10 +1,30 @@
-﻿Build started 23/02/2017 12:55:19.
-     1>Project "C:\hlocal\proyecto\ProyectoII\ProyectoII\ProyectoII.vcxproj" on node 2 (Build target(s)).
+﻿Compilación iniciada a las 17/03/2017 13:10:29.
+     1>Proyecto "C:\hlocal\Proyecto 2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SearchCell.cpp
-         SearchCell.cpp
+         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Enemigo.cpp PathFinding.cpp
+         PathFinding.cpp
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(41): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(42): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(58): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(59): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(64): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(65): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argumento' : conversión de 'const double' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(9): warning C4005: 'M_PI' : redefinición de macro
+                 c:\hlocal\proyecto 2\experiment-a.l\sdl2-2.0.4\include\sdl_stdinc.h(436) : vea la definición anterior de 'M_PI'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(15): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(20): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(73): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(98): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(104): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(114): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(151): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(181): warning C4018: '<' : no coinciden signed/unsigned
+         Generando código...
+         Omitiendo... (no se detectaron cambios relevantes)
+         Enemigo.cpp
        Link:
-         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\proyecto\ProyectoII\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\proyecto\ProyectoII\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\proyecto\ProyectoII\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Boton.obj
+         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Boton.obj
          Debug\Enemigo.obj
          Debug\Entidad.obj
          Debug\Estado.obj
@@ -15,13 +35,16 @@
          Debug\Menu.obj
          Debug\Mundo.obj
          Debug\Musica.obj
+         Debug\PathFinding.obj
          Debug\Pausa.obj
          Debug\Personaje.obj
-         Debug\SearchCell.obj
          Debug\TexturasSDL.obj
-         ProyectoII.vcxproj -> C:\hlocal\proyecto\ProyectoII\bin\ProyectoIIDebug.exe
-     1>Done Building Project "C:\hlocal\proyecto\ProyectoII\ProyectoII\ProyectoII.vcxproj" (Build target(s)).
+     1>Enemigo.obj : error LNK2019: símbolo externo "public: __thiscall Vector2::~Vector2(void)" (??1Vector2@@QAE@XZ) sin resolver al que se hace referencia en la función __unwindfunclet$??0Enemigo@@QAE@PAVJuego@@HHW4Texturas_t@@W4Efectos_t@@V?$vector@VVector2@@V?$allocator@VVector2@@@std@@@std@@@Z$2
+     1>PathFinding.obj : error LNK2001: símbolo externo "public: __thiscall Vector2::~Vector2(void)" (??1Vector2@@QAE@XZ) sin resolver
+     1>PathFinding.obj : error LNK2019: símbolo externo "public: __thiscall SearchCell::~SearchCell(void)" (??1SearchCell@@QAE@XZ) sin resolver al que se hace referencia en la función "public: void * __thiscall SearchCell::`scalar deleting destructor'(unsigned int)" (??_GSearchCell@@QAEPAXI@Z)
+     1>C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.exe : fatal error LNK1120: 2 externos sin resolver
+     1>Compilación del proyecto terminada "C:\hlocal\Proyecto 2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos) -- ERROR.
 
-Build succeeded.
+ERROR al compilar.
 
-Time Elapsed 00:00:00.37
+Tiempo transcurrido 00:00:00.57

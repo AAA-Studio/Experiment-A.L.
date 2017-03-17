@@ -14,31 +14,55 @@ class SearchCell
 {
 public:
 	
-	int m_xcoord, m_zcoord;
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// Auxiliar que luego se tiene que quitar y usar correctamente
+	enum tColor {
+		ROJO,
+		AZUL,
+		VERDE,
+	};
+
+	enum CellState {
+		CELL_BLOCKED
+	};
+
+	int m_xcoord, m_ycoord;
 	int m_id;
 	SearchCell * pPadre;
 	float G; // distancia acumulada desde la primera celda hasta la celda en la que te encuentras
 	float H; // distancia estimada al objetivo
 
 	SearchCell() : pPadre(0){};
-	SearchCell(int x, int z, SearchCell * parent = nullptr) : m_xcoord(x), m_zcoord(z),
-		pPadre(parent), m_id(z * WORLD_SIZE + x), G(0), H(0){};
+	SearchCell(int x, int y, SearchCell * parent = nullptr) : m_xcoord(x), m_ycoord(y),
+		pPadre(parent), m_id(y * WORLD_SIZE + x), G(0), H(0){};
 
 
 	inline float GetF() const { return G + H; }
 	inline int GetCellX(float x) const { return floor(x / CELL_SIZE); }
-	inline int GetCellZ(float z) const { return floor(z / CELL_SIZE); }
+	inline int GetCellY(float y) const { return floor(y / CELL_SIZE); }
+	inline CellState GetCellState(float x, float y) const { 
+		return CELL_BLOCKED;
+	}
 
+	void DrawSquare(int posX, int posY, tColor color) {
+	
+	};
+	void DrawSquare(float posX, float posY, tColor color) {
+	
+	};
+	
+	
+	
 	// ¿por que ManHattanDistance?: https://es.wikipedia.org/wiki/Geometr%C3%ADa_del_taxista
 	float ManHattanDistance(SearchCell * nodeEnd) { // Distancia en la que esta el enemigo al personaje
 		float x = (float)(fabsf((this->m_xcoord - nodeEnd->m_xcoord)));
-		float z = (float)(fabsf((this->m_zcoord - nodeEnd->m_zcoord)));
+		float z = (float)(fabsf((this->m_ycoord - nodeEnd->m_ycoord)));
 		return x + z;
 	}
 	// ChebySev Distance: https://en.wikipedia.org/wiki/Chebyshev_distance
-	unsigned int ChebySevDistance(SearchCell * nodeEnd) { // Distancia en la que esta el enemigo al personaje
+	float ChebySevDistance(SearchCell * nodeEnd) { // Distancia en la que esta el enemigo al personaje
 		float x = (float)(fabsf((this->m_xcoord - nodeEnd->m_xcoord)));
-		float z = (float)(fabsf((this->m_zcoord - nodeEnd->m_zcoord)));
+		float z = (float)(fabsf((this->m_ycoord - nodeEnd->m_ycoord)));
 		return floor(x - z);
 	}
 	
