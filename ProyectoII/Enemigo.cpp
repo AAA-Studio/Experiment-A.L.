@@ -8,7 +8,7 @@
 Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints) : Entidad(pJ, x, y, textura, efecto)
 {
 	m_currentState = IDLE;
-	m_currentIndex = 0;
+	m_currentIndex = (int)(rand() % waypoints.size() - 1);
 	m_idleTime = 3.0f;
 	m_waypoints = waypoints;
 }
@@ -53,7 +53,10 @@ void Enemigo::Update() {
 
 			Vector2 velocity = toTarget * 50.0f;
 			// setVelocity(velocity.GetX(), velocity.GetY()):
-			
+			position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
+			position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
+
+			// transform.SetPosition(position);
 		}
 		break;
 	}

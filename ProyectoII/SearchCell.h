@@ -46,10 +46,10 @@ public:
 
 	void DrawSquare(int posX, int posY, tColor color) {
 	
-	};
+	}
 	void DrawSquare(float posX, float posY, tColor color) {
 	
-	};
+	}
 	
 	
 	
