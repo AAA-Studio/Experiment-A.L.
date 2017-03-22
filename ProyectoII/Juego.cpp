@@ -2,7 +2,6 @@
 
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
-
 #include "Error.h"
 #include "Menu.h"
 
@@ -24,8 +23,9 @@ Juego::Juego()
 
 	initMedia();
 
+	
+	//Primer estado de la pila
 	vectorEstados.push_back(new Menu(this));//Primer estado de la pila
-	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
 
 }
 
@@ -156,8 +156,7 @@ void Juego::initMedia()
 
 	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png",
 		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\key.png",
-		"..\\bmps\\tiles3.png"
-		/*, "..\\bmps\\informe.png", "..\\bmps\\newspaper.jpeg"*/ };
+		"..\\bmps\\informe.png", "..\\bmps\\newspaper.jpeg", "..\\bmps\\tiles3.png" };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{
@@ -232,11 +231,13 @@ void Juego::changeState(EstadoJuego *estado){
 
 void Juego::pushState(EstadoJuego * nuevoEstado){
 	vectorEstados.push_back(nuevoEstado);//Añadimos el nuevo estado
+
 }
 
 void Juego::popState(){
 	delete(topEstado());
 	vectorEstados.pop_back();//Eliminamos el último estado de la pila
+
 }
 
 void Juego::goToPausa(EstadoJuego *estado){

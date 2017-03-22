@@ -41,6 +41,8 @@ public:
 private:
 	bool pausa;
 	void initObjetos();
+	EntidadJuego* bolsillo;
+	void soltar();
 
 };
 

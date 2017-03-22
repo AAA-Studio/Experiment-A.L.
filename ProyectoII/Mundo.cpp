@@ -8,14 +8,16 @@
 #include "Bala.h"
 #include <fstream>
 #include "Llave.h"
+#include "Informe.h"
 
 Mundo::Mundo(Juego * pJ) : Estado(pJ)
 {
 	pausa = false;
-	objetos.resize(2);
+	objetos.resize(3);
 	initObjetos();
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	setTiles();
+	bolsillo = nullptr;
 	//pJuego->getMusica(MPlay)->play();
 }
 
@@ -44,6 +46,7 @@ void Mundo::initObjetos()
 	// Personaje
 	objetos[0] = new Personaje(pJuego, x, y, TJugador, ENull);
 	objetos[1] = new Llave(pJuego, 400, 300, TLlave, ENull);
+	objetos[2] = new Informe(pJuego, 200, 200, TInforme, ENull, TNewspaper);
 }
 
 
@@ -85,28 +88,30 @@ void Mundo::onInput(SDL_Event &e){
 		SDL_Rect rect2; //rect del objeto
 		bool coger = false; //para saber si se ha cogido o no el objeto
 		bool colision = false; //para saber si hay colision entre un objeto y el personaje
-
-		for (int i = objetos.size() - 1; i > 0 && (!coger); i--){//recorre los objetos con los que se puede colisionar
+		int i = 1;
+		while (!coger && i < objetos.size()){
 			SDL_Rect rect2 = objetos[i]->getRect(); //obtiene el rect del objeto
 			//comprueba si hay colision entre el personaje y el objeto
-			if (rect1.y + rect1.h >= rect2.y && rect1.y <= rect2.y + rect2.h && rect1.x + rect1.w >= rect2.x && rect1.x <= rect2.x + rect2.w)
+			if (checkCollision(rect1, rect2))
 				colision = true;
 			else
 				colision = false;
 			//comprueba que son los tipos de objetos que se pueden coger
-			if (/*colision && typeid(*objetos[i]) == typeid(Informe) && dynamic_cast<Informe*> (objetos[i])->visible
-				|| */colision && typeid(*objetos[i]) == typeid(Llave) && dynamic_cast<Llave*> (objetos[i])->visible){
-				//if (dynamic_cast<Informe*> (objetos[i])->visible){
+			if (colision && typeid(*objetos[i]) == typeid(Informe) && dynamic_cast<Informe*> (objetos[i])->visible){
 				objetos[i]->coger();
+				coger = true;
+			}
+			else if (colision && typeid(*objetos[i]) == typeid(Llave) && dynamic_cast<Llave*> (objetos[i])->visible){
+				//if (dynamic_cast<Informe*> (objetos[i])->visible){
+
+
+				objetos[i]->coger();
+				soltar();
+				bolsillo = objetos[i];
 				coger = true;
 				//}
 			}
-			/*else if (colision && typeid(*objetos[i]) == typeid(Llave)){
-			if (dynamic_cast<Llave*> (objetos[i])->visible){
-			objetos[i]->coger();
-			coger = true;
-			}
-			}*/
+			i++;
 		}
 
 
@@ -114,9 +119,7 @@ void Mundo::onInput(SDL_Event &e){
 
 	//suelta el objeto en la posicion actual del jugador
 	if (keyStatesActuales[SDL_SCANCODE_V]){
-		double x = dynamic_cast<Personaje*> (objetos[0])->getX();
-		double y = dynamic_cast<Personaje*> (objetos[0])->getY();
-		objetos[1]->soltar(x, y);
+		soltar();
 	}
 
 	objetos[0]->onInput();
@@ -124,6 +127,14 @@ void Mundo::onInput(SDL_Event &e){
 
 }
 
+void Mundo::soltar(){
+	if (bolsillo != nullptr){
+		double x = dynamic_cast<Personaje*> (objetos[0])->getX();
+		double y = dynamic_cast<Personaje*> (objetos[0])->getY();
+		bolsillo->soltar(x, y);
+		bolsillo = nullptr;
+	}
+}
 
 //Globo y premio
 // Los objetos informarán al juego cuando causen baja

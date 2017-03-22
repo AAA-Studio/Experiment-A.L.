@@ -6,6 +6,7 @@
 #include "Fuente.h"
 #include "Musica.h"
 #include <vector>
+#include <stack>
 #include <string>
 #include <SDL.h>
 
@@ -37,7 +38,7 @@ const int TILE_11 = 11;
 
 using namespace std;
 
-enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TLlave, TTilemap,/*TFondoMenu,*/ /*TInforme, TNewspaper,*/ TFuente, Texturas_t_SIZE };
+enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TLlave, TInforme, TNewspaper, TTilemap,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
 
@@ -61,9 +62,12 @@ public:
 	void getMousePos(int & mpx, int & mpy) const;
 
 	//Devuelve el estado actual
-	EstadoJuego * topEstado(){ return vectorEstados[vectorEstados.size() - 1]; };
+	EstadoJuego * topEstado(){ return vectorEstados[vectorEstados.size() - 1];};
 
 	void changeState(EstadoJuego *estado);
+
+	//Añade un nuevo estado
+	void pushState(EstadoJuego * nuevoEstado);
 
 	//Elimina el último estado
 	void popState();
@@ -137,8 +141,7 @@ private:
 	// REVISAR
 	void handle_event();
 
-	//Añade un nuevo estado
-	void pushState(EstadoJuego * nuevoEstado);
+	
 
 	//---------------------
 
