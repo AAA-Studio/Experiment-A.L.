@@ -20,11 +20,14 @@ Juego::Juego()
 	pRenderer = nullptr;
 	colorWin = { 0, 0, 0, 255 };
 	borraEstado = false;
+	indiceMapas = 0;
 
 	//Rectángulo de la ventana
 	winRect = { 200, 200, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	initSDL();//Inicializamos el renderizador
+
+	nombreMapas = { "..\\bmps\\lazy.map", "..\\bmps\\lazy2.map" };
 
 	initMedia();
 
@@ -55,6 +58,7 @@ void Juego::gestionaEstados(Estados_t estado){
 
 	case MGameOver:
 		aux = new GameOver(this);
+		break;
 
 	case MPausa:
 		aux = new Pausa(this);
@@ -62,9 +66,9 @@ void Juego::gestionaEstados(Estados_t estado){
 		break;
 
 		//Mundos
-
 	case MundoReal:
-		aux = new Mundo(this);
+		aux = new Mundo(this,nombreMapas[indiceMapas]);
+		indiceMapas++;
 		break;
 
 	default:
@@ -79,6 +83,7 @@ void Juego::gestionaEstados(Estados_t estado){
 		goToPausa(aux);
 
 	pausa = false;
+	borraEstado = false;
 
 }
 
@@ -97,7 +102,9 @@ void Juego::run()
 	handle_event();
 	while (!exit)
 	{
-		//if (!)
+		if (borraEstado)
+			gestionaEstados(estadoEnum);
+
 		if (SDL_GetTicks() - lastUpdate >= MSxUpdate)//Se pide la hora y se compara con la última 
 		{
 			topEstado()->update();
@@ -318,63 +325,63 @@ void Juego::handle_event(){
 //---------------------------------------------
 void Juego::recortarTiles()
 {
-	gTileClips[TILE_0].x = 0;
-	gTileClips[TILE_0].y = 0;
-	gTileClips[TILE_0].w = TILE_WIDTH;
-	gTileClips[TILE_0].h = TILE_HEIGHT;
+	gTileClips[0].x = 0;
+	gTileClips[0].y = 0;
+	gTileClips[0].w = TILE_WIDTH;
+	gTileClips[0].h = TILE_HEIGHT;
 
-	gTileClips[TILE_1].x = 0;
-	gTileClips[TILE_1].y = 32;
-	gTileClips[TILE_1].w = TILE_WIDTH;
-	gTileClips[TILE_1].h = TILE_HEIGHT;
+	gTileClips[1].x = 0;
+	gTileClips[1].y = 32;
+	gTileClips[1].w = TILE_WIDTH;
+	gTileClips[1].h = TILE_HEIGHT;
 
-	gTileClips[TILE_2].x = 0;
-	gTileClips[TILE_2].y = 64;
-	gTileClips[TILE_2].w = TILE_WIDTH;
-	gTileClips[TILE_2].h = TILE_HEIGHT;
+	gTileClips[2].x = 0;
+	gTileClips[2].y = 64;
+	gTileClips[2].w = TILE_WIDTH;
+	gTileClips[2].h = TILE_HEIGHT;
 
-	gTileClips[TILE_3].x = 32;
-	gTileClips[TILE_3].y = 0;
-	gTileClips[TILE_3].w = TILE_WIDTH;
-	gTileClips[TILE_3].h = TILE_HEIGHT;
+	gTileClips[3].x = 32;
+	gTileClips[3].y = 0;
+	gTileClips[3].w = TILE_WIDTH;
+	gTileClips[3].h = TILE_HEIGHT;
 
-	gTileClips[TILE_4].x = 32;
-	gTileClips[TILE_4].y = 32;
-	gTileClips[TILE_4].w = TILE_WIDTH;
-	gTileClips[TILE_4].h = TILE_HEIGHT;
+	gTileClips[4].x = 32;
+	gTileClips[4].y = 32;
+	gTileClips[4].w = TILE_WIDTH;
+	gTileClips[4].h = TILE_HEIGHT;
 
-	gTileClips[TILE_5].x = 32;
-	gTileClips[TILE_5].y = 64;
-	gTileClips[TILE_5].w = TILE_WIDTH;
-	gTileClips[TILE_5].h = TILE_HEIGHT;
+	gTileClips[5].x = 32;
+	gTileClips[5].y = 64;
+	gTileClips[5].w = TILE_WIDTH;
+	gTileClips[5].h = TILE_HEIGHT;
 
-	gTileClips[TILE_6].x = 64;
-	gTileClips[TILE_6].y = 0;
-	gTileClips[TILE_6].w = TILE_WIDTH;
-	gTileClips[TILE_6].h = TILE_HEIGHT;
+	gTileClips[6].x = 64;
+	gTileClips[6].y = 0;
+	gTileClips[6].w = TILE_WIDTH;
+	gTileClips[6].h = TILE_HEIGHT;
 
-	gTileClips[TILE_7].x = 64;
-	gTileClips[TILE_7].y = 32;
-	gTileClips[TILE_7].w = TILE_WIDTH;
-	gTileClips[TILE_7].h = TILE_HEIGHT;
+	gTileClips[7].x = 64;
+	gTileClips[7].y = 32;
+	gTileClips[7].w = TILE_WIDTH;
+	gTileClips[7].h = TILE_HEIGHT;
 
-	gTileClips[TILE_8].x = 64;
-	gTileClips[TILE_8].y = 64;
-	gTileClips[TILE_8].w = TILE_WIDTH;
-	gTileClips[TILE_8].h = TILE_HEIGHT;
+	gTileClips[8].x = 64;
+	gTileClips[8].y = 64;
+	gTileClips[8].w = TILE_WIDTH;
+	gTileClips[8].h = TILE_HEIGHT;
 
-	gTileClips[TILE_9].x = 96;
-	gTileClips[TILE_9].y = 0;
-	gTileClips[TILE_9].w = TILE_WIDTH;
-	gTileClips[TILE_9].h = TILE_HEIGHT;
+	gTileClips[9].x = 96;
+	gTileClips[9].y = 0;
+	gTileClips[9].w = TILE_WIDTH;
+	gTileClips[9].h = TILE_HEIGHT;
 
-	gTileClips[TILE_10].x = 96;
-	gTileClips[TILE_10].y = 32;
-	gTileClips[TILE_10].w = TILE_WIDTH;
-	gTileClips[TILE_10].h = TILE_HEIGHT;
+	gTileClips[10].x = 96;
+	gTileClips[10].y = 32;
+	gTileClips[10].w = TILE_WIDTH;
+	gTileClips[10].h = TILE_HEIGHT;
 
-	gTileClips[TILE_11].x = 96;
-	gTileClips[TILE_11].y = 64;
-	gTileClips[TILE_11].w = TILE_WIDTH;
-	gTileClips[TILE_11].h = TILE_HEIGHT;
+	gTileClips[11].x = 96;
+	gTileClips[11].y = 64;
+	gTileClips[11].w = TILE_WIDTH;
+	gTileClips[11].h = TILE_HEIGHT;
 }

@@ -1,10 +1,12 @@
 #include "Mapa.h"
 #include "Mundo.h"
 
-Mapa::Mapa(Juego*pJ)
+Mapa::Mapa(Juego*pJ, MundoVirtual *pM, string mapa)
 {
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	pJuego = pJ;
+	pMundo = pM;
+	nombreMapa = mapa;
 	cargarMapa();
 }
 
@@ -32,7 +34,7 @@ bool Mapa::cargarMapa()
 	int x = 0, y = 0;
 
 	//Open the map
-	std::ifstream map("..\\bmps\\lazy.map");
+	std::ifstream map(nombreMapa);
 
 	//If the map couldn't be loaded
 	if (!map.is_open())
@@ -105,14 +107,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
 		//If the tile is a wall type tile
-		if ((tileMap[i]->getType() >= TILE_1)) //&& (tiles[i]->getType() <= TILE_3))
+		if ((tileMap[i]->getType() >= 1)) //&& (tiles[i]->getType() <= TILE_3))
 
 		{
-			//If the collision box touches the wall tile
-			if (static_cast<Mundo*>(pJuego->topEstado())->checkCollision(box, tileMap[i]->getBox()))
-			{
+			//Si se choca con la pared
+			if (pMundo->checkCollision(box, tileMap[i]->getBox()))			
 				return true;
-			}
+			
 		}
 	}
 

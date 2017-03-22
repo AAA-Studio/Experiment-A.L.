@@ -16,7 +16,8 @@ static void goPlay(Juego * pj){
 	pj->popState();
 };
 static void goMenu(Juego * pj){
-	pj->gestionaEstados(MInicio);
+	pj->borraEstado = true;
+	pj->estadoEnum = MInicio;
 };
 
 void Pausa::initObjetos(){

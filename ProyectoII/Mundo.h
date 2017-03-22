@@ -7,20 +7,21 @@
 
 #include <SDL.h>
 #include "Mapa.h"
+#include "Personaje.h"
+
 
 
 //Clase abstracta que hereda de la raiz ObjetoJuego e implementa utilidades para las subclases
 class Mundo : public MundoVirtual
 {
 public:
-	Mundo(Juego * pJ);
+	Mundo(Juego * pJ,string mapa);
 	virtual ~Mundo();
 
 	virtual void draw() const;
 	virtual void onInput(SDL_Event &e);
 	virtual void update();
 
-	void newBaja(EntidadJuego * po); // Los objetos informarán al juego cuando causen baja
 	bool checkCollision(SDL_Rect a, SDL_Rect b);
 	inline Mapa* getMapa(){ return mapa; };
 private:
@@ -31,6 +32,8 @@ private:
 	Mapa * mapa;
 
 	vector <EntidadJuego*> objetos;
+	Personaje * psj;
+
 	Juego * pJuego;
 
 };

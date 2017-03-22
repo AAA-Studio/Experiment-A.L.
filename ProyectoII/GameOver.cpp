@@ -5,12 +5,14 @@
 GameOver::GameOver(Juego * pJ) : Menu(pJ)
 {
 	objetos.resize(1);
+	cout << "estoy en gameover";
 	initObjetos();
 }
 
 
 static void goMenu(Juego * pj){
-	pj->gestionaEstados(MInicio);
+	pj->borraEstado = true;
+	pj->estadoEnum = MInicio;
 };
 
 void GameOver::initObjetos(){

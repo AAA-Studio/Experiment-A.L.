@@ -1,8 +1,14 @@
 #include "Personaje.h"
 #include <iostream>
+#include "Mundo.h"
+#include "Bala.h"
 //Constructora
-Personaje::Personaje(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pJ, x, y, textura, efecto)
+Personaje::Personaje(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto)
 {
+	pJuego = pJ;
+	pTextura = textura;
+	sonido = efecto;
+	rect = { x, y, 100, 100 };
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
 	vida = 100;
@@ -17,7 +23,7 @@ Personaje::~Personaje()
 //Actualiza el estado y devuelve false si el globo queda desinflado
 void Personaje::update()  
 {	
-	list<Bala*>::iterator it = balas.begin();
+	list<EntidadJuego*>::iterator it = balas.begin();
 	balaDestruida = false;
 
 	while (!balaDestruida && !balas.empty() && it != balas.end())
@@ -35,9 +41,10 @@ void Personaje::update()
 
 void Personaje::draw()const
 {
-	Entidad::draw();
 
-	list<Bala*>::const_iterator it = balas.cbegin();
+	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect);//Dibujamos la textura
+
+	list<EntidadJuego*>::const_iterator it = balas.cbegin();
 	while (!balas.empty() && it != balas.cend())
 	{
 		(*it)->draw();
@@ -48,7 +55,7 @@ void Personaje::draw()const
 
 void Personaje::onInput()
 {
-	double x = 0, y = 0;
+	int x = 0, y = 0;
 
 	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 
@@ -106,7 +113,7 @@ void Personaje::onInput()
 	move(x, y);
 }
 
-void Personaje::move(double x, double y)
+void Personaje::move(int x, int y)
 {
 
 	rect.x += x;
@@ -133,9 +140,9 @@ void Personaje::disparo(){
 	}
 }
 
-void Personaje::destruyeBala(Bala * bala)
+void Personaje::destruyeBala(EntidadJuego * bala)
 {
-	list<Bala*>::iterator it = balas.begin();
+	list<EntidadJuego*>::iterator it = balas.begin();
 	while (it != balas.end() &&(*it) != bala)
 	{
 		it++;
@@ -170,6 +177,14 @@ void Personaje::setCamera(SDL_Rect& camera)
 	{
 		camera.y = LEVEL_HEIGHT - camera.h;
 	}
+}
+
+void Personaje::restaVida(){
+	vida -= 10;
+
+	//Muerte del personaje, cambio de estado
+	pJuego->borraEstado = true;
+	pJuego->estadoEnum = MGameOver;
 }
 
 

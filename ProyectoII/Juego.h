@@ -26,20 +26,6 @@ const int TILE_HEIGHT = 32;
 const int TOTAL_TILES = 960;
 const int TOTAL_TILE_SPRITES = 12;
 
-//The different tile sprites
-const int TILE_0 = 0;
-const int TILE_1 = 1;
-const int TILE_2 = 2;
-const int TILE_3 = 3;
-const int TILE_4 = 4;
-const int TILE_5 = 5;
-const int TILE_6 = 6;
-const int TILE_7 = 7;
-const int TILE_8 = 8;
-const int TILE_9 = 9;
-const int TILE_10 = 10;
-const int TILE_11 = 11;
-
 //----------------------------------------------------
 
 
@@ -64,7 +50,6 @@ public:
 	// Arranca el bucle principal y, si se termina el juego. Tambien puede terminar si se cierra la ventana
 	void run();
 
-
 	//----------------ESTADOS---------------------
 
 	//Devuelve el estado actual
@@ -80,8 +65,6 @@ public:
 
 	//Sale del programa
 	void setSalir(){ exit = true; };
-
-	//----------------------------------------------------
 
 	//---------------GETTER----------------------
 
@@ -123,6 +106,8 @@ private:
 	//Atributos
 	bool exit;
 	int posMouseX, posMouseY;
+	vector <string> nombreMapas;
+	int indiceMapas;
 
 	SDL_Window *pWin;//Puntero de la ventana
 	SDL_Renderer *pRenderer;//Puntero del renderizador

@@ -3,13 +3,15 @@
 #include "Juego.h"
 #include <SDL.h>
 #include "Tile.h"
+#include "MundoVirtual.h"
 #include <fstream>
+#include <string>
 
 
 class Mapa
 {
 public:
-	Mapa(Juego*pJ);
+	Mapa(Juego*pJ, MundoVirtual * pM, string mapa); ////
 	~Mapa();
 
 
@@ -17,14 +19,16 @@ public:
 	bool touchesWall(SDL_Rect box);
 	void draw()const;
 	Tile** getTileMap(){ return tileMap; };
-	bool cargarMapa();
 	SDL_Rect getCamera(){ return camera; };
 	Juego * pJuego;
-
+	MundoVirtual * pMundo;
 
 private:
 	SDL_Rect camera;
 	Tile* tileMap[TOTAL_TILES];
+	string nombreMapa;
+	bool cargarMapa();
+
 };
 #endif
 

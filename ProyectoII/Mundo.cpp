@@ -7,13 +7,13 @@
 #include "Boton.h"
 
 
-Mundo::Mundo(Juego * pJ)
+Mundo::Mundo(Juego * pJ, string m)
 {
 	pJuego = pJ;
 	pausa = false;
-	objetos.resize(2);
+	objetos.resize(1);
 	initObjetos();
-	mapa = new Mapa(pJ);
+	mapa = new Mapa(pJ, this, m);
 	//pJuego->getMusica(MPlay)->play();
 }
 
@@ -35,14 +35,17 @@ void Mundo::initObjetos()
 	x = rand() % (pJuego->getAncho() - 100);
 	y = rand() % (pJuego->getAlto() - 100);
 	// Personaje
-	objetos[0] = new Personaje(pJuego, x, y, TJugador, ENull);
+	psj = new Personaje(pJuego, x, y, TJugador, ENull);
 
 	//Entidad de prueba para colisiones
-	objetos[1] = new Boton(pJuego, 500, 500, TPlay, ENull, goPlay);
+	objetos[0] = new Boton(pJuego, 500, 500, TPlay, ENull, goPlay);
 }
 
 void Mundo::freeObjetos(){
-	for (int i = 0; i < objetos.size(); i++)
+	delete psj;
+	psj = nullptr;
+
+	for (size_t i = 0; i < objetos.size(); i++)
 	{
 		delete(objetos[i]);
 		objetos[i] = nullptr;
@@ -59,17 +62,25 @@ void Mundo::draw()const{
 	for (int i = objetos.size() - 1; i >= 0; i--)
 		objetos[i]->draw();
 
+	psj->draw();
+
 	pJuego->getTextura(TFuente)->render(pJuego->getRender(), 0, 0, "Hola", pJuego->getFuente());
 
 }
 
 
 void Mundo::update(){
-	for (int i = 0; i < objetos.size(); i++)
+	psj->update();
+	for (size_t i = 0; i < objetos.size(); i++)
 		objetos[i]->update();
 
-	if (checkCollision(static_cast<Entidad*>(objetos[0])->getRect(), static_cast<Entidad*>(objetos[1])->getRect()))//Si el psj colisiona con el boton truleano
-		static_cast<Personaje*> (objetos[0])->restaVida();
+	if (checkCollision(psj->getRect(), objetos[0]->getRect())){//Si el psj colisiona con el boton truleano
+
+		pJuego->borraEstado = true;
+		pJuego->estadoEnum = MundoReal;
+
+
+	}
 }
 
 //Detecta el input del jugador y la pausa
@@ -80,23 +91,17 @@ void Mundo::onInput(SDL_Event &e){
 	
 	//Pausa
 	if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
-			pJuego->gestionaEstados(MPausa);
+		pJuego->borraEstado = true;
+		pJuego->estadoEnum = MPausa;
 	}
 	
 	//Personaje
-	objetos[0]->onInput();
-	static_cast<Personaje*>(objetos[0])->setCamera(mapa->getCamera());
+	psj->onInput();
+	psj->setCamera(mapa->getCamera());
 
 }
 
 
-//Globo y premio
-// Los objetos informarán al juego cuando causen baja
-void Mundo::newBaja(EntidadJuego* po)
-{
-	pJuego->borraEstado = true;
-	pJuego->estadoEnum = MGameOver;
-}
 
 bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
 {

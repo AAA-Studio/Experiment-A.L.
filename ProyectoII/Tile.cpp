@@ -19,10 +19,8 @@ Tile::Tile(int x, int y, int tileType, Juego * pJ)
 
 void Tile::render(const SDL_Rect& camera)
 {
-	//If the tile is on screen
-	if (static_cast<Mundo*> (pJuego->topEstado())->checkCollision(camera, mBox))
-	{
+
 		//Show the tile
 		pJuego->getTextura(TTilemap)->draw(pJuego->getRender(),mBox, &pJuego->getRectTile(mType));
-	}
+	
 }

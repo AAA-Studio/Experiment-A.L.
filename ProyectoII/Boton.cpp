@@ -12,7 +12,6 @@ Boton::~Boton()
 
 void Boton::onInput(){
 	
-	std::cout << "jugar";
 	int posMouseX, posMouseY;
 	pJuego->getMousePos(posMouseX, posMouseY);
 
@@ -24,7 +23,6 @@ void Boton::onInput(){
 
 bool Boton::dentro(int x, int y)const
 {
-	
-	return (x >= posX && x <= (posX + ancho) && y >= posY && y <= (posY + alto));
+	return (x >= rect.x && x <= (rect.x + rect.w) && y >= rect.y && y <= (rect.y + rect.h));
 }
 

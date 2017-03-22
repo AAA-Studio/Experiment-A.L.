@@ -52,6 +52,18 @@
     <Filter Include="Archivos de encabezado\Estados\Mundo">
       <UniqueIdentifier>{bb9e9f7d-16c7-4043-8962-816dbdd72f30}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Entidades\Objetos">
+      <UniqueIdentifier>{93fdde42-088c-4753-999f-d254a0352257}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\Entidades\Personajes">
+      <UniqueIdentifier>{748b7ea1-9935-44a4-91cf-ee9e414a6955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades\Objetos">
+      <UniqueIdentifier>{685c41bc-7116-4c1a-b264-c55c806fa0c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades\Personajes">
+      <UniqueIdentifier>{110a910a-6907-43d3-898d-6f9f083152c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -68,21 +80,6 @@
     </ClCompile>
     <ClCompile Include="TexturasSDL.cpp">
       <Filter>Archivos de código fuente\Media</Filter>
-    </ClCompile>
-    <ClCompile Include="Entidad.cpp">
-      <Filter>Archivos de código fuente\Entidades</Filter>
-    </ClCompile>
-    <ClCompile Include="Mundo.cpp">
-      <Filter>Archivos de código fuente\Estados</Filter>
-    </ClCompile>
-    <ClCompile Include="Boton.cpp">
-      <Filter>Archivos de código fuente\Entidades</Filter>
-    </ClCompile>
-    <ClCompile Include="Personaje.cpp">
-      <Filter>Archivos de código fuente\Entidades</Filter>
-    </ClCompile>
-    <ClCompile Include="Bala.cpp">
-      <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>Archivos de código fuente\Mapa</Filter>
@@ -101,6 +98,21 @@
     </ClCompile>
     <ClCompile Include="Pausa.cpp">
       <Filter>Archivos de código fuente\Estados\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Mundo.cpp">
+      <Filter>Archivos de código fuente\Estados\Mundo</Filter>
+    </ClCompile>
+    <ClCompile Include="Bala.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Boton.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Personaje.cpp">
+      <Filter>Archivos de código fuente\Entidades\Personajes</Filter>
+    </ClCompile>
+    <ClCompile Include="Entidad.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,32 +137,14 @@
     <ClInclude Include="EntidadJuego.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
-    <ClInclude Include="Entidad.h">
-      <Filter>Archivos de encabezado\Entidades</Filter>
-    </ClInclude>
     <ClInclude Include="Error.h">
       <Filter>Archivos de encabezado\Errores</Filter>
-    </ClInclude>
-    <ClInclude Include="Mundo.h">
-      <Filter>Archivos de encabezado\Estados</Filter>
-    </ClInclude>
-    <ClInclude Include="Boton.h">
-      <Filter>Archivos de encabezado\Entidades</Filter>
-    </ClInclude>
-    <ClInclude Include="Personaje.h">
-      <Filter>Archivos de encabezado\Entidades</Filter>
-    </ClInclude>
-    <ClInclude Include="Bala.h">
-      <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Archivos de encabezado\Mapa</Filter>
     </ClInclude>
     <ClInclude Include="Mapa.h">
       <Filter>Archivos de encabezado\Mapa</Filter>
-    </ClInclude>
-    <ClInclude Include="MundoVirtual.h">
-      <Filter>Archivos de encabezado\Estados</Filter>
     </ClInclude>
     <ClInclude Include="GameOver.h">
       <Filter>Archivos de encabezado\Estados\Menu</Filter>
@@ -163,6 +157,27 @@
     </ClInclude>
     <ClInclude Include="Pausa.h">
       <Filter>Archivos de encabezado\Estados\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Mundo.h">
+      <Filter>Archivos de encabezado\Estados\Mundo</Filter>
+    </ClInclude>
+    <ClInclude Include="MundoVirtual.h">
+      <Filter>Archivos de encabezado\Estados\Mundo</Filter>
+    </ClInclude>
+    <ClInclude Include="Bala.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Boton.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Entidad.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Personaje.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="PersonajeVirtual.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

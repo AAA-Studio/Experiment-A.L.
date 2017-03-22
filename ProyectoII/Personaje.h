@@ -2,50 +2,62 @@
 #define Personaje_H
 #include "checkML.h"
 #include "Entidad.h"
-#include "Bala.h"
+#include "PersonajeVirtual.h"
 #include <list>
 #include <SDL.h>
 #include <iostream>
 
 
 
-class Personaje : public Entidad
+
+class Personaje : public PersonajeVirtual
 {
 public:
 	Personaje(Juego*pJ, int x, int y, Texturas_t color, Efectos_t efecto);//Constructora
-	virtual ~Personaje();//Destructora
+	~Personaje();//Destructora
 
 	virtual void update();//Actualiza el estado y devuelve false si el globo queda desinflado
 	virtual void onInput();
 	virtual void draw()const; //Para dibujar las balas
 
-	void destruyeBala(Bala * bala);
-
-	int getX(){ return posX; };
-	int getY(){ return posY; };
-	int getAngulo(){ return angulo; };
-
-	//Centers the camera over the dot
-	void setCamera(SDL_Rect& camera);
+	
+	//----------------GETTER-------------------------------------------------------
+	int getX(){ return rect.x; };
+	int getY(){ return rect.y; };
 	SDL_Rect getRectPsj(){ return rect; };
+	int getAngulo(){ return angulo; };
+	const SDL_Rect getRect(){ return rect; };
 
-	void restaVida(){
-		vida -= 10;
-		std::cout << "me han pegao";
-		static_cast <Mundo*> (pJuego->topEstado())->newBaja(this);
-	}
+
+	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------
+	void setCamera(SDL_Rect& camera);
+	void restaVida();
+	void destruyeBala(EntidadJuego * bala);
+	//-----------------------------------------------------------------------------
+
+	
+
+	
 
 private:
-	
-	list <Bala*> balas;
+	//Atributos
+	list <EntidadJuego*> balas;
 	const float tiempoBala = 1000;
-	float ultimaBala;
+	Uint32 ultimaBala;
 	int angulo;
 	bool balaDestruida;
-
 	int vida;
 
+
+
+	Juego * pJuego;//Sustituye al puntero a la textura y al renderizador de la clase globo
+	Texturas_t pTextura;
+	Efectos_t sonido;
+
+	SDL_Rect rect;//Rectángulo para cada textura
+
+	//Métodos
 	void disparo();
-	void move(double x, double y);
+	void move(int x, int y);
 };
 #endif

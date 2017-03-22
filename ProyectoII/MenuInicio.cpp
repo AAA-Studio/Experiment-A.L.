@@ -18,7 +18,8 @@ void MenuInicio::draw()const
 
 static void goPlay(Juego * pj){
 
-	pj->gestionaEstados(MundoReal);
+	pj->borraEstado = true;
+	pj->estadoEnum = MundoReal;
 };
 static void goSalir(Juego * pj){
 	pj->setSalir();

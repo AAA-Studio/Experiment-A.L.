@@ -4,7 +4,7 @@
 #include "Personaje.h"
 
 
-Bala::Bala(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, EntidadJuego* per) : Entidad(pJ, x, y, textura, efecto)
+Bala::Bala(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, PersonajeVirtual* per) : Entidad(pJ, x, y, textura, efecto)
 {
 	incrX = incrY = 0;
 	velocidad = 1;
@@ -62,12 +62,10 @@ void Bala::setAngulo(){
 
 void Bala::update(){
 
-	posX += velocidad * incrX;
-	posY += velocidad * incrY;
-	rect = { posX, posY, ancho, alto };
+	rect = { rect.x + velocidad * incrX, rect.y +  velocidad * incrY, rect.w, rect.h };
 	if (SDL_GetTicks() - time >= duracion)//Se pide la hora y se compara con la última 
 	{
-		static_cast<Personaje*> (personaje)->destruyeBala(this);
+		personaje->destruyeBala(this);
 	}
 
 }
