@@ -52,7 +52,7 @@ void Enemigo::Update() {
 			}
 
 			Vector2 velocity = toTarget * 50.0f;
-			// setVelocity(velocity.GetX(), velocity.GetY()):
+			
 			position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
 			position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
 
