@@ -26,7 +26,7 @@ protected:
 
 public:
 	const SDL_Rect getRect(){ return rect; }
-
+	Entidad * getEntity() { return this; }
 	Vector2 getPosition() const 
 	{ 
 		return Vector2(posX, posY); 

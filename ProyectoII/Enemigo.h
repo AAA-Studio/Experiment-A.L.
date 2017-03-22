@@ -24,6 +24,7 @@ public:
 	enum State {
 		IDLE, 
 		PATROL,
+		CHASE,
 	};
 
 	Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints);
@@ -32,11 +33,14 @@ public:
 	//virtual void Draw();
 	virtual void Initialize();
 	virtual void Update();
-
-	Vector2 pos;
-	double radius;
+	void SetTarget(Entidad*  target) { m_target = target; }
+	
+	/*Vector2 pos;
+	double radius;*/
 
 protected: 
+
+	void CheckForTarget();
 
 	Vector2 findNextWayPoints();
 	
@@ -44,6 +48,8 @@ protected:
 	State m_currentState;
 	vector <Vector2> m_waypoints; // Celdas por donde pasa el enmeigo
 	Vector2 m_currentWayPoint;
+	// Entidad m_target;
+	Entidad* m_target;
 	int m_currentIndex;
 	float m_idleTime;
 	float m_maxVelocity;

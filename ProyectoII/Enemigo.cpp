@@ -14,10 +14,21 @@ Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, v
 }
 
 void Enemigo::Initialize() {
+	// Entidad::Initialize();
+	/*
+	void Entidad::Initialize() {
+		CollisionManager::GetInstance()->addCollision(m_entity);
+		m_transform = &m_entity->GetTransform();
+	}
+	*/
+
 	m_maxVelocity = 50.0f;
 }
 
 void Enemigo::Update() {
+
+	// Entidad::Update();
+
 	switch (m_currentState) {
 	case IDLE:
 		{
@@ -59,21 +70,64 @@ void Enemigo::Update() {
 			// transform.SetPosition(position);
 		}
 		break;
+
+	case CHASE:
+		{
+			Transform targetTransform = m_target->getEntity()->GetTransform();
+			Vector2 targetPosition = targetTransform.getPosition();
+			Vector2 position = m_transform->getPosition();
+			Vector2 toTarget = targetPosition - position;
+			float distance = toTarget.Length;
+			if (distance != 0.0f) {
+				/*toTarget.SetX(toTarget.GetX() / distance);
+				toTarget.SetY(toTarget.GetY() / distance);*/
+
+				toTarget /= distance;
+			}
+
+			if (distance > 5.0f) {
+				m_currentState = IDLE;
+				return;
+			}
+
+			Vector2 velocity = toTarget * 50.0f;
+
+			position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
+			position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
+		}
+		break;
 	}
+
+	CheckForTarget();
 }
 
 Vector2 Enemigo::findNextWayPoints(){
 
 	Vector2 waypoint = m_waypoints[m_currentIndex];
-	m_currentIndex++;
+	m_currentIndex = (int)(rand() % m_waypoints.size() - 1);
+	
+	/*m_currentIndex++;
 	if (m_currentIndex >= (int)m_waypoints.size()) {
 		m_currentIndex = 0;
-	}
+	}*/
 
 	return waypoint;
 }
 
+void Enemigo::CheckForTarget() {
+	
+	if (m_currentState == CHASE) return;
 
+	Transform targetTransform = m_target->GetTransform();
+	Vector2 targetPosition = targetTransform.getPosition(); 
+	Vector2 position = m_transform->getPosition();
+	Vector2 toTarget = targetPosition - position;
+	float distance = toTarget.Length;
+
+	if (distance <= 4.0f) {
+		m_currentState = CHASE;
+	}
+}
 
 /*void Enemigo::RandomizeGoal()
 {

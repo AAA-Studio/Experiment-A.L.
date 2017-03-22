@@ -15,6 +15,13 @@ Hay que ver si hat linea recta contra el personaje, buscar lo qye hay que esquiv
 NathPoints, hago una lista de nathpoints y eso es lo que comprueba el enemigo
 */
 
+/*TRANFORM 
+
+http://gamedev.stackexchange.com/questions/70648/build-unity-like-transform-class 
+http://glm.g-truc.net/0.9.8/index.html
+http://gamedev.stackexchange.com/questions/95553/organizing-a-transform-class-to-internally-use-quaternions
+*/
+
 class PathFinding
 {
 public:
