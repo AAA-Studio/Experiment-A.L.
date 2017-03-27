@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F9ADA2E9-178E-4C6E-9CAF-453307B2E92A}</ProjectGuid>
     <RootNamespace>ProyectoII</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -24,7 +25,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -69,13 +70,13 @@
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="Entidad.cpp" />
-    <ClCompile Include="Estado.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Juego.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mapa.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuInicio.cpp" />
     <ClCompile Include="Mundo.cpp" />
     <ClCompile Include="Musica.cpp" />
     <ClCompile Include="Pausa.cpp" />
@@ -90,17 +91,19 @@
     <ClInclude Include="Entidad.h" />
     <ClInclude Include="EntidadJuego.h" />
     <ClInclude Include="Error.h" />
-    <ClInclude Include="Estado.h" />
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="Juego.h" />
     <ClInclude Include="Mapa.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuInicio.h" />
     <ClInclude Include="Mundo.h" />
+    <ClInclude Include="MundoVirtual.h" />
     <ClInclude Include="Musica.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
+    <ClInclude Include="PersonajeVirtual.h" />
     <ClInclude Include="TexturasSDL.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>

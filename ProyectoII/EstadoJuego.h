@@ -5,13 +5,13 @@
 
 class EstadoJuego
 {
-	//Métodos publicos abstractos
+	//Padre supremo
 
 public:
 
-	EstadoJuego(){}
+	EstadoJuego(){};
 
-	virtual ~EstadoJuego(){}
+	virtual ~EstadoJuego(){};
 
 	virtual void draw() const = 0;
 

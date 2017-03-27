@@ -1,12 +1,28 @@
-﻿Compilación iniciada a las 13/03/2017 18:06:45.
-     1>Proyecto "C:\Users\Javi\Desktop\p2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
+﻿Compilación iniciada a las 27/03/2017 17:32:08.
+     1>Proyecto "C:\Users\Pablo Gómez\Downloads\Experiment-A.L.-EstructuraJuego\Experiment-A.L.-EstructuraJuego\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mapa.cpp
-         Mapa.cpp
-     1>c:\users\javi\desktop\p2\experiment-a.l\proyectoii\mapa.cpp(139): error C4996: '_sleep': This function or variable has been superceded by newer library or operating system functionality. Consider using Sleep instead. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdlib.h(911) : vea la declaración de '_sleep'
-     1>Compilación del proyecto terminada "C:\Users\Javi\Desktop\p2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos) -- ERROR.
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mundo.cpp
+         Mundo.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Pablo Gómez\Downloads\Experiment-A.L.-EstructuraJuego\Experiment-A.L.-EstructuraJuego\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Pablo Gómez\Downloads\Experiment-A.L.-EstructuraJuego\Experiment-A.L.-EstructuraJuego\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Pablo Gómez\Downloads\Experiment-A.L.-EstructuraJuego\Experiment-A.L.-EstructuraJuego\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Bala.obj
+         Debug\Boton.obj
+         Debug\Entidad.obj
+         Debug\Fuente.obj
+         Debug\GameOver.obj
+         Debug\Juego.obj
+         Debug\main.obj
+         Debug\Mapa.obj
+         Debug\Menu.obj
+         Debug\MenuInicio.obj
+         Debug\Mundo.obj
+         Debug\Musica.obj
+         Debug\Pausa.obj
+         Debug\Personaje.obj
+         Debug\TexturasSDL.obj
+         Debug\Tile.obj
+         ProyectoII.vcxproj -> C:\Users\Pablo Gómez\Downloads\Experiment-A.L.-EstructuraJuego\Experiment-A.L.-EstructuraJuego\bin\ProyectoIIDebug.exe
+     1>Compilación del proyecto terminada "C:\Users\Pablo Gómez\Downloads\Experiment-A.L.-EstructuraJuego\Experiment-A.L.-EstructuraJuego\ProyectoII\ProyectoII.vcxproj" (Build destinos).
 
-ERROR al compilar.
+Compilación correcta.
 
-Tiempo transcurrido 00:00:11.22
+Tiempo transcurrido 00:00:00.94

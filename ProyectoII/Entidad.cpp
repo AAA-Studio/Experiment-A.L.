@@ -3,14 +3,10 @@
 
 Entidad::Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto)
 {
-	ancho = alto = 100;
-	posX = x;
-	posY = y;
+	rect = { x, y, 100, 100 };
 	pJuego = pJ;
 	pTextura = textura;
 	sonido = efecto;
-	rect = { posX, posY, ancho, alto };
-
 }
 
 Entidad::~Entidad()

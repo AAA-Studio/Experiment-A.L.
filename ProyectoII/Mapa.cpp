@@ -1,12 +1,13 @@
 #include "Mapa.h"
 #include "Mundo.h"
 
-Mapa::Mapa(Juego*pJ)
+Mapa::Mapa(Juego*pJ, MundoVirtual *pM, string mapa)
 {
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	pJuego = pJ;
-	nivel = 1;
-	cargarMapa(nivel);
+	pMundo = pM;
+	nombreMapa = mapa;
+	cargarMapa();
 }
 
 
@@ -24,30 +25,16 @@ Mapa::~Mapa()
 }
 
 
-bool Mapa::cargarMapa(int lvl)
+bool Mapa::cargarMapa()
 {
 	//Success flag
-	nivel = lvl;
 	bool tilesLoaded = true;
 
 	//The tile offsets
 	int x = 0, y = 0;
 
 	//Open the map
-	std::ifstream map("..\\bmps\\hab.map");
-
-	switch (nivel)
-	{
-	case 1:
-		map = ifstream("..\\bmps\\hab.map");
-		break;
-	case 2:
-		map = ifstream("..\\bmps\\hab2.map");
-		break;
-	default:
-		map = ifstream("..\\bmps\\hab.map");
-		break;
-	}
+	std::ifstream map(nombreMapa);
 
 	//If the map couldn't be loaded
 	if (!map.is_open())
@@ -120,26 +107,44 @@ bool Mapa::touchesWall(SDL_Rect box)
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
 		//If the tile is a wall type tile
-		if ((tileMap[i]->getType() == TILE_36)) //&& (tiles[i]->getType() <= TILE_3))
+		if ((tileMap[i]->getType() == 92)) //&& (tiles[i]->getType() <= TILE_3))
 
 		{
-			//If the collision box touches the wall tile
-			if (static_cast<Mundo*>(pJuego->topEstado())->checkCollision(box, tileMap[i]->getBox()))
-			{
+		
+			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+				pJuego->borraEstado = true;
+				pJuego->estadoEnum = MundoReal;
+				pJuego->setNivel(1);
 				return true;
+
 			}
+			
 		}
-		//Colision con determinado tile para cambiar de mapa (trigger)
-		if ((tileMap[i]->getType() == TILE_20)) 
+
+		if ((tileMap[i]->getType() == 88 )) //&& (tiles[i]->getType() <= TILE_3))
+
 		{
-			//If the collision box touches the wall tile
-			if (static_cast<Mundo*>(pJuego->topEstado())->checkCollision(box, tileMap[i]->getBox()))
-			{
-				nivel += 1;
-	
-				cargarMapa(nivel);
+
+			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+				pJuego->borraEstado = true;
+				pJuego->estadoEnum = MundoReal;
+				pJuego->setNivel(-1);
 				return true;
+
 			}
+
+		}
+		
+		if ((tileMap[i]->getType() >= 100)) //&& (tiles[i]->getType() <= TILE_3))
+
+		{
+			//Si se choca con la pared
+			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+
+				return true;
+
+			}
+
 		}
 	}
 

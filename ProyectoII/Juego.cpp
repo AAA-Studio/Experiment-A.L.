@@ -4,7 +4,10 @@
 #include <SDL_ttf.h>
 
 #include "Error.h"
-#include "Menu.h"
+#include "MenuInicio.h"
+#include "GameOver.h"
+#include "Pausa.h"
+#include "Mundo.h"
 
 using namespace std; // Para cualificar automaticamente con std:: los identificadores de la librería estandar 
 
@@ -16,16 +19,29 @@ Juego::Juego()
 	pWin = nullptr;
 	pRenderer = nullptr;
 	colorWin = { 0, 0, 0, 255 };
+	borraEstado = false;
+	
 
 	//Rectángulo de la ventana
 	winRect = { 200, 200, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	initSDL();//Inicializamos el renderizador
 
+	nombreMapas = { "..\\bmps\\hab.map", "..\\bmps\\hab2.map" };
+
 	initMedia();
 
-	vectorEstados.push_back(new Menu(this));//Primer estado de la pila
+	estadoEnum = MInicio;
+	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
 	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
+
+}
+
+//Paso de niveles
+
+string Juego::SelectorDeNiveles() {
+	int nivel = getNivel();
+	return nombreMapas[indiceMapas+nivel];
 
 }
 
@@ -36,6 +52,47 @@ Juego::~Juego()
 
 	//Liberamos el renderizador
 	closeSDL();
+}
+
+void Juego::gestionaEstados(Estados_t estado){
+	EstadoJuego *aux; //Estado auxiliar que va a ser el estado a crear
+	bool pausa = false;
+
+	switch (estado){
+		//Menus
+	case MInicio:
+		aux = new MenuInicio(this);
+		break;
+
+	case MGameOver:
+		aux = new GameOver(this);
+		break;
+
+	case MPausa:
+		aux = new Pausa(this);
+		pausa = true;
+		break;
+
+		//Mundos
+	case MundoReal:
+		aux = new Mundo(this,SelectorDeNiveles());
+		
+		break;
+
+	default:
+		aux = new MenuInicio(this);
+		break;
+	
+	}
+
+	if (!pausa)
+		changeState(aux);
+	else
+		goToPausa(aux);
+
+	pausa = false;
+	borraEstado = false;
+
 }
 
 /*Arranca el bucle principal y controla si acaba la ejecución*/
@@ -53,6 +110,9 @@ void Juego::run()
 	handle_event();
 	while (!exit)
 	{
+		if (borraEstado)
+			gestionaEstados(estadoEnum);
+
 		if (SDL_GetTicks() - lastUpdate >= MSxUpdate)//Se pide la hora y se compara con la última 
 		{
 			topEstado()->update();
@@ -271,7 +331,7 @@ void Juego::handle_event(){
 
 
 //---------------------------------------------
-void Juego::recortarTiles() 
+void Juego::recortarTiles()
 {
 	gTileClips[TILE_0].x = 0;
 	gTileClips[TILE_0].y = 0;
@@ -502,17 +562,14 @@ void Juego::recortarTiles()
 	gTileClips[TILE_45].y = 96;
 	gTileClips[TILE_45].w = TILE_WIDTH;
 	gTileClips[TILE_45].h = TILE_HEIGHT;
-
 	gTileClips[TILE_46].x = 320;
 	gTileClips[TILE_46].y = 96;
 	gTileClips[TILE_46].w = TILE_WIDTH;
 	gTileClips[TILE_47].h = TILE_HEIGHT;
-
 	gTileClips[TILE_47].x = 352;
 	gTileClips[TILE_47].y = 96;
 	gTileClips[TILE_47].w = TILE_WIDTH;                   // tiles en blanco
 	gTileClips[TILE_47].h = TILE_HEIGHT;
-
 	gTileClips[TILE_48].x = 0;
 	gTileClips[TILE_48].y = 128;
 	gTileClips[TILE_48].w = TILE_WIDTH;
@@ -562,12 +619,10 @@ void Juego::recortarTiles()
 	gTileClips[TILE_57].y = 128;
 	gTileClips[TILE_57].w = TILE_WIDTH;
 	gTileClips[TILE_57].h = TILE_HEIGHT;
-
 	gTileClips[TILE_58].x = 320;
 	gTileClips[TILE_58].y = 128;
 	gTileClips[TILE_58].w = TILE_WIDTH;                 // tiles en blanco
 	gTileClips[TILE_58].h = TILE_HEIGHT;
-
 	gTileClips[TILE_59].x = 352;
 	gTileClips[TILE_59].y = 128;
 	gTileClips[TILE_59].w = TILE_WIDTH;
@@ -622,12 +677,10 @@ void Juego::recortarTiles()
 	gTileClips[TILE_69].y = 160;
 	gTileClips[TILE_69].w = TILE_WIDTH;
 	gTileClips[TILE_69].h = TILE_HEIGHT;
-
 	gTileClips[TILE_70].x = 320;
 	gTileClips[TILE_70].y = 160;
 	gTileClips[TILE_70].w = TILE_WIDTH;                        // tiles en blanco
 	gTileClips[TILE_70].h = TILE_HEIGHT;
-
 	gTileClips[TILE_71].x = 352;
 	gTileClips[TILE_71].y = 160;
 	gTileClips[TILE_71].w = TILE_WIDTH;
@@ -682,12 +735,10 @@ void Juego::recortarTiles()
 	gTileClips[TILE_81].y = 192;
 	gTileClips[TILE_81].w = TILE_WIDTH;
 	gTileClips[TILE_81].h = TILE_HEIGHT;
-
 	gTileClips[TILE_82].x = 320;
 	gTileClips[TILE_82].y = 192;
 	gTileClips[TILE_82].w = TILE_WIDTH;            // tiles en blanco
 	gTileClips[TILE_82].h = TILE_HEIGHT;
-
 	gTileClips[TILE_83].x = 352;
 	gTileClips[TILE_83].y = 192;
 	gTileClips[TILE_83].w = TILE_WIDTH;
@@ -742,27 +793,22 @@ void Juego::recortarTiles()
 	gTileClips[TILE_93].y = 224;
 	gTileClips[TILE_93].w = TILE_WIDTH;
 	gTileClips[TILE_93].h = TILE_HEIGHT;
-
 	gTileClips[TILE_94].x = 320;
 	gTileClips[TILE_94].y = 224;
 	gTileClips[TILE_94].w = TILE_WIDTH;
 	gTileClips[TILE_94].h = TILE_HEIGHT;
-
 	gTileClips[TILE_95].x = 352;
 	gTileClips[TILE_95].y = 224;
 	gTileClips[TILE_95].w = TILE_WIDTH;
 	gTileClips[TILE_95].h = TILE_HEIGHT;
-
 	gTileClips[TILE_96].x = 0;
 	gTileClips[TILE_96].y = 256;
 	gTileClips[TILE_96].w = TILE_WIDTH;
 	gTileClips[TILE_96].h = TILE_HEIGHT;         // tiles en blanco
-
 	gTileClips[TILE_97].x = 32;
 	gTileClips[TILE_97].y = 256;
 	gTileClips[TILE_97].w = TILE_WIDTH;
 	gTileClips[TILE_97].h = TILE_HEIGHT;
-
 	gTileClips[TILE_98].x = 64;
 	gTileClips[TILE_98].y = 256;
 	gTileClips[TILE_98].w = TILE_WIDTH;

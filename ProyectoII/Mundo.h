@@ -1,30 +1,40 @@
 #ifndef Mundo_H
 #define Mundo_H
 #include "checkML.h"
-#include "Estado.h"
+#include "MundoVirtual.h"
+#include "EntidadJuego.h"
+#include "Juego.h"
 
 #include <SDL.h>
 #include "Mapa.h"
+#include "Personaje.h"
+
 
 
 //Clase abstracta que hereda de la raiz ObjetoJuego e implementa utilidades para las subclases
-class Mundo : public Estado
+class Mundo : public MundoVirtual
 {
-protected:
+public:
+	Mundo(Juego * pJ,string mapa);
+	virtual ~Mundo();
+
 	virtual void draw() const;
 	virtual void onInput(SDL_Event &e);
 	virtual void update();
 
-public:
-	Mundo(Juego * pJ);
-	virtual ~Mundo();
-	void newBaja(EntidadJuego * po); // Los objetos informarán al juego cuando causen baja
 	bool checkCollision(SDL_Rect a, SDL_Rect b);
-	Mapa* getMapa(){ return mapa; };
+	inline Mapa* getMapa(){ return mapa; };
 private:
 	bool pausa;
 	void initObjetos();
+	void freeObjetos();
+
 	Mapa * mapa;
+
+	vector <EntidadJuego*> objetos;
+	Personaje * psj;
+
+	Juego * pJuego;
 
 };
 

@@ -1,6 +1,4 @@
 #include "Mundo.h"
-#include "GameOver.h"
-#include "Pausa.h"
 #include <typeinfo>
 #include "Personaje.h"
 #include <iostream>
@@ -9,19 +7,20 @@
 #include "Boton.h"
 
 
-Mundo::Mundo(Juego * pJ) : Estado(pJ)
+Mundo::Mundo(Juego * pJ, string m)
 {
+	pJuego = pJ;
 	pausa = false;
-	objetos.resize(2);
+	objetos.resize(1);
 	initObjetos();
-	mapa = new Mapa(pJ);
+	mapa = new Mapa(pJ, this, m);
 	//pJuego->getMusica(MPlay)->play();
 }
 
 
 Mundo::~Mundo()
 {
-
+	freeObjetos();
 
 }
 
@@ -33,25 +32,37 @@ static void goPlay(Juego * pj){
 void Mundo::initObjetos()
 {
 	int x = 0, y = 0;//Posiciones del globo
-	x = rand() % (pJuego->getAncho() - 100);
-	y = rand() % (pJuego->getAlto() - 100);
+	x = 600;
+	y = 600;
 	// Personaje
-	objetos[0] = new Personaje(pJuego, x, y, TJugador, ENull);
+	psj = new Personaje(pJuego, x, y, TJugador, ENull);
 
 	//Entidad de prueba para colisiones
-	objetos[1] = new Boton(pJuego, 500, 500, TPlay, ENull, goPlay);
+	objetos[0] = new Boton(pJuego, 500, 500, TPlay, ENull, goPlay);
+}
+
+void Mundo::freeObjetos(){
+	delete psj;
+	psj = nullptr;
+
+	for (size_t i = 0; i < objetos.size(); i++)
+	{
+		delete(objetos[i]);
+		objetos[i] = nullptr;
+	}
 }
 
 
 void Mundo::draw()const{
 
-	//SDL_Rect fondoRect = { 0, 0, pJuego->getAncho(), pJuego->getAlto() };
-	//pJuego->getTextura(TFondo)->draw(pJuego->getRender(), fondoRect);
 	//Render level
 	//DIBUJAR MAPA
 	mapa->draw();
 	//Dibujar objetos del juego
-	Estado::draw();
+	for (int i = objetos.size() - 1; i >= 0; i--)
+		objetos[i]->draw();
+
+	psj->draw();
 
 	pJuego->getTextura(TFuente)->render(pJuego->getRender(), 0, 0, "Hola", pJuego->getFuente());
 
@@ -59,34 +70,48 @@ void Mundo::draw()const{
 
 
 void Mundo::update(){
-	Estado::update();
-	if (checkCollision(static_cast<Entidad*>(objetos[0])->getRect(), static_cast<Entidad*>(objetos[1])->getRect()))//Si el psj colisiona con el boton truleano
-		static_cast<Personaje*> (objetos[0])->restaVida();
+	psj->update();
+	for (size_t i = 0; i < objetos.size(); i++)
+		objetos[i]->update();
+
+	/*if (checkCollision(psj->getRect(), objetos[0]->getRect())){//Si el psj colisiona con el boton truleano
+		pJuego->indiceMapas = 1;
+		pJuego->borraEstado = true;
+		pJuego->estadoEnum = MundoReal;
+
+
+	}
+
+	//AQUI AÑADIREMOS LOS DIFERENTES CASOS DEPENDIENDO DE LA ALFOMBRILLA.
+	/*if (checkCollision(psj->getRect(), objetos[1]->getRect())){
+		pJuego->indiceMapas = 2;
+		pJuego->borraEstado = true;
+		pJuego->estadoEnum = MundoReal;
+
+
+	}
+	*/
 }
 
+//Detecta el input del jugador y la pausa
 void Mundo::onInput(SDL_Event &e){
 	
 	//Declaramos el array con los estados de teclado
 	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 	
+	//Pausa
 	if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
-			Pausa * pausa = new Pausa(pJuego);
-			pJuego->goToPausa(pausa);
+		pJuego->borraEstado = true;
+		pJuego->estadoEnum = MPausa;
 	}
-
-	objetos[0]->onInput();
-	static_cast<Personaje*>(objetos[0])->setCamera(mapa->getCamera());
+	
+	//Personaje
+	psj->onInput();
+	psj->setCamera(mapa->getCamera());
 
 }
 
 
-//Globo y premio
-// Los objetos informarán al juego cuando causen baja
-void Mundo::newBaja(EntidadJuego* po)
-{
-	GameOver *go = new GameOver(pJuego);
-	pJuego->changeState(go);
-}
 
 bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
 {
