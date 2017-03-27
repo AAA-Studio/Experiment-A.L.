@@ -73,9 +73,16 @@ void Enemigo::Update() {
 
 	case CHASE:
 		{
-			Transform targetTransform = m_target->getEntity()->GetTransform();
-			Vector2 targetPosition = targetTransform.getPosition();
-			Vector2 position = m_transform->getPosition();
+			SDL_Rect targetTransform = m_target->getEntity()->getRect();
+			
+			Vector2 targetPosition;
+			targetPosition.m_x = targetTransform.x;
+			targetPosition.m_y = targetTransform.y;
+			
+			Vector2 position;
+			position.m_x = m_transform->x;
+			position.m_y = m_transform->y;
+
 			Vector2 toTarget = targetPosition - position;
 			float distance = toTarget.Length;
 			if (distance != 0.0f) {
@@ -118,15 +125,26 @@ void Enemigo::CheckForTarget() {
 	
 	if (m_currentState == CHASE) return;
 
-	Transform targetTransform = m_target->GetTransform();
-	Vector2 targetPosition = targetTransform.getPosition(); 
-	Vector2 position = m_transform->getPosition();
+	SDL_Rect targetTransform = m_target->getEntity()->getRect();
+	
+	Vector2 targetPosition;
+	targetPosition.m_x = targetTransform.x;
+	targetPosition.m_y = targetTransform.y;
+	
+	Vector2 position;
+	position.m_x = m_transform->x;
+	position.m_y = m_transform->y;
+
 	Vector2 toTarget = targetPosition - position;
 	float distance = toTarget.Length;
 
 	if (distance <= 4.0f) {
 		m_currentState = CHASE;
 	}
+}
+
+void Enemigo::SetTarget(Entidad* target) {
+	m_target = target;
 }
 
 /*void Enemigo::RandomizeGoal()

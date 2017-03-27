@@ -35,8 +35,8 @@ public:
 	virtual void Update();
 	void SetTarget(Entidad*  target) { m_target = target; }
 	
-	/*Vector2 pos;
-	double radius;*/
+	Vector2 pos;
+	double radius;
 
 protected: 
 
@@ -48,11 +48,11 @@ protected:
 	State m_currentState;
 	vector <Vector2> m_waypoints; // Celdas por donde pasa el enmeigo
 	Vector2 m_currentWayPoint;
-	// Entidad m_target;
 	Entidad* m_target;
 	int m_currentIndex;
 	float m_idleTime;
 	float m_maxVelocity;
+	SDL_Rect* m_transform;
 	/*virtual bool HandleKeydown(int key);
 	virtual bool HandleKeyUp(int key);
 	virtual void HandleMouseDown(bool isLeft, Vector2 mouseWorldPos);*/
