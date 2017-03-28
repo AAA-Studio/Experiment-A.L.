@@ -52,7 +52,6 @@ public:
 	}
 	
 	
-	
 	// ¿por que ManHattanDistance?: https://es.wikipedia.org/wiki/Geometr%C3%ADa_del_taxista
 	float ManHattanDistance(SearchCell * nodeEnd) { // Distancia en la que esta el enemigo al personaje
 		float x = (float)(fabsf((this->m_xcoord - nodeEnd->m_xcoord)));

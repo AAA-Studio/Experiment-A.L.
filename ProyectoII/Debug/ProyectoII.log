@@ -1,57 +1,21 @@
-﻿Build started 22/03/2017 15:34:16.
-     1>Project "C:\hlocal\Proyecto 2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" on node 2 (Build target(s)).
+﻿Compilación iniciada a las 28/03/2017 13:38:47.
+     1>Proyecto "C:\Users\Adrian\Documents\2 GDV\2 Cuatrimestre\Proyecto\Sprint 6\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Boton.cpp Enemigo.cpp Entidad.cpp Estado.cpp GameOver.cpp Juego.cpp Menu.cpp Mundo.cpp PathFinding.cpp Pausa.cpp Personaje.cpp TexturasSDL.cpp main.cpp
-         main.cpp
-         TexturasSDL.cpp
-         Personaje.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\personaje.cpp(60): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-         Pausa.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pausa.cpp(37): warning C4018: '<' : signed/unsigned mismatch
-         PathFinding.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(41): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(42): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(58): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(59): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(64): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(65): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(9): warning C4005: 'M_PI' : macro redefinition
-                 c:\hlocal\proyecto 2\experiment-a.l\sdl2-2.0.4\include\sdl_stdinc.h(436) : see previous definition of 'M_PI'
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(15): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(20): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(73): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(98): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(104): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(114): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(151): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\pathfinding.cpp(181): warning C4018: '<' : signed/unsigned mismatch
-         Mundo.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-         Menu.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\menu.cpp(36): warning C4018: '<' : signed/unsigned mismatch
-         Juego.cpp
-         GameOver.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\gameover.cpp(37): warning C4018: '<' : signed/unsigned mismatch
-         Estado.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\estado.cpp(15): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\estado.cpp(24): warning C4018: '<' : signed/unsigned mismatch
-         Entidad.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.cpp(12): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Enemigo.cpp
          Enemigo.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(9): warning C4005: 'M_PI' : macro redefinition
-                 c:\hlocal\proyecto 2\experiment-a.l\sdl2-2.0.4\include\sdl_stdinc.h(436) : see previous definition of 'M_PI'
-         Boton.cpp
-     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
-         Generating Code...
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\entidad.h(32): warning C4244: 'argumento' : conversión de 'const double' a 'float'; posible pérdida de datos
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\enemigo.h(9): warning C4005: 'M_PI' : redefinición de macro
+                 c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\sdl2-2.0.4\include\sdl_stdinc.h(436) : vea la definición anterior de 'M_PI'
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\enemigo.cpp(82): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\enemigo.cpp(83): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\enemigo.cpp(86): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\enemigo.cpp(87): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\enemigo.cpp(134): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\enemigo.cpp(135): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\enemigo.cpp(138): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\users\adrian\documents\2 gdv\2 cuatrimestre\proyecto\sprint 6\experiment-a.l\proyectoii\enemigo.cpp(139): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
        Link:
-         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Boton.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Adrian\Documents\2 GDV\2 Cuatrimestre\Proyecto\Sprint 6\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Adrian\Documents\2 GDV\2 Cuatrimestre\Proyecto\Sprint 6\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Adrian\Documents\2 GDV\2 Cuatrimestre\Proyecto\Sprint 6\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Boton.obj
          Debug\Enemigo.obj
          Debug\Entidad.obj
          Debug\Estado.obj
@@ -66,12 +30,12 @@
          Debug\Pausa.obj
          Debug\Personaje.obj
          Debug\TexturasSDL.obj
-     1>Enemigo.obj : error LNK2019: unresolved external symbol "public: __thiscall Vector2::~Vector2(void)" (??1Vector2@@QAE@XZ) referenced in function __unwindfunclet$??0Enemigo@@QAE@PAVJuego@@HHW4Texturas_t@@W4Efectos_t@@V?$vector@VVector2@@V?$allocator@VVector2@@@std@@@std@@@Z$2
-     1>PathFinding.obj : error LNK2001: unresolved external symbol "public: __thiscall Vector2::~Vector2(void)" (??1Vector2@@QAE@XZ)
-     1>PathFinding.obj : error LNK2019: unresolved external symbol "public: __thiscall SearchCell::~SearchCell(void)" (??1SearchCell@@QAE@XZ) referenced in function "public: void * __thiscall SearchCell::`scalar deleting destructor'(unsigned int)" (??_GSearchCell@@QAEPAXI@Z)
-     1>C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.exe : fatal error LNK1120: 2 unresolved externals
-     1>Done Building Project "C:\hlocal\Proyecto 2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build target(s)) -- FAILED.
+     1>Enemigo.obj : error LNK2019: símbolo externo "public: __thiscall Vector2::~Vector2(void)" (??1Vector2@@QAE@XZ) sin resolver al que se hace referencia en la función __unwindfunclet$??0Enemigo@@QAE@PAVJuego@@HHW4Texturas_t@@W4Efectos_t@@V?$vector@VVector2@@V?$allocator@VVector2@@@std@@@std@@@Z$2
+     1>PathFinding.obj : error LNK2001: símbolo externo "public: __thiscall Vector2::~Vector2(void)" (??1Vector2@@QAE@XZ) sin resolver
+     1>PathFinding.obj : error LNK2019: símbolo externo "public: __thiscall SearchCell::~SearchCell(void)" (??1SearchCell@@QAE@XZ) sin resolver al que se hace referencia en la función "public: void * __thiscall SearchCell::`scalar deleting destructor'(unsigned int)" (??_GSearchCell@@QAEPAXI@Z)
+     1>C:\Users\Adrian\Documents\2 GDV\2 Cuatrimestre\Proyecto\Sprint 6\Experiment-A.L\bin\ProyectoIIDebug.exe : fatal error LNK1120: 2 externos sin resolver
+     1>Compilación del proyecto terminada "C:\Users\Adrian\Documents\2 GDV\2 Cuatrimestre\Proyecto\Sprint 6\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos) -- ERROR.
 
-Build FAILED.
+ERROR al compilar.
 
-Time Elapsed 00:00:05.39
+Tiempo transcurrido 00:00:02.58

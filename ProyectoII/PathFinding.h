@@ -28,6 +28,10 @@ public:
 	PathFinding(/*Mapa * pGameWorld*/);
 	~PathFinding();
 
+	enum State {
+		INITIALIZE,
+	};
+
 	// Este metodo utiliza las coordenadas del enemigo y las del jugador para crear el camino optimo
 	void FindPath(Vector2 currentPos, Vector2 targetPos);
 	// Devuelve la posicion del camino mas corto
@@ -52,6 +56,8 @@ private:
 	// Busca a lo largo del mundo el Goal para seguir en el camino optimo
 	void ContinuePath();
 
+	void Initialize(Vector2 pStartPos, Vector2 pTargetPos);
+
 	// Mapa * _pGameWorld;
 
 	SearchCell * GetNextCell();
@@ -72,6 +78,8 @@ private:
 
 	// Camino optimo al personaje
 	vector <Vector2 *> m_pathToGoal;
+
+	State m_pathState;
 
 };
 #endif

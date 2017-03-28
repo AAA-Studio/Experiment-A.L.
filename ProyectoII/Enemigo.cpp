@@ -146,10 +146,6 @@ void Enemigo::CheckForTarget() {
 	}
 }
 
-void Enemigo::SetTarget(Entidad* target) {
-	m_target = target;
-}
-
 /*void Enemigo::AddVelocity(int x, int y) {
 
 	float clampX = m_velocity.GetX() + x;

@@ -7,6 +7,26 @@ PathFinding::PathFinding(/*Mapa * pGameWorld*/) /*: m_GameWorld(pGameWorld)*/
 	m_foundGoal = false;
 }
 
+void PathFinding::Initialize(Vector2 pStartPos, Vector2 pTargetPos) {
+	
+	
+	m_pathState = INITIALIZE;
+
+	m_openList.clear();
+	m_visitedList.clear();
+	// m_closesPath.clear();
+
+	SearchCell start;
+	start.setX(floorf(pStartPos.GetX() / (float)Grid::GetCellSizeX()));
+	start.setY(floorf(pStartPos.GetY() / (float)Grid::GetCellSizeY()));
+
+	SearchCell goal;
+	goal.setX(floorf(pTargetPos.GetX() / (float)Grid::GetCellSizeX()));
+	goal.setY(floorf(pTargetPos.GetY() / (float)Grid::GetCellSizeY())); 
+
+	SetStartAndGoal(&start, &goal);
+}
+
 void PathFinding::FindPath(Vector2 currentPos, Vector2 targetPos) {
 	
 	if (!m_initializedStartGoal) {
@@ -227,4 +247,5 @@ void PathFinding::DrawDebug() {
 
 PathFinding::~PathFinding()
 {
+	// Clear();
 }
