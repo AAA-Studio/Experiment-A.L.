@@ -144,7 +144,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 
 		}
 		
-		if ((tileMap[i]->getType() >= 100)) //&& (tiles[i]->getType() <= TILE_3))
+		if ((tileMap[i]->getType() >1000)) //&& (tiles[i]->getType() <= TILE_3))
 
 		{
 			//Si se choca con la pared

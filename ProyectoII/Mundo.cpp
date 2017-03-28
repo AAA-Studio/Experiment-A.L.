@@ -12,8 +12,9 @@ Mundo::Mundo(Juego * pJ, string m)
 	pJuego = pJ;
 	pausa = false;
 	objetos.resize(1);
-	initObjetos();
 	mapa = new Mapa(pJ, this, m);
+	initObjetos();
+
 	//pJuego->getMusica(MPlay)->play();
 }
 
@@ -32,12 +33,18 @@ static void goPlay(Juego * pj){
 void Mundo::initObjetos()
 {
 	int x = 0, y = 0;//Posiciones del globo
-
-	if (pJuego->getNivel() == 1){
-		// Personaje
-		mapa-> buscaSpawn(100, x, y);
+	if (pJuego->getNivel() == 0){
+		x = 600;
+		y = 600;
 		psj = new Personaje(pJuego, x, y, TJugador, ENull);
 	}
+	if (pJuego->getNivel() == 1){
+
+		mapa-> buscaSpawn(100, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+		
+	}
+
 	//Entidad de prueba para colisiones
 	objetos[0] = new Boton(pJuego, 500, 500, TPlay, ENull, goPlay);
 }
@@ -71,10 +78,10 @@ void Mundo::draw()const{
 
 
 void Mundo::update(){
-	psj->update();
+
 	for (size_t i = 0; i < objetos.size(); i++)
 		objetos[i]->update();
-
+	psj->update();
 	/*if (checkCollision(psj->getRect(), objetos[0]->getRect())){//Si el psj colisiona con el boton truleano
 		pJuego->indiceMapas = 1;
 		pJuego->borraEstado = true;
