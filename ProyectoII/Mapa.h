@@ -23,6 +23,7 @@ public:
 	Juego * pJuego;
 	MundoVirtual * pMundo;
 	bool cargarMapa();
+	void buscaSpawn(int tipo, int& x,int& y);
 private:
 	int nivel = 0;
 	SDL_Rect camera;

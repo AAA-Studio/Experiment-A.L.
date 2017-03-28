@@ -21,7 +21,6 @@ public:
 	virtual void draw() const;
 	virtual void onInput(SDL_Event &e);
 	virtual void update();
-
 	bool checkCollision(SDL_Rect a, SDL_Rect b);
 	inline Mapa* getMapa(){ return mapa; };
 private:

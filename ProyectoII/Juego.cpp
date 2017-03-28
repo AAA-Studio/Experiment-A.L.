@@ -316,7 +316,6 @@ void Juego::handle_event(){
 		{
 			exit = true;//X para salir
 		}
-
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
 			posMouseX = e.button.x;

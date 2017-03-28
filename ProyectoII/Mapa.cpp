@@ -97,7 +97,16 @@ bool Mapa::cargarMapa()
 		return tilesLoaded;
 	}
 }
-
+void  Mapa::buscaSpawn(int tipo, int& x, int& y){
+	for (int i = 0; i < TOTAL_TILES; ++i)
+	{
+		if (tileMap[i]->getType() == tipo){
+			SDL_Rect rect = tileMap[i]->getBox();
+			x = rect.x + rect.w/2;
+			y = rect.y + rect.h/2;
+		}
+	}
+}
 
 
 

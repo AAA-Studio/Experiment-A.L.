@@ -32,11 +32,12 @@ static void goPlay(Juego * pj){
 void Mundo::initObjetos()
 {
 	int x = 0, y = 0;//Posiciones del globo
-	x = 600;
-	y = 600;
-	// Personaje
-	psj = new Personaje(pJuego, x, y, TJugador, ENull);
 
+	if (pJuego->getNivel() == 1){
+		// Personaje
+		mapa-> buscaSpawn(100, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+	}
 	//Entidad de prueba para colisiones
 	objetos[0] = new Boton(pJuego, 500, 500, TPlay, ENull, goPlay);
 }
