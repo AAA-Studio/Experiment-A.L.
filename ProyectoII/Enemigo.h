@@ -52,7 +52,9 @@ protected:
 	int m_currentIndex;
 	float m_idleTime;
 	float m_maxVelocity;
+	Vector2 m_velocity;
 	SDL_Rect* m_transform;
+	// void AddVelocity(int x, int y);
 	/*virtual bool HandleKeydown(int key);
 	virtual bool HandleKeyUp(int key);
 	virtual void HandleMouseDown(bool isLeft, Vector2 mouseWorldPos);*/

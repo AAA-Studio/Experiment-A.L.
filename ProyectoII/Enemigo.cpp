@@ -8,6 +8,7 @@
 Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints) : Entidad(pJ, x, y, textura, efecto)
 {
 	m_currentState = IDLE;
+	m_velocity.m_x = m_velocity.m_y = m_maxVelocity;
 	m_currentIndex = (int)(rand() % waypoints.size() - 1);
 	m_idleTime = 3.0f;
 	m_waypoints = waypoints;
@@ -45,7 +46,8 @@ void Enemigo::Update() {
 	case PATROL: {
 
 			// Transform& transform = m_entidad->GetTransform();
-			
+			m_maxVelocity = 75.0f;
+
 			// Posicion del enemigo
 			Vector2 position = m_entidad->getPosition();
 			// Distancia enemigo - personaje
@@ -73,7 +75,8 @@ void Enemigo::Update() {
 
 	case CHASE:
 		{
-			SDL_Rect targetTransform = m_target->getEntity()->getRect();
+			m_maxVelocity = 150.0f;
+			SDL_Rect targetTransform = m_target->getRect();
 			
 			Vector2 targetPosition;
 			targetPosition.m_x = targetTransform.x;
@@ -92,12 +95,12 @@ void Enemigo::Update() {
 				toTarget /= distance;
 			}
 
-			if (distance > 5.0f) {
+			if (distance > 150.0f) {
 				m_currentState = IDLE;
 				return;
 			}
 
-			Vector2 velocity = toTarget * 50.0f;
+			Vector2 velocity = toTarget * 35.0f;
 
 			position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
 			position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
@@ -125,7 +128,7 @@ void Enemigo::CheckForTarget() {
 	
 	if (m_currentState == CHASE) return;
 
-	SDL_Rect targetTransform = m_target->getEntity()->getRect();
+	SDL_Rect targetTransform = m_target->getRect();
 	
 	Vector2 targetPosition;
 	targetPosition.m_x = targetTransform.x;
@@ -138,7 +141,7 @@ void Enemigo::CheckForTarget() {
 	Vector2 toTarget = targetPosition - position;
 	float distance = toTarget.Length;
 
-	if (distance <= 4.0f) {
+	if (distance <= 20.0f) {
 		m_currentState = CHASE;
 	}
 }
@@ -146,6 +149,14 @@ void Enemigo::CheckForTarget() {
 void Enemigo::SetTarget(Entidad* target) {
 	m_target = target;
 }
+
+/*void Enemigo::AddVelocity(int x, int y) {
+
+	float clampX = m_velocity.GetX() + x;
+	float clampY = m_velocity.GetY() + y;
+
+	
+}*/
 
 /*void Enemigo::RandomizeGoal()
 {
