@@ -37,11 +37,11 @@ public:
 	inline float GetF() const { return G + H; }
 	inline float GetG() const { return G; }
 	inline float GetH() const { return H; }
-	inline float GetID() const { return m_id; }
-	inline int GetCellX() const { return floor(m_xcoord / CELL_SIZE); }
-	inline int GetCellY() const { return floor(m_ycoord / CELL_SIZE); }
-	inline int GetCellX(int x) const { return floor(x / CELL_SIZE); }
-	inline int GetCellY(int y) const { return floor(y / CELL_SIZE); }
+	inline int GetID() const { return m_id; }
+	inline int GetCellX() const { return (m_xcoord / CELL_SIZE); }
+	inline int GetCellY() const { return (m_ycoord / CELL_SIZE); }
+	inline int GetCellX(float x) const { return floor(x / CELL_SIZE); }
+	inline int GetCellY(float y) const { return floor(y / CELL_SIZE); }
 
 	SearchCell * GetParent() { return pPadre;  }
 

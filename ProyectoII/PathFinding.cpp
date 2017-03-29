@@ -81,13 +81,13 @@ void PathFinding::Iterate() {
 		float g = currentCell->GetG();
 
 		// comprueba izq
-		CheckNeighbor(x - 1, y, g + 1, currentCell);
+		PathOpened(x - 1, y, g + 1, currentCell);
 		// comprueba drcha
-		CheckNeighbor(x + 1, y, g + 1, currentCell);
+		PathOpened(x + 1, y, g + 1, currentCell);
 		// comprueba arriba
-		CheckNeighbor(x, y - 1, g + 1, currentCell);
+		PathOpened(x, y - 1, g + 1, currentCell);
 		// comprueba abajo
-		CheckNeighbor(x, y + 1, g + 1, currentCell);
+		PathOpened(x, y + 1, g + 1, currentCell);
 
 		for (int i = 0; i < (int)m_openList.size(); i++) {
 			if (currentCell->GetID() == m_openList[i]->GetID()) {
@@ -178,20 +178,33 @@ SearchCell * PathFinding::GetNextCell(){
 
 void PathFinding::PathOpened(int x, int y, float newCost, SearchCell *pPadre){
 	
-	// Cuando haya paredes ignora esas celdas
+	/*// Cuando haya paredes ignora esas celdas
 	/*if (m_GameWorld -> GetCellState(x, y) == CELL_BLOCKED)
 	{
 		return;
-	}*/
+	}
 
 	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	// Corregir para que quede como arriba
 	if (m_GameWorld->GetCellState(x, y) == m_GameWorld->CELL_BLOCKED)
 	{
 		return;
+	}*/
+	if (x <= 0 || x >=/*TileManager::MAP_WIDTH*/1 || y <= 0 || y >=/*TileManager::MAP_HEIGHT*/1) {
+		return;
 	}
 
-	int id = y * WORLD_SIZE + x;
+	Entidad * tile = /*TileManager::GetInstance()->GetTileAt(x, y)*/nullptr;
+
+	/*GetTileAt(int x, int y) {
+		if (m_tiles == NULL || x < 0 ||x>= MAP_WIDTH || y < 0 ||y>= MAP_HEIGHT) {
+			return NULL;
+		}
+
+		return m_tiles[y * MAP_WIDTH + x];
+	}*/
+
+	int id = y * WORLD_SIZE/*TileManager::MAP_WIDTH*/ + x;
 	for (int i = 0; i < m_visitedList.size(); i++) {
 		if (id == m_visitedList[i]->GetID()) {
 			return;
@@ -199,11 +212,12 @@ void PathFinding::PathOpened(int x, int y, float newCost, SearchCell *pPadre){
 	}
 
 	SearchCell * newChild = new SearchCell(x, y, pPadre);
-	newChild->GetG = newCost;
-	newChild->GetH = pPadre->ManHattanDistance(m_goalCell);
+	newChild->SetID(id);
+	newChild->setG(newCost);
+	newChild->setH(pPadre->ManHattanDistance(m_goalCell));
 
-	for (int i = 0; i < m_openList.size(); i++) {
-		if (id == id == m_openList[i]->GetID) {
+	for (int i = 0; i < (int)m_openList.size(); i++) {
+		if (newChild->GetID() == m_openList[i]->GetID()) {
 
 			float newF = newChild->GetG() + newCost + m_openList[i]->GetH();
 
