@@ -26,21 +26,35 @@ public:
 		CELL_BLOCKED
 	};
 
-	int m_xcoord, m_ycoord;
-	int m_id;
-	SearchCell * pPadre;
-	float G; // distancia acumulada desde la primera celda hasta la celda en la que te encuentras
-	float H; // distancia estimada al objetivo
+	
 
 	SearchCell() : pPadre(0){};
 	SearchCell(int x, int y, SearchCell * parent = nullptr) : m_xcoord(x), m_ycoord(y),
 		pPadre(parent), m_id(y * WORLD_SIZE + x), G(0), H(0){};
+	~SearchCell();
 
 
 	inline float GetF() const { return G + H; }
-	inline int GetCellX(float x) const { return floor(x / CELL_SIZE); }
-	inline int GetCellY(float y) const { return floor(y / CELL_SIZE); }
+	inline float GetG() const { return G; }
+	inline float GetH() const { return H; }
+	inline float GetID() const { return m_id; }
+	inline int GetCellX() const { return floor(m_xcoord / CELL_SIZE); }
+	inline int GetCellY() const { return floor(m_ycoord / CELL_SIZE); }
+	inline int GetCellX(int x) const { return floor(x / CELL_SIZE); }
+	inline int GetCellY(int y) const { return floor(y / CELL_SIZE); }
+
+	SearchCell * GetParent() { return pPadre;  }
+
+	void setX(float x) { m_xcoord = x; }
+	void setY(float y) { m_ycoord = y; }
+	void SetParent(SearchCell* pParent) { pPadre = pParent; }
+	void setH(float distance) { H = distance; }
+	void setG(float gggggggg) { G = gggggggg; }
+	void SetID(int id) { m_id = id; }
+
 	inline CellState GetCellState(float x, float y) const { 
+
+		// de momento, luego devolvera el estado en el que se encuentra la celda
 		return CELL_BLOCKED;
 	}
 
@@ -64,7 +78,14 @@ public:
 		float z = (float)(fabsf((this->m_ycoord - nodeEnd->m_ycoord)));
 		return floor(x - z);
 	}
+
+private:
+	int m_xcoord, m_ycoord;
+	int m_id;
+	SearchCell * pPadre;
+	float G; // distancia acumulada desde la primera celda hasta la celda en la que te encuentras
+	float H; // distancia estimada al objetivo
 	
-	~SearchCell();
+	
 };
 #endif

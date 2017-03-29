@@ -15,7 +15,7 @@ Hay que ver si hat linea recta contra el personaje, buscar lo qye hay que esquiv
 NathPoints, hago una lista de nathpoints y eso es lo que comprueba el enemigo
 */
 
-/*TRANFORM 
+/*TRANSFORM 
 
 http://gamedev.stackexchange.com/questions/70648/build-unity-like-transform-class 
 http://glm.g-truc.net/0.9.8/index.html
@@ -29,7 +29,11 @@ public:
 	~PathFinding();
 
 	enum State {
-		INITIALIZE,
+		INITIALIZE, 
+		ERROR_GOAL_NOT_FOUND,
+		FOUND_GOAL,
+
+
 	};
 
 	// Este metodo utiliza las coordenadas del enemigo y las del jugador para crear el camino optimo
@@ -58,6 +62,10 @@ private:
 
 	void Initialize(Vector2 pStartPos, Vector2 pTargetPos);
 
+	void InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal);
+
+	void Iterate();
+
 	// Mapa * _pGameWorld;
 
 	SearchCell * GetNextCell();
@@ -70,6 +78,8 @@ private:
 
 	SearchCell * m_GameWorld;
 
+	SearchCell * iter;
+
 	// Celdas sin visitar
 	vector <SearchCell*> m_openList;
 
@@ -78,6 +88,9 @@ private:
 
 	// Camino optimo al personaje
 	vector <Vector2 *> m_pathToGoal;
+
+	vector <Vector2> m_closesPaths;
+
 
 	State m_pathState;
 

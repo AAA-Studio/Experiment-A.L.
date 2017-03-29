@@ -1,5 +1,6 @@
 #include "PathFinding.h"
-
+#include <stdio.h> // Input and Output operations
+// #include "TileManager.h"
 
 PathFinding::PathFinding(/*Mapa * pGameWorld*/) /*: m_GameWorld(pGameWorld)*/
 {
@@ -17,14 +18,84 @@ void PathFinding::Initialize(Vector2 pStartPos, Vector2 pTargetPos) {
 	// m_closesPath.clear();
 
 	SearchCell start;
-	start.setX(floorf(pStartPos.GetX() / (float)Grid::GetCellSizeX()));
-	start.setY(floorf(pStartPos.GetY() / (float)Grid::GetCellSizeY()));
+	start.setX(floorf(pStartPos.GetX() / (float)1/*TileManager::TILE_WIDTH*/));
+	start.setY(floorf(pStartPos.GetY() / (float)1/*TileManager::TILE_HEIGHT*/));
 
 	SearchCell goal;
-	goal.setX(floorf(pTargetPos.GetX() / (float)Grid::GetCellSizeX()));
-	goal.setY(floorf(pTargetPos.GetY() / (float)Grid::GetCellSizeY())); 
+	goal.setX(floorf(pTargetPos.GetX() / (float)1/*TileManager::TILE_WIDTH*/));
+	goal.setY(floorf(pTargetPos.GetY() / (float)1/*TileManager::TILE_HEIGHT*/));
 
-	SetStartAndGoal(&start, &goal);
+	
+	InitializaStartGoal(&start, &goal);
+}
+
+void PathFinding::InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal) {
+	
+	if (!m_startCell) {
+		
+		m_startCell = new SearchCell(pStart->GetCellX(), pStart->GetCellY(), NULL);
+	}
+
+	if (!m_goalCell) {
+
+		m_goalCell = new SearchCell(pGoal->GetCellX(), pGoal->GetCellY(), pGoal);
+	}
+
+	m_startCell->setX(pStart->GetCellX()); 
+	m_startCell->setX(pStart->GetCellY());
+	m_startCell->SetID(pStart->GetCellY() * /*TileManager::MAP_WIDTH*/ + pStart->GetCellX());
+
+	m_goalCell->setX(pGoal->GetCellX());
+	m_goalCell->setX(pGoal->GetCellY());
+	m_goalCell->SetID(pGoal->GetCellY() * /*TileManager::MAP_WIDTH*/ + pGoal->GetCellX());
+
+	m_goalCell->SetParent(pGoal);
+
+	m_startCell->setH(m_startCell->ManHattanDistance(m_goalCell));
+}
+
+void PathFinding::Iterate() {
+
+	if (m_openList.empty()) {
+		m_pathState = ERROR_GOAL_NOT_FOUND;
+		return;
+	}
+
+	SearchCell * currentCell = GetNextCell();
+
+	if (currentCell->GetID() == m_goalCell->GetID()) {
+		m_pathState = FOUND_GOAL;
+
+		m_goalCell->SetParent(currentCell);
+
+		for (SearchCell * it = m_goalCell; iter; iter = iter->GetParent()) {
+			m_closesPaths.push_back(Vector2(iter->GetCellX() * (float)/*TileManager::TILE_WIDTH*/1, 
+				iter->GetCellY() * (float)/*TileManager::TILE_HEIGHT*/1));
+		}
+	}
+
+	else {
+
+		float x = currentCell->GetCellX();
+		float y = currentCell->GetCellY();
+		float g = currentCell->GetG();
+
+		// comprueba izq
+		CheckNeighbor(x - 1, y, g + 1, currentCell);
+		// comprueba drcha
+		CheckNeighbor(x + 1, y, g + 1, currentCell);
+		// comprueba arriba
+		CheckNeighbor(x, y - 1, g + 1, currentCell);
+		// comprueba abajo
+		CheckNeighbor(x, y + 1, g + 1, currentCell);
+
+		for (int i = 0; i < (int)m_openList.size(); i++) {
+			if (currentCell->GetID() == m_openList[i]->GetID()) {
+				m_openList.erase(m_openList.begin() + i);
+			}
+		}
+	}
+
 }
 
 void PathFinding::FindPath(Vector2 currentPos, Vector2 targetPos) {
@@ -50,14 +121,14 @@ void PathFinding::FindPath(Vector2 currentPos, Vector2 targetPos) {
 		// Inicializacion del start
 		SearchCell start;
 
-		start.m_xcoord = m_GameWorld->GetCellX(currentPos.m_x);
-		start.m_ycoord = m_GameWorld->GetCellY(currentPos.m_y);
+		start.setX(m_GameWorld->GetCellX(currentPos.m_x));
+		start.setY(m_GameWorld->GetCellY(currentPos.m_y));
 
 		// Inicializacion del Goal
 		SearchCell goal;
 
-		goal.m_xcoord = m_GameWorld->GetCellX(currentPos.m_x);
-		goal.m_ycoord = m_GameWorld->GetCellY(currentPos.m_y);
+		goal.setX(m_GameWorld->GetCellX(currentPos.m_x));
+		goal.setY(m_GameWorld->GetCellY(currentPos.m_y));
 
 		m_foundGoal = false;
 		SetStartAndGoal(start, goal);
@@ -71,12 +142,12 @@ void PathFinding::FindPath(Vector2 currentPos, Vector2 targetPos) {
 
 void PathFinding::SetStartAndGoal(SearchCell start, SearchCell goal){
 	
-	m_startCell = new SearchCell(start.m_xcoord, start.m_ycoord, NULL);
-	m_goalCell = new SearchCell(goal.m_xcoord, goal.m_ycoord, &goal);
+	m_startCell = new SearchCell(start.GetCellX(), start.GetCellY(), NULL);
+	m_goalCell = new SearchCell(goal.GetCellX(), goal.GetCellY(), &goal);
 
-	m_startCell->G = 0;
-	m_startCell->H = m_startCell->ManHattanDistance(m_goalCell);
-	m_startCell->pPadre = nullptr;
+	m_startCell->setG(0);
+	m_startCell->setH(m_startCell->ManHattanDistance(m_goalCell));
+	m_startCell->SetParent(nullptr);
 	m_openList.push_back(m_startCell);
 
 }
@@ -122,24 +193,24 @@ void PathFinding::PathOpened(int x, int y, float newCost, SearchCell *pPadre){
 
 	int id = y * WORLD_SIZE + x;
 	for (int i = 0; i < m_visitedList.size(); i++) {
-		if (id == m_visitedList[i]->m_id) {
+		if (id == m_visitedList[i]->GetID()) {
 			return;
 		}
 	}
 
 	SearchCell * newChild = new SearchCell(x, y, pPadre);
-	newChild->G = newCost;
-	newChild->H = pPadre->ManHattanDistance(m_goalCell);
+	newChild->GetG = newCost;
+	newChild->GetH = pPadre->ManHattanDistance(m_goalCell);
 
 	for (int i = 0; i < m_openList.size(); i++) {
-		if (id == id == m_openList[i]->m_id) {
+		if (id == id == m_openList[i]->GetID) {
 
-			float newF = newChild->G + newCost + m_openList[i]->H;
+			float newF = newChild->GetG() + newCost + m_openList[i]->GetH();
 
 			if (m_openList[i]->GetF() > newF) {
 
-				m_openList[i]->G = newChild->G + newCost;
-				m_openList[i]->pPadre = newChild;
+				m_openList[i]->setG(newChild->GetG() + newCost);
+				m_openList[i]->SetParent(newChild);
 			}
 
 			else {
@@ -160,47 +231,47 @@ void PathFinding::ContinuePath() {
 
 	SearchCell * currentCell = GetNextCell();
 
-	if (currentCell->m_id == m_goalCell->m_id) {
-		m_goalCell->pPadre = currentCell->pPadre;
+	if (currentCell->GetID() == m_goalCell->GetID()) {
+		m_goalCell->SetParent(currentCell->GetParent());
 
 		SearchCell * getPath;
 
 		// Va por todas las celdas comprobando cual es el camino mas corto y las mete en la lista
-		for (getPath = m_goalCell; getPath != NULL; getPath = getPath->pPadre) {
+		for (getPath = m_goalCell; getPath != NULL; getPath->GetParent()) {
 
-			m_pathToGoal.push_back(new Vector2(getPath->m_xcoord * CELL_SIZE, getPath->m_ycoord));
+			m_pathToGoal.push_back(new Vector2(getPath->GetCellX() * CELL_SIZE, getPath->GetCellY()));
 		}
 
 		m_foundGoal = true;
 	}
 	else {
 		// Celda derecha
-		PathOpened(currentCell->m_xcoord + 1, currentCell->m_ycoord, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->GetCellX() + 1, currentCell->GetCellY(), currentCell->GetG() + 1, currentCell);
 
 		//Celda izquierda
-		PathOpened(currentCell->m_xcoord - 1, currentCell->m_ycoord, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->GetCellX() - 1, currentCell->GetCellY(), currentCell->GetG() + 1, currentCell);
 		
 		// Celda superior
-		PathOpened(currentCell->m_xcoord, currentCell->m_ycoord - 1, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->GetCellX(), currentCell->GetCellY() - 1, currentCell->GetG() + 1, currentCell);
 
 		// Celda inferior
-		PathOpened(currentCell->m_xcoord, currentCell->m_ycoord + 1, currentCell->G + 1, currentCell);
+		PathOpened(currentCell->GetCellX(), currentCell->GetCellY() + 1, currentCell->GetG() + 1, currentCell);
 
 		// Celda diagonal izquierda superior
-		PathOpened(currentCell->m_xcoord - 1, currentCell->m_ycoord - 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->GetCellX() - 1, currentCell->GetCellY() - 1, currentCell->GetG() + 1.4f, currentCell);
 
 		// Celda diagonal izquierda inferior
-		PathOpened(currentCell->m_xcoord - 1, currentCell->m_ycoord + 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->GetCellX() - 1, currentCell->GetCellY() + 1, currentCell->GetG() + 1.4f, currentCell);
 		
 		// Celda diagonal derecha superior
-		PathOpened(currentCell->m_xcoord + 1, currentCell->m_ycoord - 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->GetCellX() + 1, currentCell->GetCellY() - 1, currentCell->GetG() + 1.4f, currentCell);
 
 		// Celda diagonal derecha inferior
-		PathOpened(currentCell->m_xcoord + 1, currentCell->m_ycoord + 1, currentCell->G + 1.4f, currentCell);
+		PathOpened(currentCell->GetCellX() + 1, currentCell->GetCellY() + 1, currentCell->GetG() + 1.4f, currentCell);
 		
 		for (int i = 0; i < m_openList.size(); i++)
 		{	
-			if (currentCell->m_id == m_openList[i]->m_id){
+			if (currentCell->GetID() == m_openList[i]->GetID()){
 				
 				m_openList.erase(m_openList.begin() + i);
 
@@ -235,10 +306,10 @@ void PathFinding::DrawDebug() {
 	// static void *****::DrawSquare(int posX, int posY, tColor color) || static void *****::DrawSquare(float posX, float posY, tColor color)
 
 	for (unsigned int i = 0; i < m_openList.size(); i++) {
-		m_GameWorld->DrawSquare(m_openList[i]->m_xcoord, m_openList[i]->m_ycoord, m_GameWorld->VERDE/*tColor(0.0f, 1.0f. 0.0f)*/);
+		m_GameWorld->DrawSquare(m_openList[i]->GetCellX(), m_openList[i]->GetCellY(), m_GameWorld->VERDE/*tColor(0.0f, 1.0f. 0.0f)*/);
 	}
 	for (unsigned int i = 0; i < m_visitedList.size(); i++) {
-		m_GameWorld->DrawSquare(m_visitedList[i]->m_xcoord, m_visitedList[i]->m_ycoord, m_GameWorld->AZUL/*tColor(0.0f, 0.0f. 1.0f)*/);
+		m_GameWorld->DrawSquare(m_visitedList[i]->GetCellX(), m_visitedList[i]->GetCellY(), m_GameWorld->AZUL/*tColor(0.0f, 0.0f. 1.0f)*/);
 	}
 	for (unsigned int i = 0; i < m_pathToGoal.size(); i++) {
 		m_GameWorld->DrawSquare(m_pathToGoal[i]->m_x, m_pathToGoal[i]->m_y, m_GameWorld->ROJO/*tColor(1.0f, 0.0f. 0.0f)*/);
