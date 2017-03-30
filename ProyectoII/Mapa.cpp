@@ -116,7 +116,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
 		//If the tile is a wall type tile
-		if ((tileMap[i]->getType() == 92)) //&& (tiles[i]->getType() <= TILE_3))
+		if ((tileMap[i]->getType() == 150)) 
 
 		{
 		
@@ -129,15 +129,14 @@ bool Mapa::touchesWall(SDL_Rect box)
 			}
 			
 		}
-
-		if ((tileMap[i]->getType() == 88 )) //&& (tiles[i]->getType() <= TILE_3))
+		if ((tileMap[i]->getType() == 140))
 
 		{
 
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MundoReal;
-				pJuego->setNivel(-1);
+				pJuego->setNivel(1);
 				return true;
 
 			}
