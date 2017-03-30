@@ -32,19 +32,22 @@ static void goPlay(Juego * pj){
 //Crea las texturas para los globos y todos los globos
 void Mundo::initObjetos()
 {
-	int x = 0, y = 0;//Posiciones del globo
+	//al principio del juego
+	int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
+
 	if (pJuego->getNivel() == 0){
-		x = 600;
-		y = 600;
+		x = 300;
+		y = 300;
 		psj = new Personaje(pJuego, x, y, TJugador, ENull);
 	}
-	if (pJuego->getNivel() == -1){
+	//sale en el spawn rojo
+	if (pJuego->getNivel() == 1){
 
 		mapa-> buscaSpawn(180, x, y);
 		psj = new Personaje(pJuego, x, y, TJugador, ENull);
 		
-	}
-	if (pJuego->getNivel() == 1){
+	}//spawn rosa
+	if (pJuego->getNivel() == 2){
 
 		mapa->buscaSpawn(191, x, y);
 		psj = new Personaje(pJuego, x, y, TJugador, ENull);

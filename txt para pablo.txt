@@ -1,10 +1,10 @@
 TILES FELPUDOS:
-rojo = 150
-verde = 151
+rojo = 150       
+verde = 151 
 azul = 152
 marron = 153
-morado = 154
-gris = 155
+morado = 154        
+gris = 155       
 amarillo = 156
 naranja = 157
 pistacho = 158
@@ -13,17 +13,17 @@ rosa = 140
 azul oscuro = 165
 
 TILES SPAWN:
-rojo = 180
+rojo = 180     
 verde = 181
 azul = 182
 marron = 183
 morado = 184
-gris = 185
+gris = 185      
 amarillo = 186
 naranja = 187
 pistacho = 188
 burdeos = 189
-rosa = 191
+rosa = 191      
 azul oscuro = 190
 
 

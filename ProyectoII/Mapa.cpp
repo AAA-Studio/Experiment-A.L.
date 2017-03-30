@@ -116,7 +116,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
 		//If the tile is a wall type tile
-		if ((tileMap[i]->getType() == 150)) 
+		//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
+		//PUERTA GRIS
+		if ((tileMap[i]->getType() == 155)) 
 
 		{
 		
@@ -129,6 +131,37 @@ bool Mapa::touchesWall(SDL_Rect box)
 			}
 			
 		}
+		//PUERTA MORADA
+		if ((tileMap[i]->getType() == 154))
+
+		{
+
+			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+				pJuego->borraEstado = true;
+				pJuego->estadoEnum = MundoReal;
+				pJuego->setNivel(2);
+				return true;
+
+			}
+
+		}
+
+		//-----------------------------------------------PUERTAS DE RESTAS----------------------------------
+		//PUERTA ROJA
+		if ((tileMap[i]->getType() == 150))
+
+		{
+
+			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+				pJuego->borraEstado = true;
+				pJuego->estadoEnum = MundoReal;
+				pJuego->setNivel(-1);
+				return true;
+
+			}
+
+		}
+		//PUERTA ROSA
 		if ((tileMap[i]->getType() == 140))
 
 		{
@@ -136,7 +169,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MundoReal;
-				pJuego->setNivel(1);
+				pJuego->setNivel(-2);
 				return true;
 
 			}
