@@ -21,4 +21,5 @@ void Tile::render(const SDL_Rect& camera) const
 {
 	//Show the tile
 	pJuego->getTextura(TTilemap)->draw(pJuego->getRender(),mBox, &pJuego->getRectTile(mType));
+
 }

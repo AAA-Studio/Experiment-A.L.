@@ -10,6 +10,7 @@
 #include "Personaje.h"
 #include <list>
 
+
 using namespace std;
 
 //Clase abstracta que hereda de la raiz ObjetoJuego e implementa utilidades para las subclases
@@ -22,7 +23,6 @@ public:
 	virtual void draw() const;
 	virtual void onInput(SDL_Event &e);
 	virtual void update();
-
 	bool checkCollision(SDL_Rect a, SDL_Rect b);
 	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
 	EntidadJuego * compruebaColisionObjetos();
@@ -33,6 +33,7 @@ public:
 	//------------------GETTERS---------------------
 	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
+
 
 private:
 	//-------------------ATRIBUTOS---------------

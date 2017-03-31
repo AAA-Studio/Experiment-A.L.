@@ -16,6 +16,7 @@ public:
 	virtual void destruyeBala(EntidadJuego * bala)=0;
 
 	virtual void restaVida()=0;
+
 };
 
 #endif

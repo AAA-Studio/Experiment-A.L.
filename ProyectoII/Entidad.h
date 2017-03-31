@@ -10,6 +10,7 @@ class Entidad : public EntidadJuego
 public:
 
 	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto, Objetos_t tipo);
+
 	virtual ~Entidad();
 
 	virtual void draw() const;
@@ -19,12 +20,14 @@ public:
 	SDL_Rect getRect()const{ return rect; };
 	Objetos_t getType() const  { return type; };
 
+
 protected:
 
 	Juego * pJuego;//Sustituye al puntero a la textura y al renderizador de la clase globo
 	Texturas_t pTextura;
 	Efectos_t sonido;
 	Objetos_t type;
+
 	SDL_Rect rect;//Rectángulo para cada textura
 };
 

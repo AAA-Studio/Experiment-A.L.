@@ -31,8 +31,6 @@ public:
 	Objetos_t getType() const  { return ONull; };
 	inline int getVida()const { return vida; };
 
-
-
 	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------
 	void setCamera(SDL_Rect& camera);
 	void restaVida();
@@ -40,8 +38,6 @@ public:
 	//-----------------------------------------------------------------------------
 
 	void empujeHaciaAtras();
-	
-
 	
 
 private:
@@ -53,7 +49,6 @@ private:
 	bool balaDestruida, llaveCogida, informeCogido;
 	int vida;
 	Direccion dir;
-
 
 
 	Juego * pJuego;//Sustituye al puntero a la textura y al renderizador de la clase globo
@@ -74,7 +69,5 @@ private:
 	void soltar(Objetos_t obj);
 	void move(int x, int y);
 	void soltarInforme();
-
-
 };
 #endif

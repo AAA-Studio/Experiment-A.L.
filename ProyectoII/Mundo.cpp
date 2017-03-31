@@ -11,9 +11,9 @@ Mundo::Mundo(Juego * pJ, string m)
 {
 	pJuego = pJ;
 	pausa = false;
-	initObjetos();
 	mapa = new Mapa(this, m);
-	
+	initObjetos();
+
 	//pJuego->getMusica(MPlay)->play();
 }
 
@@ -31,16 +31,93 @@ static void goPlay(Juego * pj){
 //Crea las texturas para los globos y todos los globos
 void Mundo::initObjetos()
 {
-	int x = 0, y = 0;//Posiciones del globo
-	x = rand() % (pJuego->getAncho() - 100);
-	y = rand() % (pJuego->getAlto() - 100);
 	// Personaje
-	psj = new Personaje(this, x, y, TJugador, ENull);
 	//Entidad de prueba para colisiones
+	/*
 	objetos.push_back(new Boton(pJuego, 500, 500, TPlay, ENull, goPlay));//Puerta
 	objetos.push_back(new Entidad(pJuego, 200, 300, TInforme1, ENull, OInforme1));//Informe
 
 	llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
+	*/
+	//al principio del juego
+	int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
+
+	if (pJuego->getNivel() == 0){
+		x = 300;
+		y = 300;
+		psj = new Personaje(this, x, y, TJugador, ENull);
+	}
+	//sale en el spawn gris
+	if (pJuego->getNivel() == -1){
+
+		mapa->buscaSpawn(185, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+		
+	}//spawn rojo
+	if (pJuego->getNivel() == 1){
+
+		mapa->buscaSpawn(180, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+
+	}
+	//spawn rosa
+	if (pJuego->getNivel() == 2){
+
+		mapa->buscaSpawn(191, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+
+	}
+	//spawn morado
+	if (pJuego->getNivel() == -2){
+
+		mapa->buscaSpawn(184, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+
+	}
+	//spawn azul oscuro
+	if (pJuego->getNivel() == 3){
+
+		mapa->buscaSpawn(190, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+
+	}
+	//spawn pistacho
+	if (pJuego->getNivel() == -3){
+
+		mapa->buscaSpawn(188, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+
+	}
+	//spawn marrón
+	if (pJuego->getNivel() == 4){
+
+		mapa->buscaSpawn(183, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+
+	}
+	//spawn burdeos
+	if (pJuego->getNivel() == -4){
+
+		mapa->buscaSpawn(189, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+
+	}
+	//spawn verde
+	if (pJuego->getNivel() == 5){
+
+		mapa->buscaSpawn(181, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+
+	}
+	//spawn azul
+	if (pJuego->getNivel() == -5){
+
+		mapa->buscaSpawn(182, x, y);
+		psj = new Personaje(this, x, y, TJugador, ENull);
+
+	}
+
+	//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));
 }
 
 void Mundo::freeObjetos(){
@@ -52,6 +129,7 @@ void Mundo::freeObjetos(){
 		delete(objetos[i]);
 		objetos[i] = nullptr;
 	}
+
 	list<EntidadJuego*>::iterator it = llaves.begin();
 	while (!llaves.empty() && it != llaves.end())//Se destruyen las llaves
 	{
@@ -59,6 +137,7 @@ void Mundo::freeObjetos(){
 		*it = nullptr;
 		llaves.erase(it);
 	}
+
 }
 
 
@@ -102,6 +181,9 @@ void Mundo::update(){
 
 	}
 
+
+	//ESTO ES PARA ENEMIGO
+	/*
 	if (checkCollision(psj->getRect(), objetos[0]->getRect()) && pJuego->getLLavesCogidas(0)){//Si el psj colisiona con el enemigo
 		
 		if (SDL_GetTicks() - time >= duracion)//Se pide la hora y se compara con la última 
@@ -115,6 +197,7 @@ void Mundo::update(){
 			pJuego->estadoEnum = MGameOver;
 		}
 	}
+	*/
 }
 
 //Detecta el input del jugador y la pausa

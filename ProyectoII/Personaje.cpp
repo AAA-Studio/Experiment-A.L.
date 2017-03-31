@@ -11,10 +11,9 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 	pJuego = pM->getPJ();
 	pTextura = textura;
 	sonido = efecto;
-	rect = { x, y, 100, 100 };
+	rect = { x, y, 20, 20 };
 	rectInforme = { pJuego->getAncho() / 2, pJuego->getAlto() / 2, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100,100 };
-
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
 	llaveCogida = false;
@@ -72,6 +71,8 @@ void Personaje::draw()const
 
 void Personaje::onInput()
 {
+
+	int x = 0, y = 0;
 	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 
 	if (!informeCogido)
@@ -227,12 +228,13 @@ void Personaje::setCamera(SDL_Rect& camera)
 void Personaje::empujeHaciaAtras(){
 	//Si la dirección es der, empujo hacia la izq
 
-	//Si la dirección es izq, empujo hacia la der
 
+	//Si la dirección es izq, empujo hacia la der
+	
 }
+
 void Personaje::restaVida(){
 	vida -= 1;
-
 }
 
 void Personaje::coger(){

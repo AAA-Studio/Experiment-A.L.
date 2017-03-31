@@ -5,6 +5,7 @@
 GameOver::GameOver(Juego * pJ) : Menu(pJ)
 {
 	objetos.resize(1);
+	cout << "estoy en gameover";
 	initObjetos();
 }
 

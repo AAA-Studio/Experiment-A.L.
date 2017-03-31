@@ -25,6 +25,7 @@ public:
 	virtual SDL_Rect getRect() const = 0;
 
 	virtual Objetos_t getType() const = 0;
+
 };
 
 #endif

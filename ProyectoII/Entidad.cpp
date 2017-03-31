@@ -8,6 +8,7 @@ Entidad::Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efe
 	pTextura = textura;
 	sonido = efecto; 
 	type = tipo;
+
 }
 
 Entidad::~Entidad()
