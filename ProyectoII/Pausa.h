@@ -1,15 +1,15 @@
 #ifndef Pausa_H
 #define Pausa_H
-#include "Estado.h"
+#include "Menu.h"
+#include "Juego.h"
 
-class Pausa : public Estado
+class Pausa : public Menu
 {
 public:
 	Pausa(Juego * pJ);
 	~Pausa();
 
 	virtual void draw() const;
-	virtual void onInput(SDL_Event &e);
 
 private:
 	void initObjetos();

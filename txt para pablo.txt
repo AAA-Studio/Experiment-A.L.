@@ -1,0 +1,90 @@
+TILES FELPUDOS:
+rojo = 150      * 
+verde = 151    *
+azul = 152     *
+marron = 153   *
+morado = 154   *      
+gris = 155     *  
+amarillo = 156    (imagino que será el complementario al naranja aunque falta el espejo)
+naranja = 157   (ascensor)
+pistacho = 158   *
+burdeos = 159     *
+rosa = 140     *
+azul oscuro = 165    *
+
+TILES SPAWN:
+rojo = 180      *
+verde = 181     *
+azul = 182    *
+marron = 183    *
+morado = 184     *
+gris = 185       *  
+amarillo = 186
+naranja = 187
+pistacho = 188    *
+burdeos = 189    *
+rosa = 191        * 
+azul oscuro = 190   *
+
+Forma de uso de los spwans y los felpudos:
+
+En mundo REAL:
+rojo 	<----> gris
+azul 	<----> verde
+morado 	<----> rosa
+pistacho<----> azul oscuro
+burdeos <----> marron
+naranja <----> amarillo
+
+En mundo OSCURO:
+	<----> 
+	<----> 
+	<----> 
+	<----> 
+	<----> 
+	<----> 
+
+-Esto en Juego.h
+
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 768;
+//The dimensions of the level
+const int LEVEL_WIDTH = 800;
+const int LEVEL_HEIGHT = 640;
+
+//Tile constants
+const int TILE_WIDTH = 32;
+const int TILE_HEIGHT = 32;
+const int TOTAL_TILES = 500;
+const int TOTAL_TILE_SPRITES = 390;
+
+//The different tile sprites
+
+const int TILE_1 = 1;
+const int TILE_2 = 2;
+...............
+const int TILE_389 = 389;
+
+
+-Juego.cpp
+
+
+	gTileClips[TILE_0].x = 0;
+	gTileClips[TILE_0].y = 0;
+	gTileClips[TILE_0].w = TILE_WIDTH;
+	gTileClips[TILE_0].h = TILE_HEIGHT;
+
+	gTileClips[TILE_1].x = 32;
+	gTileClips[TILE_1].y = 0;
+	gTileClips[TILE_1].w = TILE_WIDTH;
+	gTileClips[TILE_1].h = TILE_HEIGHT;
+
+............................................
+
+	gTileClips[TILE_389].x = 448;
+	gTileClips[TILE_389].y = 800;
+	gTileClips[TILE_389].w = TILE_WIDTH;
+	gTileClips[TILE_389].h = TILE_HEIGHT;
+
+y añadir los niveles en nombreMapas { "..\\bmps\\hab2oscuro.csv","..\\bmps\\haboscura.csv", 
+"..\\bmps\\bañooscuro.csv", "..\\bmps\\hab2.csv", "..\\bmps\\hab.csv", "..\\bmps\\baño.map" };

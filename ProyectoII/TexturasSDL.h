@@ -27,19 +27,23 @@ public:
 	void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, SDL_Rect* texRect = NULL)const;
 
 	//Métodos de consulta
-	int getW() const { return ancho; };//Devuelve el ancho
-	int getH() const{ return alto; };//Devuelve el alto
+	inline int getW() const { return texRect.w; };//Devuelve el ancho
+	inline int getH() const{ return texRect.h; };//Devuelve el alto
 
+	//Animacion
 	void setRectText(int numFrame);
 
 
-	//FUENTE
+	//---------------FUENTE-------------------------
+
 	void loadFromText(SDL_Renderer * pRender, string const& texto, SDL_Color color, Fuente fuente);
 
 	void render(SDL_Renderer * pRenderer, int px, int py, string const& texto, Fuente fuente);
 
+	//----------------------------------------------------
 
-	//----------------------------------------
+
+	//-----------TILE----------------------
 	//Set color modulation
 	void setColor(Uint8 red, Uint8 green, Uint8 blue);
 
@@ -53,7 +57,6 @@ public:
 
 private:
 	SDL_Texture * pTexture;//Puntero de la textura
-	int alto, ancho;//Alto y ancho de la textura
 	SDL_Rect texRect;
 
 };

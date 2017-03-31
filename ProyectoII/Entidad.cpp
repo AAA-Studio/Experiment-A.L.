@@ -1,15 +1,13 @@
 #include "Entidad.h"
 
 
-Entidad::Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto)
+Entidad::Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto, Objetos_t tipo)
 {
-	ancho = alto = 100;
-	posX = x;
-	posY = y;
+	rect = { x, y, 100, 100 };
 	pJuego = pJ;
 	pTextura = textura;
-	sonido = efecto;
-	rect = { posX, posY, ancho, alto };
+	sonido = efecto; 
+	type = tipo;
 
 }
 

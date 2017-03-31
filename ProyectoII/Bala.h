@@ -1,13 +1,14 @@
 #ifndef Bala_H
 #define Bala_H
 #include "checkML.h"
+#include "PersonajeVirtual.h"
 #include "Entidad.h"
 
 
 class Bala : public Entidad
 {
 public:
-	Bala(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, EntidadJuego* per);
+	Bala(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, PersonajeVirtual* per);
 	~Bala();
 	virtual void update();
 
@@ -17,7 +18,8 @@ private:
 	int angulo;
 	const Uint32 duracion = 2000;
 	Uint32 time;
-	EntidadJuego* personaje;
+
+	PersonajeVirtual* personaje;
 
 	void setAngulo();
 

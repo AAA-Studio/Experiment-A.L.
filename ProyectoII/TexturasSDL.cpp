@@ -5,7 +5,6 @@
 TexturasSDL::TexturasSDL()
 {
 	pTexture = nullptr;//Puntero de la textura
-	alto = ancho = 0;//Tamaño de la textura
 }
 
 //Destructora
@@ -13,7 +12,6 @@ TexturasSDL::~TexturasSDL()
 {
 	SDL_DestroyTexture(pTexture);
 	pTexture = nullptr;
-	alto = ancho = 0;
 }
 
 //Función para cargar el archivo
@@ -44,10 +42,7 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 		//SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
 
 		//Coge el ancho y el alto de la imagen 
-		ancho = pTempSurface->w;
-		alto = pTempSurface->h;
-
-		texRect = { 0, 0, ancho, alto};
+		texRect = { 0, 0, pTempSurface->w, pTempSurface->h };
 
 		pTexture = SDL_CreateTextureFromSurface(pRenderer, pTempSurface);//Crea la textura
 		if (pTexture == nullptr)
@@ -64,12 +59,12 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 //Método para dibujar la textura en el rectángulo winRect
 void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, SDL_Rect* texRect)const
 {
-	SDL_RenderCopy(pRenderer, pTexture, texRect, &winRect);
+	SDL_RenderCopyEx(pRenderer, pTexture, texRect, &winRect,0,NULL,SDL_FLIP_NONE);
 }
 
 void TexturasSDL::setRectText(int numFrame){
 	// 7 no vale, tiene que ser especifico de cada personaje
-	texRect = { ancho / 7 * (numFrame % 7), 0, ancho / 7, alto };//Posición actual delJugador
+	texRect = { texRect.w / 7 * (numFrame % 7), 0, texRect.w / 7, texRect.h };//Posición actual delJugador
 }
 
 //Fuente
@@ -87,12 +82,7 @@ void TexturasSDL::loadFromText(SDL_Renderer * pRender, string const& texto, SDL_
 	//Ha encontrado la imagen
 	else
 	{
-		//Coge el ancho y el alto de la imagen 
-		ancho = pTempSurface->w;
-		alto = pTempSurface->h;
-
-		//ESTO HABRÍA QUE CAMBIARLO
-		texRect = { 0, 0, ancho, alto };
+		texRect = { 0, 0, pTempSurface->w, pTempSurface->h };
 
 		SDL_DestroyTexture(pTexture);
 		pTexture = SDL_CreateTextureFromSurface(pRender, pTempSurface);//Crea la textura
@@ -115,7 +105,7 @@ void TexturasSDL::render(SDL_Renderer * pRenderer, int px, int py, string const&
 	loadFromText(pRenderer, texto, color, fuente);
 
 	SDL_Rect winRect;// Rectangulo que ocupa en la ventana
-	winRect = { px, py, 40, 40 };
+	winRect = { px, py, texRect.w, texRect.h };
 	draw(pRenderer, winRect);
 }
 

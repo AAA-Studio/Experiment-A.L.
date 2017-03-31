@@ -1,10 +1,10 @@
 #ifndef EntidadJuego_H
 #define EntidadJuego_H
 #include "checkML.h"
-#include <stack>
+#include <SDL.h>
 
-enum Controles_t { SuperNULL, W, S, A, D,WA,WD,SA,SD, JPIUM };
 
+enum Objetos_t{ OInforme1, OInforme2, OLlave, ONull };
 
 class EntidadJuego
 {
@@ -21,6 +21,10 @@ public:
 	virtual void update() = 0;
 
 	virtual void onInput() = 0;
+
+	virtual SDL_Rect getRect() const = 0;
+
+	virtual Objetos_t getType() const = 0;
 
 };
 

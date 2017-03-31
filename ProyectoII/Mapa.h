@@ -1,30 +1,38 @@
 #ifndef Mapa_H
 #define Mapa_H
-#include "Juego.h"
 #include <SDL.h>
 #include "Tile.h"
+#include "MundoVirtual.h"
 #include <fstream>
+#include <string>
 
 
 class Mapa
 {
 public:
-	Mapa(Juego*pJ);
+	Mapa(MundoVirtual * pM, string mapa); ////
 	~Mapa();
-
 
 	//Checks collision box against set of tiles
 	bool touchesWall(SDL_Rect box);
 	void draw()const;
-	Tile** getTileMap(){ return tileMap; };
-	bool cargarMapa();
-	SDL_Rect getCamera(){ return camera; };
-	Juego * pJuego;
+	void buscaSpawn(int tipo, int& x, int& y);
 
+
+	//--------------------GETTER----------------
+	inline Tile** getTileMap() { return tileMap; };
+	inline SDL_Rect getCamera() const{ return camera; };
 
 private:
+	MundoVirtual * pMundo;
+	Juego * pJuego;
+	string nombreMapa;
+
 	SDL_Rect camera;
 	Tile* tileMap[TOTAL_TILES];
+
+	bool cargarMapa();
+	int nivel = 0;
 };
 #endif
 

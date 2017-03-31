@@ -1,9 +1,7 @@
 #include "Pausa.h"
 #include "Boton.h"
-#include "Menu.h"
-#include "Mundo.h"
 
-Pausa::Pausa(Juego * pJ) : Estado(pJ)
+Pausa::Pausa(Juego * pJ) : Menu(pJ)
 {
 	objetos.resize(2);
 	initObjetos();
@@ -15,11 +13,11 @@ Pausa::~Pausa()
 }
 
 static void goPlay(Juego * pj){
-	pj->popState();;
+	pj->popState();
 };
 static void goMenu(Juego * pj){
-	Menu * eMenu = new Menu(pj);
-	pj->changeState(eMenu);
+	pj->borraEstado = true;
+	pj->estadoEnum = MInicio;
 };
 
 void Pausa::initObjetos(){
@@ -33,24 +31,5 @@ void Pausa::draw()const
 	//SDL_Rect fondoRect = { 0, 0, pJuego->getAncho(), pJuego->getAlto() };
 	//pJuego->getTextura(TFondoMenu)->draw(pJuego->getRender(), fondoRect);
 
-	Estado::draw();
-}
-
-void Pausa::onInput(SDL_Event &e){
-
-	if (e.type == SDL_MOUSEBUTTONUP)
-	{
-		if (e.button.button == SDL_BUTTON_LEFT)
-		{
-			int i = 0;
-			while (i < objetos.size())
-			{
-				objetos[i]->onInput();
-				i++;
-			}
-
-		}
-
-	}
-
+	Menu::draw();
 }
