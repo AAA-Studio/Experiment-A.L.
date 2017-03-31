@@ -18,6 +18,7 @@ private:
 	int angulo;
 	const Uint32 duracion = 2000;
 	Uint32 time;
+
 	PersonajeVirtual* personaje;
 
 	void setAngulo();

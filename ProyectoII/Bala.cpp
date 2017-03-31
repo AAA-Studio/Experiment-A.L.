@@ -4,7 +4,7 @@
 #include "Personaje.h"
 
 
-Bala::Bala(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, PersonajeVirtual* per) : Entidad(pJ, x, y, textura, efecto)
+Bala::Bala(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, PersonajeVirtual* per) : Entidad(pJ, x, y, textura, efecto,ONull)
 {
 	incrX = incrY = 0;
 	velocidad = 1;

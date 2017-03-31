@@ -17,10 +17,8 @@ Tile::Tile(int x, int y, int tileType, Juego * pJ)
 	mType = tileType;
 }
 
-void Tile::render(const SDL_Rect& camera)
+void Tile::render(const SDL_Rect& camera) const
 {
-
-		//Show the tile
-		pJuego->getTextura(TTilemap)->draw(pJuego->getRender(),mBox, &pJuego->getRectTile(mType));
-	
+	//Show the tile
+	pJuego->getTextura(TTilemap)->draw(pJuego->getRender(),mBox, &pJuego->getRectTile(mType));
 }

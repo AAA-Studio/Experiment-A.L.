@@ -31,6 +31,9 @@ Juego::Juego()
 
 	initMedia();
 
+	for (int i = 0; i < TAMAÑO_LLAVES; i++)
+		llavesCogidas[i] = false;
+
 	estadoEnum = MInicio;
 	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
 	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
@@ -163,6 +166,7 @@ void Juego::initSDL()
 
 		//Creamos la ventana con unas dimensiones específicas y al principio se encuentra escondida
 		pWin = SDL_CreateWindow("Nombre del juego", winRect.x, winRect.y, winRect.w, winRect.h, SDL_WINDOW_HIDDEN);
+		//SDL_SetWindowFullscreen(pWin, SDL_WINDOW_FULLSCREEN);
 
 		//Caso de error en el que no se crea la ventana
 		if (pWin == nullptr)
@@ -207,7 +211,7 @@ void Juego::initMedia()
 	//TEXTURAS
 
 	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png",
-		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\tiles3.png" };
+		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\tiles3.png", "..\\bmps\\llave.png","..\\bmps\\informe.png", "..\\bmps\\informe.png"  };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{

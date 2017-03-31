@@ -8,13 +8,13 @@ public:
 	Tile(int x, int y, int tileType, Juego * pJ);
 
 	//Shows the tile
-	void render(const SDL_Rect& camera);
+	void render(const SDL_Rect& camera) const;
 
 	//Get the tile type
-	inline int getType(){return mType;};
+	inline int getType() const {return mType;};
 
 	//Get the collision box
-	inline SDL_Rect getBox(){return mBox;};
+	inline SDL_Rect getBox() const{ return mBox; };
 
 private:
 	//The attributes of the tile

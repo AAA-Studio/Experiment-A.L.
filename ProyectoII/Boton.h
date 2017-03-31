@@ -11,7 +11,6 @@ public:
 	Boton(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, CallBack_t * cb);
 	~Boton();
 	virtual void onInput();
-	virtual void update(){};
 
 private:
 	CallBack_t * cboton;

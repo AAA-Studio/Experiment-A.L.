@@ -2,16 +2,24 @@
 #include <iostream>
 #include "Mundo.h"
 #include "Bala.h"
+
+
 //Constructora
-Personaje::Personaje(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto)
+Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto)
 {
-	pJuego = pJ;
+	pMundo = pM;
+	pJuego = pM->getPJ();
 	pTextura = textura;
 	sonido = efecto;
 	rect = { x, y, 100, 100 };
+	rectInforme = { pJuego->getAncho() / 2, pJuego->getAlto() / 2, 300, 600 };
+	rectLlave = { 50, pJuego->getAlto() - 100, 100,100 };
+
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
-	vida = 100;
+	llaveCogida = false;
+	informeCogido = false;
+	vida = 3;
 }
 
 //Destructora
@@ -23,18 +31,20 @@ Personaje::~Personaje()
 //Actualiza el estado y devuelve false si el globo queda desinflado
 void Personaje::update()  
 {	
-	list<EntidadJuego*>::iterator it = balas.begin();
-	balaDestruida = false;
+	if (!informeCogido){
+		list<EntidadJuego*>::iterator it = balas.begin();
+		balaDestruida = false;
 
-	while (!balaDestruida && !balas.empty() && it != balas.end())
-	{
-		(*it)->update();
-		if (!balaDestruida)
+		while (!balaDestruida && !balas.empty() && it != balas.end())
 		{
-			it++;
+			(*it)->update();
+			if (!balaDestruida)
+			{
+				it++;
+
+			}
 
 		}
-
 	}
 	
 }
@@ -51,72 +61,103 @@ void Personaje::draw()const
 		it++;
 	}
 
+	if (informeCogido)
+		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme);
+
+	if (pJuego->getLLavesCogidas(0))
+		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave);
+
+
 }
 
 void Personaje::onInput()
 {
-	int x = 0, y = 0;
-
 	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 
-	if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_A])
+	if (!informeCogido)
 	{
-		y += -1;
-		x += -1;
-		angulo = 135;
+		int x = 0, y = 0;
+
+		if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_A])
+		{
+			y += -1;
+			x += -1;
+			angulo = 135;
+		}
+		else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_D])
+		{
+			y += -1;
+			x += 1;
+			angulo = 45;
+
+		}
+		else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_A])
+		{
+			y += 1;
+			x += -1;
+			angulo = 225;
+		}
+		else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_D])
+		{
+			y += 1;
+			x += 1;
+			angulo = 315;
+		}
+		else if (keyStatesActuales[SDL_SCANCODE_W])
+		{
+			y += -1;
+			angulo = 90;
+		}
+		else if (keyStatesActuales[SDL_SCANCODE_A])
+		{
+			x += -1;
+			angulo = 180;
+		}
+		else if (keyStatesActuales[SDL_SCANCODE_S])
+		{
+			y += 1;
+			angulo = 270;
+		}
+		else if (keyStatesActuales[SDL_SCANCODE_D])
+		{
+			x += 1;
+			angulo = 0;
+		}
+
+		if (keyStatesActuales[SDL_SCANCODE_E])
+		{
+			disparo();
+		}
+		//Caso en el que se coge un objeto
+		if (keyStatesActuales[SDL_SCANCODE_C]){
+			coger();
+		}
+
+
+		move(x, y);
 	}
-	else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_D])
+
+	else
 	{
-		y += -1;
-		x += 1;
-		angulo = 45;
+		if (keyStatesActuales[SDL_SCANCODE_Q]){
+			soltarInforme();
+
+		}
+
+
 
 	}
-	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_A])
-	{
-		y += 1;
-		x += -1;
-		angulo = 225;
-	}
-	else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_D])
-	{
-		y += 1;
-		x += 1;
-		angulo = 315;
-	}
-	else if (keyStatesActuales[SDL_SCANCODE_W])
-	{
-		y += -1;
-		angulo = 90;
-	}
-	else if (keyStatesActuales[SDL_SCANCODE_A])
-	{
-		x += -1;
-		angulo = 180;
-	}
-	else if (keyStatesActuales[SDL_SCANCODE_S])
-	{
-		y += 1;
-		angulo = 270;
-	}
-	else if (keyStatesActuales[SDL_SCANCODE_D])
-	{
-		x += 1;
-		angulo = 0;
-	}
-
-	if (keyStatesActuales[SDL_SCANCODE_E])
-	{
-		disparo();
-	}
-		
-	move(x, y);
 }
 
 void Personaje::move(int x, int y)
 {
 
 	rect.x += x;
+
+	//--------------------------------
+	if (x < 0) dir = Direccion::Derecha;
+	else if (x > 0) dir = Direccion::Izquierda;
+	//--------------------------------
 
 	//Si no colisiona con los tiles, me muevo
 	if (static_cast<Mundo*> (pJuego->topEstado())->getMapa()->touchesWall(rect))
@@ -154,6 +195,9 @@ void Personaje::destruyeBala(EntidadJuego * bala)
 
 }
 
+
+
+
 void Personaje::setCamera(SDL_Rect& camera)
 {
 	//Center the camera over the dot
@@ -179,15 +223,53 @@ void Personaje::setCamera(SDL_Rect& camera)
 	}
 }
 
-void Personaje::restaVida(){
-	vida -= 10;
+//Necesito la dirección del personaje para poder empujarle hacia atrás
+void Personaje::empujeHaciaAtras(){
+	//Si la dirección es der, empujo hacia la izq
 
-	//Muerte del personaje, cambio de estado
-	pJuego->borraEstado = true;
-	pJuego->estadoEnum = MGameOver;
+	//Si la dirección es izq, empujo hacia la der
+
+}
+void Personaje::restaVida(){
+	vida -= 1;
+
 }
 
+void Personaje::coger(){
+	EntidadJuego * objeto;
+	objeto = pMundo->compruebaColisionObjetos();//Compruebo si estoy colisionando con el obj para poder cogerlo
 
+	if (objeto != nullptr){
+		switch (objeto->getType())
+		{
+		case OInforme1:
+			informe = TInforme1;
+			informeCogido = true;
+			break;
+		case OInforme2:
+			informe = TInforme2;
+			informeCogido = true;
+			break;
+
+		case OLlave:
+			pMundo->destruyeLlave(objeto);
+			break;
+		}
+	}
+	
+
+
+
+}
+
+void Personaje::soltarInforme(){
+	informeCogido = false;
+	informe = Texturas_t_SIZE;
+
+
+
+
+}
 
 
 

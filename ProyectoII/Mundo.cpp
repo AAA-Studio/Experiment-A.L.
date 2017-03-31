@@ -11,9 +11,9 @@ Mundo::Mundo(Juego * pJ, string m)
 {
 	pJuego = pJ;
 	pausa = false;
-	objetos.resize(1);
 	initObjetos();
-	mapa = new Mapa(pJ, this, m);
+	mapa = new Mapa(this, m);
+	
 	//pJuego->getMusica(MPlay)->play();
 }
 
@@ -35,20 +35,29 @@ void Mundo::initObjetos()
 	x = rand() % (pJuego->getAncho() - 100);
 	y = rand() % (pJuego->getAlto() - 100);
 	// Personaje
-	psj = new Personaje(pJuego, x, y, TJugador, ENull);
-
+	psj = new Personaje(this, x, y, TJugador, ENull);
 	//Entidad de prueba para colisiones
-	objetos[0] = new Boton(pJuego, 500, 500, TPlay, ENull, goPlay);
+	objetos.push_back(new Boton(pJuego, 500, 500, TPlay, ENull, goPlay));//Puerta
+	objetos.push_back(new Entidad(pJuego, 200, 300, TInforme1, ENull, OInforme1));//Informe
+
+	llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
 }
 
 void Mundo::freeObjetos(){
 	delete psj;
 	psj = nullptr;
 
-	for (size_t i = 0; i < objetos.size(); i++)
+	for (size_t i = 0; i < objetos.size(); i++)//Se destruyen los objetos
 	{
 		delete(objetos[i]);
 		objetos[i] = nullptr;
+	}
+	list<EntidadJuego*>::iterator it = llaves.begin();
+	while (!llaves.empty() && it != llaves.end())//Se destruyen las llaves
+	{
+		delete(*it);
+		*it = nullptr;
+		llaves.erase(it);
 	}
 }
 
@@ -62,24 +71,49 @@ void Mundo::draw()const{
 	for (int i = objetos.size() - 1; i >= 0; i--)
 		objetos[i]->draw();
 
+	list<EntidadJuego*>::const_iterator it = llaves.cbegin();
+	
+	while (!llaves.empty() && it != llaves.cend())
+	{
+		(*it)->draw();
+		it++;
+
+	}
+
 	psj->draw();
 
-	pJuego->getTextura(TFuente)->render(pJuego->getRender(), 0, 0, "Hola", pJuego->getFuente());
+	pJuego->getTextura(TFuente)->render(pJuego->getRender(), 50, 50, "HOLA :)", pJuego->getFuente());
 
 }
 
 
 void Mundo::update(){
-	psj->update();
-	for (size_t i = 0; i < objetos.size(); i++)
+	psj->update();//Update de personaje
+
+	for (size_t i = 0; i < objetos.size(); i++)//Update de objetos
 		objetos[i]->update();
 
-	if (checkCollision(psj->getRect(), objetos[0]->getRect())){//Si el psj colisiona con el boton truleano
+	list<EntidadJuego*>::const_iterator it = llaves.cbegin();
 
-		pJuego->borraEstado = true;
-		pJuego->estadoEnum = MundoReal;
+	while (!llaves.empty() && it != llaves.cend())//Update de las llaves
+	{
+		(*it)->update();
+		it++;
 
+	}
 
+	if (checkCollision(psj->getRect(), objetos[0]->getRect()) && pJuego->getLLavesCogidas(0)){//Si el psj colisiona con el enemigo
+		
+		if (SDL_GetTicks() - time >= duracion)//Se pide la hora y se compara con la última 
+		{
+			time = SDL_GetTicks();
+			psj->restaVida();
+
+		}
+		if (psj->getVida() == 0){
+			pJuego->borraEstado = true;
+			pJuego->estadoEnum = MGameOver;
+		}
 	}
 }
 
@@ -97,7 +131,7 @@ void Mundo::onInput(SDL_Event &e){
 	
 	//Personaje
 	psj->onInput();
-	psj->setCamera(mapa->getCamera());
+	//psj->setCamera(mapa->getCamera());
 
 }
 
@@ -125,5 +159,50 @@ bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
 
 	//If any of the sides from A are outside of B
 	return !(bottomA <= topB || topA >= bottomB || rightA <= leftB || (leftA >= rightB));
+
+}
+
+EntidadJuego * Mundo::compruebaColisionObjetos(){
+	int i = 0;
+	
+	while (i < objetos.size() && !checkCollision(psj->getRect(), objetos[i]->getRect()))
+		i++;
+
+	//Si lo he encontrado en los informes
+	if (i != objetos.size())
+		return objetos[i];
+
+	//Si no, sigo buscando en la lista de llaves
+	list<EntidadJuego*>::const_iterator it = llaves.cbegin();
+
+	while (!llaves.empty() && it != llaves.cend() && !checkCollision(psj->getRect(),(*it)->getRect()))
+	{
+		it++;
+
+	}
+
+	if (it == llaves.cend())
+		return nullptr;
+	else
+		return (*it);
+
+}
+
+void Mundo::destruyeLlave(EntidadJuego * llave)
+{
+	list<EntidadJuego*>::iterator it = llaves.begin();
+	while (it != llaves.end() && (*it) != llave)//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
+	{
+		it++;
+	}
+
+	//Elimina la llave
+	llaves.erase(it);
+	delete (llave);
+	llave = nullptr;
+
+	
+	pJuego->setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
+
 
 }

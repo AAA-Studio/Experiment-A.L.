@@ -13,7 +13,7 @@ Fuente::~Fuente()
 
 void Fuente::load(string const& nombArch)
 {
-	pFont = TTF_OpenFont(nombArch.c_str(), 28);
+	pFont = TTF_OpenFont(nombArch.c_str(), 100);
 	if (pFont == nullptr)
 	{
 		ErrorFuente error("Error al cargar la fuente: " + nombArch);

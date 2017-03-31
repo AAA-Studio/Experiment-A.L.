@@ -59,7 +59,7 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 //Método para dibujar la textura en el rectángulo winRect
 void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, SDL_Rect* texRect)const
 {
-	SDL_RenderCopy(pRenderer, pTexture, texRect, &winRect);
+	SDL_RenderCopyEx(pRenderer, pTexture, texRect, &winRect,0,NULL,SDL_FLIP_NONE);
 }
 
 void TexturasSDL::setRectText(int numFrame){
@@ -105,7 +105,7 @@ void TexturasSDL::render(SDL_Renderer * pRenderer, int px, int py, string const&
 	loadFromText(pRenderer, texto, color, fuente);
 
 	SDL_Rect winRect;// Rectangulo que ocupa en la ventana
-	winRect = { px, py, 40, 40 };
+	winRect = { px, py, texRect.w, texRect.h };
 	draw(pRenderer, winRect);
 }
 

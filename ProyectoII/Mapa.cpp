@@ -1,10 +1,9 @@
 #include "Mapa.h"
 #include "Mundo.h"
 
-Mapa::Mapa(Juego*pJ, MundoVirtual *pM, string mapa)
+Mapa::Mapa(MundoVirtual *pM, string mapa)
 {
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-	pJuego = pJ;
 	pMundo = pM;
 	nombreMapa = mapa;
 	cargarMapa();
@@ -65,7 +64,7 @@ bool Mapa::cargarMapa()
 			//If the number is a valid tile number
 			if ((tileType >= 0) && (tileType < TOTAL_TILE_SPRITES))
 			{
-				tileMap[i] = new Tile(x, y, tileType, pJuego);
+				tileMap[i] = new Tile(x, y, tileType, pMundo->getPJ());
 			}
 			//If we don't recognize the tile type
 			else

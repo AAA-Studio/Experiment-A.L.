@@ -3,7 +3,8 @@
 #include "checkML.h"
 #include <SDL.h>
 
-enum Controles_t { SuperNULL, W, S, A, D,WA,WD,SA,SD, JPIUM };
+
+enum Objetos_t{ OInforme1, OInforme2, OLlave, ONull };
 
 class EntidadJuego
 {
@@ -21,9 +22,9 @@ public:
 
 	virtual void onInput() = 0;
 
-	virtual const SDL_Rect getRect() = 0;
+	virtual SDL_Rect getRect() const = 0;
 
-
+	virtual Objetos_t getType() const = 0;
 };
 
 #endif

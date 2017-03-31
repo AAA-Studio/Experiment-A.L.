@@ -28,13 +28,16 @@ const int TOTAL_TILE_SPRITES = 12;
 
 //----------------------------------------------------
 
+const int TAMAÑO_LLAVES = 1;
+
 
 //------------------ENUMS--------------------------
 
-enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
+enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
 enum Estados_t{MInicio,MGameOver,MPausa,MundoReal,MundoOscuro};
+
 
 //----------------------------------------------------
 
@@ -71,6 +74,7 @@ public:
 	//Detecta posición del raton
 	void getMousePos(int & mpx, int & mpy) const;
 
+
 	//Dibujado
 	inline SDL_Renderer * getRender() const{ return pRenderer; };
 	inline TexturasSDL * getTextura(Texturas_t et) const { return texturas[et]; }
@@ -83,8 +87,11 @@ public:
 	inline Fuente getFuente() const { return fuente; }
 
 	//Ventana
-	inline int getAncho(){ return winRect.w; }
-	inline int getAlto(){ return winRect.h; }
+	inline int getAncho()const{ return winRect.w; }
+	inline int getAlto() const{ return winRect.h; }
+
+	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
+	inline void setLlaveCogida(int indice){ llavesCogidas[indice] = !llavesCogidas[indice]; };
 
 	//-----------TILE----------------
 
@@ -116,6 +123,7 @@ private:
 	SDL_Color colorWin;//Color de la ventana
 
 	vector <EstadoJuego*> vectorEstados;
+	bool llavesCogidas[TAMAÑO_LLAVES];
 
 	TexturasSDL*  texturas[Texturas_t_SIZE];
 

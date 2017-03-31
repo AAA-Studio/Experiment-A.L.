@@ -12,9 +12,10 @@ class PersonajeVirtual : public EntidadJuego
 public:
 
 	virtual void setCamera(SDL_Rect& camera)=0;
-	virtual void destruyeBala(EntidadJuego * bala)=0;
-	virtual void restaVida()=0;
 
+	virtual void destruyeBala(EntidadJuego * bala)=0;
+
+	virtual void restaVida()=0;
 };
 
 #endif
