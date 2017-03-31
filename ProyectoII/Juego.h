@@ -458,7 +458,7 @@ public:
 	//Sale del programa
 	void setSalir(){ exit = true; };
 	
-	void setNivel(int i){ nivel = nivel + i; };
+	void setNivel(int i){ nivel =  i; };
 	//---------------GETTER----------------------
 	//Saber el nivel del mapa en el que estamos
 	int getNivel() { return nivel; };
@@ -496,7 +496,7 @@ public:
 	void gestionaEstados(Estados_t estado);
 
 	string SelectorDeNiveles();
-	int indiceMapas;
+	int indiceMapas=1;
 private:
 
 	//Atributos

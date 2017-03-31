@@ -40,19 +40,76 @@ void Mundo::initObjetos()
 		y = 300;
 		psj = new Personaje(pJuego, x, y, TJugador, ENull);
 	}
-	//sale en el spawn rojo
-	if (pJuego->getNivel() == 1){
+	//sale en el spawn gris
+	if (pJuego->getNivel() == -1){
 
-		mapa-> buscaSpawn(180, x, y);
+		mapa-> buscaSpawn(185, x, y);
 		psj = new Personaje(pJuego, x, y, TJugador, ENull);
 		
-	}//spawn rosa
+	}//spawn rojo
+	if (pJuego->getNivel() == 1){
+
+		mapa->buscaSpawn(180, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+
+	}
+	//spawn rosa
 	if (pJuego->getNivel() == 2){
 
 		mapa->buscaSpawn(191, x, y);
 		psj = new Personaje(pJuego, x, y, TJugador, ENull);
 
 	}
+	//spawn morado
+	if (pJuego->getNivel() == -2){
+
+		mapa->buscaSpawn(184, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+
+	}
+	//spawn azul oscuro
+	if (pJuego->getNivel() == 3){
+
+		mapa->buscaSpawn(190, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+
+	}
+	//spawn pistacho
+	if (pJuego->getNivel() == -3){
+
+		mapa->buscaSpawn(188, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+
+	}
+	//spawn marrón
+	if (pJuego->getNivel() == 4){
+
+		mapa->buscaSpawn(183, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+
+	}
+	//spawn burdeos
+	if (pJuego->getNivel() == -4){
+
+		mapa->buscaSpawn(189, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+
+	}
+	//spawn verde
+	if (pJuego->getNivel() == 5){
+
+		mapa->buscaSpawn(181, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+
+	}
+	//spawn azul
+	if (pJuego->getNivel() == -5){
+
+		mapa->buscaSpawn(182, x, y);
+		psj = new Personaje(pJuego, x, y, TJugador, ENull);
+
+	}
+	
 	//Entidad de prueba para colisiones
 	objetos[0] = new Boton(pJuego, 500, 500, TPlay, ENull, goPlay);
 }

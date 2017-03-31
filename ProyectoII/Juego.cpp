@@ -26,7 +26,8 @@ Juego::Juego()
 
 	initSDL();//Inicializamos el renderizador
 
-	nombreMapas = { "..\\bmps\\pasillo.csv","..\\bmps\\hab.csv", "..\\bmps\\hab2.csv", "..\\bmps\\baño.map", "..\\bmps\\haboscura.csv", "..\\bmps\\hab2oscuro.csv", "..\\bmps\\bañooscuro.csv" };
+	nombreMapas = { "..\\bmps\\pasillo.csv", "..\\bmps\\hab.csv", "..\\bmps\\hab2.csv", "..\\bmps\\hab3.csv", "..\\bmps\\hab4.csv",
+		"..\\bmps\\baño.map", "..\\bmps\\haboscura.csv", "..\\bmps\\hab2oscuro.csv", "..\\bmps\\bañooscuro.csv" };
 
 	initMedia();
 
@@ -40,7 +41,8 @@ Juego::Juego()
 
 string Juego::SelectorDeNiveles() {
 	int nivel = getNivel();
-	return nombreMapas[indiceMapas+nivel];
+	indiceMapas += nivel;
+	return nombreMapas[indiceMapas];
 
 }
 
