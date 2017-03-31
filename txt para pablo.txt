@@ -26,6 +26,23 @@ burdeos = 189    *
 rosa = 191        * 
 azul oscuro = 190   *
 
+Forma de uso de los spwans y los felpudos:
+
+En mundo REAL:
+rojo 	<----> gris
+azul 	<----> verde
+morado 	<----> rosa
+pistacho<----> azul oscuro
+burdeos <----> marron
+naranja <----> amarillo
+
+En mundo OSCURO:
+	<----> 
+	<----> 
+	<----> 
+	<----> 
+	<----> 
+	<----> 
 
 -Esto en Juego.h
 
