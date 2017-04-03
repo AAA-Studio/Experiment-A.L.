@@ -25,8 +25,11 @@ Juego::Juego()
 
 	initSDL();//Inicializamos el renderizador
 
-	nombreMapas = { "..\\bmps\\pasillo.csv", "..\\bmps\\hab.csv", "..\\bmps\\hab2.csv", "..\\bmps\\hab3.csv", "..\\bmps\\hab4.csv",
-	"..\\bmps\\baño.map", "..\\bmps\\haboscura.csv", "..\\bmps\\hab2oscuro.csv", "..\\bmps\\bañooscuro.csv" };
+	nombreMapas = { "..\\bmps\\Habitaciones\\pasillo.csv", "..\\bmps\\Habitaciones\\hab.csv",
+		"..\\bmps\\Habitaciones\\hab2.csv", "..\\bmps\\Habitaciones\\hab3.csv", "..\\bmps\\Habitaciones\\hab4.csv",
+		"..\\bmps\\Habitaciones\\baño.csv", "..\\bmps\\Habitaciones\\haboscura.csv",
+		"..\\bmps\\Habitaciones\\hab2oscuro.csv", "..\\bmps\\Habitaciones\\hab3oscuro.csv",
+		"..\\bmps\\Habitaciones\\hab4oscuro.csv", "..\\bmps\\Habitaciones\\bañooscuro.csv" };
 
 	initMedia();
 

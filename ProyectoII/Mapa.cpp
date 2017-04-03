@@ -258,8 +258,33 @@ bool Mapa::touchesWall(SDL_Rect box)
 				}
 
 			}
-		
-		if ((tileMap[i]->getType() >1000)) //&& (tiles[i]->getType() <= TILE_3))
+		//No colisionar con suelo y alfombras
+			 if ((tileMap[i]->getType() != 0 
+				&& tileMap[i]->getType() != 1 
+				&& tileMap[i]->getType() != 2 
+				&& tileMap[i]->getType() != 3
+				&& tileMap[i]->getType() != 16
+				&& tileMap[i]->getType() != 17
+				&& tileMap[i]->getType() != 18
+				&& tileMap[i]->getType() != 30
+				&& tileMap[i]->getType() != 31
+				&& tileMap[i]->getType() != 32
+				&& tileMap[i]->getType() != 33
+				&& tileMap[i]->getType() != 54
+				&& tileMap[i]->getType() != 55
+				&& tileMap[i]->getType() != 82
+				&& tileMap[i]->getType() != 180
+				&& tileMap[i]->getType() != 181
+				&& tileMap[i]->getType() != 182
+				&& tileMap[i]->getType() != 183
+				&& tileMap[i]->getType() != 184
+				&& tileMap[i]->getType() != 185
+				&& tileMap[i]->getType() != 186
+				&& tileMap[i]->getType() != 187
+				&& tileMap[i]->getType() != 188
+				&& tileMap[i]->getType() != 189
+				&& tileMap[i]->getType() != 190
+				&& tileMap[i]->getType() != 191))
 
 		{
 			//Si se choca con la pared
