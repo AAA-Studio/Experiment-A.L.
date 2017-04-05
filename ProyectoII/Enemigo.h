@@ -4,6 +4,7 @@
 #include "checkML.h"
 #include "Entidad.h"
 #include "MathCore.h"
+#include "PathFinding.h"
 #include <vector>
 
 #define M_PI 3.1416
@@ -58,8 +59,10 @@ protected:
 	/*virtual bool HandleKeydown(int key);
 	virtual bool HandleKeyUp(int key);
 	virtual void HandleMouseDown(bool isLeft, Vector2 mouseWorldPos);*/
-	/*
+
 private: 
+
+	PathFinding * m_pathfinding;
 	bool hasBeenHit;
 	bool isAtGoal;
 	bool lockedGuard;
@@ -77,6 +80,6 @@ private:
 		return deg;
 	}
 
-	Vector2 targetPos;*/
+	Vector2 targetPos;
 };
 #endif

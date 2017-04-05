@@ -27,6 +27,8 @@ void PathFinding::Initialize(Vector2 pStartPos, Vector2 pTargetPos) {
 
 	
 	InitializaStartGoal(&start, &goal);
+
+	m_pathState = SEARCHING;
 }
 
 void PathFinding::InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal) {
@@ -176,25 +178,16 @@ SearchCell * PathFinding::GetNextCell(){
 	return nextCell;
 }
 
-void PathFinding::PathOpened(int x, int y, float newCost, SearchCell *pPadre){
+void PathFinding::PathOpened(float x, float y, float newCost, SearchCell *pPadre){
 	
-	/*// Cuando haya paredes ignora esas celdas
-	/*if (m_GameWorld -> GetCellState(x, y) == CELL_BLOCKED)
-	{
-		return;
-	}
-
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// Corregir para que quede como arriba
-	if (m_GameWorld->GetCellState(x, y) == m_GameWorld->CELL_BLOCKED)
-	{
-		return;
-	}*/
 	if (x <= 0 || x >=/*TileManager::MAP_WIDTH*/1 || y <= 0 || y >=/*TileManager::MAP_HEIGHT*/1) {
 		return;
 	}
 
-	Entidad * tile = /*TileManager::GetInstance()->GetTileAt(x, y)*/nullptr;
+	Entidad * tile = /*TileManager::GetInstance()->GetTileAt((int)x, (int)y)*/nullptr;
+
+	if (tile == NULL /*|| tile->hasTag(blocked)*/) return;  // bool hasTag (char * pTag) El tag se pone en Tiled y se extrae la informacion del fichero
+	
 
 	/*GetTileAt(int x, int y) {
 		if (m_tiles == NULL || x < 0 ||x>= MAP_WIDTH || y < 0 ||y>= MAP_HEIGHT) {
@@ -204,8 +197,9 @@ void PathFinding::PathOpened(int x, int y, float newCost, SearchCell *pPadre){
 		return m_tiles[y * MAP_WIDTH + x];
 	}*/
 
-	int id = y * WORLD_SIZE/*TileManager::MAP_WIDTH*/ + x;
-	for (int i = 0; i < m_visitedList.size(); i++) {
+	float id = y * WORLD_SIZE/*TileManager::MAP_WIDTH*/ + x;
+
+	for (int i = 0; i < (int)m_visitedList.size(); i++) {
 		if (id == m_visitedList[i]->GetID()) {
 			return;
 		}
@@ -235,6 +229,26 @@ void PathFinding::PathOpened(int x, int y, float newCost, SearchCell *pPadre){
 	}
 
 	m_openList.push_back(newChild);
+}
+
+void PathFinding::Clear() {
+	
+	m_pathState = NONE;
+
+	if (m_startCell) {
+		delete m_startCell;
+		m_startCell = NULL;
+	}
+
+	if (m_goalCell) {
+		delete m_goalCell;
+		m_goalCell = NULL;
+	}
+
+	m_openList.clear();
+	m_visitedList.clear();
+	m_closesPaths.clear();
+
 }
 
 void PathFinding::ContinuePath() {
@@ -295,7 +309,7 @@ void PathFinding::ContinuePath() {
 	}
 }
 
-Vector2 PathFinding::NextPathPos(Enemigo  *enemigo) {
+Vector2 PathFinding::NextPathPos(/*Enemigo  *enemigo*/) {
 	
 	int index = 1; 
 
@@ -304,16 +318,30 @@ Vector2 PathFinding::NextPathPos(Enemigo  *enemigo) {
 	nextPos.m_y = m_pathToGoal[m_pathToGoal.size() - index]->m_y;
 
 	// pos es la actual posicion del enemigo
-	Vector2 distance = nextPos - enemigo->pos;
+	Vector2 distance = nextPos - nextPos/*enemigo->pos*/;
 	if (distance.Length < m_pathToGoal.size()) {
 
 		// Si el enemigo consigue avanzar en el radio de celdas elimina la que ya estaba
-		if (distance.Length < enemigo->radius) {
+		if (distance.Length < 0/*enemigo->radius*/) {
 			m_pathToGoal.erase(m_pathToGoal.end() - index);
 		}
 	}
 
 	return nextPos;
+}
+
+Vector2 PathFinding::GetNextClosesPoint() {
+
+	Vector2 nextPath = m_closesPaths[0];
+
+	m_closesPaths.erase(m_closesPaths.begin());
+
+	return nextPath;
+}
+
+int PathFinding::GetClosesPathSize() {
+
+	return (int)m_closesPaths.size();
 }
 
 void PathFinding::DrawDebug() {

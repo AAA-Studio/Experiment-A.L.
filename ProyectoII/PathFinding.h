@@ -4,7 +4,7 @@
 #include "checkML.h"
 #include "SearchCell.h"
 #include "MathCore.h"
-#include "Enemigo.h"
+// #include "Enemigo.h"
 // #include "Mapa.h"
 #include <vector>
 using namespace std;
@@ -30,20 +30,22 @@ public:
 
 	enum State {
 		INITIALIZE, 
+		SEARCHING, 
 		ERROR_GOAL_NOT_FOUND,
 		FOUND_GOAL,
-
-
+		NONE,
 	};
 
 	// Este metodo utiliza las coordenadas del enemigo y las del jugador para crear el camino optimo
 	void FindPath(Vector2 currentPos, Vector2 targetPos);
 	// Devuelve la posicion del camino mas corto
-	Vector2 NextPathPos(Enemigo *enemigo);
+	Vector2 NextPathPos(/*Enemigo *enemigo*/);
 	// Limpia las diferentes listas
 	void ClearOpenList() { m_openList.clear(); }
 	void ClearVisitedList() { m_visitedList.clear(); }
 	void ClearPathToGoal() { m_pathToGoal.clear(); }
+
+	void Initialize(Vector2 pStartPos, Vector2 pTargetPos);
 
 	void DrawDebug();
 	// Comprueba que se han inicializado el personaje
@@ -51,20 +53,27 @@ public:
 	// Personaje encontrado
 	bool m_foundGoal;
 
+	State GetpathState() { return m_pathState; }
 
 private:
 
 	void SetStartAndGoal(SearchCell start, SearchCell goal);
 	// Comprueba que la actual celda esta en m_openList
-	void PathOpened(int x, int y, float newCost, SearchCell *pPadre);
+	void PathOpened(float x, float y, float newCost, SearchCell *pPadre);
 	// Busca a lo largo del mundo el Goal para seguir en el camino optimo
 	void ContinuePath();
 
-	void Initialize(Vector2 pStartPos, Vector2 pTargetPos);
+	
 
 	void InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal);
 
 	void Iterate();
+
+	void Clear();
+
+	Vector2 GetNextClosesPoint();
+
+	int GetClosesPathSize();
 
 	// Mapa * _pGameWorld;
 

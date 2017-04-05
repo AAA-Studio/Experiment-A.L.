@@ -12,6 +12,17 @@ Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, v
 	m_currentIndex = (int)(rand() % waypoints.size() - 1);
 	m_idleTime = 3.0f;
 	m_waypoints = waypoints;
+	m_pathfinding = NULL;
+}
+
+Enemigo::~Enemigo()
+{
+	if (m_pathfinding) {
+		delete m_pathfinding;
+		m_pathfinding = NULL;
+
+	}
+
 }
 
 void Enemigo::Initialize() {
@@ -33,19 +44,32 @@ void Enemigo::Update() {
 	switch (m_currentState) {
 	case IDLE:
 		{
-			m_idleTime -= (float)SDL_GetTicks();
+			/*m_idleTime -= (float)SDL_GetTicks();
 			if (m_idleTime <= 0.0f) {
 
 				m_currentState = PATROL;
 				m_idleTime = 3.0f;
 				m_currentWayPoint = findNextWayPoints();
+			}*/
+
+			if (m_pathfinding->GetpathState() != PathFinding::SEARCHING) {
+				
+				m_currentWayPoint = findNextWayPoints();
+				m_pathfinding->Initialize(Vector2(m_entidad->getPosition().GetX(), m_entidad->getPosition().GetY()), m_currentWayPoint);
+
+				
 			}
+
+			if (m_pathfinding->GetpathState() == PathFinding::FOUND_GOAL) {
+				
+				m_currentState = PATROL;
+			}
+
 		}
 		break;
 
 	case PATROL: {
 
-			// Transform& transform = m_entidad->GetTransform();
 			m_maxVelocity = 75.0f;
 
 			// Posicion del enemigo
@@ -277,8 +301,4 @@ void Enemigo::CheckForTarget() {
 	}
 }*/
 
-Enemigo::~Enemigo()
-{
 
-
-}
