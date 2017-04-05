@@ -40,6 +40,10 @@ void Mundo::initObjetos()
 	llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
 	*/
 	//al principio del juego
+
+
+
+	//HACER UN SWITCH
 	int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
 
 	if (pJuego->getNivel() == 0){

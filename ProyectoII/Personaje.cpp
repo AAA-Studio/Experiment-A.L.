@@ -19,6 +19,8 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 	llaveCogida = false;
 	informeCogido = false;
 	vida = 3;
+	angulo = 90;
+
 }
 
 //Destructora
