@@ -82,7 +82,6 @@
     <ClCompile Include="Musica.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
-    <ClCompile Include="Tecla.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
@@ -107,7 +106,6 @@
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
     <ClInclude Include="PersonajeVirtual.h" />
-    <ClInclude Include="Tecla.h" />
     <ClInclude Include="TexturasSDL.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>

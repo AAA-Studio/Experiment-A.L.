@@ -13,7 +13,6 @@ public:
 	virtual void draw() const;
 	virtual void update();
 	virtual void onInput(SDL_Event &e);
-	int num;
 	~Combinaciones();
 
 protected:
@@ -23,6 +22,7 @@ protected:
 	string combTecleada; //combinacion tecleada por el jugador
 	string combinacion; //combinacion correcta
 	bool acierto;
+	int intentos;
 };
 #endif
 

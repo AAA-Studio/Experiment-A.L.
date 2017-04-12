@@ -1,5 +1,4 @@
 #include "Combinaciones.h"
-#include "Tecla.h"
 #include "Boton.h"
 #include <iostream>
 using namespace std;
@@ -20,7 +19,8 @@ Combinaciones::Combinaciones(Juego* juego)
 {
 	this->juego = juego;
 	acierto = false;
-	combinacion = "00";
+	combinacion = "1234";
+	combTecleada = "";
 	initObjetos();
 }
 
@@ -30,17 +30,32 @@ void Combinaciones::update(){
 
 	if (combinacion == combTecleada)
 		acierto = true;
+	if (intentos == 4)
+	{
+		combTecleada = "";
+		intentos = 0;
+	}
 }
 void Combinaciones::initObjetos(){
-	objetos.emplace_back(new Boton(juego, 200, 200, TExit, ENull, cero));
-
-	//objetos.emplace_back(new Tecla(juego, 100, 100, TExit, ENull, 0));
-}
+	objetos.emplace_back(new Boton(juego, 500, 200, TUno, ENull, uno));
+	objetos.emplace_back(new Boton(juego, 600, 200, TDos, ENull, dos));
+	objetos.emplace_back(new Boton(juego, 700, 200, TTres, ENull, tres));
+	objetos.emplace_back(new Boton(juego, 500, 300, TCuatro, ENull, cuatro));
+	objetos.emplace_back(new Boton(juego, 600, 300, TCinco, ENull, cinco));
+	objetos.emplace_back(new Boton(juego, 700, 300, TSeis, ENull, seis));
+	objetos.emplace_back(new Boton(juego, 500, 400, TSiete, ENull, siete));
+	objetos.emplace_back(new Boton(juego, 600, 400, TOcho, ENull, ocho));
+	objetos.emplace_back(new Boton(juego, 700, 400, TNueve, ENull, nueve));
+	objetos.emplace_back(new Boton(juego, 600, 500, TCero, ENull, cero));
+	}
 
 void Combinaciones::draw() const{
-	//for (int i = objetos.size() - 1; i >= 0; i--)
-		//objetos[i]->draw();
-	objetos[0]->draw();
+	/*SDL_Rect rect = { 500, 200, 225, 242 };
+	juego->getTextura(TTeclado)->draw(juego->getRender(), rect);*/
+
+	for (int i = objetos.size() - 1; i >= 0; i--)
+		objetos[i]->draw();
+	
 }
 
 void Combinaciones::onInput(SDL_Event &e){
@@ -55,6 +70,7 @@ void Combinaciones::onInput(SDL_Event &e){
 				objetos[i]->onInput();
 				if (juego->numero == i){
 					combTecleada += to_string(juego->numero);
+					intentos++;
 					cout << combTecleada;
 					if (acierto)
 						cout << "acierto";
