@@ -13,6 +13,7 @@ Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, v
 	m_idleTime = 3.0f;
 	m_waypoints = waypoints;
 	m_pathfinding = NULL;
+	m_currentWayPoint = NULL;
 }
 
 Enemigo::~Enemigo()
@@ -21,6 +22,12 @@ Enemigo::~Enemigo()
 		delete m_pathfinding;
 		m_pathfinding = NULL;
 
+	}
+
+	if (m_currentWayPoint) {
+	
+		delete m_currentWayPoint;
+		m_currentWayPoint = NULL;
 	}
 
 }
@@ -35,6 +42,8 @@ void Enemigo::Initialize() {
 	*/
 
 	m_maxVelocity = 50.0f;
+	m_pathfinding = new PathFinding();
+
 }
 
 void Enemigo::Update() {
@@ -54,11 +63,14 @@ void Enemigo::Update() {
 
 			if (m_pathfinding->GetpathState() != PathFinding::SEARCHING) {
 				
-				m_currentWayPoint = findNextWayPoints();
-				m_pathfinding->Initialize(Vector2(m_entidad->getPosition().GetX(), m_entidad->getPosition().GetY()), m_currentWayPoint);
+				Vector2 targetLocation = findNextWayPoints();
+				m_pathfinding->Initialize(Vector2(m_entidad->getPosition().GetX(),
+					m_entidad->getPosition().GetY()), targetLocation);
 
 				
 			}
+
+			m_pathfinding->Iterate();
 
 			if (m_pathfinding->GetpathState() == PathFinding::FOUND_GOAL) {
 				
@@ -72,10 +84,19 @@ void Enemigo::Update() {
 
 			m_maxVelocity = 75.0f;
 
+
+			if (m_currentWayPoint == NULL) 
+			{	
+				Vector2 closesPoint = m_pathfinding->GetNextClosesPoint();
+				m_currentWayPoint = new Vector2(closesPoint.GetX(), closesPoint.GetY());
+				
+				
+			}
 			// Posicion del enemigo
 			Vector2 position = m_entidad->getPosition();
 			// Distancia enemigo - personaje
-			Vector2 toTarget = m_currentWayPoint - Vector2 (position.GetX(), position.GetY());
+			Vector2 toTarget = Vector2(m_currentWayPoint->GetX(), m_currentWayPoint->GetY()) 
+				- Vector2(position.GetX(), position.GetY());
 			float distance = toTarget.Length;
 			if (distance != 0.0f) {
 				// Se acerca el enemigo al personaje
@@ -84,8 +105,16 @@ void Enemigo::Update() {
 			}
 
 			if (distance >= 4.0f) {
-				m_currentState = IDLE;
-				return;
+
+				delete m_currentWayPoint;
+				m_currentWayPoint = NULL;
+
+				if (m_pathfinding->GetClosesPathSize() == 0) {
+					
+					m_currentState = IDLE;
+
+					return;		
+				}
 			}
 
 			Vector2 velocity = toTarget * 50.0f;
@@ -98,7 +127,6 @@ void Enemigo::Update() {
 		break;
 
 	case CHASE:
-		{
 			m_maxVelocity = 150.0f;
 			SDL_Rect targetTransform = m_target->getRect();
 			
@@ -113,8 +141,8 @@ void Enemigo::Update() {
 			Vector2 toTarget = targetPosition - position;
 			float distance = toTarget.Length;
 			if (distance != 0.0f) {
-				/*toTarget.SetX(toTarget.GetX() / distance);
-				toTarget.SetY(toTarget.GetY() / distance);*/
+				// toTarget.SetX(toTarget.GetX() / distance);
+				// toTarget.SetY(toTarget.GetY() / distance);
 
 				toTarget /= distance;
 			}
@@ -128,7 +156,6 @@ void Enemigo::Update() {
 
 			position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
 			position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
-		}
 		break;
 	}
 
@@ -165,8 +192,9 @@ void Enemigo::CheckForTarget() {
 	Vector2 toTarget = targetPosition - position;
 	float distance = toTarget.Length;
 
-	if (distance <= 20.0f) {
+	if (distance <= 100.0f) {
 		m_currentState = CHASE;
+		m_pathfinding->Clear();
 	}
 }
 

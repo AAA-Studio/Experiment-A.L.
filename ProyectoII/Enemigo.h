@@ -48,7 +48,7 @@ protected:
 	Entidad * m_entidad;
 	State m_currentState;
 	vector <Vector2> m_waypoints; // Celdas por donde pasa el enmeigo
-	Vector2 m_currentWayPoint;
+	Vector2 * m_currentWayPoint;
 	Entidad* m_target;
 	int m_currentIndex;
 	float m_idleTime;

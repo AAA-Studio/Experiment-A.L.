@@ -70,9 +70,9 @@ void PathFinding::Iterate() {
 
 		m_goalCell->SetParent(currentCell);
 
-		for (SearchCell * it = m_goalCell; iter; iter = iter->GetParent()) {
-			m_closesPaths.push_back(Vector2(iter->GetCellX() * (float)/*TileManager::TILE_WIDTH*/1, 
-				iter->GetCellY() * (float)/*TileManager::TILE_HEIGHT*/1));
+		for (SearchCell * iter = m_goalCell; iter; iter = iter->GetParent()) {
+			m_closesPaths.push_back(Vector2(iter->GetCellX() * (float)/*(TileManager::TILE_WIDTH/2.0f)*/1, 
+				iter->GetCellY() * (float)/*(TileManager::TILE_HEIGHT/2.0f)*/1));
 		}
 	}
 
@@ -332,9 +332,9 @@ Vector2 PathFinding::NextPathPos(/*Enemigo  *enemigo*/) {
 
 Vector2 PathFinding::GetNextClosesPoint() {
 
-	Vector2 nextPath = m_closesPaths[0];
+	Vector2 nextPath = m_closesPaths[m_closesPaths.size()-1];
 
-	m_closesPaths.erase(m_closesPaths.begin());
+	m_closesPaths.erase(m_closesPaths.begin() + m_closesPaths.size() - 1);
 
 	return nextPath;
 }

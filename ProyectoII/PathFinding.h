@@ -4,6 +4,7 @@
 #include "checkML.h"
 #include "SearchCell.h"
 #include "MathCore.h"
+#include "Entidad.h"
 // #include "Enemigo.h"
 // #include "Mapa.h"
 #include <vector>
@@ -55,6 +56,14 @@ public:
 
 	State GetpathState() { return m_pathState; }
 
+	Vector2 GetNextClosesPoint();
+
+	int GetClosesPathSize();
+
+	void Iterate();
+
+	void Clear();
+
 private:
 
 	void SetStartAndGoal(SearchCell start, SearchCell goal);
@@ -63,17 +72,8 @@ private:
 	// Busca a lo largo del mundo el Goal para seguir en el camino optimo
 	void ContinuePath();
 
-	
-
 	void InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal);
 
-	void Iterate();
-
-	void Clear();
-
-	Vector2 GetNextClosesPoint();
-
-	int GetClosesPathSize();
 
 	// Mapa * _pGameWorld;
 
