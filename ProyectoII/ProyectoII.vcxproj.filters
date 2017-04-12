@@ -40,6 +40,12 @@
     <Filter Include="Archivos de encabezado\Pathfinding">
       <UniqueIdentifier>{2cfa9ad6-f896-4d98-bc3f-91584cf70d39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\StateMachine">
+      <UniqueIdentifier>{0951e8ce-1c70-44e7-9821-a35012dae055}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de código fuente\StateMachine">
+      <UniqueIdentifier>{55ad8956-68bf-466b-a1e9-1d715bdce9b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -86,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="PathFinding.cpp">
       <Filter>Archivos de código fuente\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +160,12 @@
     </ClInclude>
     <ClInclude Include="Rectangle.h">
       <Filter>Archivos de encabezado\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Archivos de encabezado\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

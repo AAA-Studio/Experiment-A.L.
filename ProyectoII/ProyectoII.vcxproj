@@ -80,6 +80,7 @@
     <ClCompile Include="PathFinding.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +104,8 @@
     <ClInclude Include="Personaje.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="SearchCell.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="TexturasSDL.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
