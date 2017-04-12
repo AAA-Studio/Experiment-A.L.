@@ -39,7 +39,7 @@ const int TAMAÑO_LLAVES = 1;
 enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
-enum Estados_t{MInicio,MGameOver,MPausa,MundoReal,MundoOscuro};
+enum Estados_t{MInicio, MGameOver, MPausa, MundoReal, MundoOscuro, ECombinaciones};
 
 //----------------------------------------------------
 
@@ -119,6 +119,11 @@ public:
 
 	string SelectorDeNiveles();
 	int indiceMapas=1;
+
+	//numero tecleado para las combinaciones
+	int numero;
+	
+
 private:
 
 	//Atributos

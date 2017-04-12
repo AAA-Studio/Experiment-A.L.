@@ -69,6 +69,7 @@
   <ItemGroup>
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Boton.cpp" />
+    <ClCompile Include="Combinaciones.cpp" />
     <ClCompile Include="Entidad.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
@@ -81,6 +82,7 @@
     <ClCompile Include="Musica.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
+    <ClCompile Include="Tecla.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
@@ -88,6 +90,7 @@
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="checkML.h" />
+    <ClInclude Include="Combinaciones.h" />
     <ClInclude Include="Entidad.h" />
     <ClInclude Include="EntidadJuego.h" />
     <ClInclude Include="Error.h" />
@@ -104,6 +107,7 @@
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
     <ClInclude Include="PersonajeVirtual.h" />
+    <ClInclude Include="Tecla.h" />
     <ClInclude Include="TexturasSDL.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>

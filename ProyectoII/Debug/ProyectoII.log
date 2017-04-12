@@ -1,11 +1,14 @@
-﻿Build started 05/04/2017 15:25:37.
-     1>Project "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" on node 2 (Build target(s)).
+﻿Compilación iniciada a las 12/04/2017 19:42:59.
+     1>Proyecto "C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\ProyectoII\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Personaje.cpp
-         Personaje.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Combinaciones.cpp
+         Combinaciones.cpp
+     1>c:\users\blanca\documents\universidad\segundo\proyectoii\proyectoii\proyectoii\combinaciones.cpp(28): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\blanca\documents\universidad\segundo\proyectoii\proyectoii\proyectoii\combinaciones.cpp(53): warning C4018: '<' : no coinciden signed/unsigned
        Link:
-         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Bala.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\ProyectoII\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\ProyectoII\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\ProyectoII\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Bala.obj
          Debug\Boton.obj
+         Debug\Combinaciones.obj
          Debug\Entidad.obj
          Debug\Fuente.obj
          Debug\GameOver.obj
@@ -18,11 +21,12 @@
          Debug\Musica.obj
          Debug\Pausa.obj
          Debug\Personaje.obj
+         Debug\Tecla.obj
          Debug\TexturasSDL.obj
          Debug\Tile.obj
-         ProyectoII.vcxproj -> C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe
-     1>Done Building Project "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build target(s)).
+         ProyectoII.vcxproj -> C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\ProyectoII\bin\ProyectoIIDebug.exe
+     1>Compilación del proyecto terminada "C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\ProyectoII\ProyectoII\ProyectoII.vcxproj" (Build destinos).
 
-Build succeeded.
+Compilación correcta.
 
-Time Elapsed 00:00:00.65
+Tiempo transcurrido 00:00:00.76

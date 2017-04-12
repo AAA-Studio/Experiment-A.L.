@@ -7,6 +7,7 @@
 #include "GameOver.h"
 #include "Pausa.h"
 #include "Mundo.h"
+#include "Combinaciones.h"
 
 using namespace std; // Para cualificar automaticamente con std:: los identificadores de la librería estandar 
 
@@ -37,7 +38,8 @@ Juego::Juego()
 		llavesCogidas[i] = false;
 
 	estadoEnum = MInicio;
-	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
+	//vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
+	vectorEstados.push_back(new Combinaciones(this));//
 	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
 
 }
@@ -82,6 +84,9 @@ void Juego::gestionaEstados(Estados_t estado){
 		//Mundos
 	case MundoReal:
 		aux = new Mundo(this,SelectorDeNiveles());
+		break;
+	case ECombinaciones:
+		aux = new Combinaciones(this);
 		break;
 
 	default:

@@ -12,7 +12,7 @@ public:
 	~Boton();
 	virtual void onInput();
 
-private:
+protected:
 	CallBack_t * cboton;
 	bool dentro(int x, int y)const;//Comprueba si se ha hecho click en el objeto
 };

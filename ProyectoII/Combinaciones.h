@@ -3,6 +3,7 @@
 #include "EstadoJuego.h"
 #include "EntidadJuego.h"
 #include "Juego.h"
+#include <string>
 
 class Combinaciones : public EstadoJuego
 {
@@ -12,13 +13,16 @@ public:
 	virtual void draw() const;
 	virtual void update();
 	virtual void onInput(SDL_Event &e);
-
+	int num;
 	~Combinaciones();
 
 protected:
 	void initObjetos();
 	vector <EntidadJuego*> objetos;
 	Juego* juego;
+	string combTecleada; //combinacion tecleada por el jugador
+	string combinacion; //combinacion correcta
+	bool acierto;
 };
 #endif
 
