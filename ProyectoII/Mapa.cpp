@@ -8,6 +8,7 @@ Mapa::Mapa(MundoVirtual *pM, string mapa)
 	pJuego = pMundo->getPJ();
 	nombreMapa = mapa;
 	cargarMapa();
+	buscaSpawn();
 }
 
 
@@ -98,14 +99,64 @@ bool Mapa::cargarMapa()
 	}
 }
 
-void  Mapa::buscaSpawn(int tipo, int& x, int& y){
-	for (int i = 0; i < TOTAL_TILES; ++i)
+void  Mapa::buscaSpawn(){
+	int i = 0;
+	bool encontrado = false;
+	int tipo = 0;
+
+	if (pJuego->getNivel() == 0){
+		x = 300;
+		y = 300;
+		encontrado = true;
+	}
+	//sale en el spawn gris
+	if (pJuego->getNivel() == -1)
+		tipo = 185;
+	//spawn rojo
+	if (pJuego->getNivel() == 1)
+		tipo = 180;
+	
+	//spawn rosa
+	if (pJuego->getNivel() == 2)
+		tipo = 191;
+	
+	//spawn morado
+	if (pJuego->getNivel() == -2)
+		tipo = 184;
+	
+	//spawn azul oscuro
+	if (pJuego->getNivel() == 3)
+		tipo = 190;
+	
+	//spawn pistacho
+	if (pJuego->getNivel() == -3)
+		tipo = 188;
+	
+	//spawn marrón
+	if (pJuego->getNivel() == 4)
+		tipo = 183;
+	
+	//spawn burdeos
+	if (pJuego->getNivel() == -4)
+		tipo = 189;
+	
+	//spawn verde
+	if (pJuego->getNivel() == 5)
+		tipo = 181;
+	
+	//spawn azul
+	if (pJuego->getNivel() == -5)
+		tipo = 182;
+	
+	while (!encontrado && i < TOTAL_TILES)
 	{
 		if (tileMap[i]->getType() == tipo){
 			SDL_Rect rect = tileMap[i]->getBox();
 			x = rect.x + rect.w/3;
 			y = rect.y + rect.h/3;
+			encontrado = true;
 		}
+		i++;
 	}
 }
 
@@ -120,65 +171,50 @@ bool Mapa::touchesWall(SDL_Rect box)
 		//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
 		//PUERTA ROJA
 		if ((tileMap[i]->getType() == 150))
-
 		{
-
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MundoReal;
 				pJuego->setNivel(-1);
 				return true;
-
 			}
-
 		}
 		//PUERTA GRIS
 		if ((tileMap[i]->getType() == 155))
-
 		{
-
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MundoReal;
 				pJuego->setNivel(1);
 				return true;
-
 			}
 
 		}
 		//PUERTA MORADA
 		if ((tileMap[i]->getType() == 154))
-
 		{
-
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MundoReal;
 				pJuego->setNivel(2);
 				return true;
-
 			}
 
 		}
 		//PUERTA ROSA
 		if ((tileMap[i]->getType() == 140))
-
 		{
-
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MundoReal;
 				pJuego->setNivel(-2);
 				return true;
-
 			}
 
 		}
 		//PUERTA PISTACHO
 		if ((tileMap[i]->getType() == 158))
-
 		{
-
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MundoReal;
@@ -190,9 +226,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 		}
 		//PUERTA AZUL OSCURO
 		if ((tileMap[i]->getType() == 165))
-
 		{
-
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MundoReal;
@@ -204,9 +238,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 		}
 		//PUERTA BURDEOS
 		if ((tileMap[i]->getType() == 159))
-
 		{
-
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MundoReal;
@@ -218,7 +250,6 @@ bool Mapa::touchesWall(SDL_Rect box)
 		}
 		//PUERTA MARRÓN
 		if ((tileMap[i]->getType() == 153))
-
 		{
 
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
@@ -232,7 +263,6 @@ bool Mapa::touchesWall(SDL_Rect box)
 		}
 		//PUERTA AZUL
 		if ((tileMap[i]->getType() == 152))
-
 		{
 
 			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
@@ -246,9 +276,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 		}
 		// PUERTA VERDE
 			if ((tileMap[i]->getType() == 151))
-
 			{
-
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 					pJuego->borraEstado = true;
 					pJuego->estadoEnum = MundoReal;
@@ -288,12 +316,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 
 		{
 			//Si se choca con la pared
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-
+			if (pMundo->checkCollision(box, tileMap[i]->getBox()))
 				return true;
-
-			}
-
 		}
 	}
 
@@ -304,8 +328,6 @@ bool Mapa::touchesWall(SDL_Rect box)
 
 void Mapa::draw()const{
 	for (int i = 0; i < TOTAL_TILES; ++i)
-	{
 		tileMap[i]->render(camera);
-	}
-
+	
 }

@@ -16,12 +16,14 @@ public:
 	//Checks collision box against set of tiles
 	bool touchesWall(SDL_Rect box);
 	void draw()const;
-	void buscaSpawn(int tipo, int& x, int& y);
 
 
 	//--------------------GETTER----------------
 	inline Tile** getTileMap() { return tileMap; };
 	inline SDL_Rect getCamera() const{ return camera; };
+	inline int getXSpawn() const{ return x; };
+	inline int getYSpawn() const{ return y; };
+
 
 private:
 	MundoVirtual * pMundo;
@@ -32,6 +34,10 @@ private:
 	Tile* tileMap[TOTAL_TILES];
 
 	bool cargarMapa();
+	void buscaSpawn();
+
+	int x, y;
+
 	int nivel = 0;
 };
 #endif

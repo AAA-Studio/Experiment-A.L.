@@ -46,80 +46,10 @@ void Mundo::initObjetos()
 	//HACER UN SWITCH
 	int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
 
-	if (pJuego->getNivel() == 0){
-		x = 300;
-		y = 300;
-		psj = new Personaje(this, x, y, TJugador, ENull);
-	}
-	//sale en el spawn gris
-	if (pJuego->getNivel() == -1){
+	x = mapa->getXSpawn();
+	y = mapa->getYSpawn();
+	psj = new Personaje(this, x, y, TJugador, ENull);
 
-		mapa->buscaSpawn(185, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-		
-	}//spawn rojo
-	if (pJuego->getNivel() == 1){
-
-		mapa->buscaSpawn(180, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-
-	}
-	//spawn rosa
-	if (pJuego->getNivel() == 2){
-
-		mapa->buscaSpawn(191, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-
-	}
-	//spawn morado
-	if (pJuego->getNivel() == -2){
-
-		mapa->buscaSpawn(184, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-
-	}
-	//spawn azul oscuro
-	if (pJuego->getNivel() == 3){
-
-		mapa->buscaSpawn(190, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-
-	}
-	//spawn pistacho
-	if (pJuego->getNivel() == -3){
-
-		mapa->buscaSpawn(188, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-
-	}
-	//spawn marrón
-	if (pJuego->getNivel() == 4){
-
-		mapa->buscaSpawn(183, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-
-	}
-	//spawn burdeos
-	if (pJuego->getNivel() == -4){
-
-		mapa->buscaSpawn(189, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-
-	}
-	//spawn verde
-	if (pJuego->getNivel() == 5){
-
-		mapa->buscaSpawn(181, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-
-	}
-	//spawn azul
-	if (pJuego->getNivel() == -5){
-
-		mapa->buscaSpawn(182, x, y);
-		psj = new Personaje(this, x, y, TJugador, ENull);
-
-	}
 
 	//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));
 }
@@ -165,7 +95,7 @@ void Mundo::draw()const{
 
 	psj->draw();
 
-	pJuego->getTextura(TFuente)->render(pJuego->getRender(), 50, 50, "HOLA :)", pJuego->getFuente());
+	pJuego->escribir("HOLA :)",50, 50);
 
 }
 
@@ -184,6 +114,12 @@ void Mundo::update(){
 		it++;
 
 	}
+
+	//if ()
+
+
+
+
 
 
 	//ESTO ES PARA ENEMIGO

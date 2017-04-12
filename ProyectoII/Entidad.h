@@ -17,8 +17,8 @@ public:
 	virtual void onInput() {};
 	virtual void update() {};
 
-	SDL_Rect getRect()const{ return rect; };
-	Objetos_t getType() const  { return type; };
+	inline SDL_Rect getRect()const{ return rect; };
+	inline Objetos_t getType() const  { return type; };
 
 
 protected:

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef Tile_H
+#define Tile_H
 #include <SDL.h>
 #include "Juego.h"
 class Tile
@@ -25,3 +26,4 @@ private:
 	//The tile type
 	int mType;
 };
+#endif

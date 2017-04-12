@@ -15,6 +15,7 @@
 
 int main(int argc, char* args[]){
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // Detector de basura
+	//_CrtDumpMemoryLeaks();// para que muestre la basura
 
 	//Supuestamente libera los recursos si falla, no lo se
 	try{

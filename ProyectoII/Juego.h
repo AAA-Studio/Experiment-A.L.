@@ -80,12 +80,9 @@ public:
 
 	//---------------GETTER----------------------
 
-
 	//Dibujado
 	inline SDL_Renderer * getRender() const{ return pRenderer; };
 	inline TexturasSDL * getTextura(Texturas_t et) const { return texturas[et]; }
-
-
 
 	//Musica
 	inline Efecto * getEfecto(Efectos_t et) const { return efectos[et]; }
@@ -111,6 +108,12 @@ public:
 	void recortarTiles();
 
 	//---------------------------------------
+
+	void escribir(string texto, int x, int y){
+		getTextura(TFuente)->render(pRenderer, x, y, texto, fuente);
+
+
+	}
 
 	bool borraEstado;
 	Estados_t estadoEnum;

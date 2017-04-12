@@ -1,6 +1,4 @@
 #include "Tile.h"
-#include "Mundo.h"
-
 
 Tile::Tile(int x, int y, int tileType, Juego * pJ)
 {
