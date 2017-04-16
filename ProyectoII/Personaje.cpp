@@ -154,7 +154,6 @@ void Personaje::onInput()
 
 void Personaje::move(int x, int y)
 {
-
 	rect.x += x;
 
 	//--------------------------------
@@ -167,7 +166,6 @@ void Personaje::move(int x, int y)
 	{
 		rect.x -= x;
 	}
-
 	rect.y += y;
 	if (static_cast<Mundo*> (pJuego->topEstado())->getMapa()->touchesWall(rect))
 	{

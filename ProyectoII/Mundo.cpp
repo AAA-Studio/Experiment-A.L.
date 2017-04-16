@@ -13,7 +13,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	pausa = false;
 	mapa = new Mapa(this, m);
 	initObjetos();
-
+	cargaObjetos();
 	//pJuego->getMusica(MPlay)->play();
 }
 
@@ -21,13 +21,37 @@ Mundo::Mundo(Juego * pJ, string m)
 Mundo::~Mundo()
 {
 	freeObjetos();
-
 }
 
 static void goPlay(Juego * pj){
 
 };
+void Mundo::cargaObjetos(){
+	string objetos = pJuego->dameObjetos();
+	std::ifstream obj(objetos);
+	if (!obj.is_open())
+	{
+		printf("Unable to load map file!\n");
+	}
+	hayObj = false;
+	while (obj.peek() != EOF){
+		string nombre;
+		int y, x;
+		obj >> nombre;
+		if (nombre == "LLAVE"){
+			obj >> x >> y;
+			llaves.push_back(new Entidad(pJuego, x, y, TLlave, ENull, OLlave));
+			hayObj = true;
+		}
+		else if (nombre == "Enemy"){
+			obj >> x >> y;
+			llaves.push_back(new Entidad(pJuego, x, y, TLlave, ENull, OLlave));
+			hayObj = true;
+		}
+	}
 
+	obj.close();
+}
 //Crea las texturas para los globos y todos los globos
 void Mundo::initObjetos()
 {
@@ -123,7 +147,6 @@ void Mundo::initObjetos()
 
 	//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));
 }
-
 void Mundo::freeObjetos(){
 	delete psj;
 	psj = nullptr;
@@ -133,7 +156,6 @@ void Mundo::freeObjetos(){
 		delete(objetos[i]);
 		objetos[i] = nullptr;
 	}
-
 	list<EntidadJuego*>::iterator it = llaves.begin();
 	while (!llaves.empty() && it != llaves.end())//Se destruyen las llaves
 	{
@@ -141,7 +163,6 @@ void Mundo::freeObjetos(){
 		*it = nullptr;
 		llaves.erase(it);
 	}
-
 }
 
 

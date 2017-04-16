@@ -111,7 +111,7 @@ public:
 	void recortarTiles();
 
 	//---------------------------------------
-
+	string dameObjetos(){ return nombreObjetos[0]; }
 	bool borraEstado;
 	Estados_t estadoEnum;
 
@@ -126,7 +126,7 @@ private:
 	bool exit;
 	int posMouseX, posMouseY;
 	vector <string> nombreMapas;
-	
+	vector <string> nombreObjetos;
 
 	SDL_Window *pWin;//Puntero de la ventana
 	SDL_Renderer *pRenderer;//Puntero del renderizador

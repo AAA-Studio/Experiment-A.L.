@@ -22,7 +22,6 @@ Juego::Juego()
 
 	//Rectángulo de la ventana
 	winRect = { 200, 200, SCREEN_WIDTH, SCREEN_HEIGHT };
-
 	initSDL();//Inicializamos el renderizador
 
 	nombreMapas = { "..\\bmps\\Habitaciones\\pasillo.csv", "..\\bmps\\Habitaciones\\hab.csv",
@@ -30,7 +29,7 @@ Juego::Juego()
 		"..\\bmps\\Habitaciones\\baño.csv", "..\\bmps\\Habitaciones\\haboscura.csv",
 		"..\\bmps\\Habitaciones\\hab2oscuro.csv", "..\\bmps\\Habitaciones\\hab3oscuro.csv",
 		"..\\bmps\\Habitaciones\\hab4oscuro.csv", "..\\bmps\\Habitaciones\\bañooscuro.csv" };
-
+	nombreObjetos = { "..\\bmps\\Objetos\\Objetos1.csv"};
 	initMedia();
 
 	for (int i = 0; i < TAMAÑO_LLAVES; i++)

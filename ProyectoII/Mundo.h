@@ -45,12 +45,11 @@ private:
 	bool pausa;
 	const Uint32 duracion = 3000;
 	Uint32 time;
-
+	bool hayObj;
 	//-------------------METODOS-------------------
-
+	void cargaObjetos();
 	void initObjetos();
 	void freeObjetos();
-
 };
 
 #endif
