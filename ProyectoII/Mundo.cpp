@@ -28,28 +28,68 @@ static void goPlay(Juego * pj){
 };
 void Mundo::cargaObjetos(){
 	string objetos = pJuego->dameObjetos();
+	int nivel = pJuego->indiceMapas;
 	std::ifstream obj(objetos);
 	if (!obj.is_open())
 	{
 		printf("Unable to load map file!\n");
 	}
 	hayObj = false;
-	while (obj.peek() != EOF){
-		string nombre;
-		int y, x;
-		obj >> nombre;
-		if (nombre == "LLAVE"){
-			obj >> x >> y;
-			llaves.push_back(new Entidad(pJuego, x, y, TLlave, ENull, OLlave));
-			hayObj = true;
-		}
-		else if (nombre == "Enemy"){
-			obj >> x >> y;
-			llaves.push_back(new Entidad(pJuego, x, y, TLlave, ENull, OLlave));
-			hayObj = true;
-		}
-	}
+	bool hecho = false;
+	string nombre;
+	int i = 1;
+	while (obj.peek() != EOF && !hecho){	
+		
+		
+		if (i == 1)
+			obj >> nombre;
 
+		int y, x, lvl;
+		if (nombre == "NIVEL"){
+
+			obj >> lvl;
+
+			if (nivel == lvl){
+
+				obj >> nombre;
+
+				while (obj.peek() != EOF && nombre != "NIVEL"){
+					if (nombre == "LLAVE"){
+
+						obj >> x >> y;
+						llaves.push_back(new Entidad(pJuego, x, y, TLlave, ENull, OLlave));
+						hayObj = true;
+
+					}
+					else if (nombre == "Enemy"){
+
+						obj >> x >> y;
+						llaves.push_back(new Entidad(pJuego, x, y, TLlave, ENull, OLlave));
+						hayObj = true;
+
+					}
+
+					obj >> nombre;
+
+				}
+
+				hecho = true;
+			}
+			else{
+				obj >> nombre;
+				while (obj.peek() != EOF && nombre != "NIVEL"){
+					if (nombre == "LLAVE"){
+						obj >> x >> y;
+					}
+					else if (nombre == "Enemy"){
+						obj >> x >> y;
+					}
+					obj >> nombre;
+				}
+			}
+		}
+		i++;
+	}
 	obj.close();
 }
 //Crea las texturas para los globos y todos los globos
@@ -156,13 +196,14 @@ void Mundo::freeObjetos(){
 		delete(objetos[i]);
 		objetos[i] = nullptr;
 	}
+	/*
 	list<EntidadJuego*>::iterator it = llaves.begin();
 	while (!llaves.empty() && it != llaves.end())//Se destruyen las llaves
 	{
 		delete(*it);
 		*it = nullptr;
 		llaves.erase(it);
-	}
+	}*/
 }
 
 
