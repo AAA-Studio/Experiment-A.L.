@@ -8,7 +8,7 @@ template<class character_type>
 class StateMachine
 {
 public:
-	StateMachine();
+	StateMachine(character_type* pOwner);
 	~StateMachine();
 
 	void Update(); 
@@ -16,7 +16,7 @@ public:
 	void ChangeState(State<character_type>* state);
 	void RevertToPreviousState();
 
-	void SetCurrentState(State <character_type>* state);
+	// void SetCurrentState(State <character_type>* state);
 	void SetGlobalState(State <character_type>* state);
 	void SetPreviousState(State <character_type>* state);
 

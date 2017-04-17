@@ -93,7 +93,19 @@
     <ClCompile Include="PathFinding.cpp">
       <Filter>Archivos de código fuente\Pathfinding</Filter>
     </ClCompile>
+    <ClCompile Include="PatrolState.cpp">
+      <Filter>Archivos de código fuente\StateMachine</Filter>
+    </ClCompile>
     <ClCompile Include="StateMachine.cpp">
+      <Filter>Archivos de código fuente\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>Archivos de código fuente\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="ChaseState.cpp">
+      <Filter>Archivos de código fuente\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemigoIA.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
@@ -165,6 +177,18 @@
       <Filter>Archivos de encabezado\StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="StateMachine.h">
+      <Filter>Archivos de encabezado\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="PatrolState.h">
+      <Filter>Archivos de encabezado\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>Archivos de encabezado\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaseState.h">
+      <Filter>Archivos de encabezado\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemigoIA.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

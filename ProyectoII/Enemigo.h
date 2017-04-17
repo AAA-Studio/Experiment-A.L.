@@ -35,6 +35,7 @@ public:
 	virtual void Initialize();
 	virtual void Update();
 	void SetTarget(Entidad*  target) { m_target = target; }
+	Vector2 findNextWayPoints();
 	
 	Vector2 pos;
 	double radius;
@@ -43,7 +44,7 @@ protected:
 
 	void CheckForTarget();
 
-	Vector2 findNextWayPoints();
+	
 	
 	Entidad * m_entidad;
 	State m_currentState;
