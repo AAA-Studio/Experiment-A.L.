@@ -148,7 +148,9 @@ void  Mapa::buscaSpawn(){
 	//spawn azul
 	if (pJuego->getNivel() == -5)
 		tipo = 182;
-
+	//spawn en espejo
+	if (pJuego->indiceMapas<6 && pJuego->getNivel() == -6)
+		tipo = 139;
 	//------------------------------------------------------------------------------------//
 	//                                      MUNDO OSCURO								  //
 	//------------------------------------------------------------------------------------//
@@ -158,8 +160,36 @@ void  Mapa::buscaSpawn(){
 	//spawn azul en oscuro
 	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -5)
 		tipo = 377;
-	if (pJuego->indiceMapas<6 && pJuego->getNivel() == -6)
-		tipo = 139;
+	//spawn verde en oscuro
+	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 5)
+		tipo = 376;
+	//spawn rojo en oscuro
+	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 1)
+		tipo = 375;
+	//spawn gris en oscuro
+	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -1)
+		tipo = 380;
+	//spawn morado en oscuro
+	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -2)
+		tipo = 379;
+	//spawn rosa en oscuro
+	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 2)
+		tipo = 386;
+	//spawn burdeos en oscuro
+	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -4)
+		tipo = 384;
+	//spawn pistacho en oscuro
+	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -3)
+		tipo = 383;
+	//spawn azul oscuro en oscuro
+	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 3)
+		tipo = 385;
+	//spawn pistacho en oscuro
+	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 4)
+		tipo = 378;
+	
+
+
 
 	while (!encontrado && i < TOTAL_TILES)
 	{
@@ -323,8 +353,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 
 			//If the tile is a wall type tile
 			//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
-			//PUERTA ROJA
-			if ((tileMap[i]->getType() == 150))
+			//PUERTA ROJA (OSCURO)
+			if ((tileMap[i]->getType() == 345))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 					pJuego->borraEstado = true;
@@ -333,8 +363,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 					return true;
 				}
 			}
-			//PUERTA GRIS
-			if ((tileMap[i]->getType() == 155))
+			//PUERTA GRIS (OSCURO)
+			if ((tileMap[i]->getType() == 350))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 					pJuego->borraEstado = true;
@@ -344,8 +374,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 				}
 
 			}
-			//PUERTA MORADA
-			if ((tileMap[i]->getType() == 154))
+			//PUERTA MORADA (OSCURO)
+			if ((tileMap[i]->getType() == 349))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 					pJuego->borraEstado = true;
@@ -355,8 +385,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 				}
 
 			}
-			//PUERTA ROSA
-			if ((tileMap[i]->getType() == 140))
+			//PUERTA ROSA (OSCURO)
+			if ((tileMap[i]->getType() == 335))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 					pJuego->borraEstado = true;
@@ -366,8 +396,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 				}
 
 			}
-			//PUERTA PISTACHO
-			if ((tileMap[i]->getType() == 158))
+			//PUERTA PISTACHO (OSCURO)
+			if ((tileMap[i]->getType() == 353))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 					pJuego->borraEstado = true;
@@ -378,8 +408,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 				}
 
 			}
-			//PUERTA AZUL OSCURO
-			if ((tileMap[i]->getType() == 165))
+			//PUERTA AZUL OSCURO (OSCURO)
+			if ((tileMap[i]->getType() == 360))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 					pJuego->borraEstado = true;
@@ -390,8 +420,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 				}
 
 			}
-			//PUERTA BURDEOS
-			if ((tileMap[i]->getType() == 159))
+			//PUERTA BURDEOS (OSCURO)
+			if ((tileMap[i]->getType() == 354))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 					pJuego->borraEstado = true;
@@ -403,7 +433,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 
 			}
 			//PUERTA MARRÓN
-			if ((tileMap[i]->getType() == 153))
+			if ((tileMap[i]->getType() == 348))
 			{
 
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
@@ -415,8 +445,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 				}
 
 			}
-			//PUERTA AZUL
-			if ((tileMap[i]->getType() == 152))
+			//PUERTA AZUL (OSCURO)
+			if ((tileMap[i]->getType() == 347))
 			{
 
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
@@ -428,7 +458,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 				}
 
 			}
-			// PUERTA VERDE OSCURO
+			// PUERTA VERDE (OSCURO)
 			if ((tileMap[i]->getType() == 346))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
@@ -441,7 +471,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 
 			}
 
-			// ESPEJO OSCURO
+			// ESPEJO (OSCURO)
 			if ((tileMap[i]->getType() == 309))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
@@ -506,12 +536,16 @@ bool Mapa::touchesWall(SDL_Rect box)
 				&& tileMap[i]->getType() != 309
 				&& tileMap[i]->getType() != 376
 				&& tileMap[i]->getType() != 334
+				&& tileMap[i]->getType() != 375
 				&& tileMap[i]->getType() != 377
+				&& tileMap[i]->getType() != 378
 				&& tileMap[i]->getType() != 379
 				&& tileMap[i]->getType() != 380
 				&& tileMap[i]->getType() != 382
 				&& tileMap[i]->getType() != 384
 				&& tileMap[i]->getType() != 383
+				&& tileMap[i]->getType() != 385
+				&& tileMap[i]->getType() != 386
 ))
 
 		{
