@@ -4,17 +4,18 @@
 #include "State.h" 
 #include "PathFinding.h"
 
-template<class character_type>
 
-class IdleState : public State<character_type>
+class EnemigoIA;
+
+class IdleState : public State<EnemigoIA>
 {
 public:
 	IdleState();
 	~IdleState();
 
-	void Enter(character_type * character);
-	void Execute(character_type * character);
-	void Exit(character_type * character);
+	void Enter(EnemigoIA * character);
+	void Execute(EnemigoIA * character);
+	void Exit(EnemigoIA * character);
 
 private:
 

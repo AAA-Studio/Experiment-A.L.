@@ -3,15 +3,16 @@
 
 #include "State.h" 
 
-template<class character_type>
-class ChaseState: public State<character_type>
+class EnemyIA;
+
+class ChaseState : public State<EnemyIA>
 {
 public:
 	ChaseState();
 	~ChaseState();
 
-	void Enter(character_type * character);
-	void Execute(character_type * character);
-	void Exit(character_type * character);
+	void Enter(EnemyIA * character);
+	void Execute(EnemyIA * character);
+	void Exit(EnemyIA * character);
 };
 #endif

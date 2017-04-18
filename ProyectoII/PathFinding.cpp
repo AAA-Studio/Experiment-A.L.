@@ -358,6 +358,11 @@ void PathFinding::DrawDebug() {
 	}
 }
 
+vector<Vector2> PathFinding::GetClosesPath() {
+
+	return m_closesPaths;
+}
+
 PathFinding::~PathFinding()
 {
 	// Clear();

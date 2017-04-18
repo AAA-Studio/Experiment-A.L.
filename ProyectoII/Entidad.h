@@ -33,6 +33,8 @@ public:
 	}
 
 	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto);
+	// Mal menor para terminar Enemigo
+	Entidad();
 	virtual ~Entidad();
 
 };

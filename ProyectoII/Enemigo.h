@@ -28,24 +28,24 @@ public:
 		CHASE,
 	};
 
-	Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints);
+	// Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints);
+	Enemigo();
+	Enemigo(Entidad* pEntidad, vector <Vector2> waypoints);
 	virtual ~Enemigo();
 
 	//virtual void Draw();
-	virtual void Initialize();
-	virtual void Update();
+	void Initialize();
+	void Update();
 	void SetTarget(Entidad*  target) { m_target = target; }
 	Vector2 findNextWayPoints();
 	
 	Vector2 pos;
 	double radius;
 
+	bool IsWithinRangeOfTarget(float minDistance);
+
 protected: 
 
-	void CheckForTarget();
-
-	
-	
 	Entidad * m_entidad;
 	State m_currentState;
 	vector <Vector2> m_waypoints; // Celdas por donde pasa el enmeigo
@@ -63,7 +63,7 @@ protected:
 
 private: 
 
-	PathFinding * m_pathfinding;
+	// PathFinding * m_pathfinding;
 	bool hasBeenHit;
 	bool isAtGoal;
 	bool lockedGuard;

@@ -5,24 +5,24 @@
 #include <gl/GL.h> // Core Opengl functions
 
 
-Enemigo::Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints) : Entidad(pJ, x, y, textura, efecto)
+Enemigo::Enemigo(/*Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints*/Entidad* pEntidad, vector <Vector2> waypoints) /*: Entidad(pJ, x, y, textura, efecto)*/
 {
 	m_currentState = IDLE;
 	m_velocity.m_x = m_velocity.m_y = m_maxVelocity;
 	m_currentIndex = (int)(rand() % waypoints.size() - 1);
 	m_idleTime = 3.0f;
 	m_waypoints = waypoints;
-	m_pathfinding = NULL;
+	// m_pathfinding = NULL;
 	m_currentWayPoint = NULL;
 }
 
 Enemigo::~Enemigo()
 {
-	if (m_pathfinding) {
+	/*if (m_pathfinding) {
 		delete m_pathfinding;
 		m_pathfinding = NULL;
 
-	}
+	}*/
 
 	if (m_currentWayPoint) {
 	
@@ -42,7 +42,7 @@ void Enemigo::Initialize() {
 	*/
 
 	m_maxVelocity = 50.0f;
-	m_pathfinding = new PathFinding();
+	// m_pathfinding = new PathFinding();
 
 }
 
@@ -61,7 +61,7 @@ void Enemigo::Update() {
 				m_currentWayPoint = findNextWayPoints();
 			}*/
 
-			if (m_pathfinding->GetpathState() != PathFinding::SEARCHING) {
+			/*if (m_pathfinding->GetpathState() != PathFinding::SEARCHING) {
 				
 				Vector2 targetLocation = findNextWayPoints();
 				m_pathfinding->Initialize(Vector2(m_entidad->getPosition().GetX(),
@@ -75,7 +75,7 @@ void Enemigo::Update() {
 			if (m_pathfinding->GetpathState() == PathFinding::FOUND_GOAL) {
 				
 				m_currentState = PATROL;
-			}
+			}*/
 
 		}
 		break;
@@ -87,8 +87,8 @@ void Enemigo::Update() {
 
 			if (m_currentWayPoint == NULL) 
 			{	
-				Vector2 closesPoint = m_pathfinding->GetNextClosesPoint();
-				m_currentWayPoint = new Vector2(closesPoint.GetX(), closesPoint.GetY());
+				// Vector2 closesPoint = m_pathfinding->GetNextClosesPoint();
+				// m_currentWayPoint = new Vector2(closesPoint.GetX(), closesPoint.GetY());
 				
 				
 			}
@@ -104,17 +104,17 @@ void Enemigo::Update() {
 				toTarget.SetY(toTarget.GetY() / distance);
 			}
 
-			if (distance >= 4.0f) {
+			if (distance <= 2.0f) {
 
 				delete m_currentWayPoint;
 				m_currentWayPoint = NULL;
 
-				if (m_pathfinding->GetClosesPathSize() == 0) {
+				/*if (m_pathfinding->GetClosesPathSize() == 0) {
 					
 					m_currentState = IDLE;
 
 					return;		
-				}
+				}*/
 			}
 
 			Vector2 velocity = toTarget * 50.0f;
@@ -159,7 +159,7 @@ void Enemigo::Update() {
 		break;
 	}
 
-	CheckForTarget();
+	// IsWithinRangeOfTarget(0);
 }
 
 Vector2 Enemigo::findNextWayPoints(){
@@ -175,12 +175,9 @@ Vector2 Enemigo::findNextWayPoints(){
 	return waypoint;
 }
 
-void Enemigo::CheckForTarget() {
-	
-	if (m_currentState == CHASE) return;
+bool Enemigo::IsWithinRangeOfTarget(float minDistance) {
 
 	SDL_Rect targetTransform = m_target->getRect();
-	
 	Vector2 targetPosition;
 	targetPosition.m_x = targetTransform.x;
 	targetPosition.m_y = targetTransform.y;
@@ -192,10 +189,7 @@ void Enemigo::CheckForTarget() {
 	Vector2 toTarget = targetPosition - position;
 	float distance = toTarget.Length;
 
-	if (distance <= 100.0f) {
-		m_currentState = CHASE;
-		m_pathfinding->Clear();
-	}
+	return (distance <= minDistance);
 }
 
 /*void Enemigo::AddVelocity(int x, int y) {

@@ -2,17 +2,22 @@
 #define _H_PatrolState_H_
 
 #include "State.h" 
+#include <vector>
+#include "MathCore.h"
+using namespace std;
+class EnemigoIA;
 
-template<class character_type>
-
-class PatrolState : public State<character_type>
+class PatrolState : public State<EnemigoIA>
 {
 public:
-	PatrolState();
+	PatrolState(vector<Vector2> waypoints);
 	~PatrolState();
 
-	void Enter(character_type * character);
-	void Execute(character_type * character);
-	void Exit(character_type * character);
+	void Enter(EnemigoIA * character);
+	void Execute(EnemigoIA * character);
+	void Exit(EnemigoIA * character);
+
+private:
+	vector<Vector2> m_waypoints;
 };
 #endif

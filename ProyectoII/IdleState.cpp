@@ -1,13 +1,13 @@
 #include "IdleState.h"
+#include "EnemigoIA.h"
+#include "PatrolState.h"
 
-template<class character_type>
 IdleState::IdleState()
 {
 
-
 }
 
-template<class character_type>
+
 IdleState::~IdleState()
 {
 
@@ -17,26 +17,27 @@ IdleState::~IdleState()
 	}
 }
 
-template<class character_type>
-void IdleState<character_type>::Enter(character_type * character) {
 
-	Vector2 targetLocation = character->getEntidad()->findNextWayPoints();
-	m_pathfinding->Initialize(Vector2(character->getEntidad()->getPosition().GetX(),
-		character->getEntidad()->getPosition().GetY()), targetLocation);
+void IdleState::Enter(EnemigoIA * character) {
+
+	m_pathfinding = new PathFinding();
+
+	Vector2 targetLocation = character->findNextWayPoints();
+	m_pathfinding->Initialize(Vector2(character->getEntity()->getPosition().GetX(),
+		character->getEntity()->getPosition().GetY()), targetLocation);
 
 }
 
-template<class character_type>
-void IdleState<character_type>::Execute(character_type * character) {
+void IdleState::Execute(EnemigoIA * character) {
 
 	m_pathfinding->Iterate();
 
 	if (m_pathfinding->GetpathState() == PathFinding::FOUND_GOAL) {
 
-		//m_currentState = PATROL;
+		character->GetStateMachine()->ChangeState(
+			new PatrolState(m_pathfinding->GetClosesPath()));
 	}
 
 }
 
-template<class character_type>
-void IdleState<character_type>::Exit(character_type * character) { }
+void IdleState::Exit(EnemigoIA * character) { }

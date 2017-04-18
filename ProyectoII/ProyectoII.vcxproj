@@ -84,7 +84,6 @@
     <ClCompile Include="PatrolState.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
-    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
   </ItemGroup>
   <ItemGroup>

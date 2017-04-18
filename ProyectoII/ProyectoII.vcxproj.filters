@@ -96,9 +96,6 @@
     <ClCompile Include="PatrolState.cpp">
       <Filter>Archivos de código fuente\StateMachine</Filter>
     </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>Archivos de código fuente\StateMachine</Filter>
-    </ClCompile>
     <ClCompile Include="IdleState.cpp">
       <Filter>Archivos de código fuente\StateMachine</Filter>
     </ClCompile>

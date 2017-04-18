@@ -1,20 +1,21 @@
 #include "ChaseState.h"
+#include "EnemigoIA.h"
 
-template<class character_type>
 ChaseState::ChaseState()
 {
 }
 
-template<class character_type>
 ChaseState::~ChaseState()
 {
 }
 
-template<class character_type>
-void IdleState<character_type>::Enter(character_type * character) {}
+void ChaseState::Enter(EnemyIA * character) {}
 
-template<class character_type>
-void IdleState<character_type>::Execute(character_type * character) {}
+void ChaseState::Execute(EnemyIA * character) {
 
-template<class character_type>
-void IdleState<character_type>::Exit(character_type * character) { }
+	if (!character->IsWithinRangeOfTarget(100.0f)) {
+		
+	}
+}
+
+void ChaseState::Exit(EnemyIA * character) { }
