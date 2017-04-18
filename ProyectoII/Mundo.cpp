@@ -196,14 +196,10 @@ void Mundo::freeObjetos(){
 		delete(objetos[i]);
 		objetos[i] = nullptr;
 	}
-	/*
-	list<EntidadJuego*>::iterator it = llaves.begin();
-	while (!llaves.empty() && it != llaves.end())//Se destruyen las llaves
-	{
-		delete(*it);
-		*it = nullptr;
-		llaves.erase(it);
-	}*/
+	list<EntidadJuego*>::const_iterator it = llaves.cbegin();
+	for (; it != llaves.cend() && llaves.empty(); it++){
+		destruyeLlave(*it);
+	}
 }
 
 
