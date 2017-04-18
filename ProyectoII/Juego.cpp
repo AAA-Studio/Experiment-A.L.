@@ -27,7 +27,7 @@ Juego::Juego()
 
 	nombreMapas = { "..\\bmps\\Habitaciones\\pasillo.csv", "..\\bmps\\Habitaciones\\hab.csv",
 		"..\\bmps\\Habitaciones\\hab2.csv", "..\\bmps\\Habitaciones\\hab3.csv", "..\\bmps\\Habitaciones\\hab4.csv",
-		"..\\bmps\\Habitaciones\\baño.csv", "..\\bmps\\Habitaciones\\haboscura.csv",
+		"..\\bmps\\Habitaciones\\baño.csv", "..\\bmps\\Habitaciones\\pasillooscuro.csv", "..\\bmps\\Habitaciones\\haboscura.csv",
 		"..\\bmps\\Habitaciones\\hab2oscuro.csv", "..\\bmps\\Habitaciones\\hab3oscuro.csv",
 		"..\\bmps\\Habitaciones\\hab4oscuro.csv", "..\\bmps\\Habitaciones\\bañooscuro.csv" };
 
