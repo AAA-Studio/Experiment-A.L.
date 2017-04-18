@@ -5,16 +5,16 @@
 
 
 using namespace std;
-class EnemyIA;
+class EnemigoIA;
 
-class ChaseState : public State<EnemyIA>
+class ChaseState : public State<EnemigoIA>
 {
 public:
 	ChaseState();
 	~ChaseState();
 
-	void Enter(EnemyIA * character);
-	void Execute(EnemyIA * character);
-	void Exit(EnemyIA * character);
+	void Enter(EnemigoIA * character);
+	void Execute(EnemigoIA * character);
+	void Exit(EnemigoIA * character);
 };
 #endif
