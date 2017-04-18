@@ -158,6 +158,8 @@ void  Mapa::buscaSpawn(){
 	//spawn azul en oscuro
 	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -5)
 		tipo = 377;
+	if (pJuego->indiceMapas<6 && pJuego->getNivel() == -6)
+		tipo = 139;
 
 	while (!encontrado && i < TOTAL_TILES)
 	{
@@ -439,13 +441,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 
 			}
 
-			// ESPEJO
-			if ((tileMap[i]->getType() == 114))
+			// ESPEJO OSCURO
+			if ((tileMap[i]->getType() == 309))
 			{
 				if (pMundo->checkCollision(box, tileMap[i]->getBox())){
 					pJuego->borraEstado = true;
 					pJuego->estadoEnum = MundoReal;
-					pJuego->setNivel(5);
+					pJuego->setNivel(-6);
 					return true;
 
 				}
@@ -467,6 +469,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 				&& tileMap[i]->getType() != 54
 				&& tileMap[i]->getType() != 55
 				&& tileMap[i]->getType() != 82
+				&& tileMap[i]->getType() != 139
 				&& tileMap[i]->getType() != 180
 				&& tileMap[i]->getType() != 181
 				&& tileMap[i]->getType() != 182
@@ -482,19 +485,34 @@ bool Mapa::touchesWall(SDL_Rect box)
 //------------------------------------------------------------------------------------//
 //                                      MUNDO OSCURO								  //
 //------------------------------------------------------------------------------------//
-				&& tileMap[i]->getType() != 309
-				&& tileMap[i]->getType() != 225
-				&& tileMap[i]->getType() != 376
-				&& tileMap[i]->getType() != 334
-				&& tileMap[i]->getType() != 377
+				
 				&& tileMap[i]->getType() != 195
 				&& tileMap[i]->getType() != 196
 				&& tileMap[i]->getType() != 197
-				&& tileMap[i]->getType() != 226
-				&& tileMap[i]->getType() != 227
+				&& tileMap[i]->getType() != 199
+				&& tileMap[i]->getType() != 200
+				&& tileMap[i]->getType() != 201
+				&& tileMap[i]->getType() != 202
+				&& tileMap[i]->getType() != 211
 				&& tileMap[i]->getType() != 212
 				&& tileMap[i]->getType() != 213
-				&& tileMap[i]->getType() != 211))
+				&& tileMap[i]->getType() != 214
+				&& tileMap[i]->getType() != 215
+				&& tileMap[i]->getType() != 216
+				&& tileMap[i]->getType() != 225
+				&& tileMap[i]->getType() != 226
+				&& tileMap[i]->getType() != 227
+				&& tileMap[i]->getType() != 228
+				&& tileMap[i]->getType() != 309
+				&& tileMap[i]->getType() != 376
+				&& tileMap[i]->getType() != 334
+				&& tileMap[i]->getType() != 377
+				&& tileMap[i]->getType() != 379
+				&& tileMap[i]->getType() != 380
+				&& tileMap[i]->getType() != 382
+				&& tileMap[i]->getType() != 384
+				&& tileMap[i]->getType() != 383
+))
 
 		{
 			//Si se choca con la pared
