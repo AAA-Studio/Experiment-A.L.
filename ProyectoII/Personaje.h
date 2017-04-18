@@ -8,10 +8,13 @@
 #include <iostream>
 #include "MundoVirtual.h"
 
+struct Direccion{
+	int x; 
+	int y;
+} ;
 
-enum Direccion{Derecha, Izquierda};//Posible enum para direcciones???
 
-class Personaje : public PersonajeVirtual
+class Personaje : public Entidad, public PersonajeVirtual
 {
 public:
 	Personaje(MundoVirtual * pM, int x, int y, Texturas_t color, Efectos_t efecto);//Constructora
@@ -23,16 +26,11 @@ public:
 
 	
 	//----------------GETTER-------------------------------------------------------
-	int getX(){ return rect.x; };
-	int getY(){ return rect.y; };
-	SDL_Rect getRectPsj(){ return rect; };
-	int getAngulo(){ return angulo; };
-	inline SDL_Rect getRect()const { return rect; };
-	Objetos_t getType() const  { return ONull; };
+	inline int getAngulo(){ return angulo; };
 	inline int getVida()const { return vida; };
+	inline list <EntidadJuego*> getBalas() const{ return balas; };
 
 	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------
-	void setCamera(SDL_Rect& camera);
 	void restaVida();
 	void destruyeBala(EntidadJuego * bala);
 	//-----------------------------------------------------------------------------
@@ -50,18 +48,13 @@ private:
 	int vida;
 	Direccion dir;
 
-
-	Juego * pJuego;//Sustituye al puntero a la textura y al renderizador de la clase globo
 	MundoVirtual * pMundo;
-	Texturas_t pTextura;
 	Texturas_t informe;
-	Efectos_t sonido;
-	Objetos_t obj;
 
-	SDL_Rect rect;//Rectángulo para cada textura
 	SDL_Rect rectInforme;
 	SDL_Rect rectLlave;
 
+	bool empuje;
 
 	//Métodos
 	void disparo();

@@ -5,7 +5,7 @@
 #include "SDL.h"
 #include "Juego.h"
 //Clase abstracta que hereda de la raiz ObjetoJuego e implementa utilidades para las subclases
-class Entidad : public EntidadJuego
+class Entidad : virtual public EntidadJuego
 {
 public:
 
@@ -17,8 +17,8 @@ public:
 	virtual void onInput() {};
 	virtual void update() {};
 
-	inline SDL_Rect getRect()const{ return rect; };
-	inline Objetos_t getType() const  { return type; };
+	virtual inline SDL_Rect getRect()const{ return rect; };
+	virtual inline Objetos_t getType() const  { return type; };
 
 
 protected:

@@ -114,6 +114,9 @@
     <ClCompile Include="Entidad.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
+    <ClCompile Include="Enemigo.cpp">
+      <Filter>Archivos de código fuente\Entidades</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -177,6 +180,9 @@
       <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
     </ClInclude>
     <ClInclude Include="PersonajeVirtual.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemigo.h">
       <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
     </ClInclude>
   </ItemGroup>

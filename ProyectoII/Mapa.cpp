@@ -94,9 +94,10 @@ bool Mapa::cargarMapa()
 		//Close the file
 		map.close();
 
-		//If the map was loaded fine
-		return tilesLoaded;
 	}
+	//If the map was loaded fine
+	return tilesLoaded;
+	
 }
 
 void  Mapa::buscaSpawn(){

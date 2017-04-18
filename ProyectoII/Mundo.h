@@ -8,6 +8,7 @@
 #include <SDL.h>
 #include "Mapa.h"
 #include "Personaje.h"
+#include "Enemigo.h"
 #include <list>
 
 
@@ -41,16 +42,18 @@ private:
 	Personaje * psj;
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
+	list <Enemigo*> enemigos;
 	Mapa * mapa;
 	bool pausa;
-	const Uint32 duracion = 3000;
+	const Uint32 duracion = 1000;
 	Uint32 time;
 
 	//-------------------METODOS-------------------
 
 	void initObjetos();
 	void freeObjetos();
-
+	void colBalaEnemigo();
+	void colBalaPersonaje();
 };
 
 #endif

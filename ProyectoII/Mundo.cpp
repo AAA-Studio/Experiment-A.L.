@@ -50,6 +50,8 @@ void Mundo::initObjetos()
 	y = mapa->getYSpawn();
 	psj = new Personaje(this, x, y, TJugador, ENull);
 
+	enemigos.push_back(new Enemigo(pJuego, x + 100, y + 100, TPlay, ENull));
+
 
 	//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));
 }
@@ -64,12 +66,18 @@ void Mundo::freeObjetos(){
 		objetos[i] = nullptr;
 	}
 
-	list<EntidadJuego*>::iterator it = llaves.begin();
-	while (!llaves.empty() && it != llaves.end())//Se destruyen las llaves
+	list<Enemigo*>::iterator itEnemigo = enemigos.begin();
+	while (!enemigos.empty() && itEnemigo != enemigos.end())//Se destruyen las llaves
 	{
-		delete(*it);
-		*it = nullptr;
-		llaves.erase(it);
+		delete(*itEnemigo);
+		enemigos.erase(itEnemigo);
+	}
+
+	list<EntidadJuego*>::iterator itLlaves = llaves.begin();
+	while (!llaves.empty() && itLlaves != llaves.end())//Se destruyen las llaves
+	{
+		delete(*itLlaves);
+		llaves.erase(itLlaves);
 	}
 
 }
@@ -93,6 +101,13 @@ void Mundo::draw()const{
 
 	}
 
+	list<Enemigo*>::const_iterator itEnemigos = enemigos.cbegin();
+	while (!enemigos.empty() && itEnemigos != enemigos.cend())
+	{
+		(*itEnemigos)->draw();
+		itEnemigos++;
+	}
+
 	psj->draw();
 
 	pJuego->escribir("HOLA :)",50, 50);
@@ -106,38 +121,95 @@ void Mundo::update(){
 	for (size_t i = 0; i < objetos.size(); i++)//Update de objetos
 		objetos[i]->update();
 
-	list<EntidadJuego*>::const_iterator it = llaves.cbegin();
-
-	while (!llaves.empty() && it != llaves.cend())//Update de las llaves
+	list<Enemigo*>::const_iterator citEnemigo = enemigos.cbegin();//Update de enemigos
+	while (!enemigos.empty() && citEnemigo != enemigos.cend())
 	{
-		(*it)->update();
-		it++;
-
+		(*citEnemigo)->update();
+		citEnemigo++;
 	}
 
-	//if ()
+	list<EntidadJuego*>::const_iterator cit = llaves.cbegin();
+	while (!llaves.empty() && cit != llaves.cend())//Update de las llaves
+	{
+		(*cit)->update();
+		cit++;
+	}
 
 
 
+	//COLISIONES
+	colBalaEnemigo();
+	colBalaPersonaje();
+
+	
+}
 
 
+void Mundo::colBalaEnemigo(){
 
-	//ESTO ES PARA ENEMIGO
-	/*
-	if (checkCollision(psj->getRect(), objetos[0]->getRect()) && pJuego->getLLavesCogidas(0)){//Si el psj colisiona con el enemigo
-		
-		if (SDL_GetTicks() - time >= duracion)//Se pide la hora y se compara con la última 
+	list <EntidadJuego*> balas = psj->getBalas();
+	list<Enemigo*>::iterator itEnemigo = enemigos.begin();
+
+	//Recorremos los enemigos
+	while (!enemigos.empty() && itEnemigo != enemigos.cend())
+	{
+		list<EntidadJuego*>::iterator it = balas.begin();
+
+		//Recorremos las balas
+		while (!balas.empty() && it != balas.cend())
 		{
-			time = SDL_GetTicks();
-			psj->restaVida();
+			//Detectamos la colision de la bala con el enemigo
+			if (checkCollision((*it)->getRect(), (*itEnemigo)->getRect()))
+			{
+				(*itEnemigo)->restaVida();
+				psj->destruyeBala(*it);
 
+				//Caso en el que el enemigo muere
+				if ((*itEnemigo)->getVida() == 0)
+				{
+					list<Enemigo*>::iterator itAux = enemigos.begin();
+					//Recorremos los enemigos para saber cual tiene que eliminarse
+					while (itAux != enemigos.end() && (*itAux) != (*itEnemigo))
+						itAux++;
+					
+					delete (*itAux);
+
+					enemigos.erase(itAux);
+				}
+			}
+			it++;
 		}
-		if (psj->getVida() == 0){
-			pJuego->borraEstado = true;
-			pJuego->estadoEnum = MGameOver;
-		}
+		//Incrementamos el iterador si la lista de enemigos no está vacía
+		if (!enemigos.empty())
+			itEnemigo++;
 	}
-	*/
+}
+
+
+void Mundo::colBalaPersonaje(){
+
+	list<Enemigo*>::const_iterator citEnemigo = enemigos.cbegin();
+
+	//Colision balas con personaje 
+	while (!enemigos.empty() && citEnemigo != enemigos.cend())
+	{
+		//Si el psj colisiona con el enemigo
+		if (checkCollision(psj->getRect(), (*citEnemigo)->getRect())){
+			//Se pide la hora y se compara con la última 
+			if (SDL_GetTicks() - time >= duracion)
+			{
+				time = SDL_GetTicks();
+				psj->restaVida();
+				psj->empujeHaciaAtras();
+			}
+
+			if (psj->getVida() == 0){
+				pJuego->borraEstado = true;
+				pJuego->estadoEnum = MGameOver;
+			}
+		}
+		citEnemigo++;
+	}
 }
 
 //Detecta el input del jugador y la pausa
@@ -186,7 +258,7 @@ bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
 }
 
 EntidadJuego * Mundo::compruebaColisionObjetos(){
-	int i = 0;
+	size_t i = 0;
 	
 	while (i < objetos.size() && !checkCollision(psj->getRect(), objetos[i]->getRect()))
 		i++;

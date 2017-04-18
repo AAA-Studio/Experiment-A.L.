@@ -5,12 +5,9 @@
 
 
 //Constructora
-Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto)
+Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(),x,y,textura,efecto,ONull)
 {
 	pMundo = pM;
-	pJuego = pM->getPJ();
-	pTextura = textura;
-	sonido = efecto;
 	rect = { x, y, 20, 20 };
 	rectInforme = { pJuego->getAncho() / 2, pJuego->getAlto() / 2, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100,100 };
@@ -20,6 +17,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 	informeCogido = false;
 	vida = 3;
 	angulo = 90;
+	empuje = false;
 
 }
 
@@ -53,7 +51,7 @@ void Personaje::update()
 void Personaje::draw()const
 {
 
-	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect);//Dibujamos la textura
+	Entidad::draw();
 
 	list<EntidadJuego*>::const_iterator it = balas.cbegin();
 	while (!balas.empty() && it != balas.cend())
@@ -158,8 +156,7 @@ void Personaje::move(int x, int y)
 	rect.x += x;
 
 	//--------------------------------
-	if (x < 0) dir = Direccion::Derecha;
-	else if (x > 0) dir = Direccion::Izquierda;
+	dir = { x, y };
 	//--------------------------------
 
 	//Si no colisiona con los tiles, me muevo
@@ -199,8 +196,7 @@ void Personaje::destruyeBala(EntidadJuego * bala)
 }
 
 
-
-
+/*
 void Personaje::setCamera(SDL_Rect& camera)
 {
 	//Center the camera over the dot
@@ -225,10 +221,18 @@ void Personaje::setCamera(SDL_Rect& camera)
 		camera.y = LEVEL_HEIGHT - camera.h;
 	}
 }
+*/
 
 //Necesito la dirección del personaje para poder empujarle hacia atrás
 void Personaje::empujeHaciaAtras(){
+	empuje = true;
 	//Si la dirección es der, empujo hacia la izq
+	std::cout << dir.x << "  " << dir.y << endl;
+	if (dir.x == 1)
+	{
+	}
+	 
+
 
 
 	//Si la dirección es izq, empujo hacia la der
