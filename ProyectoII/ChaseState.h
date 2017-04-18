@@ -3,6 +3,8 @@
 
 #include "State.h" 
 
+
+using namespace std;
 class EnemyIA;
 
 class ChaseState : public State<EnemyIA>

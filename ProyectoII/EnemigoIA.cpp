@@ -29,6 +29,38 @@ void EnemigoIA::Update() {
 	m_stateMachine->Update();
 }
 
+void EnemigoIA::ChaseTarget() {
+	m_maxVelocity = 150.0f;
+	SDL_Rect targetTransform = m_target->getRect();
+
+	Vector2 targetPosition;
+	targetPosition.m_x = targetTransform.x;
+	targetPosition.m_y = targetTransform.y;
+
+	Vector2 position;
+	position.m_x = m_transform->x;
+	position.m_y = m_transform->y;
+
+	Vector2 toTarget = targetPosition - position;
+	float distance = toTarget.Length;
+	if (distance != 0.0f) {
+		// toTarget.SetX(toTarget.GetX() / distance);
+		// toTarget.SetY(toTarget.GetY() / distance);
+
+		toTarget /= distance;
+	}
+
+	if (distance > 150.0f) {
+		m_currentState = IDLE;
+		return;
+	}
+
+	Vector2 velocity = toTarget * 35.0f;
+
+	position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
+	position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
+}
+
 StateMachine<EnemigoIA>*EnemigoIA::GetStateMachine() {
 	return m_stateMachine;
 }

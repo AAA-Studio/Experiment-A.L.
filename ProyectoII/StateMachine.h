@@ -47,7 +47,6 @@ public:
 			m_previousState->Execute(m_owner);
 		}
 	}
-
 	void ChangeState(State<character_type>* state) {
 		m_previousState = m_currentState;
 
@@ -70,7 +69,6 @@ public:
 	void RevertToPreviousState() {
 		ChangeState(m_previousState);
 	}
-
 	void SetGlobalState(State <character_type>* state) {
 		if (m_globalState) {
 			delete m_globalState;

@@ -1,5 +1,6 @@
 #include "ChaseState.h"
 #include "EnemigoIA.h"
+#include "IdleState.h"
 
 ChaseState::ChaseState()
 {
@@ -15,6 +16,8 @@ void ChaseState::Execute(EnemyIA * character) {
 
 	if (!character->IsWithinRangeOfTarget(100.0f)) {
 		
+		character->GetStateMachine()->ChangeState(new IdleState());
+
 	}
 }
 

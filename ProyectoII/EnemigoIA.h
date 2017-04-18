@@ -12,11 +12,11 @@ public:
 	EnemigoIA(Entidad * pEntidad, vector<Vector2> waypoints);
 	~EnemigoIA();
 
-	virtual void Initialize();
-	virtual void Update();
+	void Initialize();
+	void Update();
+	void ChaseTarget();
 
 	StateMachine<EnemigoIA>* GetStateMachine();
-
 private: 
 	StateMachine<EnemigoIA>* m_stateMachine;
 };

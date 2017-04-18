@@ -55,7 +55,7 @@ void PatrolState::Execute(EnemigoIA * character) {
 	if (character->IsWithinRangeOfTarget(100.0f)) {
 		position.SetX(position.GetX());
 		position.SetY(position.GetY());
-		character->GetStateMachine()->ChangeState(new ChaseState());
+		character->GetStateMachine()->ChangeState(new ChaseState());	
 	}
 }
 

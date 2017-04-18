@@ -31,7 +31,7 @@ public:
 	// Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints);
 	Enemigo();
 	Enemigo(Entidad* pEntidad, vector <Vector2> waypoints);
-	virtual ~Enemigo();
+	~Enemigo();
 
 	//virtual void Draw();
 	void Initialize();
