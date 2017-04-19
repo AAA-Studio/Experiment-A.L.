@@ -46,7 +46,6 @@ void EnemigoIA::ChaseTarget() {
 	if (distance != 0.0f) {
 		// toTarget.SetX(toTarget.GetX() / distance);
 		// toTarget.SetY(toTarget.GetY() / distance);
-
 		toTarget /= distance;
 	}
 

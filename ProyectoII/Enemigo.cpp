@@ -1,8 +1,10 @@
 #include "Enemigo.h"
+#include "SearchCell.h"
 #include <math.h>
 #include <stdio.h>
 #include <windows.h>
 #include <gl/GL.h> // Core Opengl functions
+
 
 
 Enemigo::Enemigo(/*Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints*/Entidad* pEntidad, vector <Vector2> waypoints) /*: Entidad(pJ, x, y, textura, efecto)*/
@@ -22,7 +24,6 @@ Enemigo::~Enemigo()
 		delete m_currentWayPoint;
 		m_currentWayPoint = NULL;
 	}
-
 }
 
 void Enemigo::Initialize() {
@@ -40,135 +41,14 @@ void Enemigo::Initialize() {
 void Enemigo::Update() {
 
 	// Entidad::Update();
-
-	//switch (m_currentState) {
-	//case IDLE:
-	//	{
-	//		m_idleTime -= (float)SDL_GetTicks();
-	//	if (m_idleTime <= 0.0f) {
-	//
-	//		m_currentState = PATROL;
-	//		m_idleTime = 3.0f;
-	//		m_currentWayPoint = findNextWayPoints();
-	//	}
-	//
-	//		if (m_pathfinding->GetpathState() != PathFinding::SEARCHING) {
-	//		
-	//		Vector2 targetLocation = findNextWayPoints();
-	//		m_pathfinding->Initialize(Vector2(m_entidad->getPosition().GetX(),
-	//			m_entidad->getPosition().GetY()), targetLocation);
-	//
-	//		
-	//	}
-	//
-	//	m_pathfinding->Iterate();
-	//
-	//	if (m_pathfinding->GetpathState() == PathFinding::FOUND_GOAL) {
-	//		
-	//		m_currentState = PATROL;
-	//	}
-	//
-	//	}
-	//	break;
-	//
-	//case PATROL: {
-	//
-	//		m_maxVelocity = 75.0f;
-	//
-	//
-	//		if (m_currentWayPoint == NULL) 
-	//		{	
-	//			// Vector2 closesPoint = m_pathfinding->GetNextClosesPoint();
-	//			// m_currentWayPoint = new Vector2(closesPoint.GetX(), closesPoint.GetY());
-	//			
-	//			
-	//		}
-	//		// Posicion del enemigo
-	//		Vector2 position = m_entidad->getPosition();
-	//		// Distancia enemigo - personaje
-	//		Vector2 toTarget = Vector2(m_currentWayPoint->GetX(), m_currentWayPoint->GetY()) 
-	//			- Vector2(position.GetX(), position.GetY());
-	//		float distance = toTarget.Length;
-	//		if (distance != 0.0f) {
-	//			// Se acerca el enemigo al personaje
-	//			toTarget.SetX(toTarget.GetX() / distance);
-	//			toTarget.SetY(toTarget.GetY() / distance);
-	//		}
-	//
-	//		if (distance <= 2.0f) {
-	//
-	//			delete m_currentWayPoint;
-	//			m_currentWayPoint = NULL;
-	//
-	//			/*if (m_pathfinding->GetClosesPathSize() == 0) {
-	//				
-	//				m_currentState = IDLE;
-	//
-	//				return;		
-	//			}*/
-	//		}
-	//
-	//		Vector2 velocity = toTarget * 50.0f;
-	//		
-	//		position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
-	//		position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
-	//
-	//		// transform.SetPosition(position);
-	//	}
-	//	break;
-	//
-	//case CHASE:
-	//		m_maxVelocity = 150.0f;
-	//		SDL_Rect targetTransform = m_target->getRect();
-	//		
-	//		Vector2 targetPosition;
-	//		targetPosition.m_x = targetTransform.x;
-	//		targetPosition.m_y = targetTransform.y;
-	//		
-	//		Vector2 position;
-	//		position.m_x = m_transform->x;
-	//		position.m_y = m_transform->y;
-	//
-	//		Vector2 toTarget = targetPosition - position;
-	//		float distance = toTarget.Length;
-	//		if (distance != 0.0f) {
-	//			// toTarget.SetX(toTarget.GetX() / distance);
-	//			// toTarget.SetY(toTarget.GetY() / distance);
-	//
-	//			toTarget /= distance;
-	//		}
-	//
-	//		if (distance > 150.0f) {
-	//			m_currentState = IDLE;
-	//			return;
-	//		}
-	//
-	//		Vector2 velocity = toTarget * 35.0f;
-	//
-	//		position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
-	//		position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
-	//	break;
-	//}
-	//
-	// IsWithinRangeOfTarget(0);
 }
 
-
-
-/*void Enemigo::AddVelocity(int x, int y) {
-
-	float clampX = m_velocity.GetX() + x;
-	float clampY = m_velocity.GetY() + y;
-
-	
-}*/
-
-/*void Enemigo::RandomizeGoal()
+void Enemigo::RandomizeGoal()
 {
 	int random_integerX = (int)(rand() % WORLD_SIZE*CELL_SIZE);
-	int random_integerZ = (int)(rand() % WORLD_SIZE*CELL_SIZE);
-	targetPos = Vector2((float)random_integerX, 0, (float)random_integerZ);
-}*/
+	int random_integerY = (int)(rand() % WORLD_SIZE*CELL_SIZE);
+	targetPos = Vector2((float)random_integerX, (float)random_integerY);
+}
 
 /*void Enemigo::Draw() {
 

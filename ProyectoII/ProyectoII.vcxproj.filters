@@ -46,6 +46,12 @@
     <Filter Include="Archivos de código fuente\StateMachine">
       <UniqueIdentifier>{55ad8956-68bf-466b-a1e9-1d715bdce9b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Entidades\Enemigo">
+      <UniqueIdentifier>{3442063c-6325-4ef5-a52a-c7260fc40c75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades\Enemigo">
+      <UniqueIdentifier>{da210e55-ca29-4ca6-8f29-2bfa285cdc10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -87,9 +93,6 @@
     <ClCompile Include="Personaje.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
-    <ClCompile Include="Enemigo.cpp">
-      <Filter>Archivos de código fuente\Entidades</Filter>
-    </ClCompile>
     <ClCompile Include="PathFinding.cpp">
       <Filter>Archivos de código fuente\Pathfinding</Filter>
     </ClCompile>
@@ -102,8 +105,11 @@
     <ClCompile Include="ChaseState.cpp">
       <Filter>Archivos de código fuente\StateMachine</Filter>
     </ClCompile>
+    <ClCompile Include="Enemigo.cpp">
+      <Filter>Archivos de código fuente\Entidades\Enemigo</Filter>
+    </ClCompile>
     <ClCompile Include="EnemigoIA.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Entidades\Enemigo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +161,6 @@
     <ClInclude Include="Personaje.h">
       <Filter>Archivos de encabezado\Entidades</Filter>
     </ClInclude>
-    <ClInclude Include="Enemigo.h">
-      <Filter>Archivos de encabezado\Entidades</Filter>
-    </ClInclude>
     <ClInclude Include="SearchCell.h">
       <Filter>Archivos de encabezado\Pathfinding</Filter>
     </ClInclude>
@@ -165,9 +168,6 @@
       <Filter>Archivos de encabezado\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="PathFinding.h">
-      <Filter>Archivos de encabezado\Pathfinding</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
       <Filter>Archivos de encabezado\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
@@ -185,8 +185,11 @@
     <ClInclude Include="ChaseState.h">
       <Filter>Archivos de encabezado\StateMachine</Filter>
     </ClInclude>
+    <ClInclude Include="Enemigo.h">
+      <Filter>Archivos de encabezado\Entidades\Enemigo</Filter>
+    </ClInclude>
     <ClInclude Include="EnemigoIA.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Entidades\Enemigo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

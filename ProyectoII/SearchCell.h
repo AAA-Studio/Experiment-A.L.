@@ -57,13 +57,6 @@ public:
 		// de momento, luego devolvera el estado en el que se encuentra la celda
 		return CELL_BLOCKED;
 	}
-
-	void DrawSquare(int posX, int posY, tColor color) {
-	
-	}
-	void DrawSquare(float posX, float posY, tColor color) {
-	
-	}
 	
 	
 	// ¿por que ManHattanDistance?: https://es.wikipedia.org/wiki/Geometr%C3%ADa_del_taxista

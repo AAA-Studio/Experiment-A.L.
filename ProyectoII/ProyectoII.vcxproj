@@ -109,7 +109,6 @@
     <ClInclude Include="PatrolState.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
-    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="SearchCell.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />

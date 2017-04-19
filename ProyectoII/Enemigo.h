@@ -4,22 +4,12 @@
 #include "checkML.h"
 #include "Entidad.h"
 #include "MathCore.h"
-#include "PathFinding.h"
 #include <vector>
 
 #define M_PI 3.1416
 
 class Enemigo: public Entidad
 {
-	/*enum PathState
-	{
-		CHECK_AROUND,
-		RANDOMIZE,
-		SEARCHING,
-		FOUND_GOAL,
-	};
-	PathState m_pathState;
-	PathFinding * m_pathfinding;*/
 public:
 
 	enum State {
@@ -52,10 +42,9 @@ protected:
 	float m_maxVelocity;
 	Vector2 m_velocity;
 	SDL_Rect* m_transform;
-	// void AddVelocity(int x, int y);
-	/*virtual bool HandleKeydown(int key);
-	virtual bool HandleKeyUp(int key);
-	virtual void HandleMouseDown(bool isLeft, Vector2 mouseWorldPos);*/
+	// virtual bool HandleKeydown(int key);
+	// virtual bool HandleKeyUp(int key);
+	// virtual void HandleMouseDown(bool isLeft, Vector2 mouseWorldPos);
 
 private: 
 	bool hasBeenHit;

@@ -11,7 +11,6 @@ IdleState::IdleState()
 
 IdleState::~IdleState()
 {
-
 	if (m_pathfinding != NULL) {
 		delete m_pathfinding;
 		m_pathfinding = NULL;
@@ -42,7 +41,6 @@ void IdleState::Execute(EnemigoIA * character) {
 	if (character->IsWithinRangeOfTarget(100.0f)) {
 		character->GetStateMachine()->ChangeState(new ChaseState());
 	}
-
 }
 
 void IdleState::Exit(EnemigoIA * character) {

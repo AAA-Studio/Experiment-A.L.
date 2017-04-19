@@ -309,7 +309,7 @@ void PathFinding::ContinuePath() {
 	}
 }
 
-Vector2 PathFinding::NextPathPos(/*Enemigo  *enemigo*/) {
+Vector2 PathFinding::NextPathPos(Enemigo  *enemigo) {
 	
 	int index = 1; 
 
@@ -318,11 +318,11 @@ Vector2 PathFinding::NextPathPos(/*Enemigo  *enemigo*/) {
 	nextPos.m_y = m_pathToGoal[m_pathToGoal.size() - index]->m_y;
 
 	// pos es la actual posicion del enemigo
-	Vector2 distance = nextPos - nextPos/*enemigo->pos*/;
+	Vector2 distance = nextPos - enemigo->pos;
 	if (distance.Length < m_pathToGoal.size()) {
 
 		// Si el enemigo consigue avanzar en el radio de celdas elimina la que ya estaba
-		if (distance.Length < 0/*enemigo->radius*/) {
+		if (distance.Length < enemigo->radius) {
 			m_pathToGoal.erase(m_pathToGoal.end() - index);
 		}
 	}
@@ -342,20 +342,6 @@ Vector2 PathFinding::GetNextClosesPoint() {
 int PathFinding::GetClosesPathSize() {
 
 	return (int)m_closesPaths.size();
-}
-
-void PathFinding::DrawDebug() {
-	// static void *****::DrawSquare(int posX, int posY, tColor color) || static void *****::DrawSquare(float posX, float posY, tColor color)
-
-	for (unsigned int i = 0; i < m_openList.size(); i++) {
-		m_GameWorld->DrawSquare(m_openList[i]->GetCellX(), m_openList[i]->GetCellY(), m_GameWorld->VERDE/*tColor(0.0f, 1.0f. 0.0f)*/);
-	}
-	for (unsigned int i = 0; i < m_visitedList.size(); i++) {
-		m_GameWorld->DrawSquare(m_visitedList[i]->GetCellX(), m_visitedList[i]->GetCellY(), m_GameWorld->AZUL/*tColor(0.0f, 0.0f. 1.0f)*/);
-	}
-	for (unsigned int i = 0; i < m_pathToGoal.size(); i++) {
-		m_GameWorld->DrawSquare(m_pathToGoal[i]->m_x, m_pathToGoal[i]->m_y, m_GameWorld->ROJO/*tColor(1.0f, 0.0f. 0.0f)*/);
-	}
 }
 
 vector<Vector2> PathFinding::GetClosesPath() {

@@ -28,13 +28,13 @@ void PatrolState::Execute(EnemigoIA * character) {
 	Vector2 toTarget = Vector2(waypoint.GetX(), waypoint.GetY())
 		- Vector2(position.GetX(), position.GetY());
 	float distance = toTarget.Length;
-	if (distance != 0.0f) {
+	if (!character->IsWithinRangeOfTarget(0)) {
 		// Se acerca el enemigo al personaje
 		toTarget.SetX(toTarget.GetX() / distance);
 		toTarget.SetY(toTarget.GetY() / distance);
 	}
 
-	if (distance <= 2.0f) {
+	if (character->IsWithinRangeOfTarget(20.0f)) {
 
 		m_waypoints.erase(m_waypoints.begin() + (m_waypoints.size() - 1));
 
@@ -46,6 +46,12 @@ void PatrolState::Execute(EnemigoIA * character) {
 		}
 	}
 
+	if (character->IsWithinRangeOfTarget(100.0f)) {
+		position.SetX(position.GetX());
+		position.SetY(position.GetY());
+		character->GetStateMachine()->ChangeState(new ChaseState());
+	}
+
 	Vector2 velocity = toTarget * 50.0f;
 
 	position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
@@ -54,12 +60,6 @@ void PatrolState::Execute(EnemigoIA * character) {
 	/*Vector2 velocity = toTarget * 20.0f
 	character->addVelocity(velocity.GetX(), velocity.GetY());
 	*/
-
-	if (character->IsWithinRangeOfTarget(100.0f)) {
-		position.SetX(position.GetX());
-		position.SetY(position.GetY());
-		character->GetStateMachine()->ChangeState(new ChaseState());	
-	}
 }
 
 void PatrolState::Exit(EnemigoIA * character) { }
