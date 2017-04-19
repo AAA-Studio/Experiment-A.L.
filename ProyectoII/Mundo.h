@@ -43,6 +43,8 @@ private:
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	list <Enemigo*> enemigos;
+	list <Bala*> balaPsj;
+	list <list <Bala*> > balaEnem;
 	Mapa * mapa;
 	bool pausa;
 	const Uint32 duracion = 500;

@@ -27,7 +27,7 @@ Personaje::~Personaje()
 }
 
 
-//Actualiza el estado y devuelve false si el globo queda desinflado
+
 void Personaje::update()  
 {	
 	if (!informeCogido){
