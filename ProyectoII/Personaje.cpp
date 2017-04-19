@@ -75,7 +75,7 @@ void Personaje::onInput()
 	int x = 0, y = 0;
 	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 
-	if (!informeCogido)
+	if (!informeCogido && !empuje)
 	{
 		int x = 0, y = 0;
 
@@ -138,15 +138,20 @@ void Personaje::onInput()
 		move(x, y);
 	}
 
-	else
+	else if (informeCogido)
 	{
-		if (keyStatesActuales[SDL_SCANCODE_Q]){
+		if (keyStatesActuales[SDL_SCANCODE_Q])
 			soltarInforme();
 
-		}
+	}
 
+	else if (empuje)
+	{
+		move(-dir.x, -dir.y);
 
-
+		if (SDL_GetTicks() - ultimoEmpuje >= tiempoEmpuje)//Se pide la hora y se compara con la última 
+			empuje = false;
+		
 	}
 }
 
@@ -156,7 +161,8 @@ void Personaje::move(int x, int y)
 	rect.x += x;
 
 	//--------------------------------
-	dir = { x, y };
+	if (!empuje)
+		dir = { x, y };
 	//--------------------------------
 
 	//Si no colisiona con los tiles, me muevo
@@ -226,17 +232,7 @@ void Personaje::setCamera(SDL_Rect& camera)
 //Necesito la dirección del personaje para poder empujarle hacia atrás
 void Personaje::empujeHaciaAtras(){
 	empuje = true;
-	//Si la dirección es der, empujo hacia la izq
-	std::cout << dir.x << "  " << dir.y << endl;
-	if (dir.x == 1)
-	{
-	}
-	 
-
-
-
-	//Si la dirección es izq, empujo hacia la der
-	
+	ultimoEmpuje = SDL_GetTicks();
 }
 
 void Personaje::restaVida(){

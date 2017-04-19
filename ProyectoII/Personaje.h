@@ -42,6 +42,8 @@ private:
 	//Atributos
 	list <EntidadJuego*> balas;
 	const float tiempoBala = 1000;
+	const float tiempoEmpuje = 500;
+	Uint32 ultimoEmpuje;
 	Uint32 ultimaBala;
 	int angulo;
 	bool balaDestruida, llaveCogida, informeCogido;

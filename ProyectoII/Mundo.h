@@ -45,7 +45,7 @@ private:
 	list <Enemigo*> enemigos;
 	Mapa * mapa;
 	bool pausa;
-	const Uint32 duracion = 1000;
+	const Uint32 duracion = 500;
 	Uint32 time;
 
 	//-------------------METODOS-------------------
