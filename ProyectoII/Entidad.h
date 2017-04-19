@@ -23,10 +23,14 @@ protected:
 	double posX, posY;
 	int  ancho, alto;
 	SDL_Rect rect;//Rectángulo para cada textura
+	float m_maxVelocity;
+	Vector2 m_velocity;
 
 public:
 	const SDL_Rect getRect(){ return rect; }
 	Entidad * getEntity() { return this; }
+	void SetMaxVelocity(float maxVelocity) { m_maxVelocity = maxVelocity; }
+	void SetVelocity(float velocityX, float velocityY) { m_velocity.m_x = velocityX; m_velocity.m_y = velocityY; }
 	Vector2 getPosition() const 
 	{ 
 		return Vector2(posX, posY); 
@@ -35,6 +39,7 @@ public:
 	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto);
 	// Mal menor para terminar Enemigo
 	Entidad();
+	
 	virtual ~Entidad();
 
 };

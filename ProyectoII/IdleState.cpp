@@ -1,6 +1,7 @@
 #include "IdleState.h"
 #include "EnemigoIA.h"
 #include "PatrolState.h"
+#include "ChaseState.h"
 
 IdleState::IdleState()
 {
@@ -38,6 +39,13 @@ void IdleState::Execute(EnemigoIA * character) {
 			new PatrolState(m_pathfinding->GetClosesPath()));
 	}
 
+	if (character->IsWithinRangeOfTarget(100.0f)) {
+		character->GetStateMachine()->ChangeState(new ChaseState());
+	}
+
 }
 
-void IdleState::Exit(EnemigoIA * character) { }
+void IdleState::Exit(EnemigoIA * character) {
+
+	m_pathfinding->Clear();
+}

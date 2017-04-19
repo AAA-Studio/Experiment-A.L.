@@ -13,7 +13,10 @@ PatrolState::~PatrolState()
 	m_waypoints.clear();
 }
 
-void PatrolState::Enter(EnemigoIA * character) {}
+void PatrolState::Enter(EnemigoIA * character) {
+
+	character->SetMaxVelocity(75.0f);
+}
 
 void PatrolState::Execute(EnemigoIA * character) {
 

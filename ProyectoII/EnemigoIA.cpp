@@ -50,11 +50,6 @@ void EnemigoIA::ChaseTarget() {
 		toTarget /= distance;
 	}
 
-	if (distance > 150.0f) {
-		m_currentState = IDLE;
-		return;
-	}
-
 	Vector2 velocity = toTarget * 35.0f;
 
 	position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());

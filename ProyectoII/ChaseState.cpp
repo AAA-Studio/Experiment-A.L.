@@ -10,15 +10,21 @@ ChaseState::~ChaseState()
 {
 }
 
-void ChaseState::Enter(EnemigoIA * character) {}
+void ChaseState::Enter(EnemigoIA * character) {
+	character->SetMaxVelocity(125.0f);
+}
 
 void ChaseState::Execute(EnemigoIA * character) {
 	
-	if (!character->IsWithinRangeOfTarget(100.0f)) {
+	character->ChaseTarget();
+	if (!character->IsWithinRangeOfTarget(150.0f)) {
 		
 		character->GetStateMachine()->ChangeState(new IdleState());
 
 	}
 }
 
-void ChaseState::Exit(EnemigoIA * character) { }
+void ChaseState::Exit(EnemigoIA * character) {
+
+	character->SetVelocity(0, 0);
+}
