@@ -12,18 +12,11 @@ Enemigo::Enemigo(/*Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto,
 	m_currentIndex = (int)(rand() % waypoints.size() - 1);
 	m_idleTime = 3.0f;
 	m_waypoints = waypoints;
-	// m_pathfinding = NULL;
 	m_currentWayPoint = NULL;
 }
 
 Enemigo::~Enemigo()
 {
-	/*if (m_pathfinding) {
-		delete m_pathfinding;
-		m_pathfinding = NULL;
-
-	}*/
-
 	if (m_currentWayPoint) {
 	
 		delete m_currentWayPoint;
@@ -42,8 +35,6 @@ void Enemigo::Initialize() {
 	*/
 
 	m_maxVelocity = 50.0f;
-	// m_pathfinding = new PathFinding();
-
 }
 
 void Enemigo::Update() {
@@ -162,35 +153,7 @@ void Enemigo::Update() {
 	// IsWithinRangeOfTarget(0);
 }
 
-Vector2 Enemigo::findNextWayPoints(){
 
-	Vector2 waypoint = m_waypoints[m_currentIndex];
-	m_currentIndex = (int)(rand() % m_waypoints.size() - 1);
-	
-	/*m_currentIndex++;
-	if (m_currentIndex >= (int)m_waypoints.size()) {
-		m_currentIndex = 0;
-	}*/
-
-	return waypoint;
-}
-
-bool Enemigo::IsWithinRangeOfTarget(float minDistance) {
-
-	SDL_Rect targetTransform = m_target->getRect();
-	Vector2 targetPosition;
-	targetPosition.m_x = targetTransform.x;
-	targetPosition.m_y = targetTransform.y;
-	
-	Vector2 position;
-	position.m_x = m_transform->x;
-	position.m_y = m_transform->y;
-
-	Vector2 toTarget = targetPosition - position;
-	float distance = toTarget.Length;
-
-	return (distance <= minDistance);
-}
 
 /*void Enemigo::AddVelocity(int x, int y) {
 

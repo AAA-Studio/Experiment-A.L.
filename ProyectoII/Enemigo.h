@@ -36,13 +36,9 @@ public:
 	//virtual void Draw();
 	void Initialize();
 	void Update();
-	void SetTarget(Entidad*  target) { m_target = target; }
-	Vector2 findNextWayPoints();
-	
+	void SetTarget(Entidad*  target) { m_target = target; }	
 	Vector2 pos;
 	double radius;
-
-	bool IsWithinRangeOfTarget(float minDistance);
 
 protected: 
 
@@ -62,8 +58,6 @@ protected:
 	virtual void HandleMouseDown(bool isLeft, Vector2 mouseWorldPos);*/
 
 private: 
-
-	// PathFinding * m_pathfinding;
 	bool hasBeenHit;
 	bool isAtGoal;
 	bool lockedGuard;

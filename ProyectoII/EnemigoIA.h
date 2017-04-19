@@ -17,6 +17,9 @@ public:
 	void ChaseTarget();
 
 	StateMachine<EnemigoIA>* GetStateMachine();
+protected:
+	Vector2 findNextWayPoints();
+	bool IsWithinRangeOfTarget(float minDistance);
 private: 
 	StateMachine<EnemigoIA>* m_stateMachine;
 };
