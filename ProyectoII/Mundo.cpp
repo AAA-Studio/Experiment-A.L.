@@ -59,7 +59,6 @@ void Mundo::cargaObjetos(){
 						obj >> x >> y;
 						llaves.push_back(new Entidad(pJuego, x, y, TLlave, ENull, OLlave));
 						hayObj = true;
-
 					}
 					else if (nombre == "Enemy"){
 
@@ -276,10 +275,44 @@ void Mundo::onInput(SDL_Event &e){
 	
 	//Personaje
 	psj->onInput();
+
+	compruebaPersonaje();
 	//psj->setCamera(mapa->getCamera());
 
 }
+void Mundo::compruebaPersonaje(){
+	SDL_Rect rect, rect2;
 
+	int x, y;
+
+	rect.x = psj->getX();
+	rect.y = psj->getY();
+
+	rect2.x = psj->DamePosAntX();
+	rect2.y = psj->DamePosAntY();
+
+	rect2.w = rect.w = rect2.h = rect.h = 20;
+
+	x = rect.x - rect2.x;
+	y = rect.y - rect2.y;
+
+
+	Direccion dir = Direccion::Derecha;
+	if (x > 0) dir = Direccion::Izquierda;
+	psj->setDir(dir);
+
+	//comprueba la X
+	if (mapa->touchesWall(rect)){
+		rect.x -= x;
+	}
+	// comprueba la Y
+	if (mapa->touchesWall(rect)){
+		rect.y -= y;
+	}
+
+	psj->setPosChocando(rect.x, rect.y);
+
+}
 
 
 bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)

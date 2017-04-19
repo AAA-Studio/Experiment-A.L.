@@ -4,7 +4,6 @@
 #include "MundoVirtual.h"
 #include "EntidadJuego.h"
 #include "Juego.h"
-
 #include <SDL.h>
 #include "Mapa.h"
 #include "Personaje.h"
@@ -33,7 +32,7 @@ public:
 	//------------------GETTERS---------------------
 	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
-
+	void compruebaPersonaje();
 
 private:
 	//-------------------ATRIBUTOS---------------

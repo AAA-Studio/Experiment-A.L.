@@ -9,6 +9,7 @@
 #include "MundoVirtual.h"
 
 
+
 enum Direccion{Derecha, Izquierda};//Posible enum para direcciones???
 
 class Personaje : public PersonajeVirtual
@@ -23,6 +24,8 @@ public:
 
 	
 	//----------------GETTER-------------------------------------------------------
+	int DamePosAntX(){ return posXAnt; };
+	int DamePosAntY(){ return posYAnt; };
 	int getX(){ return rect.x; };
 	int getY(){ return rect.y; };
 	SDL_Rect getRectPsj(){ return rect; };
@@ -38,7 +41,10 @@ public:
 	//-----------------------------------------------------------------------------
 
 	void empujeHaciaAtras();
-	
+
+	//--------------PARA LA INTERFAZ DE CHOQUE CON EL MUNDO-------------------------
+	void setPosChocando(int x, int y);
+	void setDir(Direccion direc){ dir = direc; };
 
 private:
 	//Atributos
@@ -49,7 +55,7 @@ private:
 	bool balaDestruida, llaveCogida, informeCogido;
 	int vida;
 	Direccion dir;
-
+	int posXAnt, posYAnt;
 
 	Juego * pJuego;//Sustituye al puntero a la textura y al renderizador de la clase globo
 	MundoVirtual * pMundo;

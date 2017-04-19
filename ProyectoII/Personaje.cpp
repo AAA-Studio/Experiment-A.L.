@@ -20,6 +20,8 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 	informeCogido = false;
 	vida = 3;
 	angulo = 90;
+	posXAnt = x;
+	posYAnt = y;
 
 }
 
@@ -152,25 +154,33 @@ void Personaje::onInput()
 	}
 }
 
+void Personaje::setPosChocando(int x, int y){
+	rect.x = x; 
+	rect.y = y; 
+}
 void Personaje::move(int x, int y)
 {
-	rect.x += x;
+	posXAnt = rect.x;
+	posYAnt = rect.y;
 
+	rect.x += x;
+	rect.y += y;
+	/*
 	//--------------------------------
 	if (x < 0) dir = Direccion::Derecha;
 	else if (x > 0) dir = Direccion::Izquierda;
 	//--------------------------------
-
 	//Si no colisiona con los tiles, me muevo
-	if (static_cast<Mundo*> (pJuego->topEstado())->getMapa()->touchesWall(rect))
+	if (pMundo->getMapa()->touchesWall(rect))
 	{
 		rect.x -= x;
 	}
-	rect.y += y;
-	if (static_cast<Mundo*> (pJuego->topEstado())->getMapa()->touchesWall(rect))
+	
+	if (pMundo->getMapa()->touchesWall(rect))
 	{
 		rect.y -= y;
 	}
+	*/
 }
 
 void Personaje::disparo(){

@@ -7,7 +7,6 @@
 
 
 
-
 //Clase abstracta que hereda de la raiz EstadoJuego
 class MundoVirtual : public EstadoJuego
 {
