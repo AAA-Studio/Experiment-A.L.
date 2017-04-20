@@ -4,6 +4,7 @@
 #include "EstadoJuego.h"
 #include "EntidadJuego.h"
 #include "Juego.h"
+#include <list>
 
 
 //Clase abstracta que hereda de la raiz EstadoJuego
@@ -18,7 +19,15 @@ public:
 
 	virtual Juego* getPJ()const  = 0;
 
+	virtual list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const = 0;
+
 	virtual void destruyeLlave(EntidadJuego * llave) = 0;
+
+	virtual void destruyeBala(list <EntidadJuego*> &lista, EntidadJuego * bala) = 0;
+
+	virtual void insertaBala(ListaBalas_t lista, EntidadJuego * bala) = 0;
+
+
 };
 
 #endif

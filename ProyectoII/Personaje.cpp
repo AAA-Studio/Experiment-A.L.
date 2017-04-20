@@ -31,34 +31,14 @@ Personaje::~Personaje()
 void Personaje::update()  
 {	
 	if (!informeCogido){
-		list<EntidadJuego*>::iterator it = balas.begin();
-		balaDestruida = false;
-
-		while (!balaDestruida && !balas.empty() && it != balas.end())
-		{
-			(*it)->update();
-			if (!balaDestruida)
-			{
-				it++;
-
-			}
-
-		}
+	
 	}
 	
 }
 
 void Personaje::draw()const
 {
-
 	Entidad::draw();
-
-	list<EntidadJuego*>::const_iterator it = balas.cbegin();
-	while (!balas.empty() && it != balas.cend())
-	{
-		(*it)->draw();
-		it++;
-	}
 
 	if (informeCogido)
 		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme);
@@ -66,12 +46,10 @@ void Personaje::draw()const
 	if (pJuego->getLLavesCogidas(0))
 		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave);
 
-
 }
 
 void Personaje::onInput()
 {
-
 	int x = 0, y = 0;
 	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 
@@ -181,25 +159,12 @@ void Personaje::move(int x, int y)
 void Personaje::disparo(){
 	if (SDL_GetTicks() - ultimaBala >= tiempoBala)//Se pide la hora y se compara con la última 
 	{
-		balas.push_back(new Bala(pJuego, rect.x, rect.y, TPlay, ENull,angulo,this));
+		pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TPlay, ENull, angulo, LBalasPersonaje));
 
 		ultimaBala = SDL_GetTicks();
 	}
 }
 
-void Personaje::destruyeBala(EntidadJuego * bala)
-{
-	list<EntidadJuego*>::iterator it = balas.begin();
-	while (it != balas.end() &&(*it) != bala)
-	{
-		it++;
-	}
-	balaDestruida = true;
-	balas.erase(it);
-	delete (bala);
-	bala = nullptr;
-
-}
 
 
 /*

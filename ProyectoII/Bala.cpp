@@ -4,15 +4,15 @@
 #include "Personaje.h"
 
 
-Bala::Bala(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, PersonajeVirtual* per) : Entidad(pJ, x, y, textura, efecto,ONull)
+Bala::Bala(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, ListaBalas_t tBala) : Entidad(pM->getPJ(), x, y, textura, efecto, ONull)
 {
 	incrX = incrY = 0;
 	velocidad = 1;
 	angulo = ang;
 	setAngulo();
 	time = SDL_GetTicks();
-	personaje = per;
-
+	tipoBala = tBala;
+	pMundo = pM;
 }
 
 
@@ -65,7 +65,7 @@ void Bala::update(){
 	rect = { rect.x + velocidad * incrX, rect.y +  velocidad * incrY, rect.w, rect.h };
 	if (SDL_GetTicks() - time >= duracion)//Se pide la hora y se compara con la última 
 	{
-		personaje->destruyeBala(this);
+		pMundo->destruyeBala(pMundo->getListaBalas(tipoBala), this);
 	}
 
 }

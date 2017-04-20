@@ -28,11 +28,9 @@ public:
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
 	inline int getVida()const { return vida; };
-	inline list <EntidadJuego*> getBalas() const{ return balas; };
 
 	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------
 	void restaVida();
-	void destruyeBala(EntidadJuego * bala);
 	//-----------------------------------------------------------------------------
 
 	void empujeHaciaAtras();
@@ -40,7 +38,6 @@ public:
 
 private:
 	//Atributos
-	list <EntidadJuego*> balas;
 	const float tiempoBala = 1000;
 	const float tiempoEmpuje = 500;
 	Uint32 ultimoEmpuje;

@@ -40,6 +40,8 @@ enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TI
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
 enum Estados_t{MInicio,MGameOver,MPausa,MundoReal,MundoOscuro};
+enum ListaBalas_t{ LBalasEnemigos, LBalasPersonaje};
+
 
 //----------------------------------------------------
 

@@ -13,6 +13,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	pausa = false;
 	mapa = new Mapa(this, m);
 	initObjetos();
+	balaDestruida = false;
 
 	//pJuego->getMusica(MPlay)->play();
 }
@@ -50,7 +51,7 @@ void Mundo::initObjetos()
 	y = mapa->getYSpawn();
 	psj = new Personaje(this, x, y, TJugador, ENull);
 
-	enemigos.push_back(new Enemigo(pJuego, x + 100, y + 100, TPlay, ENull));
+	enemigos.push_back(new Enemigo(this, x + 100, y + 100, TPlay, ENull));
 
 
 	//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));
@@ -67,18 +68,34 @@ void Mundo::freeObjetos(){
 	}
 
 	list<Enemigo*>::iterator itEnemigo = enemigos.begin();
-	while (!enemigos.empty() && itEnemigo != enemigos.end())//Se destruyen las llaves
+	while (!enemigos.empty() && itEnemigo != enemigos.end())
 	{
 		delete(*itEnemigo);
 		enemigos.erase(itEnemigo);
 	}
 
 	list<EntidadJuego*>::iterator itLlaves = llaves.begin();
-	while (!llaves.empty() && itLlaves != llaves.end())//Se destruyen las llaves
+	while (!llaves.empty() && itLlaves != llaves.end())
 	{
 		delete(*itLlaves);
 		llaves.erase(itLlaves);
 	}
+
+	//Balas
+	list<EntidadJuego*>::iterator itBalasPsj = balasPsj.begin();
+	while (!balasPsj.empty() && itBalasPsj != balasPsj.end())
+	{
+		delete(*itBalasPsj);
+		balasPsj.erase(itBalasPsj);
+	}
+
+	list<EntidadJuego*>::iterator itBalasEnem = balasEnems.begin();
+	while (!balasEnems.empty() && itBalasEnem != balasEnems.end())
+	{
+		delete(*itBalasEnem);
+		balasEnems.erase(itBalasEnem);
+	}
+
 
 }
 
@@ -110,6 +127,22 @@ void Mundo::draw()const{
 
 	psj->draw();
 
+	//Balas
+	list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
+	while (!balasPsj.empty() && itBalasPsj != balasPsj.cend())
+	{
+		(*itBalasPsj)->draw();
+		itBalasPsj++;
+	}
+
+	list<EntidadJuego*>::const_iterator itBalasEnem = balasEnems.cbegin();
+	while (!balasEnems.empty() && itBalasEnem != balasEnems.cend())
+	{
+		(*itBalasEnem)->draw();
+		itBalasEnem++;
+	}
+
+
 	pJuego->escribir("HOLA :)",50, 50);
 
 }
@@ -117,9 +150,28 @@ void Mundo::draw()const{
 
 void Mundo::update(){
 	psj->update();//Update de personaje
+	balaDestruida = false;
+	//Balas
+	list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
+	while (!balaDestruida && !balasPsj.empty() && itBalasPsj != balasPsj.cend())
+	{
+		balaDestruida = false;
+		(*itBalasPsj)->update();
+		if (!balaDestruida)//Si no ha sido destruida en el update, avanzo
+			itBalasPsj++;
+		
+	}
 
-	for (size_t i = 0; i < objetos.size(); i++)//Update de objetos
-		objetos[i]->update();
+	list<EntidadJuego*>::iterator itBalasEnem = balasEnems.begin();
+	while (!balaDestruida && !balasEnems.empty() && itBalasEnem != balasEnems.end())
+	{
+		balaDestruida = false;
+		(*itBalasEnem)->update();
+		if (!balaDestruida)//Si no ha sido destruida en el update, avanzo
+			itBalasEnem++;
+		else
+			balasEnems.erase(itBalasEnem);
+	}
 
 	list<Enemigo*>::const_iterator citEnemigo = enemigos.cbegin();//Update de enemigos
 	while (!enemigos.empty() && citEnemigo != enemigos.cend())
@@ -128,6 +180,10 @@ void Mundo::update(){
 		citEnemigo++;
 	}
 
+	for (size_t i = 0; i < objetos.size(); i++)//Update de objetos
+		objetos[i]->update();
+
+
 	list<EntidadJuego*>::const_iterator cit = llaves.cbegin();
 	while (!llaves.empty() && cit != llaves.cend())//Update de las llaves
 	{
@@ -135,34 +191,29 @@ void Mundo::update(){
 		cit++;
 	}
 
-
-
 	//COLISIONES
 	colBalaEnemigo();
 	colBalaPersonaje();
-
-	
 }
 
 
 void Mundo::colBalaEnemigo(){
 
-	list <EntidadJuego*> balas = psj->getBalas();
 	list<Enemigo*>::iterator itEnemigo = enemigos.begin();
 
 	//Recorremos los enemigos
 	while (!enemigos.empty() && itEnemigo != enemigos.cend())
 	{
-		list<EntidadJuego*>::iterator it = balas.begin();
+		list<EntidadJuego*>::iterator it = balasPsj.begin();
 
 		//Recorremos las balas
-		while (!balas.empty() && it != balas.cend())
+		while (!balasPsj.empty() && it != balasPsj.cend())
 		{
 			//Detectamos la colision de la bala con el enemigo
 			if (checkCollision((*it)->getRect(), (*itEnemigo)->getRect()))
 			{
 				(*itEnemigo)->restaVida();
-				psj->destruyeBala(*it);
+				destruyeBala(balasPsj,*it);
 
 				//Caso en el que el enemigo muere
 				if ((*itEnemigo)->getVida() == 0)
@@ -188,13 +239,13 @@ void Mundo::colBalaEnemigo(){
 
 void Mundo::colBalaPersonaje(){
 
-	list<Enemigo*>::const_iterator citEnemigo = enemigos.cbegin();
+	list<EntidadJuego*>::const_iterator citBalasEnems = balasEnems.cbegin();
 
 	//Colision balas con personaje 
-	while (!enemigos.empty() && citEnemigo != enemigos.cend())
+	while (!balasEnems.empty() && citBalasEnems != balasEnems.cend())
 	{
 		//Si el psj colisiona con el enemigo
-		if (checkCollision(psj->getRect(), (*citEnemigo)->getRect())){
+		if (checkCollision(psj->getRect(), (*citBalasEnems)->getRect())){
 			//Se pide la hora y se compara con la última 
 			if (SDL_GetTicks() - time >= duracion)
 			{
@@ -208,7 +259,7 @@ void Mundo::colBalaPersonaje(){
 				pJuego->estadoEnum = MGameOver;
 			}
 		}
-		citEnemigo++;
+		citBalasEnems++;
 	}
 }
 
@@ -299,5 +350,28 @@ void Mundo::destruyeLlave(EntidadJuego * llave)
 	
 	pJuego->setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
 
+
+}
+
+void Mundo::destruyeBala(list <EntidadJuego*> & lista, EntidadJuego * bala)
+{
+	list<EntidadJuego*>::iterator it = lista.begin();
+	while (it != lista.end() && (*it) != bala)
+	{
+		it++;
+	}
+	lista.erase(it);
+	delete (bala);
+	bala = nullptr;
+	balaDestruida = true;
+}
+
+void Mundo::insertaBala(ListaBalas_t lista, EntidadJuego * bala)
+{
+	if (lista == LBalasPersonaje)
+		balasPsj.push_back(bala);
+
+	else
+		balasEnems.push_back(bala);
 
 }

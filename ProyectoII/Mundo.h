@@ -29,11 +29,22 @@ public:
 	EntidadJuego * compruebaColisionObjetos();
 
 	void destruyeLlave(EntidadJuego * llave);
+	void destruyeBala(list <EntidadJuego*> &lista,EntidadJuego * bala);
+
 
 
 	//------------------GETTERS---------------------
 	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
+	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
+	{
+		if (lista == LBalasPersonaje)
+			return balasPsj;
+		else
+			return balasEnems;
+	};
+
+	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
 
 
 private:
@@ -43,10 +54,10 @@ private:
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	list <Enemigo*> enemigos;
-	list <Bala*> balaPsj;
-	list <list <Bala*> > balaEnem;
+	list <EntidadJuego*> balasPsj;
+	list <EntidadJuego*> balasEnems;
 	Mapa * mapa;
-	bool pausa;
+	bool pausa, balaDestruida;
 	const Uint32 duracion = 500;
 	Uint32 time;
 
