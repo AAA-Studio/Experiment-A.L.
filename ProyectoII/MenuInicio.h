@@ -4,13 +4,14 @@
 #include "checkML.h"
 #include "Menu.h"
 #include "Juego.h"
+#include "Musica.h"
 
 
 class MenuInicio : public Menu
 {
 public:
 	MenuInicio(Juego * pJ);
-	~MenuInicio(){};
+	~MenuInicio(){ pJuego->getMusica(MusicaInicio)->close(); };
 	virtual void draw()const;
 
 private:

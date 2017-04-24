@@ -38,7 +38,7 @@ const int TAMAÑO_LLAVES = 1;
 
 enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
-enum  Musica_t{ Musica_t_SIZE};
+enum  Musica_t{ MusicaInicio,Musica_t_SIZE};
 enum Estados_t{MInicio,MGameOver,MPausa,MundoReal,MundoOscuro};
 enum ListaBalas_t{ LBalasEnemigos, LBalasPersonaje};
 
@@ -88,7 +88,7 @@ public:
 
 	//Musica
 	inline Efecto * getEfecto(Efectos_t et) const { return efectos[et]; }
-	//Musica * getMusica(Musica_t et) const { return musica[et]; }
+	Musica * getMusica(Musica_t et) const { return musica[et]; }
 
 	//Fuente
 	inline Fuente getFuente() const { return fuente; }
@@ -148,7 +148,7 @@ private:
 	Fuente fuente;
 	TexturasSDL * textFuente;
 
-	//Musica * musica[Musica_t_SIZE];
+	Musica * musica[Musica_t_SIZE];
 	Efecto * efectos[Efectos_t_SIZE];
 
 	//Inicializa el renderizador, en caso de error muestra un mensaje y deja los atributos nulos

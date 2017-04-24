@@ -121,7 +121,6 @@ void Juego::run()
 		if (SDL_GetTicks() - lastUpdate >= MSxUpdate)//Se pide la hora y se compara con la última 
 		{
 			topEstado()->update();
-
 			lastUpdate = SDL_GetTicks();
 		}
 
@@ -248,9 +247,9 @@ void Juego::initMedia()
 	efectos[EGlobo]->load(archAudioWav);*/
 
 	//Música
-	/*string archAudioMp3 = { "..\\sounds\\22-tachimi-circus.wav" };
-	musica[MPlay] = new Musica();
-	musica[MPlay]->load(archAudioMp3);*/
+	string archAudioMp3 = { "..\\sounds\\mInicio.mp3" };
+	musica[MusicaInicio] = new Musica();
+	musica[MusicaInicio]->load(archAudioMp3);
 
 }
 

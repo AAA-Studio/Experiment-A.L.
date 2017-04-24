@@ -65,7 +65,13 @@ void Bala::update(){
 	rect = { rect.x + velocidad * incrX, rect.y +  velocidad * incrY, rect.w, rect.h };
 	if (SDL_GetTicks() - time >= duracion)//Se pide la hora y se compara con la última 
 	{
-		pMundo->destruyeBala(pMundo->getListaBalas(tipoBala), this);
+		list<EntidadJuego*> listaBalas = pMundo->getListaBalas(tipoBala);
+		list<EntidadJuego*>::iterator it = listaBalas.begin();
+		while (!listaBalas.empty() && it != listaBalas.end() && (*it) != this)
+		{
+			it++;
+		}
+		pMundo->destruyeBala(listaBalas, it);
 	}
 
 }

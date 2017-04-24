@@ -6,6 +6,7 @@ MenuInicio::MenuInicio(Juego * pJ) : Menu(pJ)
 {
 	objetos.resize(2);
 	initObjetos();
+	pJ->getMusica(MusicaInicio)->play();
 }
 
 void MenuInicio::draw()const

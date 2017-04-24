@@ -23,7 +23,7 @@ public:
 
 	virtual void destruyeLlave(EntidadJuego * llave) = 0;
 
-	virtual void destruyeBala(list <EntidadJuego*> &lista, EntidadJuego * bala) = 0;
+	virtual void destruyeBala(list <EntidadJuego*> &lista, list<EntidadJuego*>::iterator & it) = 0;
 
 	virtual void insertaBala(ListaBalas_t lista, EntidadJuego * bala) = 0;
 

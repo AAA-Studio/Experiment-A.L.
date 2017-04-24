@@ -29,7 +29,7 @@ public:
 	EntidadJuego * compruebaColisionObjetos();
 
 	void destruyeLlave(EntidadJuego * llave);
-	void destruyeBala(list <EntidadJuego*> &lista,EntidadJuego * bala);
+	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it);
 
 
 
