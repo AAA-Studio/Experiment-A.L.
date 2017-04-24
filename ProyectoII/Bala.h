@@ -9,7 +9,7 @@
 class Bala : public Entidad
 {
 public:
-	Bala(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, ListaBalas_t tBala);
+	Bala(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, ListaBalas_t tBala,int ancho, int alto);
 	~Bala();
 	virtual void update();
 

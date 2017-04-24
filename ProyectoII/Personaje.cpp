@@ -8,7 +8,7 @@
 Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(),x,y,textura,efecto,ONull)
 {
 	pMundo = pM;
-	rect = { x, y, 20, 20 };
+	rect = { x, y, 50, 50 };
 	rectInforme = { pJuego->getAncho() / 2, pJuego->getAlto() / 2, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100,100 };
 	ultimaBala = SDL_GetTicks();
@@ -159,7 +159,7 @@ void Personaje::move(int x, int y)
 void Personaje::disparo(){
 	if (SDL_GetTicks() - ultimaBala >= tiempoBala)//Se pide la hora y se compara con la última 
 	{
-		pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TPlay, ENull, angulo, LBalasPersonaje));
+		pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TPlay, ENull, angulo, LBalasPersonaje, rect.w, rect.h));
 
 		ultimaBala = SDL_GetTicks();
 	}

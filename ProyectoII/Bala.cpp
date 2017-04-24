@@ -4,8 +4,13 @@
 #include "Personaje.h"
 
 
-Bala::Bala(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, ListaBalas_t tBala) : Entidad(pM->getPJ(), x, y, textura, efecto, ONull)
+Bala::Bala(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, ListaBalas_t tBala,int ancho, int alto) : Entidad(pM->getPJ(), x, y, textura, efecto, ONull)
 {
+	rect.w /= 3;
+	rect.h /= 3;
+
+	//rect.x += ancho / 2 + rect.w / 2;
+	rect.y += alto / 2 -rect.h/2;
 	incrX = incrY = 0;
 	velocidad = 1;
 	angulo = ang;

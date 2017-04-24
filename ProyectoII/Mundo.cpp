@@ -51,7 +51,7 @@ void Mundo::initObjetos()
 	y = mapa->getYSpawn();
 	psj = new Personaje(this, x, y, TJugador, ENull);
 
-	enemigos.push_back(new Enemigo(this, x + 100, y + 100, TPlay, ENull));
+	enemigos.push_back(new Enemigo(this, x + 100, y + 100, TLeon, ENull));
 
 
 	//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));

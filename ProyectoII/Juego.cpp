@@ -8,6 +8,10 @@
 #include "Pausa.h"
 #include "Mundo.h"
 
+
+#include <iostream>
+#include <conio.h>
+#include <windows.h>
 using namespace std; // Para cualificar automaticamente con std:: los identificadores de la librería estandar 
 
 //Constructora
@@ -219,7 +223,7 @@ void Juego::initMedia()
 {
 	//TEXTURAS
 
-	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png",
+	vector <string>nombArchTex = {"..\\bmps\\Al.png","..\\bmps\\selft-time.png", "..\\bmps\\manticora.png", "..\\bmps\\play.png",
 		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\tilesdef.png", "..\\bmps\\llave.png",
 		"..\\bmps\\informe.png", "..\\bmps\\informe.png" };
 
@@ -290,6 +294,7 @@ void Juego::render()
 }
 
 void Juego::changeState(EstadoJuego *estado){
+	Sleep(1000);
 	popState();
 	pushState(estado);
 }
