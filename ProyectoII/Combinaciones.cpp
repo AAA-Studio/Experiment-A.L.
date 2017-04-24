@@ -79,7 +79,7 @@ void Combinaciones::onInput(SDL_Event &e){
 			while (i < objetos.size() && !pulsado)
 			{
 				objetos[i]->onInput();
-				if (i == 11)
+				if (i == 10)
 					pulsado == true;
 				else if (pJuego->getNumero() == i){
 					combTecleada += to_string(pJuego->getNumero());
