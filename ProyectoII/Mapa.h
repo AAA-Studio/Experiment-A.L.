@@ -27,7 +27,6 @@ private:
 	MundoVirtual * pMundo;
 	Juego * pJuego;
 	string nombreMapa;
-
 	SDL_Rect camera;
 	Tile* tileMap[TOTAL_TILES];
 

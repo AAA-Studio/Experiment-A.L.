@@ -7,6 +7,7 @@
 #include "GameOver.h"
 #include "Pausa.h"
 #include "Mundo.h"
+#include "MundoVirtual.h"
 #include "Combinaciones.h"
 
 using namespace std; // Para cualificar automaticamente con std:: los identificadores de la librería estandar 
@@ -38,14 +39,27 @@ Juego::Juego()
 		llavesCogidas[i] = false;
 
 	estadoEnum = MInicio;
-	//vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
-	vectorEstados.push_back(new Combinaciones(this));//
+	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
 	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
+
+	combinaciones.reserve(1);
+	combinaciones.emplace_back("1234");
+	puertas[0] = false;
+	numero = 20;
 
 }
 
-//Paso de niveles
 
+bool Juego::getPuerta(int i){ 
+	return puertas[i]; 
+}
+
+int Juego::getNumero()
+{
+	return numero;
+}
+
+//Paso de niveles
 string Juego::SelectorDeNiveles() {
 	int nivel = getNivel();
 	indiceMapas += nivel;
@@ -65,6 +79,7 @@ Juego::~Juego()
 void Juego::gestionaEstados(Estados_t estado){
 	EstadoJuego *aux; //Estado auxiliar que va a ser el estado a crear
 	bool pausa = false;
+	bool combs = false;
 
 	switch (estado){
 		//Menus
@@ -86,7 +101,8 @@ void Juego::gestionaEstados(Estados_t estado){
 		aux = new Mundo(this,SelectorDeNiveles());
 		break;
 	case ECombinaciones:
-		aux = new Combinaciones(this);
+		aux = new Combinaciones(this, combinaciones[0], 0);
+		combs = true;
 		break;
 
 	default:
@@ -95,12 +111,15 @@ void Juego::gestionaEstados(Estados_t estado){
 	
 	}
 
-	if (!pausa)
+	if (combs)
+		goToCombinaciones(aux);
+	else if (!pausa)
 		changeState(aux);
 	else
 		goToPausa(aux);
 
 	pausa = false;
+	combs = false;
 	borraEstado = false;
 
 }
@@ -313,6 +332,11 @@ void Juego::popState(){
 
 void Juego::goToPausa(EstadoJuego *estado){
 	vectorEstados.push_back(estado);//Añadimos el estado Pausa sin eliminar el estado actual (Play)
+}
+
+void Juego::goToCombinaciones(EstadoJuego* estado)
+{
+	vectorEstados.push_back(estado);//Añadimos el estado Pausa sin eliminar el estado actual 
 }
 
 // tendrás que añadir atributos para la posición del ratón(que deben actualizarse en onClick)

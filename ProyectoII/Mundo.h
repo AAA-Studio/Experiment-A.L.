@@ -26,10 +26,7 @@ public:
 	bool checkCollision(SDL_Rect a, SDL_Rect b);
 	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
 	EntidadJuego * compruebaColisionObjetos();
-
 	void destruyeLlave(EntidadJuego * llave);
-
-
 	//------------------GETTERS---------------------
 	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
@@ -39,13 +36,16 @@ private:
 	//-------------------ATRIBUTOS---------------
 	Juego * pJuego;
 	Personaje * psj;
+	bool abierto;
+	vector<bool> cerraduras;
+	vector<int> puertas;
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	Mapa * mapa;
 	bool pausa;
 	const Uint32 duracion = 3000;
 	Uint32 time;
-
+	
 	//-------------------METODOS-------------------
 
 	void initObjetos();

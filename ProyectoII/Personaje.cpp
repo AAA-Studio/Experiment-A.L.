@@ -3,7 +3,6 @@
 #include "Mundo.h"
 #include "Bala.h"
 
-
 //Constructora
 Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto)
 {
@@ -258,6 +257,9 @@ void Personaje::coger(){
 		case OLlave:
 			pMundo->destruyeLlave(objeto);
 			break;
+		case OTeclado:
+			pJuego->borraEstado = true;
+			pJuego->estadoEnum = ECombinaciones;
 		}
 	}
 	

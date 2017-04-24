@@ -113,13 +113,15 @@ void  Mapa::buscaSpawn(int tipo, int& x, int& y){
 
 bool Mapa::touchesWall(SDL_Rect box)
 {
+	
 	//Go through the tiles
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
 		//If the tile is a wall type tile
 		//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
 		//PUERTA ROJA
-		if ((tileMap[i]->getType() == 150))
+		
+		if (pJuego->getPuerta(0) && (tileMap[i]->getType() == 150))
 
 		{
 

@@ -13,7 +13,11 @@ Mundo::Mundo(Juego * pJ, string m)
 	pausa = false;
 	mapa = new Mapa(this, m);
 	initObjetos();
+	abierto = false;
 
+	//cerraduras[0] = false;
+	//puertas[0] = 0;
+	
 	//pJuego->getMusica(MPlay)->play();
 }
 
@@ -50,6 +54,7 @@ void Mundo::initObjetos()
 		x = 300;
 		y = 300;
 		psj = new Personaje(this, x, y, TJugador, ENull);
+		objetos.emplace_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
 	}
 	//sale en el spawn gris
 	if (pJuego->getNivel() == -1){
@@ -151,6 +156,7 @@ void Mundo::draw()const{
 	//DIBUJAR MAPA
 	mapa->draw();
 	//Dibujar objetos del juego
+	
 	for (int i = objetos.size() - 1; i >= 0; i--)
 		objetos[i]->draw();
 
@@ -173,6 +179,7 @@ void Mundo::draw()const{
 void Mundo::update(){
 	psj->update();//Update de personaje
 
+	
 	for (size_t i = 0; i < objetos.size(); i++)//Update de objetos
 		objetos[i]->update();
 

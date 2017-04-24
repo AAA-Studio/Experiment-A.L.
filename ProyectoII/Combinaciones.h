@@ -1,14 +1,15 @@
 #ifndef _H_Combinaciones_H_
 #define _H_Combinaciones_H_
-#include "EstadoJuego.h"
+#include "Menu.h"
 #include "EntidadJuego.h"
 #include "Juego.h"
 #include <string>
+#include "MundoVirtual.h"
 
-class Combinaciones : public EstadoJuego
+class Combinaciones : public Menu
 {
 public:
-	Combinaciones(Juego* juego);
+	Combinaciones(Juego* juego, string combinacion, int puerta);
 
 	virtual void draw() const;
 	virtual void update();
@@ -18,11 +19,12 @@ public:
 protected:
 	void initObjetos();
 	vector <EntidadJuego*> objetos;
-	Juego* juego;
 	string combTecleada; //combinacion tecleada por el jugador
 	string combinacion; //combinacion correcta
 	bool acierto;
+	int puerta;
 	int intentos;
+	MundoVirtual * pMundo;
 };
 #endif
 

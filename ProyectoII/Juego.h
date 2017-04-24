@@ -69,6 +69,9 @@ public:
 	// en duda
 	void goToPausa(EstadoJuego * estado);
 
+	//crea el estado combinaciones
+	void goToCombinaciones(EstadoJuego* estado);
+
 	//Sale del programa
 	void setSalir(){ exit = true; };
 	
@@ -121,11 +124,19 @@ public:
 	string SelectorDeNiveles();
 	int indiceMapas=1;
 
-	//numero tecleado para las combinaciones
-	int numero;
+	//setter para cambiar el estado de una puerta cerrada a abierta
+	void setPuerta(int i, bool estado){ puertas[i] = estado; }
+
+	bool getPuerta(int i);
+
+	//setter y getter de numero (EstadoCombinaciones)
+	void setNumero(int i){ numero = i; }
+	int getNumero();
 	
 
 private:
+
+	
 
 	//Atributos
 	int nivel;
@@ -133,6 +144,7 @@ private:
 	int posMouseX, posMouseY;
 	vector <string> nombreMapas;
 	
+	int numero; //numero para los teclados del estado combinaciones
 
 	SDL_Window *pWin;//Puntero de la ventana
 	SDL_Renderer *pRenderer;//Puntero del renderizador
@@ -167,6 +179,10 @@ private:
 
 	//Añade un nuevo estado
 	void pushState(EstadoJuego * nuevoEstado);
+
+	vector <string> combinaciones;
+	bool puertas[1];
+
 
 };
 
