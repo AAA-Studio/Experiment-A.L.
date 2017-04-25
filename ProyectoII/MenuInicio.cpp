@@ -28,8 +28,8 @@ static void goSalir(Juego * pj){
 }
 
 void MenuInicio::initObjetos(){
-	objetos[0] = new Boton(pJuego, 340, 400, TExit, ENull, goSalir);
-	objetos[1] = new Boton(pJuego, 340, 200, TPlay, ENull, goPlay);
+	objetos[0] = new Boton(pJuego, 200, 400, TExit, ENull, goSalir);
+	objetos[1] = new Boton(pJuego, 200, 200, TPlay, ENull, goPlay);
 }
 
 

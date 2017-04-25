@@ -13,8 +13,8 @@ using namespace std;
 
 //-----------------CONSTANTES----------------------
 
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 768;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 640;
 
 //The dimensions of the level
 const int LEVEL_WIDTH = 800;

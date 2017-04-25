@@ -220,8 +220,8 @@ void Juego::initMedia()
 {
 	//TEXTURAS
 
-	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\boton.png",
-		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\tilesdef.png", "..\\bmps\\llave.png",
+	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\botonjugar.png",
+		"..\\bmps\\botonmenu.png", "..\\bmps\\botonsalir.png", "..\\bmps\\tilesdef.png", "..\\bmps\\llave.png",
 		"..\\bmps\\informe.png", "..\\bmps\\informe.png", "..\\bmps\\hotelterror.png", "..\\bmps\\llave.png" };
 	//nunca se carga el ultimo png, el for no deberia de ser nombArchTex.size en vez de Texturas_t_SIZE¿?
 
