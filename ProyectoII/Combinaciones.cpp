@@ -21,7 +21,7 @@ Combinaciones::Combinaciones(Juego* juego, string combinacion, int puerta) : Men
 	acierto = false;
 	this->combinacion = combinacion;
 	this->puerta = puerta;
-	
+	intentos = 0;
 	combTecleada = "";
 	initObjetos();
 }
@@ -49,6 +49,7 @@ void Combinaciones::update(){
 	}
 }
 void Combinaciones::initObjetos(){
+	objetos.emplace_back(new Boton(pJuego, 600, 500, TCero, ENull, cero));
 	objetos.emplace_back(new Boton(pJuego, 500, 200, TUno, ENull, uno));
 	objetos.emplace_back(new Boton(pJuego, 600, 200, TDos, ENull, dos));
 	objetos.emplace_back(new Boton(pJuego, 700, 200, TTres, ENull, tres));
@@ -58,7 +59,6 @@ void Combinaciones::initObjetos(){
 	objetos.emplace_back(new Boton(pJuego, 500, 400, TSiete, ENull, siete));
 	objetos.emplace_back(new Boton(pJuego, 600, 400, TOcho, ENull, ocho));
 	objetos.emplace_back(new Boton(pJuego, 700, 400, TNueve, ENull, nueve));
-	objetos.emplace_back(new Boton(pJuego, 600, 500, TCero, ENull, cero));
 	objetos.emplace_back(new Boton(pJuego, 900, 200, TCero, ENull, salir));
 	}
 
@@ -74,25 +74,31 @@ void Combinaciones::onInput(SDL_Event &e){
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
+			for (int j = 0; j < objetos.size(); j++)
+			{
+				objetos[j]->onInput();
+			}
 			int i = 0;
 			bool pulsado = false;
+			
 			while (i < objetos.size() && !pulsado)
 			{
-				objetos[i]->onInput();
+				//objetos[i]->onInput();
 				if (i == 10)
 					pulsado == true;
-				else if (pJuego->getNumero() == i){
+				else if (pJuego->getNumero() == i)
+				{
 					combTecleada += to_string(pJuego->getNumero());
 					intentos++;
 					pulsado = true;
-					/*cout << combTecleada;
-					if (acierto)
-						cout << "acierto";
-					else 
-						cout << "fallo";*/
+					cout << " intentos: " + intentos;
+					cout << " combinacion: " + combTecleada;
 				}
+				
 				i++;
 			}
+			pulsado = false;
+			i = 0;
 		}
 	}
 
