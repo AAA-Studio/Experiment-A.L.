@@ -17,7 +17,7 @@ public:
 
 	virtual EntidadJuego * compruebaColisionObjetos() = 0;
 
-	virtual Juego* getPJ()const  = 0;
+	virtual Juego* getPJ()const = 0;
 
 	virtual list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const = 0;
 

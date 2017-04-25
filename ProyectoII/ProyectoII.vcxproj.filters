@@ -117,6 +117,9 @@
     <ClCompile Include="Enemigo.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
+    <ClCompile Include="Combinaciones.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="Enemigo.h">
       <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="Combinaciones.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

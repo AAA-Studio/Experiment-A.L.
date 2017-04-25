@@ -69,6 +69,7 @@
   <ItemGroup>
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Boton.cpp" />
+    <ClCompile Include="Combinaciones.cpp" />
     <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Entidad.cpp" />
     <ClCompile Include="Fuente.cpp" />
@@ -89,6 +90,7 @@
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="checkML.h" />
+    <ClInclude Include="Combinaciones.h" />
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Entidad.h" />
     <ClInclude Include="EntidadJuego.h" />

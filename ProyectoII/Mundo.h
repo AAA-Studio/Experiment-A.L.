@@ -18,7 +18,7 @@ using namespace std;
 class Mundo : public MundoVirtual
 {
 public:
-	Mundo(Juego * pJ,string mapa);
+	Mundo(Juego * pJ, string mapa);
 	virtual ~Mundo();
 
 	virtual void draw() const;
@@ -27,14 +27,11 @@ public:
 	bool checkCollision(SDL_Rect a, SDL_Rect b);
 	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
 	EntidadJuego * compruebaColisionObjetos();
-
 	void destruyeLlave(EntidadJuego * llave);
 	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it);
 
-
-
-	//------------------GETTERS---------------------
-	inline Mapa* getMapa() const { return mapa; };
+		//------------------GETTERS---------------------
+		inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
@@ -51,6 +48,9 @@ private:
 	//-------------------ATRIBUTOS---------------
 	Juego * pJuego;
 	Personaje * psj;
+	bool abierto;
+	vector<bool> cerraduras;
+	vector<int> puertas;
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	list <Enemigo*> enemigos;

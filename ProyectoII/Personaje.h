@@ -9,9 +9,9 @@
 #include "MundoVirtual.h"
 
 struct Direccion{
-	int x; 
+	int x;
 	int y;
-} ;
+};
 
 
 class Personaje : public Entidad, public PersonajeVirtual
@@ -24,7 +24,7 @@ public:
 	virtual void onInput();
 	virtual void draw()const; //Para dibujar las balas
 
-	
+
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
 	inline int getVida()const { return vida; };
@@ -34,7 +34,7 @@ public:
 	//-----------------------------------------------------------------------------
 
 	void empujeHaciaAtras();
-	
+
 
 private:
 	//Atributos

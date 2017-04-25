@@ -10,7 +10,7 @@ class PersonajeVirtual : virtual public EntidadJuego
 {
 public:
 
-	virtual void restaVida()=0;
+	virtual void restaVida() = 0;
 	virtual int getVida()const = 0;
 };
 

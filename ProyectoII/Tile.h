@@ -12,7 +12,7 @@ public:
 	void render(const SDL_Rect& camera) const;
 
 	//Get the tile type
-	inline int getType() const {return mType;};
+	inline int getType() const { return mType; };
 
 	//Get the collision box
 	inline SDL_Rect getBox() const{ return mBox; };

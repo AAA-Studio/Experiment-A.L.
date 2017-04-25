@@ -7,6 +7,8 @@
 #include "GameOver.h"
 #include "Pausa.h"
 #include "Mundo.h"
+#include "MundoVirtual.h"
+#include "Combinaciones.h"
 
 
 #include <iostream>
@@ -44,10 +46,24 @@ Juego::Juego()
 	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
 	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
 
+	combinaciones.reserve(1);
+	combinaciones.emplace_back("1234");
+	puertas[0] = false;
+	numero = 20;
+
+}
+
+
+bool Juego::getPuerta(int i){
+	return puertas[i];
+}
+
+int Juego::getNumero()
+{
+	return numero;
 }
 
 //Paso de niveles
-
 string Juego::SelectorDeNiveles() {
 	int nivel = getNivel();
 	indiceMapas += nivel;
@@ -67,6 +83,7 @@ Juego::~Juego()
 void Juego::gestionaEstados(Estados_t estado){
 	EstadoJuego *aux; //Estado auxiliar que va a ser el estado a crear
 	bool pausa = false;
+	bool combs = false;
 
 	switch (estado){
 		//Menus
@@ -85,21 +102,28 @@ void Juego::gestionaEstados(Estados_t estado){
 
 		//Mundos
 	case MundoReal:
-		aux = new Mundo(this,SelectorDeNiveles());
+		aux = new Mundo(this, SelectorDeNiveles());
+		break;
+	case ECombinaciones:
+		aux = new Combinaciones(this, combinaciones[0], 0);
+		combs = true;
 		break;
 
 	default:
 		aux = new MenuInicio(this);
 		break;
-	
+
 	}
 
-	if (!pausa)
+	if (combs)
+		goToCombinaciones(aux);
+	else if (!pausa)
 		changeState(aux);
 	else
 		goToPausa(aux);
 
 	pausa = false;
+	combs = false;
 	borraEstado = false;
 
 }
@@ -172,7 +196,7 @@ void Juego::initSDL()
 		//Set texture filtering to linear
 		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 		{
-			printf("Warning: Linear texture filtering not enabled!");
+		printf("Warning: Linear texture filtering not enabled!");
 		}
 		*/
 
@@ -223,9 +247,11 @@ void Juego::initMedia()
 {
 	//TEXTURAS
 
-	vector <string>nombArchTex = {"..\\bmps\\Al.png","..\\bmps\\selft-time.png", "..\\bmps\\manticora.png", "..\\bmps\\play.png",
+	vector <string>nombArchTex = { "..\\bmps\\Al.png", "..\\bmps\\selft-time.png", "..\\bmps\\manticora.png", "..\\bmps\\play.png",
 		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\tilesdef.png", "..\\bmps\\llave.png",
-		"..\\bmps\\informe.png", "..\\bmps\\informe.png" };
+		"..\\bmps\\informe.png", "..\\bmps\\informe.png", "..\\bmps\\uno.png", "..\\bmps\\dos.png", "..\\bmps\\tres.png",
+		"..\\bmps\\cuatro.png", "..\\bmps\\cinco.png", "..\\bmps\\seis.png", "..\\bmps\\siete.png", "..\\bmps\\ocho.png", "..\\bmps\\nueve.png",
+		"..\\bmps\\cero.png", "..\\bmps\\teclado.png" };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{
@@ -312,6 +338,11 @@ void Juego::goToPausa(EstadoJuego *estado){
 	vectorEstados.push_back(estado);//Añadimos el estado Pausa sin eliminar el estado actual (Play)
 }
 
+void Juego::goToCombinaciones(EstadoJuego* estado)
+{
+	vectorEstados.push_back(estado);//Añadimos el estado Pausa sin eliminar el estado actual 
+}
+
 // tendrás que añadir atributos para la posición del ratón(que deben actualizarse en onClick)
 void Juego::getMousePos(int & mpx, int & mpy) const
 {
@@ -322,7 +353,7 @@ void Juego::getMousePos(int & mpx, int & mpy) const
 // Comprueba si hay un evento en la cola de eventos y procesa el metodo correspondiente
 void Juego::handle_event(){
 	SDL_Event e;
-	while (SDL_PollEvent(&e) != 0 ) {
+	while (SDL_PollEvent(&e) != 0) {
 		if (e.type == SDL_QUIT)
 		{
 			exit = true;//X para salir
@@ -359,4 +390,4 @@ void Juego::recortarTiles()
 	}
 
 
-	}
+}

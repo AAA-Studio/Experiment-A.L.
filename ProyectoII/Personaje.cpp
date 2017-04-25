@@ -3,14 +3,13 @@
 #include "Mundo.h"
 #include "Bala.h"
 
-
 //Constructora
-Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(),x,y,textura,efecto,ONull)
+Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y, textura, efecto, ONull)
 {
 	pMundo = pM;
 	rect = { x, y, 30, 40 };
 	rectInforme = { pJuego->getAncho() / 2, pJuego->getAlto() / 2, 300, 600 };
-	rectLlave = { 50, pJuego->getAlto() - 100, 100,100 };
+	rectLlave = { 50, pJuego->getAlto() - 100, 100, 100 };
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
 	llaveCogida = false;
@@ -28,12 +27,12 @@ Personaje::~Personaje()
 
 
 
-void Personaje::update()  
-{	
+void Personaje::update()
+{
 	if (!informeCogido){
-	
+
 	}
-	
+
 }
 
 void Personaje::draw()const
@@ -129,7 +128,7 @@ void Personaje::onInput()
 
 		if (SDL_GetTicks() - ultimoEmpuje >= tiempoEmpuje)//Se pide la hora y se compara con la última 
 			empuje = false;
-		
+
 	}
 }
 
@@ -170,27 +169,27 @@ void Personaje::disparo(){
 /*
 void Personaje::setCamera(SDL_Rect& camera)
 {
-	//Center the camera over the dot
-	camera.x = (rect.x + rect.w / 2) - SCREEN_WIDTH / 2;
-	camera.y = (rect.y + rect.h / 2) - SCREEN_HEIGHT / 2;
+//Center the camera over the dot
+camera.x = (rect.x + rect.w / 2) - SCREEN_WIDTH / 2;
+camera.y = (rect.y + rect.h / 2) - SCREEN_HEIGHT / 2;
 
-	//Keep the camera in bounds
-	if (camera.x < 0)
-	{
-		camera.x = 0;
-	}
-	if (camera.y < 0)
-	{
-		camera.y = 0;
-	}
-	if (camera.x > LEVEL_WIDTH - camera.w)
-	{
-		camera.x = LEVEL_WIDTH - camera.w;
-	}
-	if (camera.y > LEVEL_HEIGHT - camera.h)
-	{
-		camera.y = LEVEL_HEIGHT - camera.h;
-	}
+//Keep the camera in bounds
+if (camera.x < 0)
+{
+camera.x = 0;
+}
+if (camera.y < 0)
+{
+camera.y = 0;
+}
+if (camera.x > LEVEL_WIDTH - camera.w)
+{
+camera.x = LEVEL_WIDTH - camera.w;
+}
+if (camera.y > LEVEL_HEIGHT - camera.h)
+{
+camera.y = LEVEL_HEIGHT - camera.h;
+}
 }
 */
 
@@ -223,9 +222,12 @@ void Personaje::coger(){
 		case OLlave:
 			pMundo->destruyeLlave(objeto);
 			break;
+		case OTeclado:
+			pJuego->borraEstado = true;
+			pJuego->estadoEnum = ECombinaciones;
 		}
 	}
-	
+
 
 
 
@@ -239,6 +241,7 @@ void Personaje::soltarInforme(){
 
 
 }
+
 
 
 
