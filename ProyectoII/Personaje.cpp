@@ -8,7 +8,7 @@
 Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(),x,y,textura,efecto,ONull)
 {
 	pMundo = pM;
-	rect = { x, y, 50, 50 };
+	rect = { x, y, 30, 40 };
 	rectInforme = { pJuego->getAncho() / 2, pJuego->getAlto() / 2, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100,100 };
 	ultimaBala = SDL_GetTicks();
@@ -102,7 +102,7 @@ void Personaje::onInput()
 			x += 1;
 			angulo = 0;
 		}
-
+		//Disparo
 		if (keyStatesActuales[SDL_SCANCODE_E])
 		{
 			disparo();

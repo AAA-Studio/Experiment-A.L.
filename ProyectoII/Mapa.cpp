@@ -106,8 +106,8 @@ void  Mapa::buscaSpawn(){
 	int tipo = 0;
 
 	if (pJuego->getNivel() == 0){
-		x = 300;
-		y = 300;
+		x = 350;
+		y = 350;
 		encontrado = true;
 	}
 	//sale en el spawn gris
@@ -195,8 +195,8 @@ void  Mapa::buscaSpawn(){
 	{
 		if (tileMap[i]->getType() == tipo){
 			SDL_Rect rect = tileMap[i]->getBox();
-			x = rect.x + rect.w/3;
-			y = rect.y + rect.h/3;
+			x = rect.x;
+			y = rect.y;
 			encontrado = true;
 		}
 		i++;

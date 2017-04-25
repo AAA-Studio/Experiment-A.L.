@@ -21,7 +21,7 @@ void Enemigo::update(){
 void Enemigo::disparo(){
 	if (SDL_GetTicks() - ultimaBala >= tiempoBala)//Se pide la hora y se compara con la última 
 	{
-		pMundo->insertaBala(LBalasEnemigos, new Bala(pMundo, rect.x, rect.y, TFuego, ENull, angulo, LBalasEnemigos, rect.w,rect.h));
+		pMundo->insertaBala(LBalasEnemigos, new Bala(pMundo, rect.x, rect.y, TFuego, ENull, 177, LBalasEnemigos, rect.w,rect.h));
 
 		ultimaBala = SDL_GetTicks();
 	}

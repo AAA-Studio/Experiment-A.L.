@@ -9,20 +9,20 @@
 class Bala : public Entidad
 {
 public:
-	Bala(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto, int ang, ListaBalas_t tBala,int ancho, int alto);
+	Bala(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto, float ang, ListaBalas_t tBala,int ancho, int alto);
 	~Bala();
 	virtual void update();
 
 private:
-	int incrX,incrY;
+	float incrX,incrY;
 	int velocidad;
-	int angulo;
+	float angulo;
 	const Uint32 duracion = 2000;
 	Uint32 time;
 	ListaBalas_t tipoBala;
 	MundoVirtual * pMundo;
 
-	void setAngulo();
+	void setAngulo(int ancho, int alto);
 };
 
 #endif
