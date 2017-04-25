@@ -9,7 +9,7 @@ class Entidad : virtual public EntidadJuego
 {
 public:
 
-	Entidad(Juego*pJ, double x, double y, Texturas_t textura, Efectos_t efecto, Objetos_t tipo);
+	Entidad(Juego*pJ, double x, double y, double w, double h ,Texturas_t textura, Efectos_t efecto, Objetos_t tipo);
 
 	virtual ~Entidad();
 

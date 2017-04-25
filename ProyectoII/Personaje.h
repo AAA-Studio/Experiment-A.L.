@@ -28,14 +28,19 @@ public:
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
 	inline int getVida()const { return vida; };
-
+	int DamePosAntX(){ return posXAnt; };
+	int DamePosAntY(){ return posYAnt; };
+	int getX(){ return rect.x; };
+	int getY(){ return rect.y; };
 	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------
 	void restaVida();
 	//-----------------------------------------------------------------------------
 
 	void empujeHaciaAtras();
 
-
+	//--------------PARA LA INTERFAZ DE CHOQUE CON EL MUNDO-------------------------
+	void setPosChocando(int x, int y);
+	void setDir(Direccion direc){ dir = direc; };
 private:
 	//Atributos
 	const float tiempoBala = 1000;
@@ -52,7 +57,7 @@ private:
 
 	SDL_Rect rectInforme;
 	SDL_Rect rectLlave;
-
+	int posXAnt, posYAnt;
 	bool empuje;
 
 	//Métodos

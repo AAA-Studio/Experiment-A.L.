@@ -2,7 +2,7 @@
 #include "Bala.h"
 
 
-Enemigo::Enemigo(MundoVirtual*pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y, textura, efecto, ONull)
+Enemigo::Enemigo(MundoVirtual*pM, int x, int y,int w ,int h, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y,w,h, textura, efecto, ONull)
 {
 	vida = 3;
 	angulo = 180;

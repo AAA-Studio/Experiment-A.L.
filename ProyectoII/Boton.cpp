@@ -1,6 +1,6 @@
 #include "Boton.h"
 #include <iostream>
-Boton::Boton(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, CallBack_t * cb) : Entidad(pJ, x, y, textura, efecto, ONull)
+Boton::Boton(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, CallBack_t * cb) : Entidad(pJ, x, y,100,100, textura, efecto, ONull)
 {
 	cboton = cb;
 }

@@ -4,7 +4,7 @@
 #include "Bala.h"
 
 //Constructora
-Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y, textura, efecto, ONull)
+Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y, 30,40, textura, efecto, ONull)
 {
 	pMundo = pM;
 	rect = { x, y, 30, 40 };
@@ -17,7 +17,8 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 	vida = 3;
 	angulo = 90;
 	empuje = false;
-
+	posXAnt = x;
+	posYAnt = y;
 }
 
 //Destructora
@@ -131,28 +132,18 @@ void Personaje::onInput()
 
 	}
 }
-
+void Personaje::setPosChocando(int x, int y){
+	rect.x = x;
+	rect.y = y;
+}
 void Personaje::move(int x, int y)
 {
 
+	posXAnt = rect.x;
+	posYAnt = rect.y;
+
 	rect.x += x;
-
-	//--------------------------------
-	if (!empuje)
-		dir = { x, y };
-	//--------------------------------
-
-	//Si no colisiona con los tiles, me muevo
-	if (static_cast<Mundo*> (pJuego->topEstado())->getMapa()->touchesWall(rect))
-	{
-		rect.x -= x;
-	}
-
 	rect.y += y;
-	if (static_cast<Mundo*> (pJuego->topEstado())->getMapa()->touchesWall(rect))
-	{
-		rect.y -= y;
-	}
 }
 
 void Personaje::disparo(){

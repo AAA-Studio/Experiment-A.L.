@@ -43,7 +43,7 @@ public:
 
 	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
 
-
+	void compruebaPersonaje();
 private:
 	//-------------------ATRIBUTOS---------------
 	Juego * pJuego;
@@ -62,7 +62,7 @@ private:
 	Uint32 time;
 
 	//-------------------METODOS-------------------
-
+	void cargaObjetos();
 	void initObjetos();
 	void freeObjetos();
 	void colBalaEnemigo();

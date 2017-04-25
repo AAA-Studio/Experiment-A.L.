@@ -36,6 +36,7 @@ Juego::Juego()
 		"..\\bmps\\Habitaciones\\baño.csv", "..\\bmps\\Habitaciones\\pasilloOscuro.csv", "..\\bmps\\Habitaciones\\haboscura.csv",
 		"..\\bmps\\Habitaciones\\hab2oscuro.csv", "..\\bmps\\Habitaciones\\hab3oscura.csv",
 		"..\\bmps\\Habitaciones\\hab4oscura.csv", "..\\bmps\\Habitaciones\\bañooscuro.csv" };
+	nombreObjetos = { "..\\bmps\\Objetos\\Objetos1.csv" };
 
 	initMedia();
 

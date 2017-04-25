@@ -127,6 +127,8 @@ public:
 
 	string SelectorDeNiveles();
 	int indiceMapas = 1;
+	//geter de los objetos desde fichero
+	string dameObjetos(){ return nombreObjetos[0]; }
 
 	//setter para cambiar el estado de una puerta cerrada a abierta
 	void setPuerta(int i, bool estado){ puertas[i] = estado; }
@@ -147,7 +149,7 @@ private:
 	bool exit;
 	int posMouseX, posMouseY;
 	vector <string> nombreMapas;
-
+	vector <string> nombreObjetos;
 	int numero; //numero para los teclados del estado combinaciones
 
 	SDL_Window *pWin;//Puntero de la ventana

@@ -13,9 +13,9 @@ Mundo::Mundo(Juego * pJ, string m)
 	pausa = false;
 	mapa = new Mapa(this, m);
 	initObjetos();
+	cargaObjetos();
 	abierto = false;
 	balaDestruida = false;
-
 	//cerraduras[0] = false;
 	//puertas[0] = 0;
 
@@ -28,7 +28,75 @@ Mundo::~Mundo()
 	freeObjetos();
 
 }
+void Mundo::cargaObjetos(){
+	string objts = pJuego->dameObjetos();
+	int nivel = pJuego->indiceMapas;
+	std::ifstream obj(objts);
+	if (!obj.is_open())
+	{
+		printf("Unable to load map file!\n");
+	}
+	bool hecho = false;
+	string nombre;
+	int i = 1;
+	while (obj.peek() != EOF && !hecho){
 
+
+		if (i == 1)
+			obj >> nombre;
+
+		int y, x,w,h, lvl;
+		if (nombre == "NIVEL"){
+
+			obj >> lvl;
+
+			if (nivel == lvl){
+
+				obj >> nombre;
+
+				while (obj.peek() != EOF && nombre != "NIVEL"){
+					if (nombre == "LLAVE"){
+						obj >> x >> y>> w >> h;
+						llaves.push_back(new Entidad(pJuego, x, y,w,h, TLlave, ENull, OLlave));
+					}
+					else if (nombre == "PANEL"){
+
+						obj >> x >> y >> w >> h;
+						objetos.push_back(new Entidad(pJuego, x, y,w,h, TTeclado, ENull, OTeclado));
+					}
+					else if (nombre == "ENEMIGO"){
+
+						obj >> x >> y >> w >> h;
+						enemigos.push_back(new Enemigo(this, x, y, w, h, TLeon, ENull));
+
+					}
+
+					obj >> nombre;
+
+				}
+
+				hecho = true;
+			}
+			else{
+				obj >> nombre;
+				while (obj.peek() != EOF && nombre != "NIVEL"){
+					if (nombre == "LLAVE"){
+						obj >> x >> y >> w >> h;
+					}
+					else if (nombre == "ENEMIGO"){
+						obj >> x >> y >> w >> h;
+					}
+					else if (nombre == "PANEL"){
+						obj >> x >> y >> w >> h;
+					}
+					obj >> nombre;
+				}
+			}
+		}
+		i++;
+	}
+	obj.close();
+}
 static void goPlay(Juego * pj){
 
 };
@@ -54,8 +122,8 @@ void Mundo::initObjetos()
 		x = mapa->getXSpawn();
 		y = mapa->getYSpawn();
 		psj = new Personaje(this, x, y, TJugador, ENull);
-		objetos.push_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
-		llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
+		//objetos.push_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
+		//llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
 			//enemigos.push_back(new Enemigo(this, x + 100, y + 100, TLeon, ENull));
 
 
@@ -79,11 +147,9 @@ void Mundo::initObjetos()
 			itEnemigo = enemigos.erase(itEnemigo);
 		}
 
-		list<EntidadJuego*>::iterator itLlaves = llaves.begin();
-		while (!llaves.empty() && itLlaves != llaves.end())
-		{
-			delete(*itLlaves);
-			itLlaves = llaves.erase(itLlaves);
+		list<EntidadJuego*>::const_iterator it = llaves.cbegin();
+		for (; it != llaves.cend() && llaves.empty(); it++){
+			destruyeLlave(*it);
 		}
 
 		//Balas
@@ -283,10 +349,44 @@ void Mundo::initObjetos()
 
 		//Personaje
 		psj->onInput();
+		compruebaPersonaje();
 		//psj->setCamera(mapa->getCamera());
 
 	}
+	void Mundo::compruebaPersonaje(){
+		SDL_Rect rect, rect2;
 
+		int x, y;
+
+		rect.x = psj->getX();
+		rect.y = psj->getY();
+
+		rect2.x = psj->DamePosAntX();
+		rect2.y = psj->DamePosAntY();
+
+		rect2.w = rect.w = rect2.h = rect.h = 20;
+
+		x = rect.x - rect2.x;
+		y = rect.y - rect2.y;
+
+
+		Direccion dir;
+		dir.x = x;
+		dir.y = y;
+		psj->setDir(dir);
+
+		//comprueba la X
+		if (mapa->touchesWall(rect)){
+			rect.x -= x;
+		}
+		// comprueba la Y
+		if (mapa->touchesWall(rect)){
+			rect.y -= y;
+		}
+
+		psj->setPosChocando(rect.x, rect.y);
+
+	}
 	bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
 	{
 		//The sides of the rectangles
