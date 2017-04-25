@@ -36,7 +36,7 @@ const int TAMAÑO_LLAVES = 1;
 
 //------------------ENUMS--------------------------
 
-enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
+enum  Texturas_t{ TJugador, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2,TFondoMenu, TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };
 enum  Musica_t{ Musica_t_SIZE};
 enum Estados_t{MInicio,MGameOver,MPausa,MundoReal,MundoOscuro};
@@ -122,6 +122,9 @@ public:
 
 	string SelectorDeNiveles();
 	int indiceMapas=1;
+
+	TexturasSDL* textFondo(){ return texturas[8]; };
+	SDL_Renderer * Prender(){ return pRenderer; };
 private:
 
 	//Atributos

@@ -220,11 +220,12 @@ void Juego::initMedia()
 {
 	//TEXTURAS
 
-	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\play.png",
+	vector <string>nombArchTex = { "..\\bmps\\globo.png",  "..\\bmps\\boton.png",
 		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\tilesdef.png", "..\\bmps\\llave.png",
-		"..\\bmps\\informe.png", "..\\bmps\\informe.png" };
+		"..\\bmps\\informe.png", "..\\bmps\\informe.png", "..\\bmps\\hotelterror.png", "..\\bmps\\llave.png" };
+	//nunca se carga el ultimo png, el for no deberia de ser nombArchTex.size en vez de Texturas_t_SIZE¿?
 
-	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
+	for (int i = 0; i < Texturas_t_SIZE; i++)
 	{
 		texturas[i] = new TexturasSDL;
 		texturas[i]->load(pRenderer, nombArchTex[i]);

@@ -14,6 +14,8 @@ void MenuInicio::draw()const
 	//pJuego->getTextura(TFondoMenu)->draw(pJuego->getRender(), fondoRect);
 
 	Menu::draw();
+
+	//pJuego->escribir("EXPERIMENT A.L.", 270, 50);
 }
 
 static void goPlay(Juego * pj){
@@ -26,8 +28,8 @@ static void goSalir(Juego * pj){
 }
 
 void MenuInicio::initObjetos(){
-	objetos[0] = new Boton(pJuego, 270, 250, TExit, ENull, goSalir);
-	objetos[1] = new Boton(pJuego, 270, 150, TPlay, ENull, goPlay);
+	objetos[0] = new Boton(pJuego, 340, 400, TExit, ENull, goSalir);
+	objetos[1] = new Boton(pJuego, 340, 200, TPlay, ENull, goPlay);
 }
 
 
