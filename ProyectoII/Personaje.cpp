@@ -12,6 +12,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 	pTextura = textura;
 	sonido = efecto;
 	rect = { x, y, 20, 20 };
+	collider = { x, y + 20, 20, 20 };
 	rectInforme = { pJuego->getAncho() / 2, pJuego->getAlto() / 2, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100,100 };
 	ultimaBala = SDL_GetTicks();
@@ -156,15 +157,19 @@ void Personaje::onInput()
 
 void Personaje::setPosChocando(int x, int y){
 	rect.x = x; 
-	rect.y = y; 
+	rect.y = y;
+	collider.x = rect.x;
+	collider.y = rect.y + 20;
 }
 void Personaje::move(int x, int y)
 {
-	posXAnt = rect.x;
-	posYAnt = rect.y;
+	posXAnt = collider.x;
+	posYAnt = collider.y;
 
 	rect.x += x;
 	rect.y += y;
+	collider.x += x;
+	collider.y += y;
 	/*
 	//--------------------------------
 	if (x < 0) dir = Direccion::Derecha;

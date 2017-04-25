@@ -285,13 +285,12 @@ void Mundo::compruebaPersonaje(){
 
 	int x, y;
 
-	rect.x = psj->getX();
-	rect.y = psj->getY();
+	rect = psj->getCollider();
 
 	rect2.x = psj->DamePosAntX();
 	rect2.y = psj->DamePosAntY();
 
-	rect2.w = rect.w = rect2.h = rect.h = 20;
+	rect2.h = rect.h = 20;
 
 	x = rect.x - rect2.x;
 	y = rect.y - rect2.y;
@@ -343,7 +342,7 @@ bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
 EntidadJuego * Mundo::compruebaColisionObjetos(){
 	int i = 0;
 	
-	while (i < objetos.size() && !checkCollision(psj->getRect(), objetos[i]->getRect()))
+	while (i < objetos.size() && !checkCollision(psj->getCollider(), objetos[i]->getRect()))
 		i++;
 
 	//Si lo he encontrado en los informes
@@ -353,7 +352,7 @@ EntidadJuego * Mundo::compruebaColisionObjetos(){
 	//Si no, sigo buscando en la lista de llaves
 	list<EntidadJuego*>::const_iterator it = llaves.cbegin();
 
-	while (!llaves.empty() && it != llaves.cend() && !checkCollision(psj->getRect(),(*it)->getRect()))
+	while (!llaves.empty() && it != llaves.cend() && !checkCollision(psj->getCollider(), (*it)->getRect()))
 	{
 		it++;
 

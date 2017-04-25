@@ -29,11 +29,11 @@ public:
 	int getX(){ return rect.x; };
 	int getY(){ return rect.y; };
 	SDL_Rect getRectPsj(){ return rect; };
+	SDL_Rect getCollider(){ return collider; };
 	int getAngulo(){ return angulo; };
 	inline SDL_Rect getRect()const { return rect; };
 	Objetos_t getType() const  { return ONull; };
 	inline int getVida()const { return vida; };
-
 	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------
 	void setCamera(SDL_Rect& camera);
 	void restaVida();
@@ -65,6 +65,7 @@ private:
 	Objetos_t obj;
 
 	SDL_Rect rect;//Rectángulo para cada textura
+	SDL_Rect collider;
 	SDL_Rect rectInforme;
 	SDL_Rect rectLlave;
 
