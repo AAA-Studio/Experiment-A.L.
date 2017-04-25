@@ -59,7 +59,7 @@ void Combinaciones::initObjetos(){
 	objetos.emplace_back(new Boton(pJuego, 200, 400, TSiete, ENull, siete));
 	objetos.emplace_back(new Boton(pJuego, 300, 400, TOcho, ENull, ocho));
 	objetos.emplace_back(new Boton(pJuego, 400, 400, TNueve, ENull, nueve));
-	objetos.emplace_back(new Boton(pJuego, 600, 200, TCero, ENull, salir));
+	objetos.emplace_back(new Boton(pJuego, 600, 200, TVolver, ENull, salir));
 	}
 
 void Combinaciones::draw() const{
@@ -93,6 +93,7 @@ void Combinaciones::onInput(SDL_Event &e){
 					pulsado = true;
 					cout << " intentos: " + intentos;
 					cout << " combinacion: " + combTecleada;
+					pJuego->setNumero(20);
 				}
 				
 				i++;

@@ -252,7 +252,7 @@ void Juego::initMedia()
 		"..\\bmps\\menu.png", "..\\bmps\\exit.png", "..\\bmps\\tilesdef.png", "..\\bmps\\llave.png",
 		"..\\bmps\\informe.png", "..\\bmps\\informe.png", "..\\bmps\\uno.png", "..\\bmps\\dos.png", "..\\bmps\\tres.png",
 		"..\\bmps\\cuatro.png", "..\\bmps\\cinco.png", "..\\bmps\\seis.png", "..\\bmps\\siete.png", "..\\bmps\\ocho.png", "..\\bmps\\nueve.png",
-		"..\\bmps\\cero.png", "..\\bmps\\teclado.png" };
+		"..\\bmps\\cero.png", "..\\bmps\\teclado.png", "..\\bmps\\backButton.png" };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{
