@@ -49,17 +49,17 @@ void Combinaciones::update(){
 	}
 }
 void Combinaciones::initObjetos(){
-	objetos.emplace_back(new Boton(pJuego, 300, 500, TCero, ENull, cero));
-	objetos.emplace_back(new Boton(pJuego, 200, 200, TUno, ENull, uno));
-	objetos.emplace_back(new Boton(pJuego, 300, 200, TDos, ENull, dos));
-	objetos.emplace_back(new Boton(pJuego, 400, 200, TTres, ENull, tres));
-	objetos.emplace_back(new Boton(pJuego, 200, 300, TCuatro, ENull, cuatro));
-	objetos.emplace_back(new Boton(pJuego, 300, 300, TCinco, ENull, cinco));
-	objetos.emplace_back(new Boton(pJuego, 400, 300, TSeis, ENull, seis));
-	objetos.emplace_back(new Boton(pJuego, 200, 400, TSiete, ENull, siete));
-	objetos.emplace_back(new Boton(pJuego, 300, 400, TOcho, ENull, ocho));
-	objetos.emplace_back(new Boton(pJuego, 400, 400, TNueve, ENull, nueve));
-	objetos.emplace_back(new Boton(pJuego, 600, 200, TVolver, ENull, salir));
+	objetos.emplace_back(new Boton(pJuego, 300, 500, 100, 100, TCero, ENull, cero));
+	objetos.emplace_back(new Boton(pJuego, 200, 200, 100, 100, TUno, ENull, uno));
+	objetos.emplace_back(new Boton(pJuego, 300, 200, 100, 100, TDos, ENull, dos));
+	objetos.emplace_back(new Boton(pJuego, 400, 200, 100, 100, TTres, ENull, tres));
+	objetos.emplace_back(new Boton(pJuego, 200, 300, 100, 100, TCuatro, ENull, cuatro));
+	objetos.emplace_back(new Boton(pJuego, 300, 300, 100, 100, TCinco, ENull, cinco));
+	objetos.emplace_back(new Boton(pJuego, 400, 300, 100, 100, TSeis, ENull, seis));
+	objetos.emplace_back(new Boton(pJuego, 200, 400, 100, 100, TSiete, ENull, siete));
+	objetos.emplace_back(new Boton(pJuego, 300, 400, 100, 100, TOcho, ENull, ocho));
+	objetos.emplace_back(new Boton(pJuego, 400, 400, 100, 100, TNueve, ENull, nueve));
+	objetos.emplace_back(new Boton(pJuego, 600, 200, 100, 100, TVolver, ENull, salir));
 	}
 
 void Combinaciones::draw() const{

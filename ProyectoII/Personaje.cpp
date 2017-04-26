@@ -8,13 +8,14 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 {
 	pMundo = pM;
 	rect = { x, y, 30, 40 };
-	rectInforme = { pJuego->getAncho() / 2, pJuego->getAlto() / 2, 300, 600 };
+	rectInforme = { pJuego->getAncho() / 4, pJuego->getAlto() / 20, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100, 100 };
+	rectHUD = { 0, 0, 800, 640 };
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
 	llaveCogida = false;
 	informeCogido = false;
-	vida = 3;
+	vida = maxVida = 3;
 	angulo = 90;
 	empuje = false;
 	posXAnt = x;
@@ -26,10 +27,9 @@ Personaje::~Personaje()
 {
 }
 
-
-
 void Personaje::update()
 {
+	vida -= 0.001;
 	if (!informeCogido){
 
 	}
@@ -149,7 +149,7 @@ void Personaje::move(int x, int y)
 void Personaje::disparo(){
 	if (SDL_GetTicks() - ultimaBala >= tiempoBala)//Se pide la hora y se compara con la última 
 	{
-		pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TPlay, ENull, angulo, LBalasPersonaje, rect.w, rect.h));
+		pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TBala, ENull, angulo, LBalasPersonaje, rect.w / 15, rect.h / 15));
 
 		ultimaBala = SDL_GetTicks();
 	}

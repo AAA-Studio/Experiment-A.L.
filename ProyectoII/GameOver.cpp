@@ -17,7 +17,7 @@ static void goMenu(Juego * pj){
 };
 
 void GameOver::initObjetos(){
-	objetos[0] = new Boton(pJuego, 270, 150, TMenu, ENull, goMenu);
+	objetos[0] = new Boton(pJuego, 200, 200, 400, 100, TMenu, ENull, goMenu);
 }
 
 void GameOver::draw() const

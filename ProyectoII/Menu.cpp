@@ -45,6 +45,12 @@ void Menu::update()
 //Limpia el buffer y dibuja los objetos
 void Menu::draw() const
 {
+	SDL_Rect rect;
+	rect.x = 0;
+	rect.y = 0;
+	rect.h = 640;	//pJuego->getAlto();
+	rect.w = 800;	//pJuego->getAncho();
+	pJuego->getTextura(TFondo)->draw(pJuego->getRender(), rect, nullptr);
 	//Dibujar objetos del juego
 	for (int i = objetos.size() - 1; i >= 0; i--)
 		objetos[i]->draw();

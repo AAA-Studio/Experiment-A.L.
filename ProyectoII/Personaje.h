@@ -27,7 +27,9 @@ public:
 
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
-	inline int getVida()const { return vida; };
+	inline float getVida()const { return vida; };
+	SDL_Rect getHUD() { return rectHUD; };
+	inline Uint8 getAlpha() { return (vida * 255) / maxVida; };
 	int DamePosAntX(){ return posXAnt; };
 	int DamePosAntY(){ return posYAnt; };
 	int getX(){ return rect.x; };
@@ -49,7 +51,7 @@ private:
 	Uint32 ultimaBala;
 	int angulo;
 	bool balaDestruida, llaveCogida, informeCogido;
-	int vida;
+	float vida, maxVida;
 	Direccion dir;
 
 	MundoVirtual * pMundo;
@@ -57,6 +59,7 @@ private:
 
 	SDL_Rect rectInforme;
 	SDL_Rect rectLlave;
+	SDL_Rect rectHUD;
 	int posXAnt, posYAnt;
 	bool empuje;
 

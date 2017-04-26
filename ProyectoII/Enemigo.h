@@ -14,7 +14,7 @@ public:
 	~Enemigo();
 	virtual void update();
 	inline void restaVida() { vida--; };
-	inline int getVida()const { return vida; };
+	inline float getVida()const { return vida; };
 
 private:
 	MundoVirtual* pMundo;

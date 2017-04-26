@@ -21,8 +21,8 @@ static void goMenu(Juego * pj){
 };
 
 void Pausa::initObjetos(){
-	objetos[0] = new Boton(pJuego, 270, 150, TMenu, ENull, goMenu);
-	objetos[1] = new Boton(pJuego, 270, 250, TPlay, ENull, goPlay);
+	objetos[0] = new Boton(pJuego, 200, 400, 400, 100, TMenu, ENull, goMenu);
+	objetos[1] = new Boton(pJuego, 200, 200, 400, 100, TPlay, ENull, goPlay);
 
 }
 

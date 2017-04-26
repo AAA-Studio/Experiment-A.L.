@@ -106,12 +106,12 @@ void Mundo::initObjetos()
 {
 	// Personaje
 	//Entidad de prueba para colisiones
-	/*
-	objetos.push_back(new Boton(pJuego, 500, 500, TPlay, ENull, goPlay));//Puerta
-	objetos.push_back(new Entidad(pJuego, 200, 300, TInforme1, ENull, OInforme1));//Informe
-
 	
-	*/
+	//objetos.push_back(new Boton(pJuego, 500, 500, TPlay, ENull, goPlay));//Puerta
+	objetos.push_back(new Entidad(pJuego, 600, 300, 20, 20, TInforme1, ENull, OInforme1));//Informe
+	objetos.push_back(new Entidad(pJuego, 500, 300, 20, 20, TInforme2, ENull, OInforme2));//Informe
+	
+	
 	//al principio del juego
 
 
@@ -215,6 +215,9 @@ void Mundo::initObjetos()
 		}
 
 
+		pJuego->getTextura(TBlood)->setAlpha(255 - psj->getAlpha());
+		pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD());
+
 		//pJuego->escribir("HOLA :)",50, 50);
 	}
 
@@ -222,6 +225,11 @@ void Mundo::initObjetos()
 	void Mundo::update(){
 		psj->update();//Update de personaje
 		balaDestruida = false;
+
+		if (psj->getVida() <= 0){
+			pJuego->borraEstado = true;
+			pJuego->estadoEnum = MGameOver;
+		}
 		//Balas
 		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
 		while (!balaDestruida && !balasPsj.empty() && itBalasPsj != balasPsj.cend())
@@ -290,7 +298,7 @@ void Mundo::initObjetos()
 					destruyeBala(balasPsj, it);
 
 					//Caso en el que el enemigo muere
-					if ((*itEnemigo)->getVida() == 0)
+					if ((*itEnemigo)->getVida() <= 0)
 					{
 						//Recorremos los enemigos para saber cual tiene que eliminarse
 						delete (*itEnemigo);
@@ -325,7 +333,7 @@ void Mundo::initObjetos()
 
 				destruyeBala(balasEnems, itBalasEnems);
 
-				if (psj->getVida() == 0){
+				if (psj->getVida() <= 0){
 					pJuego->borraEstado = true;
 					pJuego->estadoEnum = MGameOver;
 				}
