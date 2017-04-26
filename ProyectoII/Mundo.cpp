@@ -45,7 +45,7 @@ void Mundo::cargaObjetos(){
 		if (i == 1)
 			obj >> nombre;
 
-		int y, x,w,h, lvl;
+		int y, x,w,h, lvl, tipo;
 		if (nombre == "NIVEL"){
 
 			obj >> lvl;
@@ -58,6 +58,13 @@ void Mundo::cargaObjetos(){
 					if (nombre == "LLAVE"){
 						obj >> x >> y>> w >> h;
 						llaves.push_back(new Entidad(pJuego, x, y,w,h, TLlave, ENull, OLlave));
+					}
+					else if (nombre == "INFORME"){
+						obj >> x >> y >> w >> h >> tipo;
+						if (tipo == 1)
+							objetos.push_back(new Entidad(pJuego, x, y, w, h, TInforme1, ENull, OInforme1));//Informe
+						else if (tipo == 2)
+							objetos.push_back(new Entidad(pJuego, x, y, w, h, TInforme2, ENull, OInforme2));//Informe
 					}
 					else if (nombre == "PANEL"){
 
@@ -89,6 +96,9 @@ void Mundo::cargaObjetos(){
 					else if (nombre == "PANEL"){
 						obj >> x >> y >> w >> h;
 					}
+					else if (nombre == "INFORME"){
+						obj >> x >> y >> w >> h >> tipo;
+					}
 					obj >> nombre;
 				}
 			}
@@ -108,8 +118,8 @@ void Mundo::initObjetos()
 	//Entidad de prueba para colisiones
 	
 	//objetos.push_back(new Boton(pJuego, 500, 500, TPlay, ENull, goPlay));//Puerta
-	objetos.push_back(new Entidad(pJuego, 600, 300, 20, 20, TInforme1, ENull, OInforme1));//Informe
-	objetos.push_back(new Entidad(pJuego, 500, 300, 20, 20, TInforme2, ENull, OInforme2));//Informe
+	
+	
 	
 	
 	//al principio del juego
