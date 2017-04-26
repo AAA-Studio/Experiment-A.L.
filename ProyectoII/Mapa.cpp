@@ -150,13 +150,13 @@ void  Mapa::buscaSpawn(){
 		tipo = 182;
 	//spawn en espejo
 	if (pJuego->indiceMapas<6 && pJuego->getNivel() == -6)
-		tipo = 139;
+		tipo = 169;
 	//------------------------------------------------------------------------------------//
 	//                                      MUNDO OSCURO								  //
 	//------------------------------------------------------------------------------------//
 	//spawn espejo en oscuro
 	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 6)
-		tipo = 334;
+		tipo = 364;
 	//spawn azul en oscuro
 	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -5)
 		tipo = 377;
@@ -501,6 +501,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 					&& tileMap[i]->getType() != 55
 					&& tileMap[i]->getType() != 82
 					&& tileMap[i]->getType() != 139
+					&& tileMap[i]->getType() != 169	
 					&& tileMap[i]->getType() != 180
 					&& tileMap[i]->getType() != 181
 					&& tileMap[i]->getType() != 182
@@ -535,9 +536,10 @@ bool Mapa::touchesWall(SDL_Rect box)
 					&& tileMap[i]->getType() != 227
 					&& tileMap[i]->getType() != 228
 					&& tileMap[i]->getType() != 309
-					&& tileMap[i]->getType() != 376
 					&& tileMap[i]->getType() != 334
+					&& tileMap[i]->getType() != 364
 					&& tileMap[i]->getType() != 375
+					&& tileMap[i]->getType() != 376
 					&& tileMap[i]->getType() != 377
 					&& tileMap[i]->getType() != 378
 					&& tileMap[i]->getType() != 379
