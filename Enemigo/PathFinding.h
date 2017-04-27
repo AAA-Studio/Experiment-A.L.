@@ -11,8 +11,8 @@
 using namespace std;
 
 /*
-Pathfinding por niveles para que sea rapido
-Hay que ver si hat linea recta contra el personaje, buscar lo qye hay que esquivar
+Pathfinding por NathPoints para que sea rapido
+Hay que ver si hay linea recta hacia el personaje, buscar lo que hay que esquivar
 NathPoints, hago una lista de nathpoints y eso es lo que comprueba el enemigo
 */
 
@@ -43,6 +43,7 @@ public:
 
 	// Comprueba que se han inicializado el personaje
 	bool m_initializedStartGoal;
+
 	// Personaje encontrado
 	bool m_foundGoal;
 
@@ -80,6 +81,7 @@ private:
 	// Celda donde se encuentra el personaje
 	SearchCell * m_goalCell;
 
+	// Mapa * _pGameWorld;
 	SearchCell * m_GameWorld;
 
 	SearchCell * iter;

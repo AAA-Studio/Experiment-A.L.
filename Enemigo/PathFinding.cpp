@@ -44,11 +44,11 @@ void PathFinding::InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal) {
 	}
 
 	m_startCell->setX(pStart->GetCellX()); 
-	m_startCell->setX(pStart->GetCellY());
+	m_startCell->setY(pStart->GetCellY());
 	m_startCell->SetID(pStart->GetCellY() * /*TileManager::MAP_WIDTH*/ + pStart->GetCellX());
 
 	m_goalCell->setX(pGoal->GetCellX());
-	m_goalCell->setX(pGoal->GetCellY());
+	m_goalCell->setY(pGoal->GetCellY());
 	m_goalCell->SetID(pGoal->GetCellY() * /*TileManager::MAP_WIDTH*/ + pGoal->GetCellX());
 
 	m_goalCell->SetParent(pGoal);
@@ -65,11 +65,13 @@ void PathFinding::Iterate() {
 
 	SearchCell * currentCell = GetNextCell();
 
+	// Justo la celda siguiente a la que estamos es el personaje
 	if (currentCell->GetID() == m_goalCell->GetID()) {
 		m_pathState = FOUND_GOAL;
 
 		m_goalCell->SetParent(currentCell);
 
+		// Movimiento sin algoritmos, el iter es el personaje y guardas el camino hacia el personaje
 		for (SearchCell * iter = m_goalCell; iter; iter = iter->GetParent()) {
 			m_closesPaths.push_back(Vector2(iter->GetCellX() * (float)/*(TileManager::TILE_WIDTH/2.0f)*/1, 
 				iter->GetCellY() * (float)/*(TileManager::TILE_HEIGHT/2.0f)*/1));
@@ -91,6 +93,7 @@ void PathFinding::Iterate() {
 		// comprueba abajo
 		PathOpened(x, y + 1, g + 1, currentCell);
 
+		// Borramos las celdas de la openlist porque hemos generado otros Path.
 		for (int i = 0; i < (int)m_openList.size(); i++) {
 			if (currentCell->GetID() == m_openList[i]->GetID()) {
 				m_openList.erase(m_openList.begin() + i);
@@ -197,15 +200,20 @@ void PathFinding::PathOpened(float x, float y, float newCost, SearchCell *pPadre
 		return m_tiles[y * MAP_WIDTH + x];
 	}*/
 
+	// este id es solo para comprobar, no cambia el id de ninguna celda
 	float id = y * WORLD_SIZE/*TileManager::MAP_WIDTH*/ + x;
 
+	// recorro la lista de visitadas hasta que coincida con el id de arriba.
 	for (int i = 0; i < (int)m_visitedList.size(); i++) {
 		if (id == m_visitedList[i]->GetID()) {
 			return;
 		}
 	}
 
+
 	SearchCell * newChild = new SearchCell(x, y, pPadre);
+	
+	// id == m_visitedList[i]->GetID()
 	newChild->SetID(id);
 	newChild->setG(newCost);
 	newChild->setH(pPadre->ManHattanDistance(m_goalCell));
@@ -265,6 +273,7 @@ void PathFinding::ContinuePath() {
 		SearchCell * getPath;
 
 		// Va por todas las celdas comprobando cual es el camino mas corto y las mete en la lista
+		// va hasta NULL porque la celda Start es la unica que lo tiene a NULL
 		for (getPath = m_goalCell; getPath != NULL; getPath->GetParent()) {
 
 			m_pathToGoal.push_back(new Vector2(getPath->GetCellX() * CELL_SIZE, getPath->GetCellY()));

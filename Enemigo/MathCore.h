@@ -2,7 +2,6 @@
 #define _H_MathCore_H_
 
 #include "checkML.h"
-#include <iostream>
 using namespace std;
 
 class Vector2
@@ -23,15 +22,20 @@ public:
 		return Vector2(m_x = m_x/ incR, m_y = m_y / incR);
 	}
 
-	float m_x;
-	float m_y;
-	// tamaño del vector
-	float Length = sqrt((m_x*m_x) + (m_y*m_y));
+	
+	
 
 	inline float GetX() const { return m_x; }
 	inline float GetY() const { return m_y; }
+	// tamaño del vector
+	inline float GetLength() const { sqrt((m_x*m_x) + (m_y*m_y)); }
 	void SetX(float x) { m_x = x; }
 	void SetY(float y) { m_y = y; }
+
+private:
+	float m_x;
+	float m_y;
+	
 };
 
 class Vector3
