@@ -28,7 +28,7 @@ public:
 	inline float GetX() const { return m_x; }
 	inline float GetY() const { return m_y; }
 	// tamaño del vector
-	inline float GetLength() const { sqrt((m_x*m_x) + (m_y*m_y)); }
+	inline float GetLength() const { return sqrt((m_x*m_x) + (m_y*m_y)); }
 	void SetX(float x) { m_x = x; }
 	void SetY(float y) { m_y = y; }
 
@@ -50,11 +50,9 @@ public:
 		return Vector3(m_x - v2.m_x, m_y - v2.m_y, m_z - v2.m_z);
 	}
 
-	float m_x;
-	float m_y;
-	float m_z;
+	
 	// tamaño del vector
-	float Length = sqrt((m_x*m_x) + (m_y*m_y) + (m_z*m_z));
+	inline float GetLength() const { return sqrt((m_x*m_x) + (m_y*m_y) + (m_z*m_z)) };
 
 	inline float GetX() const { return m_x; }
 	inline float GetY() const { return m_y; }
@@ -62,6 +60,11 @@ public:
 	void SetX(float x) { m_x = x; }
 	void SetY(float y) { m_y = y; }
 	void SetZ(float z) { m_z = z; }
+
+private: 
+	float m_x;
+	float m_y;
+	float m_z;
 };
 
 class MathCore

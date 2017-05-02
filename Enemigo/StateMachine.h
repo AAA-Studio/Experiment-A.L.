@@ -47,6 +47,7 @@ public:
 			m_previousState->Execute(m_owner);
 		}
 	}
+
 	void ChangeState(State<character_type>* state) {
 		m_previousState = m_currentState;
 
@@ -59,16 +60,20 @@ public:
 		}
 
 		m_currentState = state;
-		m_currentState->Enter(m_owner);
 
-		if (m_currentState) {// en el caso en el que el parametro state sea null
-
+		// Caso en el que puede que el estado al que vayamos este NULL
+		if (m_currentState) m_currentState->Enter(m_owner);
+		
+		else {
+			m_currentState = m_previousState;
 			m_currentState->Enter(m_owner);
 		}
 	}
+
 	void RevertToPreviousState() {
 		ChangeState(m_previousState);
 	}
+
 	void SetGlobalState(State <character_type>* state) {
 		if (m_globalState) {
 			delete m_globalState;

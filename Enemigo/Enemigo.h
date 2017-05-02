@@ -3,10 +3,7 @@
 
 #include "checkML.h"
 #include "Entidad.h"
-#include "MathCore.h"
-#include <vector>
 
-#define M_PI 3.1416
 
 class Enemigo: public Entidad
 {
@@ -20,7 +17,7 @@ public:
 
 	// Enemigo(Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints);
 	Enemigo();
-	Enemigo(Entidad* pEntidad, vector <Vector2> waypoints);
+	Enemigo(Entidad* pEntidad);
 	~Enemigo();
 
 	//virtual void Draw();
@@ -34,7 +31,7 @@ protected:
 
 	Entidad * m_entidad;
 	State m_currentState;
-	vector <Vector2> m_waypoints; // Celdas por donde pasa el enmeigo
+	vector <Vector2> m_waypoints; // Celdas por donde pasa el enemigo
 	Vector2 * m_currentWayPoint;
 	Entidad* m_target;
 	int m_currentIndex;

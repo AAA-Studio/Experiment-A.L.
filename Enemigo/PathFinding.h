@@ -22,11 +22,12 @@ public:
 	PathFinding(/*Mapa * pGameWorld*/);
 	~PathFinding();
 
+	// Estado en el que puede estar en cada iteracion el Pathfinding
 	enum State {
 		INITIALIZE, 
 		SEARCHING, 
 		ERROR_GOAL_NOT_FOUND,
-		FOUND_GOAL,
+		FOUND_GOAL, // He encontrado objetivo, asi que voy hacia el.
 		NONE,
 	};
 
@@ -44,7 +45,7 @@ public:
 	// Comprueba que se han inicializado el personaje
 	bool m_initializedStartGoal;
 
-	// Personaje encontrado
+	// Encontrada la celda del personaje
 	bool m_foundGoal;
 
 	State GetpathState() { return m_pathState; }
