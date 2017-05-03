@@ -19,7 +19,7 @@ public:
 
 	virtual inline SDL_Rect getRect()const{ return rect; };
 	virtual inline Objetos_t getType() const  { return type; };
-
+	Entidad * getEntity() { return this; }
 
 protected:
 

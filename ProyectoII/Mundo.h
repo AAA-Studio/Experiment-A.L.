@@ -10,7 +10,7 @@
 #include "Personaje.h"
 #include "Enemigo.h"
 #include <list>
-
+#include "EnemigoIA.h"
 
 using namespace std;
 
@@ -31,7 +31,7 @@ public:
 	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it);
 
 		//------------------GETTERS---------------------
-		inline Mapa* getMapa() const { return mapa; };
+	inline MapaVirtual* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
@@ -53,10 +53,10 @@ private:
 	vector<int> puertas;
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
-	list <Enemigo*> enemigos;
+	list <EnemigoIA*> enemigos;
 	list <EntidadJuego*> balasPsj;
 	list <EntidadJuego*> balasEnems;
-	Mapa * mapa;
+	MapaVirtual * mapa;
 	bool pausa, balaDestruida;
 	const Uint32 duracion = 500;
 	Uint32 time;

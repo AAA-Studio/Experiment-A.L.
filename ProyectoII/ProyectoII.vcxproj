@@ -69,11 +69,14 @@
   <ItemGroup>
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Boton.cpp" />
+    <ClCompile Include="ChaseState.cpp" />
     <ClCompile Include="Combinaciones.cpp" />
     <ClCompile Include="Enemigo.cpp" />
+    <ClCompile Include="EnemigoIA.cpp" />
     <ClCompile Include="Entidad.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Juego.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mapa.cpp" />
@@ -81,6 +84,8 @@
     <ClCompile Include="MenuInicio.cpp" />
     <ClCompile Include="Mundo.cpp" />
     <ClCompile Include="Musica.cpp" />
+    <ClCompile Include="PathFinding.cpp" />
+    <ClCompile Include="PatrolState.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
@@ -89,25 +94,35 @@
   <ItemGroup>
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Boton.h" />
+    <ClInclude Include="ChaseState.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="Combinaciones.h" />
     <ClInclude Include="Enemigo.h" />
+    <ClInclude Include="EnemigoIA.h" />
     <ClInclude Include="Entidad.h" />
     <ClInclude Include="EntidadJuego.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="GameOver.h" />
+    <ClInclude Include="IdleState.h" />
     <ClInclude Include="Juego.h" />
     <ClInclude Include="Mapa.h" />
+    <ClInclude Include="MapaVirtual.h" />
+    <ClInclude Include="MathCore.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuInicio.h" />
     <ClInclude Include="Mundo.h" />
     <ClInclude Include="MundoVirtual.h" />
     <ClInclude Include="Musica.h" />
+    <ClInclude Include="PathFinding.h" />
+    <ClInclude Include="PatrolState.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
     <ClInclude Include="PersonajeVirtual.h" />
+    <ClInclude Include="SearchCell.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="TexturasSDL.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>

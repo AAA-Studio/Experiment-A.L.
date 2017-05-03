@@ -29,8 +29,8 @@ Personaje::~Personaje()
 
 void Personaje::update()
 {
-	vida -= 0.001;
 	if (!informeCogido){
+		vida -= 0.001;
 
 	}
 

@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include "Bala.h"
 #include "Boton.h"
+#include "Mapa.h"
 
 
 Mundo::Mundo(Juego * pJ, string m)
@@ -74,7 +75,7 @@ void Mundo::cargaObjetos(){
 					else if (nombre == "ENEMIGO"){
 
 						obj >> x >> y >> w >> h;
-						enemigos.push_back(new Enemigo(this, x, y, w, h, TLeon, ENull));
+						enemigos.push_back(new EnemigoIA(this, x, y, w, h, TLeon, ENull));
 
 					}
 
@@ -132,6 +133,7 @@ void Mundo::initObjetos()
 		x = mapa->getXSpawn();
 		y = mapa->getYSpawn();
 		psj = new Personaje(this, x, y, TJugador, ENull);
+		enemigos.push_back(new EnemigoIA(this, 400, 300, 100, 100, TLeon, ENull));
 		//objetos.push_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
 		//llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
 			//enemigos.push_back(new Enemigo(this, x + 100, y + 100, TLeon, ENull));
@@ -150,7 +152,7 @@ void Mundo::initObjetos()
 			objetos[i] = nullptr;
 		}
 
-		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
+		list<EnemigoIA*>::iterator itEnemigo = enemigos.begin();
 		while (!enemigos.empty() && itEnemigo != enemigos.end())
 		{
 			delete(*itEnemigo);
@@ -200,7 +202,7 @@ void Mundo::initObjetos()
 
 		}
 
-		list<Enemigo*>::const_iterator itEnemigos = enemigos.cbegin();
+		list<EnemigoIA*>::const_iterator itEnemigos = enemigos.cbegin();
 		while (!enemigos.empty() && itEnemigos != enemigos.cend())
 		{
 			(*itEnemigos)->draw();
@@ -264,7 +266,7 @@ void Mundo::initObjetos()
 				itBalasEnem = balasEnems.erase(itBalasEnem);
 		}
 
-		list<Enemigo*>::const_iterator citEnemigo = enemigos.cbegin();//Update de enemigos
+		list<EnemigoIA*>::const_iterator citEnemigo = enemigos.cbegin();//Update de enemigos
 		while (!enemigos.empty() && citEnemigo != enemigos.cend())
 		{
 			(*citEnemigo)->update();
@@ -291,7 +293,7 @@ void Mundo::initObjetos()
 
 	void Mundo::colBalaEnemigo(){
 
-		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
+		list<EnemigoIA*>::iterator itEnemigo = enemigos.begin();
 
 		//Recorremos los enemigos
 		while (!enemigos.empty() && itEnemigo != enemigos.cend())
@@ -394,11 +396,11 @@ void Mundo::initObjetos()
 		psj->setDir(dir);
 
 		//comprueba la X
-		if (mapa->touchesWall(rect)){
+		if (mapa->colisiones(rect)){
 			rect.x -= x;
 		}
 		// comprueba la Y
-		if (mapa->touchesWall(rect)){
+		if (mapa->colisiones(rect)){
 			rect.y -= y;
 		}
 

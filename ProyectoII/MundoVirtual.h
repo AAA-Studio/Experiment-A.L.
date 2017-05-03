@@ -5,6 +5,7 @@
 #include "EntidadJuego.h"
 #include "Juego.h"
 #include <list>
+#include "MapaVirtual.h"
 
 
 //Clase abstracta que hereda de la raiz EstadoJuego
@@ -18,6 +19,8 @@ public:
 	virtual EntidadJuego * compruebaColisionObjetos() = 0;
 
 	virtual Juego* getPJ()const = 0;
+
+	virtual inline MapaVirtual* getMapa() const = 0;
 
 	virtual list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const = 0;
 
