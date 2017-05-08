@@ -7,7 +7,8 @@
 Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y, 30,40, textura, efecto, ONull)
 {
 	pMundo = pM;
-	rect = { x, y, 30, 40 };
+	rect = { x, y, 35, 50 };
+	rectAn = { 0, 0, 30, 48 };
 	rectInforme = { pJuego->getAncho() / 4, pJuego->getAlto() / 20, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100, 100 };
 	rectHUD = { 0, 0, 800, 640 };
@@ -29,16 +30,17 @@ Personaje::~Personaje()
 
 void Personaje::update()
 {
-	vida -= 0.001;
+	
 	if (!informeCogido){
-
+		vida -= 0.0005;
 	}
 
 }
 
 void Personaje::draw()const
 {
-	Entidad::draw();
+	//Entidad::draw();
+	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect, &rectAn);//Dibujamos la textura
 
 	if (informeCogido)
 		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme);
@@ -48,6 +50,34 @@ void Personaje::draw()const
 
 }
 
+void Personaje::animacion(animar currentFrame){
+	switch (currentFrame){
+	case Personaje::derecha:
+		rectAn.y = 192;
+		break;
+	case Personaje::izquierda:
+		rectAn.y = 64;
+		break;
+	case Personaje::arriba:
+		rectAn.y = 0;
+		break;
+	case Personaje::abajo:
+		rectAn.y = 128;
+		break;
+	default:
+		break;
+	}
+	frames();
+}
+
+void Personaje::frames(){
+	if (rectAn.x > 272){
+		rectAn.x = 0;
+	}
+	else{
+		rectAn.x += 30;
+	}
+}
 void Personaje::onInput()
 {
 	int x = 0, y = 0;
@@ -61,12 +91,14 @@ void Personaje::onInput()
 		{
 			y += -1;
 			x += -1;
+			animacion(izquierda);
 			angulo = 135;
 		}
 		else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_D])
 		{
 			y += -1;
 			x += 1;
+			animacion(derecha);
 			angulo = 45;
 
 		}
@@ -74,32 +106,38 @@ void Personaje::onInput()
 		{
 			y += 1;
 			x += -1;
+			animacion(izquierda);
 			angulo = 225;
 		}
 		else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_D])
 		{
 			y += 1;
 			x += 1;
+			animacion(derecha);
 			angulo = 315;
 		}
 		else if (keyStatesActuales[SDL_SCANCODE_W])
 		{
 			y += -1;
+			animacion(arriba);
 			angulo = 90;
 		}
 		else if (keyStatesActuales[SDL_SCANCODE_A])
 		{
 			x += -1;
+			animacion(izquierda);
 			angulo = 180;
 		}
 		else if (keyStatesActuales[SDL_SCANCODE_S])
 		{
 			y += 1;
+			animacion(abajo);
 			angulo = 270;
 		}
 		else if (keyStatesActuales[SDL_SCANCODE_D])
 		{
 			x += 1;
+			animacion(derecha);
 			angulo = 0;
 		}
 		//Disparo
