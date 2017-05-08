@@ -20,4 +20,5 @@ public:
 private:
 	vector<Vector2> m_waypoints;
 };
+
 #endif

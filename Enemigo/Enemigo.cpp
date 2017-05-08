@@ -7,13 +7,13 @@
 
 
 
-Enemigo::Enemigo(/*Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints*/Entidad* pEntidad, vector <Vector2> waypoints) /*: Entidad(pJ, x, y, textura, efecto)*/
+Enemigo::Enemigo(/*Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto, vector <Vector2> waypoints*/Entidad* pEntidad) /*: Entidad(pJ, x, y, textura, efecto)*/
 {
 	m_currentState = IDLE;
 	m_velocity.m_x = m_velocity.m_y = m_maxVelocity;
 	m_currentIndex = (int)(rand() % waypoints.size() - 1);
 	m_idleTime = 3.0f;
-	m_waypoints = waypoints;//Puntos de control
+	
 	m_currentWayPoint = NULL;
 }
 
@@ -165,5 +165,3 @@ void Enemigo::RandomizeGoal()//Se le llama en el estado patrol, es una posición
 
 	}
 }*/
-
-

@@ -16,9 +16,13 @@ void ChaseState::Enter(EnemigoIA * character) {
 
 void ChaseState::Execute(EnemigoIA * character) {
 	
-	character->ChaseTarget();
 	if (!character->IsWithinRangeOfTarget(150.0f)) {
 		character->GetStateMachine()->ChangeState(new IdleState());
+		return;
+	}
+	
+	else {
+		character->ChaseTarget();
 	}
 }
 

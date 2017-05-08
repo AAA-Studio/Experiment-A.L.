@@ -1,8 +1,15 @@
 #include "EnemigoIA.h"
 #include "IdleState.h"
+#include "SearchCell.h"
+#include <math.h>
+#include <stdio.h>
+#include <windows.h>
+#include <gl/GL.h> // Core Opengl functions
 
-EnemigoIA::EnemigoIA(Entidad * pEntidad, vector<Vector2> waypoints) : Enemigo(pEntidad, waypoints)
+EnemigoIA::EnemigoIA(/*Juego*pJ, int x, int y, Texturas_t textura, Efectos_t efecto,*/Entidad * pEntidad)
 {
+	// pEntidad se inicializa antes de entrar en la constructora
+	pEntidad = NULL;
 	m_stateMachine = NULL;
 }
 
@@ -18,7 +25,7 @@ EnemigoIA::~EnemigoIA()
 
 void EnemigoIA::Initialize() {
 	
-	Enemigo::Initialize();
+	m_maxVelocity = 50.0f;
 	m_stateMachine = new StateMachine<EnemigoIA>(this);
 	m_stateMachine->ChangeState(new IdleState());
 }
@@ -43,7 +50,7 @@ void EnemigoIA::ChaseTarget() {
 
 	Vector2 toTarget = targetPosition - position;
 	float distance = toTarget.Length;
-	if (distance != 0.0f) {
+	if (!character->IsWithinRangeOfTarget(0)) {
 		// toTarget.SetX(toTarget.GetX() / distance);
 		// toTarget.SetY(toTarget.GetY() / distance);
 		toTarget /= distance;

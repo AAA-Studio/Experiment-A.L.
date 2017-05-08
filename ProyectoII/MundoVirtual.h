@@ -27,7 +27,7 @@ public:
 
 	virtual void insertaBala(ListaBalas_t lista, EntidadJuego * bala) = 0;
 
-
+	virtual void cambiaPosPSJ(int x, int y) = 0;
 };
 
 #endif

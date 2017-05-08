@@ -44,6 +44,12 @@ public:
 	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
 
 	void compruebaPersonaje();
+
+	void cambiaPosPSJ(int x,int y){
+		psj->setPosChocando(x, y);
+	}
+
+
 private:
 	//-------------------ATRIBUTOS---------------
 	Juego * pJuego;

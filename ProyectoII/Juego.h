@@ -17,13 +17,13 @@ const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 640;
 
 //The dimensions of the level
-const int LEVEL_WIDTH = 800;
-const int LEVEL_HEIGHT = 640;
+const int LEVEL_WIDTH = 1600;
+const int LEVEL_HEIGHT = 3840;
 
 //Tile constants
 const int TILE_WIDTH = 32;
 const int TILE_HEIGHT = 32;
-const int TOTAL_TILES = 500;
+const int TOTAL_TILES = 6000;
 const int TOTAL_TILE_SPRITES = 390;
 
 //----------------------------------------------------
@@ -76,7 +76,10 @@ public:
 	//Sale del programa
 	void setSalir(){ exit = true; };
 
-	void setNivel(int i){ nivel = i; };
+	void setNivel(int i){ 
+	nivel = i;
+	indiceMapas += nivel;
+	};
 	//---------------GETTER----------------------
 	//Saber el nivel del mapa en el que estamos
 	int getNivel() { return nivel; };

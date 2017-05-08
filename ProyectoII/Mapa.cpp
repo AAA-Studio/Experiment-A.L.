@@ -3,12 +3,13 @@
 
 Mapa::Mapa(MundoVirtual *pM, string mapa)
 {
-	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	camera = { 0, 640, SCREEN_WIDTH, SCREEN_HEIGHT };
 	pMundo = pM;
 	pJuego = pMundo->getPJ();
 	nombreMapa = mapa;
 	cargarMapa();
 	buscaSpawn();
+	setCamera();
 }
 
 
@@ -23,6 +24,20 @@ Mapa::~Mapa()
 			tileMap[i] = NULL;
 		}
 	}
+}
+
+void Mapa::setCamera()
+{
+	int ancho;
+	if (pJuego->indiceMapas < 6){
+		ancho = 0;
+	}
+	else ancho = 1;
+
+	camera.x = 800 *ancho;
+
+	camera.y = pJuego->indiceMapas%6 * 640;
+
 }
 
 
@@ -107,8 +122,9 @@ void  Mapa::buscaSpawn(){
 
 	if (pJuego->getNivel() == 0){
 		x = 350;
-		y = 350;
+		y = 350+640;
 		encontrado = true;
+		return;
 	}
 	//sale en el spawn gris
 	if (pJuego->getNivel() == -1)
@@ -122,9 +138,10 @@ void  Mapa::buscaSpawn(){
 		tipo = 191;
 
 	//spawn morado
-	if (pJuego->getNivel() == -2)
+	if (pJuego->getNivel() == -2){
 		tipo = 184;
 
+	}
 	//spawn azul oscuro
 	if (pJuego->getNivel() == 3)
 		tipo = 190;
@@ -201,12 +218,15 @@ void  Mapa::buscaSpawn(){
 		}
 		i++;
 	}
+
+	pMundo->cambiaPosPSJ(x, y);
 }
 
 
 
-bool Mapa::touchesWall(SDL_Rect box)
+bool Mapa::touchesWall(SDL_Rect box,int& tipo)
 {
+	
 
 	//Go through the tiles
 	for (int i = 0; i < TOTAL_TILES; ++i)
@@ -221,19 +241,21 @@ bool Mapa::touchesWall(SDL_Rect box)
 			if ((tileMap[i]->getType() == 150))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-1);
+						tipo = 150;
+						buscaSpawn();
+						setCamera();
 						return true;
 					}
 				}
 					//PUERTA GRIS
 					if ((tileMap[i]->getType() == 155))
 					{
-						if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-							pJuego->borraEstado = true;
-							pJuego->estadoEnum = MundoReal;
+						if (pMundo->checkCollision(box, tileMap[i]->getBox())){;
 							pJuego->setNivel(1);
+							tipo = 155;
+							buscaSpawn();
+							setCamera();
 							return true;
 						}
 
@@ -242,9 +264,10 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 154))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(2);
+						tipo = 154;
+						buscaSpawn();
+						setCamera();
 						return true;
 					}
 
@@ -253,9 +276,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 140))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-2);
+						tipo = 140;
+						buscaSpawn();
 						return true;
 					}
 
@@ -264,9 +287,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if (pJuego->getPuerta(0) && (tileMap[i]->getType() == 158))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(3);
+						tipo = 158;
+						buscaSpawn();
 						return true;
 
 					}
@@ -276,9 +299,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 165))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-3);
+						tipo = 165;
+						buscaSpawn();
 						return true;
 
 					}
@@ -288,9 +311,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ( false && (tileMap[i]->getType() == 159))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(4);
+						tipo = 159;
+						buscaSpawn();
 						return true;
 
 					}
@@ -301,9 +324,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				{
 
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-4);
+						tipo = 153;
+						buscaSpawn();
 						return true;
 
 					}
@@ -314,9 +337,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				{
 					
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(5);
+						tipo = 152;
+						buscaSpawn();
 						return true;
 
 					}
@@ -326,9 +349,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 151))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-5);
+						tipo = 151;
+						buscaSpawn();
 						return true;
 
 					}
@@ -339,9 +362,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 114))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(6);
+						tipo = 114;
+						buscaSpawn();
 						return true;
 
 					}
@@ -358,9 +381,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 345))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-1);
+						tipo = 345;
+						buscaSpawn();
 						return true;
 					}
 				}
@@ -368,9 +391,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 350))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(1);
+						tipo = 350;
+						buscaSpawn();
 						return true;
 					}
 
@@ -379,9 +402,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 349))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(2);
+						tipo = 349;
+						buscaSpawn();
 						return true;
 					}
 
@@ -390,9 +413,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 335))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-2);
+						tipo = 335;
+						buscaSpawn();
 						return true;
 					}
 
@@ -401,9 +424,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 353))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(3);
+						tipo = 353;
+						buscaSpawn();
 						return true;
 
 					}
@@ -413,9 +436,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 360))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-3);
+						tipo = 360;
+						buscaSpawn();
 						return true;
 
 					}
@@ -425,9 +448,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 354))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(4);
+						tipo = 354;
+						buscaSpawn();
 						return true;
 
 					}
@@ -438,9 +461,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				{
 
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-4);
+						tipo = 348;
+						buscaSpawn();
 						return true;
 
 					}
@@ -451,9 +474,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				{
 
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(5);
+						tipo = 347;
+						buscaSpawn();
 						return true;
 
 					}
@@ -463,9 +486,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 346))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-5);
+						tipo = 346;
+						buscaSpawn();
 						return true;
 
 					}
@@ -476,9 +499,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				if ((tileMap[i]->getType() == 309))
 				{
 					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-						pJuego->borraEstado = true;
-						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-6);
+						tipo = 309;
+						buscaSpawn();
 						return true;
 
 					}
@@ -566,5 +589,6 @@ bool Mapa::touchesWall(SDL_Rect box)
 void Mapa::draw()const{
 	for (int i = 0; i < TOTAL_TILES; ++i)
 		tileMap[i]->render(camera);
+
 
 }

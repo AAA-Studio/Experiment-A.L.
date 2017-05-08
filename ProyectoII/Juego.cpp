@@ -27,15 +27,11 @@ Juego::Juego()
 	borraEstado = false;
 
 	//Rectángulo de la ventana
-	winRect = { 200, 200, SCREEN_WIDTH, SCREEN_HEIGHT };
+	winRect = {100, 100, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	initSDL();//Inicializamos el renderizador
 
-	nombreMapas = { "..\\bmps\\Habitaciones\\pasillo.csv", "..\\bmps\\Habitaciones\\hab.csv",
-		"..\\bmps\\Habitaciones\\hab2.csv", "..\\bmps\\Habitaciones\\hab3.csv", "..\\bmps\\Habitaciones\\hab4.csv",
-		"..\\bmps\\Habitaciones\\baño.csv", "..\\bmps\\Habitaciones\\pasilloOscuro.csv", "..\\bmps\\Habitaciones\\haboscura.csv",
-		"..\\bmps\\Habitaciones\\hab2oscuro.csv", "..\\bmps\\Habitaciones\\hab3oscura.csv",
-		"..\\bmps\\Habitaciones\\hab4oscura.csv", "..\\bmps\\Habitaciones\\bañooscuro.csv" };
+	nombreMapas = { "..\\bmps\\Habitaciones\\mapCompleto.csv" };
 	nombreObjetos = { "..\\bmps\\Objetos\\Objetos1.csv" };
 
 	initMedia();
@@ -66,9 +62,7 @@ int Juego::getNumero()
 
 //Paso de niveles
 string Juego::SelectorDeNiveles() {
-	int nivel = getNivel();
-	indiceMapas += nivel;
-	return nombreMapas[indiceMapas];
+	return nombreMapas[0];
 
 }
 
@@ -314,8 +308,12 @@ void Juego::render()
 	//Limpiar el buffer
 	SDL_RenderClear(pRenderer);
 
-	topEstado()->draw();
+	//SDL_RenderCopy(renderer, textureInterface, NULL, &interface_rect);
+	//SDL_RenderCopy(renderer, textureBird, NULL, &bird_rect);
+	
+	SDL_RenderDrawRect(pRenderer,& dynamic_cast<Mundo*>(topEstado())->getMapa()->getCamera() );
 
+	topEstado()->draw();
 	//Intercambiar buffer y mostrar
 	SDL_RenderPresent(pRenderer);
 }

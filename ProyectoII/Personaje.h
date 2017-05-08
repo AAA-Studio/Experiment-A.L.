@@ -17,6 +17,9 @@ struct Direccion{
 class Personaje : public Entidad, public PersonajeVirtual
 {
 public:
+
+
+	
 	Personaje(MundoVirtual * pM, int x, int y, Texturas_t color, Efectos_t efecto);//Constructora
 	~Personaje();//Destructora
 

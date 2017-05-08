@@ -17,10 +17,12 @@ void PathFinding::Initialize(Vector2 pStartPos, Vector2 pTargetPos) {
 	m_visitedList.clear();
 	// m_closesPath.clear();
 
+	// Celda del enemigo
 	SearchCell start;
 	start.setX(floorf(pStartPos.GetX() / (float)1/*TileManager::TILE_WIDTH*/));
 	start.setY(floorf(pStartPos.GetY() / (float)1/*TileManager::TILE_HEIGHT*/));
 
+	// Celda objetivo
 	SearchCell goal;
 	goal.setX(floorf(pTargetPos.GetX() / (float)1/*TileManager::TILE_WIDTH*/));
 	goal.setY(floorf(pTargetPos.GetY() / (float)1/*TileManager::TILE_HEIGHT*/));
@@ -32,7 +34,7 @@ void PathFinding::Initialize(Vector2 pStartPos, Vector2 pTargetPos) {
 }
 
 void PathFinding::InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal) {
-	
+	// if's para asegurar que se inicializan las celdas correspondientes
 	if (!m_startCell) {
 		
 		m_startCell = new SearchCell(pStart->GetCellX(), pStart->GetCellY(), NULL);
@@ -43,6 +45,7 @@ void PathFinding::InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal) {
 		m_goalCell = new SearchCell(pGoal->GetCellX(), pGoal->GetCellY(), pGoal);
 	}
 
+	// Informacion de las celdas anteriores, coordenadas e id
 	m_startCell->setX(pStart->GetCellX()); 
 	m_startCell->setY(pStart->GetCellY());
 	m_startCell->SetID(pStart->GetCellY() * /*TileManager::MAP_WIDTH*/ + pStart->GetCellX());
@@ -51,6 +54,7 @@ void PathFinding::InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal) {
 	m_goalCell->setY(pGoal->GetCellY());
 	m_goalCell->SetID(pGoal->GetCellY() * /*TileManager::MAP_WIDTH*/ + pGoal->GetCellX());
 
+	// El padre del objetivo es la celda que ocupa
 	m_goalCell->SetParent(pGoal);
 
 	m_startCell->setH(m_startCell->ManHattanDistance(m_goalCell));
@@ -62,7 +66,7 @@ void PathFinding::Iterate() {
 		m_pathState = ERROR_GOAL_NOT_FOUND;
 		return;
 	}
-
+	// Siguiente celda a la que se dirige el enemigo, "avanzadilla"
 	SearchCell * currentCell = GetNextCell();
 
 	// Justo la celda siguiente a la que estamos es el personaje
@@ -71,7 +75,7 @@ void PathFinding::Iterate() {
 
 		m_goalCell->SetParent(currentCell);
 
-		// Movimiento sin algoritmos, el iter es el personaje y guardas el camino hacia el personaje
+		// Movimiento sin algoritmos, el iter es el personaje y guardas el camino hacia el objetivo
 		for (SearchCell * iter = m_goalCell; iter; iter = iter->GetParent()) {
 			m_closesPaths.push_back(Vector2(iter->GetCellX() * (float)/*(TileManager::TILE_WIDTH/2.0f)*/1, 
 				iter->GetCellY() * (float)/*(TileManager::TILE_HEIGHT/2.0f)*/1));
@@ -150,6 +154,8 @@ void PathFinding::SetStartAndGoal(SearchCell start, SearchCell goal){
 	m_startCell = new SearchCell(start.GetCellX(), start.GetCellY(), NULL);
 	m_goalCell = new SearchCell(goal.GetCellX(), goal.GetCellY(), &goal);
 
+	// Doy informacion a la nueva Celda, 
+	// !!!!!!!!!!!!! No se crean celdas como tal, solo son para comprobar la informacion
 	m_startCell->setG(0);
 	m_startCell->setH(m_startCell->ManHattanDistance(m_goalCell));
 	m_startCell->SetParent(nullptr);
@@ -166,6 +172,7 @@ SearchCell * PathFinding::GetNextCell(){
 	int cellIndex = -1;
 	SearchCell * nextCell = nullptr;
 
+    // Se encarga de buscar el indice con mejor distancia de la lista	
 	for (int i = 0; i < m_openList.size(); i++) {
 		if (m_openList[i]->GetF() < bestF){
 			bestF = m_openList[i]->GetF();
@@ -173,6 +180,7 @@ SearchCell * PathFinding::GetNextCell(){
 		}
 	}
 
+	// Mete la informacion de la celda encontrada en el anterior for
 	if (cellIndex >= 0) {
 		nextCell = m_openList[cellIndex];
 		m_visitedList.push_back(nextCell);
@@ -210,7 +218,7 @@ void PathFinding::PathOpened(float x, float y, float newCost, SearchCell *pPadre
 		}
 	}
 
-
+	// Celda para comprobar informacion, si cumple requisitos el Padre sera sustituido
 	SearchCell * newChild = new SearchCell(x, y, pPadre);
 	
 	// id == m_visitedList[i]->GetID()
@@ -294,7 +302,7 @@ void PathFinding::ContinuePath() {
 		// Celda inferior
 		PathOpened(currentCell->GetCellX(), currentCell->GetCellY() + 1, currentCell->GetG() + 1, currentCell);
 
-		// Celda diagonal izquierda superior
+		// Celda diagonal izquierda superior								/* 1.4f es lo que vale la diagonal de la Celda */
 		PathOpened(currentCell->GetCellX() - 1, currentCell->GetCellY() - 1, currentCell->GetG() + 1.4f, currentCell);
 
 		// Celda diagonal izquierda inferior
@@ -340,9 +348,9 @@ Vector2 PathFinding::NextPathPos(Enemigo  *enemigo) {
 }
 
 Vector2 PathFinding::GetNextClosesPoint() {
-
+	// Siguiente paso en la lista de celdas del camino
 	Vector2 nextPath = m_closesPaths[m_closesPaths.size()-1];
-
+	// borras esa celda
 	m_closesPaths.erase(m_closesPaths.begin() + m_closesPaths.size() - 1);
 
 	return nextPath;
@@ -360,5 +368,5 @@ vector<Vector2> PathFinding::GetClosesPath() {
 
 PathFinding::~PathFinding()
 {
-	// Clear();
+	Clear();
 }

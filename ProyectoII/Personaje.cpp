@@ -29,7 +29,7 @@ Personaje::~Personaje()
 
 void Personaje::update()
 {
-	vida -= 0.001;
+	//vida -= 0.001;
 	if (!informeCogido){
 
 	}
@@ -157,32 +157,9 @@ void Personaje::disparo(){
 
 
 
-/*
-void Personaje::setCamera(SDL_Rect& camera)
-{
-//Center the camera over the dot
-camera.x = (rect.x + rect.w / 2) - SCREEN_WIDTH / 2;
-camera.y = (rect.y + rect.h / 2) - SCREEN_HEIGHT / 2;
 
-//Keep the camera in bounds
-if (camera.x < 0)
-{
-camera.x = 0;
-}
-if (camera.y < 0)
-{
-camera.y = 0;
-}
-if (camera.x > LEVEL_WIDTH - camera.w)
-{
-camera.x = LEVEL_WIDTH - camera.w;
-}
-if (camera.y > LEVEL_HEIGHT - camera.h)
-{
-camera.y = LEVEL_HEIGHT - camera.h;
-}
-}
-*/
+
+
 
 //Necesito la dirección del personaje para poder empujarle hacia atrás
 void Personaje::empujeHaciaAtras(){

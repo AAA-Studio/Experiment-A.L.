@@ -14,9 +14,9 @@ public:
 	~Mapa();
 
 	//Checks collision box against set of tiles
-	bool touchesWall(SDL_Rect box);
+	bool touchesWall(SDL_Rect box,int& tipo);
 	void draw()const;
-
+	void setCamera();
 
 	//--------------------GETTER----------------
 	inline Tile** getTileMap() { return tileMap; };

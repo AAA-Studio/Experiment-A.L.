@@ -31,50 +31,53 @@ Mundo::~Mundo()
 void Mundo::cargaObjetos(){
 	string objts = pJuego->dameObjetos();
 	int nivel = pJuego->indiceMapas;
+
 	std::ifstream obj(objts);
 	if (!obj.is_open())
 	{
 		printf("Unable to load map file!\n");
 	}
-	bool hecho = false;
 	string nombre;
 	int i = 1;
-	while (obj.peek() != EOF && !hecho){
+	int y, x, w, h, lvl, tipo, ancho, alto;
+	alto = 640;
+	while (obj.peek() != EOF){
 
 
 		if (i == 1)
 			obj >> nombre;
 
-		int y, x,w,h, lvl, tipo;
-		if (nombre == "NIVEL"){
 
 			obj >> lvl;
+			obj >> nombre;
 
-			if (nivel == lvl){
+				if (lvl < 6)
+					ancho = 0;
+				else
+					ancho = 800;
 
-				obj >> nombre;
-
+				
 				while (obj.peek() != EOF && nombre != "NIVEL"){
 					if (nombre == "LLAVE"){
 						obj >> x >> y>> w >> h;
-						llaves.push_back(new Entidad(pJuego, x, y,w,h, TLlave, ENull, OLlave));
+						llaves.push_back(new Entidad(pJuego, x+ancho*lvl, y+alto*lvl,w,h, TLlave, ENull, OLlave));
 					}
 					else if (nombre == "INFORME"){
 						obj >> x >> y >> w >> h >> tipo;
 						if (tipo == 1)
-							objetos.push_back(new Entidad(pJuego, x, y, w, h, TInforme1, ENull, OInforme1));//Informe
+							objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TInforme1, ENull, OInforme1));//Informe
 						else if (tipo == 2)
-							objetos.push_back(new Entidad(pJuego, x, y, w, h, TInforme2, ENull, OInforme2));//Informe
+							objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TInforme2, ENull, OInforme2));//Informe
 					}
 					else if (nombre == "PANEL"){
 
 						obj >> x >> y >> w >> h;
-						objetos.push_back(new Entidad(pJuego, x, y,w,h, TTeclado, ENull, OTeclado));
+						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TTeclado, ENull, OTeclado));
 					}
 					else if (nombre == "ENEMIGO"){
 
 						obj >> x >> y >> w >> h;
-						enemigos.push_back(new Enemigo(this, x, y, w, h, TLeon, ENull));
+						enemigos.push_back(new Enemigo(this, x + ancho*lvl, y + alto*lvl, w, h, TLeon, ENull));
 
 					}
 
@@ -82,27 +85,9 @@ void Mundo::cargaObjetos(){
 
 				}
 
-				hecho = true;
-			}
-			else{
-				obj >> nombre;
-				while (obj.peek() != EOF && nombre != "NIVEL"){
-					if (nombre == "LLAVE"){
-						obj >> x >> y >> w >> h;
-					}
-					else if (nombre == "ENEMIGO"){
-						obj >> x >> y >> w >> h;
-					}
-					else if (nombre == "PANEL"){
-						obj >> x >> y >> w >> h;
-					}
-					else if (nombre == "INFORME"){
-						obj >> x >> y >> w >> h >> tipo;
-					}
-					obj >> nombre;
-				}
-			}
-		}
+			
+
+		
 		i++;
 	}
 	obj.close();
@@ -368,7 +353,7 @@ void Mundo::initObjetos()
 		//Personaje
 		psj->onInput();
 		compruebaPersonaje();
-		//psj->setCamera(mapa->getCamera());
+		
 
 	}
 	void Mundo::compruebaPersonaje(){
@@ -392,16 +377,18 @@ void Mundo::initObjetos()
 		dir.x = x;
 		dir.y = y;
 		psj->setDir(dir);
+		int tipo;
 
 		//comprueba la X
-		if (mapa->touchesWall(rect)){
+		if (mapa->touchesWall(rect,tipo)){
 			rect.x -= x;
 		}
 		// comprueba la Y
-		if (mapa->touchesWall(rect)){
+		if (mapa->touchesWall(rect,tipo)){
 			rect.y -= y;
 		}
-
+		if (tipo != 150 && tipo != 155 && tipo != 154 && tipo != 140 && tipo != 158 && tipo != 165 && tipo != 159 && tipo != 153 && tipo != 152 && tipo != 151 && tipo != 114
+			&& tipo != 345 && tipo != 350 && tipo != 349 && tipo != 335 && tipo != 353 && tipo != 360 && tipo != 354 && tipo != 348 && tipo != 347 && tipo != 346 && tipo != 309)
 		psj->setPosChocando(rect.x, rect.y);
 
 	}
