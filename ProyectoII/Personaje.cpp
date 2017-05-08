@@ -8,7 +8,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 {
 	pMundo = pM;
 	rect = { x, y, 35, 50 };
-	rectAn = { 0, 0, 30, 48 };
+	rectAn = { 0, 0, 31, 50 };
 	rectInforme = { pJuego->getAncho() / 4, pJuego->getAlto() / 20, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100, 100 };
 	rectHUD = { 0, 0, 800, 640 };
@@ -21,6 +21,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 	empuje = false;
 	posXAnt = x;
 	posYAnt = y;
+	retardo = 0;
 }
 
 //Destructora
@@ -32,7 +33,7 @@ void Personaje::update()
 {
 	
 	if (!informeCogido){
-		vida -= 0.0005;
+		//vida -= 0.0005;
 	}
 
 }
@@ -51,27 +52,36 @@ void Personaje::draw()const
 }
 
 void Personaje::animacion(animar currentFrame){
-	switch (currentFrame){
-	case Personaje::derecha:
-		rectAn.y = 192;
-		break;
-	case Personaje::izquierda:
-		rectAn.y = 64;
-		break;
-	case Personaje::arriba:
-		rectAn.y = 0;
-		break;
-	case Personaje::abajo:
-		rectAn.y = 128;
-		break;
-	default:
-		break;
+	retardo++;
+	if (retardo == 15){
+		switch (currentFrame){
+		case Personaje::derecha:
+			rectAn.y = 192;
+			retardo = 0;
+			break;
+		case Personaje::izquierda:
+			rectAn.y = 64;
+			retardo = 0;
+			break;
+		case Personaje::arriba:
+			rectAn.y = 0;
+			retardo = 0;
+			break;
+		case Personaje::abajo:
+			rectAn.y = 128;
+			retardo = 0;
+			break;
+		default:
+			break;
+		}
+		frames();
+		
 	}
-	frames();
+	
 }
 
 void Personaje::frames(){
-	if (rectAn.x > 272){
+	if (rectAn.x >= 240){
 		rectAn.x = 0;
 	}
 	else{

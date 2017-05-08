@@ -77,5 +77,6 @@ private:
 	void frames();
 	void pasos();
 	int cont;
+	int retardo;
 };
 #endif
