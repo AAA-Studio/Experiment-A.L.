@@ -193,20 +193,28 @@ void Mundo::initObjetos()
 		}
 
 		psj->draw();
-
+		/*
 		//Balas
 		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
 		while (!balasPsj.empty() && itBalasPsj != balasPsj.cend())
 		{
 			(*itBalasPsj)->draw();
 			itBalasPsj++;
+		}*/
+
+		for (auto bala : balasPsj) {
+			bala->draw();
 		}
 
-		list<EntidadJuego*>::const_iterator itBalasEnem = balasEnems.cbegin();
+		/*list<EntidadJuego*>::const_iterator itBalasEnem = balasEnems.cbegin();
 		while (!balasEnems.empty() && itBalasEnem != balasEnems.cend())
 		{
 			(*itBalasEnem)->draw();
 			itBalasEnem++;
+		}*/
+
+		for (auto bala : balasEnems) {
+			bala->draw();
 		}
 
 

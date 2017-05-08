@@ -59,7 +59,7 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 //Método para dibujar la textura en el rectángulo winRect
 void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, SDL_Rect* texRect)const
 {
-	SDL_RenderCopyEx(pRenderer, pTexture, texRect, &winRect,0,NULL,SDL_FLIP_NONE);
+	SDL_RenderCopyEx(pRenderer, pTexture, texRect, &winRect, 0, NULL, SDL_FLIP_NONE);
 }
 
 void TexturasSDL::setRectText(int numFrame){
@@ -76,7 +76,7 @@ void TexturasSDL::loadFromText(SDL_Renderer * pRender, string const& texto, SDL_
 	if (pTempSurface == nullptr)
 	{
 		string errorSDL = IMG_GetError();
-		ErrorFuente errorE("Error en la carga de la textura FUENTE, !SDL Error: " + errorSDL+ "");
+		ErrorFuente errorE("Error en la carga de la textura FUENTE, !SDL Error: " + errorSDL + "");
 		throw errorE;
 	}
 	//Ha encontrado la imagen
@@ -93,7 +93,7 @@ void TexturasSDL::loadFromText(SDL_Renderer * pRender, string const& texto, SDL_
 			throw errorE;
 		}
 		SDL_FreeSurface(pTempSurface);
-	
+
 	}
 
 }

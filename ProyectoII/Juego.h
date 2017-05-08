@@ -9,12 +9,13 @@
 #include <string>
 #include <SDL.h>
 
+// OS ODIARE PARA SIEMPRE
 using namespace std;
 
 //-----------------CONSTANTES----------------------
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 640;
+const int SCREEN_WIDTH = 1600;
+const int SCREEN_HEIGHT = 3840;
 
 //The dimensions of the level
 const int LEVEL_WIDTH = 1600;
@@ -37,9 +38,9 @@ const int TAMAÑO_LLAVES = 1;
 //------------------ENUMS--------------------------
 
 enum Estados_t{ MInicio, MGameOver, MPausa, MundoReal, MundoOscuro, ECombinaciones };
-enum  Texturas_t{ TJugador, TBlood, TFondo, TBala, TFuego, TLeon, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2, TUno, TDos, TTres, TCuatro, TCinco, TSeis, TSiete, TOcho, TNueve, TCero, TTeclado, TVolver,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
-enum  Efectos_t{ ENull, Efectos_t_SIZE };
-enum  Musica_t{ MusicaInicio, Musica_t_SIZE };
+enum Texturas_t{ TJugador, TBlood, TFondo, TBala, TFuego, TLeon, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2, TUno, TDos, TTres, TCuatro, TCinco, TSeis, TSiete, TOcho, TNueve, TCero, TTeclado, TVolver,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
+enum Efectos_t{ ENull, Efectos_t_SIZE };
+enum Musica_t{ MusicaInicio, Musica_t_SIZE };
 enum ListaBalas_t{ LBalasEnemigos, LBalasPersonaje };
 
 
@@ -74,11 +75,11 @@ public:
 	void goToCombinaciones(EstadoJuego* estado);
 
 	//Sale del programa
-	void setSalir(){ exit = true; };
+	void inline setSalir() { exit = true; };
 
-	void setNivel(int i){ 
-	nivel = i;
-	indiceMapas += nivel;
+	void setNivel(int i){
+		nivel = i;
+		indiceMapas += nivel;
 	};
 	//---------------GETTER----------------------
 	//Saber el nivel del mapa en el que estamos
@@ -108,7 +109,7 @@ public:
 
 
 	//-----------TILE----------------
-
+	// NUCA DEJARE DE ODIAROS
 	SDL_Rect gTileClips[TOTAL_TILE_SPRITES]; //Array con los rectángulos de las colisiones
 
 	inline SDL_Rect getRectTile(int numTile){ return gTileClips[numTile]; };//Devuelve la colision del tile pasado como parametro
@@ -122,7 +123,7 @@ public:
 
 
 	}
-
+	// ES PUBLICO PORQUE OS ODIO
 	bool borraEstado;
 	Estados_t estadoEnum;
 
@@ -165,6 +166,7 @@ private:
 	bool llavesCogidas[TAMAÑO_LLAVES];
 
 	TexturasSDL*  texturas[Texturas_t_SIZE];
+	std::vector<TexturasSDL* >  texturas2;
 
 	//AMPLIACIONES
 	Fuente fuente;

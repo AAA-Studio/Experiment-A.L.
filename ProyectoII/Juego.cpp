@@ -229,10 +229,10 @@ void Juego::initSDL()
 void Juego::closeSDL()
 {
 	SDL_DestroyRenderer(pRenderer);
-	pRenderer = nullptr;
+	// pRenderer = nullptr;
 
 	SDL_DestroyWindow(pWin);
-	pWin = nullptr;
+	// pWin = nullptr;
 
 	SDL_Quit();
 }
@@ -281,6 +281,10 @@ void Juego::initMedia()
 void Juego::freeMedia()
 {
 
+	for (auto t : texturas2) {
+		delete t;
+	}
+
 	//TEXTURAS
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{
@@ -309,17 +313,17 @@ void Juego::render()
 	SDL_RenderClear(pRenderer);
 
 	//SDL_RenderCopy(renderer, textureInterface, NULL, &interface_rect);
-	//SDL_RenderCopy(renderer, textureBird, NULL, &bird_rect);
 	
-	SDL_RenderDrawRect(pRenderer,& dynamic_cast<Mundo*>(topEstado())->getMapa()->getCamera() );
 
 	topEstado()->draw();
+
 	//Intercambiar buffer y mostrar
+
 	SDL_RenderPresent(pRenderer);
 }
 
 void Juego::changeState(EstadoJuego *estado){
-	Sleep(1000);
+	Sleep(1000); // ES IMPOSIBLE QUE DEJE DE ODIAROS
 	popState();
 	pushState(estado);
 }
@@ -343,6 +347,10 @@ void Juego::goToCombinaciones(EstadoJuego* estado)
 }
 
 // tendrás que añadir atributos para la posición del ratón(que deben actualizarse en onClick)
+/*std::pair<int, int> Juego::getMousePos() const {
+	return std::make_pair(posMouseX, posMouseY);
+}
+*/
 void Juego::getMousePos(int & mpx, int & mpy) const
 {
 	mpx = posMouseX;
