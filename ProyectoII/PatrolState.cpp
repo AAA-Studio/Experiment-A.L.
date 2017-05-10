@@ -3,7 +3,7 @@
 #include "IdleState.h"
 #include "ChaseState.h"
 
-PatrolState::PatrolState(vector<Vector2> waypoints)
+PatrolState::PatrolState(vector<pair <float, float>> waypoints)
 {
 	m_waypoints = waypoints;
 }
@@ -20,14 +20,13 @@ void PatrolState::Enter(EnemigoIA * character) {
 
 void PatrolState::Execute(EnemigoIA * character) {
 
-	Vector2 waypoint = m_waypoints[m_waypoints.size() - 1];
+	pair <float, float> waypoint = m_waypoints[m_waypoints.size() - 1];
 
 	// Posicion del enemigo     /*no hace falta?*/
-	Vector2 position ( character->getRect().x, character->getRect().y );
-	// Distancia enemigo - waypoint
-	Vector2 toTarget = Vector2(waypoint.GetX(), waypoint.GetY())
-		- Vector2(position.GetX(), position.GetY());
-	float distance = toTarget.GetLength();
+	pair <float, float> position(character->getRect().x, character->getRect().y);
+	// Distancia enemigo - waypoint ???????????????????
+	pair <float, float> toTarget = make_pair(waypoint.first - position.first, waypoint.second - position.second);
+	float distance = sqrt((toTarget.first*toTarget.first) + (toTarget.second*toTarget.second));;
 
 	// distancia con el jugador
 	if (character->IsWithinRangeOfTarget(100.0f)) {
@@ -37,8 +36,8 @@ void PatrolState::Execute(EnemigoIA * character) {
 
 	if (distance != 0) {
 		// Se acerca el enemigo al waypoint
-		toTarget.SetX(toTarget.GetX() / distance);
-		toTarget.SetY(toTarget.GetY() / distance);
+		toTarget.first = toTarget.first / distance;
+		toTarget.second = toTarget.second / distance;
 	}
 
 	if (distance  <= 20.0f) {
@@ -51,10 +50,10 @@ void PatrolState::Execute(EnemigoIA * character) {
 		}
 	}
 
-	Vector2 velocity = toTarget * 50.0f;
+	pair <float, float> velocity = make_pair (toTarget.first * 50.0f, toTarget.second * 50.0f);
 
-	position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
-	position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
+	position.first = position.first + velocity.first * (float)SDL_GetTicks();
+	position.second = position.second + velocity.second * (float)SDL_GetTicks();
 
 	/*Vector2 velocity = toTarget * 20.0f
 	character->addVelocity(velocity.GetX(), velocity.GetY());

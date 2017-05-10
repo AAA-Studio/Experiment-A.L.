@@ -3,9 +3,8 @@
 
 #include "Enemigo.h"
 #include "StateMachine.h"
-#include "MathCore.h"
-#include <vector>
 #include "MundoVirtual.h"
+#include <vector>
 
 #define M_PI 3.1416
 
@@ -13,7 +12,7 @@ class EnemigoIA : public Entidad, PersonajeVirtual
 {
 public:
 
-	EnemigoIA(MundoVirtual*pM, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto);
+	EnemigoIA(MundoVirtual*pM, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto/*, vector < pair<float, float>> waypoints*/);
 	~EnemigoIA();
 
 	void Initialize();
@@ -21,7 +20,7 @@ public:
 
 	void ChaseTarget();//Persigue al personaje
 	bool IsWithinRangeOfTarget(float minDistance);//Devuelve true si esta en el rango con el personaje
-	Vector2 findNextWayPoints();
+	const pair <float, float> &findNextWayPoints();
 
 	//GETTER
 	StateMachine<EnemigoIA>* GetStateMachine();
@@ -30,27 +29,32 @@ public:
 
 	//SETTER
 	void SetMaxVelocity(float maxVelocity) { m_maxVelocity = maxVelocity; }
-	void SetVelocity(float velocityX, float velocityY) { m_velocity.SetX(velocityX); m_velocity.SetY(velocityY); }
+	// void SetVelocity(float velocityX, float velocityY) { m_velocity.SetX(velocityX); m_velocity.SetY(velocityY); }
+	void SetVelocity(float velocityX, float velocityY) { m_velocity.first = velocityX; m_velocity.second = velocityY; }
+	
 	inline void restaVida() { vida--; };
 
 
 protected: 
 	StateMachine<EnemigoIA>* m_stateMachine;
 
-	vector <Vector2> m_waypoints; // Celdas por donde pasa el enemigo
-	Vector2 * m_currentWayPoint;
+	// Celdas por donde pasa el enemigo
+	vector < pair<float, float>> m_waypoints;
+	pair <float, float>* m_currentWayPoint;
 
 	float m_maxVelocity;
-	Vector2 m_velocity;
+	pair <float, float> m_velocity;
 
 	// Sobran algunas, comprobar cuales
-	Entidad* m_target;//Puntero al personaje
+	Entidad* m_target = nullptr;// Puntero al personaje
 
 	int m_currentIndex;
 
 private:
-	MundoVirtual* pMundo;
+	MundoVirtual* pMundo = nullptr;
 	int vida;
+
+	void initWaypoints();
 
 	/*
 	int angle;

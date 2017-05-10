@@ -3,14 +3,14 @@
 
 #include "State.h" 
 #include <vector>
-#include "MathCore.h"
+
 using namespace std;
 class EnemigoIA;
 
 class PatrolState : public State<EnemigoIA>
 {
 public:
-	PatrolState(vector<Vector2> waypoints);
+	PatrolState(vector<pair <float, float>> waypoints);
 	~PatrolState();
 
 	void Enter(EnemigoIA * character);
@@ -18,7 +18,7 @@ public:
 	void Exit(EnemigoIA * character);
 
 private:
-	vector<Vector2> m_waypoints;
+	vector<pair <float, float>> m_waypoints;
 };
 
 #endif

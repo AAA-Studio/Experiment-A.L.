@@ -4,14 +4,17 @@
 #include <math.h>
 #include <stdio.h>
 #include <windows.h>
+#include <utility>
 #include <gl/GL.h> // Core Opengl functions
 
-EnemigoIA::EnemigoIA(MundoVirtual*pM, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
+EnemigoIA::EnemigoIA(MundoVirtual*pM, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto/*, vector < pair<float, float>> waypoints*/) 
+: Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
 {
 	vida = 3;
 	pMundo = pM;
 	m_currentIndex = 0;
 	Initialize();
+	initWaypoints();
 }
 
 
@@ -31,6 +34,16 @@ void EnemigoIA::Initialize() {
 	m_stateMachine->ChangeState(new IdleState());
 }
 
+void EnemigoIA::initWaypoints(){
+
+	// Para comprobar que funciona el codigo
+	m_waypoints.resize(4);
+	m_waypoints.emplace_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
+	m_waypoints.emplace_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
+	m_waypoints.emplace_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
+	
+}
+
 void EnemigoIA::update() {
 
 	Entidad::update();
@@ -42,41 +55,47 @@ void EnemigoIA::ChaseTarget() {
 	SDL_Rect targetTransform = m_target->getRect();
 
 	//Vectores auxiliares
-	Vector2 targetPosition;
-	targetPosition.SetX(targetTransform.x);
-	targetPosition.SetY(targetTransform.y);
+	pair<float, float> targetPosition = make_pair(targetTransform.x, targetTransform.y);
+	pair <float,float> position = make_pair(rect.x, rect.y);
 
-	Vector2 position;
-	position.SetX(rect.x);
-	position.SetY(rect.y);
+	pair <float, float> toTarget = make_pair(targetPosition.first - position.first, targetPosition.second - position.second);
+	float distance = sqrt((toTarget.first*toTarget.first) + (toTarget.second*toTarget.second));
 
-	Vector2 toTarget = targetPosition - position;
-	float distance = toTarget.GetLength();
+	if (!IsWithinRangeOfTarget(0)) {
+		
+		toTarget.first /= distance;
+		toTarget.second /= distance;
+	}
+		
 
-	if (!IsWithinRangeOfTarget(0)) 
-		toTarget /= distance;
+	pair <float, float> velocity = make_pair(toTarget.first * 35.0f, toTarget.second * 35.0f);
 
-	Vector2 velocity = toTarget * 35.0f;
-
-	position.SetX(position.GetX() + velocity.GetX() * (float)SDL_GetTicks());
-	position.SetY(position.GetY() + velocity.GetY() * (float)SDL_GetTicks());
+	position.first = position.first + velocity.first * (float)SDL_GetTicks();
+	position.second = position.second + velocity.second * (float)SDL_GetTicks();
 }
 
 StateMachine<EnemigoIA>*EnemigoIA::GetStateMachine() {
 	return m_stateMachine;
 }
 
-Vector2 EnemigoIA::findNextWayPoints(){
+const pair <float, float> &EnemigoIA::findNextWayPoints(){
 
 	if (m_waypoints.size() != 0)
 	{
-		Vector2 waypoint = m_waypoints[m_currentIndex];
+		const pair <float, float> &waypoint = m_waypoints[m_currentIndex];
 		m_currentIndex = (int)(rand() % m_waypoints.size() - 1);
 
 		return waypoint;
 	}
-	else
-		return;
+	// Para debug
+	else{
+		initWaypoints();
+		// ????????????????????????????
+		const pair <float, float>& waypoint = m_waypoints[m_currentIndex];
+		m_currentIndex = (int)(rand() % m_waypoints.size() - 1);
+
+		return waypoint;
+	}
 }
 
 bool EnemigoIA::IsWithinRangeOfTarget(float minDistance) {
@@ -84,16 +103,12 @@ bool EnemigoIA::IsWithinRangeOfTarget(float minDistance) {
 	SDL_Rect targetTransform = m_target->getRect();
 
 	//Vectores auxiliares
-	Vector2 targetPosition;
-	targetPosition.SetX(targetTransform.x);
-	targetPosition.SetY(targetTransform.y);
+	pair<float, float> targetPosition = make_pair(targetTransform.x, targetTransform.y);
+	pair <float, float> position = make_pair(rect.x, rect.y);
 
-	Vector2 position;
-	position.SetX(rect.x);
-	position.SetY(rect.y);
+	pair <float, float> toTarget = make_pair(targetPosition.first - position.first, targetPosition.second - position.second);
 
-	Vector2 toTarget = targetPosition - position;
-	float distance = toTarget.GetLength();
+	float distance = sqrt((toTarget.first*toTarget.first) + (toTarget.second*toTarget.second));
 
 	return (distance <= minDistance);
 }

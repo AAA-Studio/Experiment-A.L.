@@ -1,14 +1,16 @@
 #include "PathFinding.h"
 #include "Juego.h"
-#include <stdio.h> // Input and Output operations
 #include "Tile.h"
+#include <stdio.h> // Input and Output operations
+#include <utility>
+
 PathFinding::PathFinding(MapaVirtual * pGameWorld) : pMapa(pGameWorld)
 {
 	m_initializedStartGoal = false;
 	m_foundGoal = false;
 }
 
-void PathFinding::Initialize(Vector2 pStartPos, Vector2 pTargetPos) {
+void PathFinding::Initialize(pair <float, float>  pStartPos, pair <float, float>  pTargetPos) {
 	
 	
 	m_pathState = INITIALIZE;
@@ -19,13 +21,13 @@ void PathFinding::Initialize(Vector2 pStartPos, Vector2 pTargetPos) {
 
 	// Celda del enemigo
 	SearchCell start;
-	start.setX(floorf(pStartPos.GetX() / (float)TILE_WIDTH));
-	start.setY(floorf(pStartPos.GetY() / (float)TILE_HEIGHT));
+	start.setX(floorf(pStartPos.first / (float)TILE_WIDTH));
+	start.setY(floorf(pStartPos.second / (float)TILE_HEIGHT));
 
 	// Celda objetivo
 	SearchCell goal;
-	goal.setX(floorf(pTargetPos.GetX() / (float)TILE_WIDTH));
-	goal.setY(floorf(pTargetPos.GetY() / (float)TILE_HEIGHT));
+	goal.setX(floorf(pTargetPos.first / (float)TILE_WIDTH));
+	goal.setY(floorf(pTargetPos.second / (float)TILE_HEIGHT));
 
 	
 	InitializaStartGoal(&start, &goal);
@@ -77,7 +79,8 @@ void PathFinding::Iterate() {
 
 		// Movimiento sin algoritmos, el iter es el personaje y guardas el camino hacia el objetivo
 		for (SearchCell * iter = m_goalCell; iter; iter = iter->GetParent()) {
-			m_closesPaths.push_back(Vector2(iter->GetCellX() * (float)TILE_WIDTH/2.0f, iter->GetCellY() * (float)TILE_HEIGHT/2.0f));
+			// ??????????????????
+			m_closesPaths.push_back(make_pair(iter->GetCellX() * (float)TILE_WIDTH/2.0f, iter->GetCellY() * (float)TILE_HEIGHT/2.0f));
 		}
 	}
 
@@ -106,7 +109,7 @@ void PathFinding::Iterate() {
 
 }
 
-void PathFinding::FindPath(Vector2 currentPos, Vector2 targetPos) {
+void PathFinding::FindPath(pair <float, float> currentPos, pair <float, float> targetPos) {
 	
 	if (!m_initializedStartGoal) {
 
@@ -121,22 +124,19 @@ void PathFinding::FindPath(Vector2 currentPos, Vector2 targetPos) {
 		}
 		m_visitedList.clear();
 
-		for (int i = 0; m_pathToGoal.size(); i++) {
-			delete m_pathToGoal[i];
-		}
 		m_pathToGoal.clear();
 
 		// Inicializacion del start
 		SearchCell start;
 
-		start.setX(m_GameWorld->GetCellX(currentPos.GetX()));
-		start.setY(m_GameWorld->GetCellY(currentPos.GetY()));
+		start.setX(m_GameWorld->GetCellX(currentPos.first));
+		start.setY(m_GameWorld->GetCellY(currentPos.second));
 
 		// Inicializacion del Goal
 		SearchCell goal;
 
-		goal.setX(m_GameWorld->GetCellX(currentPos.GetX()));
-		goal.setY(m_GameWorld->GetCellY(currentPos.GetY()));
+		goal.setX(m_GameWorld->GetCellX(currentPos.first));
+		goal.setY(m_GameWorld->GetCellY(currentPos.second));
 
 		m_foundGoal = false;
 		SetStartAndGoal(start, goal);
@@ -268,13 +268,13 @@ void PathFinding::ContinuePath() {
 	if (currentCell->GetID() == m_goalCell->GetID()) {
 		m_goalCell->SetParent(currentCell->GetParent());
 
-		SearchCell * getPath;
+		SearchCell * getPath = nullptr;
 
 		// Va por todas las celdas comprobando cual es el camino mas corto y las mete en la lista
 		// va hasta NULL porque la celda Start es la unica que lo tiene a NULL
 		for (getPath = m_goalCell; getPath != NULL; getPath->GetParent()) {
 
-			m_pathToGoal.push_back(new Vector2(getPath->GetCellX() * TILE_WIDTH, getPath->GetCellY() * TILE_HEIGHT));
+			m_pathToGoal.push_back(make_pair(getPath->GetCellX() * TILE_WIDTH, getPath->GetCellY() * TILE_HEIGHT));
 		}
 
 		m_foundGoal = true;
@@ -316,21 +316,23 @@ void PathFinding::ContinuePath() {
 	}
 }
 
-Vector2 PathFinding::NextPathPos(Enemigo  *enemigo) {
+pair <float, float> PathFinding::NextPathPos(Enemigo  *enemigo) {
 	
 	int index = 1; 
 
-	Vector2 nextPos;
-	nextPos.SetX(m_pathToGoal[m_pathToGoal.size() - index]->GetX());
-	nextPos.SetY(m_pathToGoal[m_pathToGoal.size() - index]->GetY());
+	pair <float, float> nextPos = make_pair(m_pathToGoal[m_pathToGoal.size() - index].first, m_pathToGoal[m_pathToGoal.size() - index].second);
 
 	// pos es la actual posicion del enemigo
-	Vector2 enemPos(enemigo->getRect().x, enemigo->getRect().y);
-	Vector2 distance = nextPos - enemPos;
-	if (distance.GetLength() < m_pathToGoal.size()) {
+	pair <float, float>enemPos(enemigo->getRect().x, enemigo->getRect().y);
+	// Vector2 distance = nextPos - enemPos
+
+	pair <float, float> toTarget = make_pair(nextPos.first - enemPos.first, nextPos.second - enemPos.second);
+	float distance = sqrt((toTarget.first*toTarget.first) + (toTarget.second*toTarget.second));
+
+	if (distance< m_pathToGoal.size()) {
 
 		// Si el enemigo consigue avanzar en el radio de celdas elimina la que ya estaba
-		if (distance.GetLength() < 50) {
+		if (distance < 50) {
 			m_pathToGoal.erase(m_pathToGoal.end() - index);
 		}
 	}
@@ -338,9 +340,9 @@ Vector2 PathFinding::NextPathPos(Enemigo  *enemigo) {
 	return nextPos;
 }
 
-Vector2 PathFinding::GetNextClosesPoint() {
+pair <float, float> PathFinding::GetNextClosesPoint() {
 	// Siguiente paso en la lista de celdas del camino
-	Vector2 nextPath = m_closesPaths[m_closesPaths.size()-1];
+	pair <float, float> nextPath = m_closesPaths[m_closesPaths.size() - 1];
 	// borras esa celda
 	m_closesPaths.erase(m_closesPaths.begin() + m_closesPaths.size() - 1);
 
@@ -352,7 +354,7 @@ int PathFinding::GetClosesPathSize() {
 	return (int)m_closesPaths.size();
 }
 
-vector<Vector2> PathFinding::GetClosesPath() {
+vector<pair <float, float>> PathFinding::GetClosesPath() {
 
 	return m_closesPaths;
 }

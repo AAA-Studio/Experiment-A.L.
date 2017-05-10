@@ -23,7 +23,7 @@ public:
 	SearchCell() : pPadre(0){};
 	SearchCell(int x, int y, SearchCell * parent = nullptr) : m_xcoord(x), m_ycoord(y),
 		pPadre(parent), m_id(y * LEVEL_WIDTH + x), G(0), H(0){};
-	~SearchCell(){};      /* WORLD_SIZE no vale */
+	~SearchCell(){};      
 
 	//GETTERS
 	// GetF: Siendo H la distancia optima y G la acumulada,
@@ -40,12 +40,12 @@ public:
 	SearchCell * GetParent() { return pPadre;  }
 
 	//SETTERS
-	void setX(float x) { m_xcoord = x; }
-	void setY(float y) { m_ycoord = y; }
-	void SetParent(SearchCell* pParent) { pPadre = pParent; }
-	void setH(float distance) { H = distance; }
-	void setG(float distAcum) { G = distAcum; }
-	void SetID(int id) { m_id = id; }
+	inline void setX(float x) { m_xcoord = x; }
+	inline void setY(float y) { m_ycoord = y; }
+	inline void SetParent(SearchCell* pParent) { pPadre = pParent; }
+	inline void setH(float distance) { H = distance; }
+	inline void setG(float distAcum) { G = distAcum; }
+	inline void SetID(int id) { m_id = id; }
 
 	// Tiene que devolver un int
 	inline CellState GetCellState(float x, float y) const { 
@@ -71,7 +71,7 @@ public:
 private:
 	int m_xcoord, m_ycoord; //Coordenadas del enemigo
 	int m_id; //id del enemigo
-	SearchCell * pPadre; // puntero a la celda.
+	SearchCell * pPadre = nullptr; // puntero a la celda.
 	float G; // distancia acumulada desde la primera celda hasta la celda en la que te encuentras
 	float H; // distancia estimada al objetivo
 	

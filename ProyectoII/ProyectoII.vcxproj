@@ -109,7 +109,6 @@
     <ClInclude Include="Juego.h" />
     <ClInclude Include="Mapa.h" />
     <ClInclude Include="MapaVirtual.h" />
-    <ClInclude Include="MathCore.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuInicio.h" />
     <ClInclude Include="Mundo.h" />

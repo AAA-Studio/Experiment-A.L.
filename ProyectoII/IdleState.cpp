@@ -21,9 +21,9 @@ void IdleState::Enter(EnemigoIA * character) {
 
 	m_pathfinding = new PathFinding(character->getMapa());
 	
-	Vector2 targetLocation = character->findNextWayPoints();
-	m_pathfinding->Initialize(Vector2(character->getRect().x,
-		character->getRect().y), targetLocation);
+	pair <float, float> targetLocation = character->findNextWayPoints();
+	pair <float, float> characterLocation = make_pair(character->getRect().x, character->getRect().y);
+	m_pathfinding->Initialize(characterLocation, targetLocation);
 
 }
 

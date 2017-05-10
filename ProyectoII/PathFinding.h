@@ -3,7 +3,6 @@
 
 #include "checkML.h"
 #include "SearchCell.h"
-#include "MathCore.h"
 #include "Entidad.h"
 #include "Enemigo.h"
 #include "MapaVirtual.h"
@@ -32,15 +31,15 @@ public:
 	};
 
 	// Este metodo utiliza las coordenadas del enemigo y las del jugador para crear el camino optimo
-	void FindPath(Vector2 currentPos, Vector2 targetPos);
+	void FindPath(pair <float, float> currentPos, pair <float, float> targetPos);
 	// Devuelve la posicion del camino mas corto
-	Vector2 NextPathPos(Enemigo *enemigo);
+	pair <float, float>  NextPathPos(Enemigo *enemigo);
 	// Limpia las diferentes listas
 	void ClearOpenList() { m_openList.clear(); }
 	void ClearVisitedList() { m_visitedList.clear(); }
 	void ClearPathToGoal() { m_pathToGoal.clear(); }
 
-	void Initialize(Vector2 pStartPos, Vector2 pTargetPos);
+	void Initialize(pair <float, float>  pStartPos, pair <float, float>  pTargetPos);
 
 	// Comprueba que se han inicializado el personaje
 	bool m_initializedStartGoal;
@@ -50,7 +49,7 @@ public:
 
 	State GetpathState() { return m_pathState; }
 
-	Vector2 GetNextClosesPoint();
+	pair <float, float>  GetNextClosesPoint();
 
 	int GetClosesPathSize();
 
@@ -58,10 +57,10 @@ public:
 
 	void Clear();
 
-	vector<Vector2> GetClosesPath();
+	vector<pair <float, float>> GetClosesPath();
 
 private:
-	MapaVirtual * pMapa;
+	MapaVirtual * pMapa = nullptr;
 
 	void SetStartAndGoal(SearchCell start, SearchCell goal);
 
@@ -77,15 +76,15 @@ private:
 	SearchCell * GetNextCell();
 
 	// Primera celda donde se encuentra el enemigo
-	SearchCell * m_startCell;
+	SearchCell * m_startCell = nullptr;
 
 	// Celda donde se encuentra el personaje
-	SearchCell * m_goalCell;
+	SearchCell * m_goalCell = nullptr;
 
 	// Mapa * _pGameWorld;
-	SearchCell * m_GameWorld;
+	SearchCell * m_GameWorld = nullptr;
 
-	SearchCell * iter;
+	SearchCell * iter = nullptr;
 
 	// Celdas sin visitar
 	vector <SearchCell*> m_openList;
@@ -94,10 +93,10 @@ private:
 	vector <SearchCell*> m_visitedList;
 
 	// Camino optimo al personaje
-	vector <Vector2 *> m_pathToGoal;
+	vector <pair <float, float>> m_pathToGoal;
 
 	// Camino mas corto
-	vector <Vector2> m_closesPaths;
+	vector <pair <float, float>> m_closesPaths;
 
 	State m_pathState;
 

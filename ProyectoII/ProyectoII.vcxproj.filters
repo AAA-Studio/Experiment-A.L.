@@ -206,9 +206,6 @@
     <ClInclude Include="Enemigo.h">
       <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
     </ClInclude>
-    <ClInclude Include="MathCore.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="PathFinding.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
