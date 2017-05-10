@@ -112,7 +112,7 @@ void Mundo::initObjetos()
 
 
 
-	//HACER UN SWITCH
+	//HACER UNA SWITCH
 	int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
 
 		x = mapa->getXSpawn();
@@ -218,7 +218,7 @@ void Mundo::initObjetos()
 
 
 		pJuego->getTextura(TBlood)->setAlpha(255 - psj->getAlpha());
-		pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD(), psj->getHUD().x - camera.x, psj->getHUD().y - camera.y);
+		pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0);
 
 		//pJuego->escribir("HOLA :)",50, 50);
 	}
@@ -386,14 +386,17 @@ void Mundo::initObjetos()
 		psj->setDir(dir);
 		int tipo;
 
+		mapa->touchesDoor(rect, tipo);
+
 		//comprueba la X
-		if (mapa->touchesWall(rect,tipo)){
+		if (mapa->touchesWall(rect)){
 			rect.x -= x;
 		}
 		// comprueba la Y
-		if (mapa->touchesWall(rect,tipo)){
+		if (mapa->touchesWall(rect)){
 			rect.y -= y;
 		}
+
 		if (tipo != 150 && tipo != 155 && tipo != 154 && tipo != 140 && tipo != 158 && tipo != 165 && tipo != 159 && tipo != 153 && tipo != 152 && tipo != 151 && tipo != 114
 			&& tipo != 345 && tipo != 350 && tipo != 349 && tipo != 335 && tipo != 353 && tipo != 360 && tipo != 354 && tipo != 348 && tipo != 347 && tipo != 346 && tipo != 309)
 		psj->setPosChocando(rect.x, rect.y);

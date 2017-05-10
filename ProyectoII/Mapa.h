@@ -14,7 +14,9 @@ public:
 	~Mapa();
 
 	//Checks collision box against set of tiles
-	bool touchesWall(SDL_Rect box,int& tipo);
+	bool touchesWall(SDL_Rect box);
+	bool touchesDoor(SDL_Rect box, int& tipo);
+
 	void draw()const;
 
 	//--------------------GETTER----------------
@@ -31,6 +33,7 @@ private:
 
 	bool cargarMapa();
 	void buscaSpawn();
+	void setCamera();
 
 	int x, y;
 

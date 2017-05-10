@@ -8,8 +8,8 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 {
 	pMundo = pM;
 	rect = { x, y, 30, 40 };
-	rectInforme = { pJuego->getAncho() / 4, pJuego->getAlto() / 20, 300, 600 };
-	rectLlave = { 50, pJuego->getAlto() - 100, 100, 100 };
+	rectInforme = { pJuego->getAncho() / 2 - 150, pJuego->getAlto() / 2 - 300, 300, 600 };
+	rectLlave = { 0,0, 100, 100 };
 	rectHUD = { 0, 0, 800, 640 };
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
@@ -30,8 +30,8 @@ Personaje::~Personaje()
 void Personaje::update()
 {
 	//Center the camera over the dot
-	pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
-	//vida -= 0.001;
+	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
+	vida -= 0.001;
 	if (!informeCogido){
 
 	}
@@ -43,10 +43,10 @@ void Personaje::draw(int x, int y)const
 	Entidad::draw(x,y);
 
 	if (informeCogido)
-		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme, rectInforme.x - pMundo->getCamera().x, rectInforme.y - pMundo->getCamera().y);
+		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme, rectInforme.x, rectInforme.y);
 
 	if (pJuego->getLLavesCogidas(0))
-		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave, rectLlave.x - pMundo->getCamera().x, rectLlave.y - pMundo->getCamera().y);
+		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave, 50 , SCREEN_HEIGHT - 100);
 
 }
 
@@ -144,8 +144,8 @@ void Personaje::move(int x, int y)
 	posXAnt = rect.x;
 	posYAnt = rect.y;
 
-	rect.x += x;
-	rect.y += y;
+	rect.x += 3*x;
+	rect.y += 3*y;
 }
 
 void Personaje::disparo(){

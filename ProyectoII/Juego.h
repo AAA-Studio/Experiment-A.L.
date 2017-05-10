@@ -15,8 +15,8 @@ using namespace std;
 //-----------------CONSTANTES----------------------
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 1024;
+const int SCREEN_HEIGHT = 768;
 
 //The dimensions of the level
 const int LEVEL_WIDTH = 1600;
