@@ -24,7 +24,7 @@ public:
 
 	//UTILIZAR VALORES POR DEFECTO PARA ANIMACIONES O ROTACIONES
 	//Método para dibujar la textura en el rectángulo winRect
-	void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, SDL_Rect* texRect = NULL)const;
+	void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, int x, int y, SDL_Rect* texRect = NULL)const;
 
 	//Métodos de consulta
 	inline int getW() const { return texRect.w; };//Devuelve el ancho

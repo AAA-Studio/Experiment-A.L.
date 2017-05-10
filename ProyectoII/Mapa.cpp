@@ -3,13 +3,11 @@
 
 Mapa::Mapa(MundoVirtual *pM, string mapa)
 {
-	camera = { 0, 640, SCREEN_WIDTH, SCREEN_HEIGHT };
 	pMundo = pM;
 	pJuego = pMundo->getPJ();
 	nombreMapa = mapa;
 	cargarMapa();
 	buscaSpawn();
-	setCamera();
 }
 
 
@@ -25,21 +23,6 @@ Mapa::~Mapa()
 		}
 	}
 }
-
-void Mapa::setCamera()
-{
-	int ancho;
-	if (pJuego->indiceMapas < 6){
-		ancho = 0;
-	}
-	else ancho = 1;
-
-	camera.x = 800 *ancho;
-
-	camera.y = pJuego->indiceMapas%6 * 640;
-
-}
-
 
 bool Mapa::cargarMapa()
 {
@@ -244,7 +227,6 @@ bool Mapa::touchesWall(SDL_Rect box,int& tipo)
 						pJuego->setNivel(-1);
 						tipo = 150;
 						buscaSpawn();
-						setCamera();
 						return true;
 					}
 				}
@@ -255,7 +237,6 @@ bool Mapa::touchesWall(SDL_Rect box,int& tipo)
 							pJuego->setNivel(1);
 							tipo = 155;
 							buscaSpawn();
-							setCamera();
 							return true;
 						}
 
@@ -267,7 +248,6 @@ bool Mapa::touchesWall(SDL_Rect box,int& tipo)
 						pJuego->setNivel(2);
 						tipo = 154;
 						buscaSpawn();
-						setCamera();
 						return true;
 					}
 
@@ -588,7 +568,7 @@ bool Mapa::touchesWall(SDL_Rect box,int& tipo)
 
 void Mapa::draw()const{
 	for (int i = 0; i < TOTAL_TILES; ++i)
-		tileMap[i]->render(camera);
+		tileMap[i]->render(pMundo->getCamera());
 
 
 }

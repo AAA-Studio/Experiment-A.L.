@@ -28,6 +28,10 @@ public:
 	virtual void insertaBala(ListaBalas_t lista, EntidadJuego * bala) = 0;
 
 	virtual void cambiaPosPSJ(int x, int y) = 0;
+
+	virtual SDL_Rect getCamera() const = 0;
+
+	virtual void setCamera(int x,int y) = 0;
 };
 
 #endif

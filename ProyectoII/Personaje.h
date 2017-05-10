@@ -17,15 +17,12 @@ struct Direccion{
 class Personaje : public Entidad, public PersonajeVirtual
 {
 public:
-
-
-	
 	Personaje(MundoVirtual * pM, int x, int y, Texturas_t color, Efectos_t efecto);//Constructora
 	~Personaje();//Destructora
 
 	virtual void update();//Actualiza el estado y devuelve false si el globo queda desinflado
 	virtual void onInput();
-	virtual void draw()const; //Para dibujar las balas
+	virtual void draw(int x, int y)const; //Para dibujar las balas
 
 
 	//----------------GETTER-------------------------------------------------------

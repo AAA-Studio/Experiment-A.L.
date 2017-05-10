@@ -16,7 +16,7 @@ public:
 
 	virtual ~EntidadJuego(){}
 
-	virtual void draw() const = 0;
+	virtual void draw(int x, int y) const = 0;
 
 	virtual void update() = 0;
 

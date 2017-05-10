@@ -13,7 +13,7 @@ public:
 
 	virtual ~Entidad();
 
-	virtual void draw() const;
+	virtual void draw(int x, int y) const;
 	virtual void onInput() {};
 	virtual void update() {};
 

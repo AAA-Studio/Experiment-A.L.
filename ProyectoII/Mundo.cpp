@@ -11,6 +11,7 @@ Mundo::Mundo(Juego * pJ, string m)
 {
 	pJuego = pJ;
 	pausa = false;
+	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	mapa = new Mapa(this, m);
 	initObjetos();
 	cargaObjetos();
@@ -174,25 +175,23 @@ void Mundo::initObjetos()
 		//Dibujar objetos del juego
 
 		for (int i = objetos.size() - 1; i >= 0; i--)
-			objetos[i]->draw();
+			objetos[i]->draw(objetos[i]->getRect().x - camera.x, objetos[i]->getRect().y - camera.y);
 
 		list<EntidadJuego*>::const_iterator it = llaves.cbegin();
 
 		while (!llaves.empty() && it != llaves.cend())
 		{
-			(*it)->draw();
+			(*it)->draw((*it)->getRect().x - camera.x, (*it)->getRect().y - camera.y);
 			it++;
-
 		}
 
 		list<Enemigo*>::const_iterator itEnemigos = enemigos.cbegin();
 		while (!enemigos.empty() && itEnemigos != enemigos.cend())
 		{
-			(*itEnemigos)->draw();
+			(*itEnemigos)->draw((*itEnemigos)->getRect().x - camera.x, (*itEnemigos)->getRect().y - camera.y);
 			itEnemigos++;
 		}
-
-		psj->draw();
+		psj->draw(psj->getRect().x - camera.x, psj->getRect().y - camera.y);
 		/*
 		//Balas
 		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
@@ -203,7 +202,7 @@ void Mundo::initObjetos()
 		}*/
 
 		for (auto bala : balasPsj) {
-			bala->draw();
+			bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
 		}
 
 		/*list<EntidadJuego*>::const_iterator itBalasEnem = balasEnems.cbegin();
@@ -214,12 +213,12 @@ void Mundo::initObjetos()
 		}*/
 
 		for (auto bala : balasEnems) {
-			bala->draw();
+			bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
 		}
 
 
 		pJuego->getTextura(TBlood)->setAlpha(255 - psj->getAlpha());
-		pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD());
+		pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD(), psj->getHUD().x - camera.x, psj->getHUD().y - camera.y);
 
 		//pJuego->escribir("HOLA :)",50, 50);
 	}

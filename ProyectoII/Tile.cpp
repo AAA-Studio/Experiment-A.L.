@@ -40,8 +40,8 @@ bool colision(SDL_Rect a, SDL_Rect b){
 void Tile::render(const SDL_Rect& camera) const
 {
 	//Show the tile
-	if (colision(mBox,camera))
-	pJuego->getTextura(TTilemap)->draw(pJuego->getRender(), mBox, &pJuego->getRectTile(mType));
+	//if (colision(mBox,camera))
+	pJuego->getTextura(TTilemap)->draw(pJuego->getRender(), mBox, mBox.x - camera.x, mBox.y- camera.y, &pJuego->getRectTile(mType));
 
 }
 

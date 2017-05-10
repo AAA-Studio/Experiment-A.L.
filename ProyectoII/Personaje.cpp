@@ -29,6 +29,8 @@ Personaje::~Personaje()
 
 void Personaje::update()
 {
+	//Center the camera over the dot
+	pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
 	//vida -= 0.001;
 	if (!informeCogido){
 
@@ -36,15 +38,15 @@ void Personaje::update()
 
 }
 
-void Personaje::draw()const
+void Personaje::draw(int x, int y)const
 {
-	Entidad::draw();
+	Entidad::draw(x,y);
 
 	if (informeCogido)
-		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme);
+		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme, rectInforme.x - pMundo->getCamera().x, rectInforme.y - pMundo->getCamera().y);
 
 	if (pJuego->getLLavesCogidas(0))
-		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave);
+		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave, rectLlave.x - pMundo->getCamera().x, rectLlave.y - pMundo->getCamera().y);
 
 }
 

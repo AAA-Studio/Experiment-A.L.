@@ -49,6 +49,10 @@ public:
 		psj->setPosChocando(x, y);
 	}
 
+	inline virtual SDL_Rect getCamera() const{ return camera; };
+
+	virtual void setCamera(int x, int y){ camera.x = x; camera.y = y; };
+
 
 private:
 	//-------------------ATRIBUTOS---------------
@@ -66,6 +70,7 @@ private:
 	bool pausa, balaDestruida;
 	const Uint32 duracion = 500;
 	Uint32 time;
+	SDL_Rect camera;
 
 	//-------------------METODOS-------------------
 	void cargaObjetos();

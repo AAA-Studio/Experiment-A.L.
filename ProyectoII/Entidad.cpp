@@ -15,8 +15,8 @@ Entidad::~Entidad()
 {
 }
 
-void Entidad::draw()const
+void Entidad::draw(int x, int y)const
 {
-	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect);//Dibujamos la textura
+	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect,x,y);//Dibujamos la textura
 }
 
