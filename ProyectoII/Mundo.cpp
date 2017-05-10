@@ -134,7 +134,7 @@ void Mundo::initObjetos()
 	//al principio del juego
 
 
-
+	
 	//HACER UN SWITCH
 	int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
 
@@ -472,11 +472,10 @@ void Mundo::initObjetos()
 		while (!armas.empty() && itArmas != armas.cend() && !checkCollision(psj->getRect(), (*itArmas)->getRect()))
 		{
 			itArmas++;
-
 		}
 		if (it == llaves.cend() && itArmas == armas.cend())
 			return nullptr;
-		else if (itArmas != armas.cend() && itArmas != armas.cbegin())
+		else if (itArmas != armas.cend())
 			return (*itArmas);
 		else
 			return (*it);
@@ -507,7 +506,6 @@ void Mundo::initObjetos()
 			it++;
 		}
 		psj->cogeArma((*it));
-		delete (*it);
 		it = armas.erase(it);
 	}
 	void Mundo::destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it)
@@ -521,8 +519,6 @@ void Mundo::initObjetos()
 	{
 		if (lista == LBalasPersonaje)
 			balasPsj.push_back(bala);
-
 		else
 			balasEnems.push_back(bala);
-
 	}
