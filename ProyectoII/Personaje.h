@@ -62,6 +62,8 @@ private:
 	SDL_Rect rectHUD;
 	int posXAnt, posYAnt;
 	bool empuje;
+	SDL_Rect  rectColision;
+
 
 	//Métodos
 	void disparo();

@@ -207,7 +207,8 @@ void  Mapa::buscaSpawn(){
 
 bool Mapa::touchesWall(SDL_Rect box)
 {
-
+	SDL_Rect felpudo;
+	 
 	//Go through the tiles
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
@@ -220,7 +221,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 		//PUERTA ROJA
 			if ((tileMap[i]->getType() == 150))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+					
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-1);
@@ -230,7 +236,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 					//PUERTA GRIS
 					if ((tileMap[i]->getType() == 155))
 					{
-						if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+						felpudo = tileMap[i]->getBox();
+						felpudo.x = felpudo.x + 10;
+						felpudo.y = felpudo.y + 25;
+						felpudo.h = felpudo.h - 20;
+						felpudo.w = felpudo.w - 20;
+
+						if (pMundo->checkCollision(box, felpudo)){
 							pJuego->borraEstado = true;
 							pJuego->estadoEnum = MundoReal;
 							pJuego->setNivel(1);
@@ -241,7 +253,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA MORADA
 				if ((tileMap[i]->getType() == 154))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 20;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(2);
@@ -252,7 +270,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA ROSA
 				if ((tileMap[i]->getType() == 140))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-2);
@@ -263,7 +286,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA PISTACHO
 				if (pJuego->getPuerta(0) && (tileMap[i]->getType() == 158))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(3);
@@ -275,7 +303,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA AZUL OSCURO
 				if ((tileMap[i]->getType() == 165))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-3);
@@ -287,7 +321,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA BURDEOS
 				if ( false && (tileMap[i]->getType() == 159))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(4);
@@ -299,8 +338,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA MARRÓN
 				if ((tileMap[i]->getType() == 153))
 				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-4);
@@ -312,8 +356,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA AZUL
 				if ((pJuego->getLLavesCogidas(0) )&&(tileMap[i]->getType() == 152))
 				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 25;
 					
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(5);
@@ -325,7 +373,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				// PUERTA VERDE
 				if ((tileMap[i]->getType() == 151))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-5);
@@ -338,7 +391,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				// ESPEJO
 				if ((tileMap[i]->getType() == 114))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(6);
@@ -357,7 +415,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA ROJA (OSCURO)
 				if ((tileMap[i]->getType() == 345))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-1);
@@ -367,7 +430,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA GRIS (OSCURO)
 				if ((tileMap[i]->getType() == 350))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 20;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(1);
@@ -378,7 +447,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA MORADA (OSCURO)
 				if ((tileMap[i]->getType() == 349))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 20;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(2);
@@ -389,7 +464,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA ROSA (OSCURO)
 				if ((tileMap[i]->getType() == 335))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-2);
@@ -400,7 +480,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA PISTACHO (OSCURO)
 				if ((tileMap[i]->getType() == 353))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(3);
@@ -412,7 +497,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA AZUL OSCURO (OSCURO)
 				if ((tileMap[i]->getType() == 360))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-3);
@@ -424,7 +515,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA BURDEOS (OSCURO)
 				if ((tileMap[i]->getType() == 354))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(4);
@@ -436,8 +532,13 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA MARRÓN
 				if ((tileMap[i]->getType() == 348))
 				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-4);
@@ -449,8 +550,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				//PUERTA AZUL (OSCURO)
 				if ((tileMap[i]->getType() == 347))
 				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 25;
 
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(5);
@@ -462,7 +567,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				// PUERTA VERDE (OSCURO)
 				if ((tileMap[i]->getType() == 346))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-5);
@@ -475,7 +585,12 @@ bool Mapa::touchesWall(SDL_Rect box)
 				// ESPEJO (OSCURO)
 				if ((tileMap[i]->getType() == 309))
 				{
-					if (pMundo->checkCollision(box, tileMap[i]->getBox())){
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+					
+					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->borraEstado = true;
 						pJuego->estadoEnum = MundoReal;
 						pJuego->setNivel(-6);
@@ -500,7 +615,18 @@ bool Mapa::touchesWall(SDL_Rect box)
 					&& tileMap[i]->getType() != 54
 					&& tileMap[i]->getType() != 55
 					&& tileMap[i]->getType() != 82
+					&& tileMap[i]->getType() != 114
 					&& tileMap[i]->getType() != 139
+					&& tileMap[i]->getType() != 140
+					&& tileMap[i]->getType() != 150
+					&& tileMap[i]->getType() != 151
+					&& tileMap[i]->getType() != 152
+					&& tileMap[i]->getType() != 153
+					&& tileMap[i]->getType() != 154
+					&& tileMap[i]->getType() != 155
+					&& tileMap[i]->getType() != 158
+					&& tileMap[i]->getType() != 159
+					&& tileMap[i]->getType() != 165
 					&& tileMap[i]->getType() != 169	
 					&& tileMap[i]->getType() != 180
 					&& tileMap[i]->getType() != 181
@@ -537,6 +663,16 @@ bool Mapa::touchesWall(SDL_Rect box)
 					&& tileMap[i]->getType() != 228
 					&& tileMap[i]->getType() != 309
 					&& tileMap[i]->getType() != 334
+					&& tileMap[i]->getType() != 335
+					&& tileMap[i]->getType() != 345
+					&& tileMap[i]->getType() != 346
+					&& tileMap[i]->getType() != 347
+					&& tileMap[i]->getType() != 348
+					&& tileMap[i]->getType() != 349
+					&& tileMap[i]->getType() != 350
+					&& tileMap[i]->getType() != 353
+					&& tileMap[i]->getType() != 354
+					&& tileMap[i]->getType() != 360
 					&& tileMap[i]->getType() != 364
 					&& tileMap[i]->getType() != 375
 					&& tileMap[i]->getType() != 376
