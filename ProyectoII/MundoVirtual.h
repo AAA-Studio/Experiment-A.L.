@@ -27,7 +27,7 @@ public:
 
 	virtual void insertaBala(ListaBalas_t lista, EntidadJuego * bala) = 0;
 
-
+	virtual void ponmeArma()=0;
 };
 
 #endif

@@ -120,6 +120,9 @@
     <ClCompile Include="Combinaciones.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="Armas.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="Combinaciones.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Armas.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

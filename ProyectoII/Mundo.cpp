@@ -45,7 +45,7 @@ void Mundo::cargaObjetos(){
 		if (i == 1)
 			obj >> nombre;
 
-		int y, x,w,h, lvl, tipo;
+		int y, x,w,h, lvl, tipo,cadencia,balas;
 		if (nombre == "NIVEL"){
 
 			obj >> lvl;
@@ -70,6 +70,11 @@ void Mundo::cargaObjetos(){
 
 						obj >> x >> y >> w >> h;
 						objetos.push_back(new Entidad(pJuego, x, y,w,h, TTeclado, ENull, OTeclado));
+					}
+					else if (nombre == "ARMA"){
+
+						obj >> x >> y >> w >> h >> balas >> cadencia;
+						armas.push_back(new Armas(pJuego, x, y, w, h,balas,cadencia, TAk47, ENull, OAk47));
 					}
 					else if (nombre == "ENEMIGO"){
 
@@ -98,6 +103,10 @@ void Mundo::cargaObjetos(){
 					}
 					else if (nombre == "INFORME"){
 						obj >> x >> y >> w >> h >> tipo;
+					}
+					else if (nombre == "ARMA"){
+
+						obj >> x >> y >> w >> h >> balas >> cadencia;
 					}
 					obj >> nombre;
 				}
@@ -176,7 +185,12 @@ void Mundo::initObjetos()
 			delete(*itBalasEnem);
 			itBalasEnem = balasEnems.erase(itBalasEnem);
 		}
-
+		list<Armas*>::iterator itArmas = armas.begin();
+		while (!armas.empty() && itArmas != armas.end())
+		{
+			delete(*itArmas);
+			itArmas = armas.erase(itArmas);
+		}
 
 	}
 
@@ -187,7 +201,12 @@ void Mundo::initObjetos()
 		//DIBUJAR MAPA
 		mapa->draw();
 		//Dibujar objetos del juego
-
+		list<Armas*>::const_iterator itArmas = armas.begin();
+		while (!armas.empty() && itArmas != armas.end())
+		{
+			(*itArmas)->draw();
+			itArmas++;
+		}
 		for (int i = objetos.size() - 1; i >= 0; i--)
 			objetos[i]->draw();
 
@@ -448,12 +467,19 @@ void Mundo::initObjetos()
 			it++;
 
 		}
+		list<Armas*>::const_iterator itArmas = armas.cbegin();
 
-		if (it == llaves.cend())
+		while (!armas.empty() && itArmas != armas.cend() && !checkCollision(psj->getRect(), (*itArmas)->getRect()))
+		{
+			itArmas++;
+
+		}
+		if (it == llaves.cend() && itArmas == armas.cend())
 			return nullptr;
+		else if (itArmas != armas.cend() && itArmas != armas.cbegin())
+			return (*itArmas);
 		else
 			return (*it);
-
 	}
 
 	void Mundo::destruyeLlave(EntidadJuego * llave)
@@ -474,7 +500,16 @@ void Mundo::initObjetos()
 
 
 	}
-
+	void Mundo::ponmeArma(){
+		list<Armas*>::iterator it = armas.begin();
+		while (it != armas.end() && !checkCollision((*it)->getRect(),psj->getRect()))//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
+		{
+			it++;
+		}
+		psj->cogeArma((*it));
+		delete (*it);
+		it = armas.erase(it);
+	}
 	void Mundo::destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it)
 	{
 		delete (*it);

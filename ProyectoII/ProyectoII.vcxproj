@@ -67,6 +67,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Armas.cpp" />
     <ClCompile Include="Bala.cpp" />
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="Combinaciones.cpp" />
@@ -87,6 +88,7 @@
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Armas.h" />
     <ClInclude Include="Bala.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="checkML.h" />
