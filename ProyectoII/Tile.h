@@ -16,12 +16,14 @@ public:
 
 	//Get the collision box
 	inline SDL_Rect getBox() const{ return mBox; };
+	
 
 
 private:
 	//The attributes of the tile
 	SDL_Rect mBox;
 	Juego * pJuego;
+
 
 	//The tile type
 	int mType;

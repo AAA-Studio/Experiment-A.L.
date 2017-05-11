@@ -364,7 +364,7 @@ void Mundo::initObjetos()
 
 	}
 	void Mundo::compruebaPersonaje(){
-		SDL_Rect rect, rect2;
+		SDL_Rect rect, rect2, rect3;
 
 		int x, y;
 
@@ -376,24 +376,31 @@ void Mundo::initObjetos()
 
 		rect2.w = rect.w = rect2.h = rect.h = 20;
 
+		//Rect3 = rect de colision
+		rect3.h = 10;
+		rect3.w = 10;
+
 		x = rect.x - rect2.x;
 		y = rect.y - rect2.y;
+
+		rect3.x = rect.x + 10;
+		rect3.y = rect.y + 40;
 
 
 		Direccion dir;
 		dir.x = x;
 		dir.y = y;
 		psj->setDir(dir);
-		int tipo;
 
-		mapa->touchesDoor(rect, tipo);
+		int tipo;
+		mapa->touchesDoor(rect3, tipo);
 
 		//comprueba la X
-		if (mapa->touchesWall(rect)){
+		if (mapa->touchesWall(rect3)){
 			rect.x -= x;
 		}
 		// comprueba la Y
-		if (mapa->touchesWall(rect)){
+		if (mapa->touchesWall(rect3)){
 			rect.y -= y;
 		}
 

@@ -7,7 +7,7 @@
 Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y, 30,40, textura, efecto, ONull)
 {
 	pMundo = pM;
-	rect = { x, y, 35, 50 };
+	rect = { x, y, 31, 50 };
 	rectAn = { 0, 0, 31, 50 };
 	rectInforme = { pJuego->getAncho() / 4, pJuego->getAlto() / 20, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100, 100 };

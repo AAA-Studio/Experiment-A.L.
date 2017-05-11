@@ -223,6 +223,10 @@ void  Mapa::buscaSpawn(){
 
 bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 {
+
+	SDL_Rect felpudo;
+	 
+
 	//Go through the tiles
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
@@ -233,273 +237,479 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 		//If the tile is a wall type tile
 		//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
 		//PUERTA ROJA
-		if ((tileMap[i]->getType() == 150))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-1);
-				tipo = 150;
-				buscaSpawn();
-				return true;
-			}
-		}
-		//PUERTA GRIS
-		if ((tileMap[i]->getType() == 155))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				;
-				pJuego->setNivel(1);
-				tipo = 155;
-				buscaSpawn();
-				return true;
-			}
+			if ((tileMap[i]->getType() == 150))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+					
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-1);
+						tipo = 150;
+						buscaSpawn();
+						return true;
+					}
+				}
+					//PUERTA GRIS
+					if ((tileMap[i]->getType() == 155))
+					{
+						felpudo = tileMap[i]->getBox();
+						felpudo.x = felpudo.x + 10;
+						felpudo.y = felpudo.y + 25;
+						felpudo.h = felpudo.h - 20;
+						felpudo.w = felpudo.w - 20;
 
-		}
-		//PUERTA MORADA
-		if ((tileMap[i]->getType() == 154))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(2);
-				tipo = 154;
-				buscaSpawn();
-				return true;
-			}
+						if (pMundo->checkCollision(box, felpudo)){
+							pJuego->setNivel(1);
+							tipo = 155;
+							buscaSpawn();
+							return true;
+						}
 
-		}
-		//PUERTA ROSA
-		if ((tileMap[i]->getType() == 140))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-2);
-				tipo = 140;
-				buscaSpawn();
-				return true;
-			}
+					}
+				//PUERTA MORADA
+				if ((tileMap[i]->getType() == 154))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 20;
+					felpudo.w = felpudo.w - 20;
 
-		}
-		//PUERTA PISTACHO
-		if (pJuego->getPuerta(0) && (tileMap[i]->getType() == 158))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(3);
-				tipo = 158;
-				buscaSpawn();
-				return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(2);
+						tipo = 154;
+						buscaSpawn();
+						return true;
+					}
 
-			}
+				}
+				//PUERTA ROSA
+				if ((tileMap[i]->getType() == 140))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-		}
-		//PUERTA AZUL OSCURO
-		if ((tileMap[i]->getType() == 165))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-3);
-				tipo = 165;
-				buscaSpawn();
-				return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-2);
+						tipo = 140;
+						buscaSpawn();
+						return true;
+					}
 
-			}
+				}
+				//PUERTA PISTACHO
+				if (pJuego->getPuerta(0) && (tileMap[i]->getType() == 158))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-		}
-		//PUERTA BURDEOS
-		if (false && (tileMap[i]->getType() == 159))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(4);
-				tipo = 159;
-				buscaSpawn();
-				return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(3);
+						tipo = 158;
+						buscaSpawn();
+						return true;
 
-			}
+					}
 
-		}
-		//PUERTA MARRÓN
-		if ((tileMap[i]->getType() == 153))
-		{
+				}
+				//PUERTA AZUL OSCURO
+				if ((tileMap[i]->getType() == 165))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-4);
-				tipo = 153;
-				buscaSpawn();
-				return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-3);
+						tipo = 165;
+						buscaSpawn();
+						return true;
 
-			}
+					}
 
-		}
-		//PUERTA AZUL
-		if ((pJuego->getLLavesCogidas(0)) && (tileMap[i]->getType() == 152))
-		{
+				}
+				//PUERTA BURDEOS
+				if ( false && (tileMap[i]->getType() == 159))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(5);
-				tipo = 152;
-				buscaSpawn();
-				return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(4);
+						tipo = 159;
+						buscaSpawn();
+						return true;
 
-			}
+					}
 
-		}
-		// PUERTA VERDE
-		if ((tileMap[i]->getType() == 151))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-5);
-				tipo = 151;
-				buscaSpawn();
-				return true;
+				}
+				//PUERTA MARRÓN
+				if ((tileMap[i]->getType() == 153))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-			}
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-4);
+						tipo = 153;
+						buscaSpawn();
+						return true;
 
-		}
+					}
 
-		// ESPEJO
-		if ((tileMap[i]->getType() == 114))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(6);
-				tipo = 114;
-				buscaSpawn();
-				return true;
+				}
+				//PUERTA AZUL
+				if ((pJuego->getLLavesCogidas(0) )&&(tileMap[i]->getType() == 152))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 25;
+					
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(5);
+						tipo = 152;
+						buscaSpawn();
+						return true;
 
-			}
+					}
 
-		}
+				}
+				// PUERTA VERDE
+				if ((tileMap[i]->getType() == 151))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-		//------------------------------------------------------------------------------------//
-		//                                      MUNDO OSCURO								  //
-		//------------------------------------------------------------------------------------//
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-5);
+						tipo = 151;
+						buscaSpawn();
+						return true;
 
-		//If the tile is a wall type tile
-		//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
-		//PUERTA ROJA (OSCURO)
-		if ((tileMap[i]->getType() == 345))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-1);
-				tipo = 345;
-				buscaSpawn();
-				return true;
-			}
-		}
-		//PUERTA GRIS (OSCURO)
-		if ((tileMap[i]->getType() == 350))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(1);
-				tipo = 350;
-				buscaSpawn();
-				return true;
-			}
+					}
 
-		}
-		//PUERTA MORADA (OSCURO)
-		if ((tileMap[i]->getType() == 349))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(2);
-				tipo = 349;
-				buscaSpawn();
-				return true;
-			}
+				}
 
-		}
-		//PUERTA ROSA (OSCURO)
-		if ((tileMap[i]->getType() == 335))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-2);
-				tipo = 335;
-				buscaSpawn();
-				return true;
-			}
+				// ESPEJO
+				if ((tileMap[i]->getType() == 114))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-		}
-		//PUERTA PISTACHO (OSCURO)
-		if ((tileMap[i]->getType() == 353))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(3);
-				tipo = 353;
-				buscaSpawn();
-				return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(6);
+						tipo = 114;
+						buscaSpawn();
+						return true;
 
-			}
+					}
 
-		}
-		//PUERTA AZUL OSCURO (OSCURO)
-		if ((tileMap[i]->getType() == 360))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-3);
-				tipo = 360;
-				buscaSpawn();
-				return true;
+				}
 
-			}
+				//------------------------------------------------------------------------------------//
+				//                                      MUNDO OSCURO								  //
+				//------------------------------------------------------------------------------------//
 
-		}
-		//PUERTA BURDEOS (OSCURO)
-		if ((tileMap[i]->getType() == 354))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(4);
-				tipo = 354;
-				buscaSpawn();
-				return true;
+				//If the tile is a wall type tile
+				//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
+				//PUERTA ROJA (OSCURO)
+				if ((tileMap[i]->getType() == 345))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-			}
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-1);
+						tipo = 345;
+						buscaSpawn();
+						return true;
+					}
+				}
+				//PUERTA GRIS (OSCURO)
+				if ((tileMap[i]->getType() == 350))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 20;
+					felpudo.w = felpudo.w - 20;
 
-		}
-		//PUERTA MARRÓN
-		if ((tileMap[i]->getType() == 348))
-		{
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(1);
+						tipo = 350;
+						buscaSpawn();
+						return true;
+					}
 
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-4);
-				tipo = 348;
-				buscaSpawn();
-				return true;
+				}
+				//PUERTA MORADA (OSCURO)
+				if ((tileMap[i]->getType() == 349))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 20;
+					felpudo.w = felpudo.w - 20;
 
-			}
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(2);
+						tipo = 349;
+						buscaSpawn();
+						return true;
+					}
 
-		}
-		//PUERTA AZUL (OSCURO)
-		if ((tileMap[i]->getType() == 347))
-		{
+				}
+				//PUERTA ROSA (OSCURO)
+				if ((tileMap[i]->getType() == 335))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(5);
-				tipo = 347;
-				buscaSpawn();
-				return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-2);
+						tipo = 335;
+						buscaSpawn();
+						return true;
+					}
 
-			}
+				}
+				//PUERTA PISTACHO (OSCURO)
+				if ((tileMap[i]->getType() == 353))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-		}
-		// PUERTA VERDE (OSCURO)
-		if ((tileMap[i]->getType() == 346))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-5);
-				tipo = 346;
-				buscaSpawn();
-				return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(3);
+						tipo = 353;
+						buscaSpawn();
+						return true;
 
-			}
+					}
 
-		}
+				}
+				//PUERTA AZUL OSCURO (OSCURO)
+				if ((tileMap[i]->getType() == 360))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-		// ESPEJO (OSCURO)
-		if ((tileMap[i]->getType() == 309))
-		{
-			if (pMundo->checkCollision(box, tileMap[i]->getBox())){
-				pJuego->setNivel(-6);
-				tipo = 309;
-				buscaSpawn();
-				return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-3);
+						tipo = 360;
+						buscaSpawn();
+						return true;
 
-			}
+					}
 
-		}
+				}
+				//PUERTA BURDEOS (OSCURO)
+				if ((tileMap[i]->getType() == 354))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(4);
+						tipo = 354;
+						buscaSpawn();
+						return true;
+
+					}
+
+				}
+				//PUERTA MARRÓN
+				if ((tileMap[i]->getType() == 348))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-4);
+						tipo = 348;
+						buscaSpawn();
+						return true;
+
+					}
+
+				}
+				//PUERTA AZUL (OSCURO)
+				if ((tileMap[i]->getType() == 347))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 25;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(5);
+						tipo = 347;
+						buscaSpawn();
+						return true;
+
+					}
+
+				}
+				// PUERTA VERDE (OSCURO)
+				if ((tileMap[i]->getType() == 346))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-5);
+						tipo = 346;
+						buscaSpawn();
+						return true;
+
+					}
+
+				}
+
+				// ESPEJO (OSCURO)
+				if ((tileMap[i]->getType() == 309))
+				{
+					felpudo = tileMap[i]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+					
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(-6);
+						tipo = 309;
+						buscaSpawn();
+						return true;
+
+					}
+
+				}
+
+				//No colisionar con suelo y alfombras
+				if ((tileMap[i]->getType() != 0
+					&& tileMap[i]->getType() != 1
+					&& tileMap[i]->getType() != 2
+					&& tileMap[i]->getType() != 3
+					&& tileMap[i]->getType() != 16
+					&& tileMap[i]->getType() != 17
+					&& tileMap[i]->getType() != 18
+					&& tileMap[i]->getType() != 30
+					&& tileMap[i]->getType() != 31
+					&& tileMap[i]->getType() != 32
+					&& tileMap[i]->getType() != 33
+					&& tileMap[i]->getType() != 54
+					&& tileMap[i]->getType() != 55
+					&& tileMap[i]->getType() != 82
+					&& tileMap[i]->getType() != 114
+					&& tileMap[i]->getType() != 139
+					&& tileMap[i]->getType() != 140
+					&& tileMap[i]->getType() != 150
+					&& tileMap[i]->getType() != 151
+					&& tileMap[i]->getType() != 152
+					&& tileMap[i]->getType() != 153
+					&& tileMap[i]->getType() != 154
+					&& tileMap[i]->getType() != 155
+					&& tileMap[i]->getType() != 158
+					&& tileMap[i]->getType() != 159
+					&& tileMap[i]->getType() != 165
+					&& tileMap[i]->getType() != 169	
+					&& tileMap[i]->getType() != 180
+					&& tileMap[i]->getType() != 181
+					&& tileMap[i]->getType() != 182
+					&& tileMap[i]->getType() != 183
+					&& tileMap[i]->getType() != 184
+					&& tileMap[i]->getType() != 185
+					&& tileMap[i]->getType() != 186
+					&& tileMap[i]->getType() != 187
+					&& tileMap[i]->getType() != 188
+					&& tileMap[i]->getType() != 189
+					&& tileMap[i]->getType() != 190
+					&& tileMap[i]->getType() != 191
+					//------------------------------------------------------------------------------------//
+					//                                      MUNDO OSCURO								  //
+					//------------------------------------------------------------------------------------//
+
+					&& tileMap[i]->getType() != 195
+					&& tileMap[i]->getType() != 196
+					&& tileMap[i]->getType() != 197
+					&& tileMap[i]->getType() != 199
+					&& tileMap[i]->getType() != 200
+					&& tileMap[i]->getType() != 201
+					&& tileMap[i]->getType() != 202
+					&& tileMap[i]->getType() != 211
+					&& tileMap[i]->getType() != 212
+					&& tileMap[i]->getType() != 213
+					&& tileMap[i]->getType() != 214
+					&& tileMap[i]->getType() != 215
+					&& tileMap[i]->getType() != 216
+					&& tileMap[i]->getType() != 225
+					&& tileMap[i]->getType() != 226
+					&& tileMap[i]->getType() != 227
+					&& tileMap[i]->getType() != 228
+					&& tileMap[i]->getType() != 309
+					&& tileMap[i]->getType() != 334
+					&& tileMap[i]->getType() != 335
+					&& tileMap[i]->getType() != 345
+					&& tileMap[i]->getType() != 346
+					&& tileMap[i]->getType() != 347
+					&& tileMap[i]->getType() != 348
+					&& tileMap[i]->getType() != 349
+					&& tileMap[i]->getType() != 350
+					&& tileMap[i]->getType() != 353
+					&& tileMap[i]->getType() != 354
+					&& tileMap[i]->getType() != 360
+					&& tileMap[i]->getType() != 364
+					&& tileMap[i]->getType() != 375
+					&& tileMap[i]->getType() != 376
+					&& tileMap[i]->getType() != 377
+					&& tileMap[i]->getType() != 378
+					&& tileMap[i]->getType() != 379
+					&& tileMap[i]->getType() != 380
+					&& tileMap[i]->getType() != 382
+					&& tileMap[i]->getType() != 384
+					&& tileMap[i]->getType() != 383
+					&& tileMap[i]->getType() != 385
+					&& tileMap[i]->getType() != 386
+					))
+
+				{
+					//Si se choca con la pared
+					if (pMundo->checkCollision(box, tileMap[i]->getBox()))
+						return true;
+				}
 
 	}
 
@@ -514,7 +724,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 	int i = 0;
 	while (!aux && i < TOTAL_TILES)
 	{
-		if (tileMap[i]->getType() != 0
+		if ((tileMap[i]->getType() != 0
 			&& tileMap[i]->getType() != 1
 			&& tileMap[i]->getType() != 2
 			&& tileMap[i]->getType() != 3
@@ -528,7 +738,18 @@ bool Mapa::touchesWall(SDL_Rect box)
 			&& tileMap[i]->getType() != 54
 			&& tileMap[i]->getType() != 55
 			&& tileMap[i]->getType() != 82
+			&& tileMap[i]->getType() != 114
 			&& tileMap[i]->getType() != 139
+			&& tileMap[i]->getType() != 140
+			&& tileMap[i]->getType() != 150
+			&& tileMap[i]->getType() != 151
+			&& tileMap[i]->getType() != 152
+			&& tileMap[i]->getType() != 153
+			&& tileMap[i]->getType() != 154
+			&& tileMap[i]->getType() != 155
+			&& tileMap[i]->getType() != 158
+			&& tileMap[i]->getType() != 159
+			&& tileMap[i]->getType() != 165
 			&& tileMap[i]->getType() != 169
 			&& tileMap[i]->getType() != 180
 			&& tileMap[i]->getType() != 181
@@ -565,6 +786,16 @@ bool Mapa::touchesWall(SDL_Rect box)
 			&& tileMap[i]->getType() != 228
 			&& tileMap[i]->getType() != 309
 			&& tileMap[i]->getType() != 334
+			&& tileMap[i]->getType() != 335
+			&& tileMap[i]->getType() != 345
+			&& tileMap[i]->getType() != 346
+			&& tileMap[i]->getType() != 347
+			&& tileMap[i]->getType() != 348
+			&& tileMap[i]->getType() != 349
+			&& tileMap[i]->getType() != 350
+			&& tileMap[i]->getType() != 353
+			&& tileMap[i]->getType() != 354
+			&& tileMap[i]->getType() != 360
 			&& tileMap[i]->getType() != 364
 			&& tileMap[i]->getType() != 375
 			&& tileMap[i]->getType() != 376
@@ -577,7 +808,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 			&& tileMap[i]->getType() != 383
 			&& tileMap[i]->getType() != 385
 			&& tileMap[i]->getType() != 386
-			&& pMundo->checkCollision(box, tileMap[i]->getBox()))
+			
+			&& pMundo->checkCollision(box, tileMap[i]->getBox())))
 		{
 			aux = true;
 		}
