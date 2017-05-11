@@ -27,9 +27,9 @@ public:
 
 
 
-	void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, int x, int y, SDL_Rect* texRect = NULL)const;
+	//void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, int x, int y, SDL_Rect* texRect = NULL)const;
 
-	//void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, SDL_Rect const * texRect = NULL)const;
+	void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, int x, int y, SDL_Rect const * texRect)const;
 
 
 

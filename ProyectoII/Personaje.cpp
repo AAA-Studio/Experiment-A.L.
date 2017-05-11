@@ -7,13 +7,10 @@
 Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y, 30,40, textura, efecto, ONull)
 {
 	pMundo = pM;
-
-
 	rect = { x, y, 35, 50 };
 	rectAn = { 0, 0, 31, 50 };
 	rectInforme = { pJuego->getAncho() / 4, pJuego->getAlto() / 20, 300, 600 };
 	rectLlave = { 50, pJuego->getAlto() - 100, 100, 100 };
-
 	rectHUD = { 0, 0, 800, 640 };
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
@@ -48,23 +45,23 @@ void Personaje::update()
 void Personaje::draw(int x, int y)const
 {
 
-	Entidad::draw(x,y);
+	//Entidad::draw(x,y);
 
 	
-	//pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect, &rectAn);//Dibujamos la textura
+	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect,x,y, &rectAn);//Dibujamos la textura
 
 
 	if (informeCogido)
-		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme, rectInforme.x, rectInforme.y);
+		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme, rectInforme.x, rectInforme.y,nullptr);
 
 	if (pJuego->getLLavesCogidas(0))
-		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave, 50 , SCREEN_HEIGHT - 100);
+		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave, 50 , SCREEN_HEIGHT - 100,nullptr);
 
 }
 
 void Personaje::animacion(animar currentFrame){
 	retardo++;
-	if (retardo == 15){
+	if (retardo == 5){
 		switch (currentFrame){
 		case Personaje::derecha:
 			rectAn.y = 192;

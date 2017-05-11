@@ -218,7 +218,7 @@ void Mundo::initObjetos()
 
 
 		pJuego->getTextura(TBlood)->setAlpha(255 - psj->getAlpha());
-		pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0);
+		pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0,nullptr);
 
 		//pJuego->escribir("HOLA :)",50, 50);
 	}
