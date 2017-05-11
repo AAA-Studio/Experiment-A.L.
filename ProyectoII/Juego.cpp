@@ -242,7 +242,7 @@ void Juego::initMedia()
 {
 	//TEXTURAS
 
-	vector <string>nombArchTex = { "..\\bmps\\Al.png","..\\bmps\\blood1.png", "..\\bmps\\hotelterror.png", "..\\bmps\\bala.png", "..\\bmps\\selft-time.png", "..\\bmps\\manticora.png", "..\\bmps\\botonjugar.png",
+	vector <string>nombArchTex = { "..\\bmps\\AL.png","..\\bmps\\blood1.png", "..\\bmps\\hotelterror.png", "..\\bmps\\bala.png", "..\\bmps\\selft-time.png", "..\\bmps\\manticora.png", "..\\bmps\\botonjugar.png",
 		"..\\bmps\\botonmenu.png", "..\\bmps\\botonsalir.png", "..\\bmps\\tilesdef.png", "..\\bmps\\llave.png",
 		"..\\bmps\\informe1.png", "..\\bmps\\Informe2.png", "..\\bmps\\uno.png", "..\\bmps\\dos.png", "..\\bmps\\tres.png",
 		"..\\bmps\\cuatro.png", "..\\bmps\\cinco.png", "..\\bmps\\seis.png", "..\\bmps\\siete.png", "..\\bmps\\ocho.png", "..\\bmps\\nueve.png",

@@ -1,24 +1,122 @@
-﻿Build started 10/05/2017 16:38:44.
-     1>Project "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" on node 2 (Build target(s)).
+﻿Compilación iniciada a las 11/05/2017 20:08:09.
+     1>Proyecto "C:\Users\Pablo Gómez\Downloads\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mundo.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Bala.cpp Boton.cpp Combinaciones.cpp Enemigo.cpp Entidad.cpp GameOver.cpp Juego.cpp Mapa.cpp Menu.cpp MenuInicio.cpp Mundo.cpp Pausa.cpp Personaje.cpp Tile.cpp main.cpp
+         Bala.cpp
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(32): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\bala.cpp(29): warning C4244: '=' : conversión de 'double' a 'float'; posible pérdida de datos
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\bala.cpp(95): warning C4244: 'inicializando' : conversión de 'float' a 'int'; posible pérdida de datos
+         Generando código...
+         Compilando...
+         main.cpp
+         Tile.cpp
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\crtdbg.h(586): warning C4005: '_malloca' : redefinición de macro
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\malloc.h(224) : vea la definición anterior de '_malloca'
+         Personaje.cpp
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(32): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.cpp(40): warning C4305: '-=' : truncamiento de 'double' a 'float'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.cpp(211): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+         Pausa.cpp
          Mundo.cpp
-     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(72): warning C4250: 'Personaje' : inherits 'Entidad::Entidad::getRect' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : see declaration of 'Entidad::getRect'
-     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(72): warning C4250: 'Personaje' : inherits 'Entidad::Entidad::getType' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : see declaration of 'Entidad::getType'
-     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(32): warning C4244: 'return' : conversion from 'float' to 'Uint8', possible loss of data
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::draw' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(16) : see declaration of 'Entidad::draw'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::onInput' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(17) : see declaration of 'Entidad::onInput'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::getRect' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : see declaration of 'Entidad::getRect'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::getType' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : see declaration of 'Entidad::getType'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversion from 'const int' to 'float', possible loss of data
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(32): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+         MenuInicio.cpp
+         Menu.cpp
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\menu.cpp(17): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\menu.cpp(30): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\menu.cpp(39): warning C4018: '<' : no coinciden signed/unsigned
+         Mapa.cpp
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\crtdbg.h(586): warning C4005: '_malloca' : redefinición de macro
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\malloc.h(224) : vea la definición anterior de '_malloca'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(32): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+         Juego.cpp
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(81): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\personaje.h(32): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+         GameOver.cpp
+         Entidad.cpp
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.cpp(6): warning C4244: 'inicializando' : conversión de 'double' a 'int'; posible pérdida de datos
+         Enemigo.cpp
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+         Combinaciones.cpp
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\combinaciones.cpp(31): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\combinaciones.cpp(77): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\combinaciones.cpp(84): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\users\pablo gómez\downloads\experiment-a.l\proyectoii\combinaciones.cpp(88): warning C4553: '==' : el operador no tiene efecto; ¿ha pensado en '='?
+         Boton.cpp
+         Generando código...
        Link:
-         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Bala.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Pablo Gómez\Downloads\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Pablo Gómez\Downloads\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Pablo Gómez\Downloads\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Bala.obj
          Debug\Boton.obj
          Debug\Combinaciones.obj
          Debug\Enemigo.obj
@@ -36,9 +134,9 @@
          Debug\Personaje.obj
          Debug\TexturasSDL.obj
          Debug\Tile.obj
-         ProyectoII.vcxproj -> C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe
-     1>Done Building Project "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build target(s)).
+         ProyectoII.vcxproj -> C:\Users\Pablo Gómez\Downloads\Experiment-A.L\bin\ProyectoIIDebug.exe
+     1>Compilación del proyecto terminada "C:\Users\Pablo Gómez\Downloads\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos).
 
-Build succeeded.
+Compilación correcta.
 
-Time Elapsed 00:00:00.76
+Tiempo transcurrido 00:00:09.31

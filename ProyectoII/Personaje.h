@@ -69,5 +69,14 @@ private:
 	void soltar(Objetos_t obj);
 	void move(int x, int y);
 	void soltarInforme();
+
+	//Animación
+	SDL_Rect  rectAn;
+	enum animar { derecha, izquierda, arriba, abajo };
+	void animacion(animar currentFrame);
+	void frames();
+	void pasos();
+	int cont;
+	int retardo;
 };
 #endif

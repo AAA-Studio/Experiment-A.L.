@@ -57,7 +57,11 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 }
 
 //Método para dibujar la textura en el rectángulo winRect
+
 void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, int x, int y, SDL_Rect* texRect)const
+
+//void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, SDL_Rect const * texRect)const
+
 {
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, winRect.w, winRect.h };
