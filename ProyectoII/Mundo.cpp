@@ -81,7 +81,7 @@ void Mundo::cargaObjetos(){
 				else if (nombre == "ARMA"){
 
 					obj >> x >> y >> w >> h >> balas >> cadencia;
-					armas.push_back(new Armas(pJuego, x, y, w, h, balas, cadencia, TAk47, ENull, OAk47));
+					armas.push_back(new Armas(pJuego, x + ancho*lvl, y + alto*lvl, w, h, balas, cadencia, TAk47, ENull, OAk47));
 				}
 				else if (nombre == "ENEMIGO"){
 
@@ -187,7 +187,7 @@ void Mundo::initObjetos()
 		list<Armas*>::const_iterator itArmas = armas.begin();
 		while (!armas.empty() && itArmas != armas.end())
 		{
-			(*itArmas)->draw((*itArmas)->getRect().x, (*itArmas)->getRect().y);
+			(*itArmas)->draw((*itArmas)->getRect().x - camera.x, (*itArmas)->getRect().y - camera.y);
 			itArmas++;
 		}
 		for (int i = objetos.size() - 1; i >= 0; i--)
