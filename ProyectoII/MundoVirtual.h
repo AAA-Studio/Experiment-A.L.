@@ -32,6 +32,9 @@ public:
 	virtual SDL_Rect getCamera() const = 0;
 
 	virtual void setCamera(int x,int y) = 0;
+
+	virtual void ponmeArma()=0;
+
 };
 
 #endif

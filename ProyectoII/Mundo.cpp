@@ -49,46 +49,51 @@ void Mundo::cargaObjetos(){
 			obj >> nombre;
 
 
+		int y, x,w,h, lvl, tipo,cadencia,balas;
+		if (nombre == "NIVEL"){
+
 			obj >> lvl;
 			obj >> nombre;
 
-				if (lvl < 6)
-					ancho = 0;
-				else
-					ancho = 800;
+			if (lvl < 6)
+				ancho = 0;
+			else
+				ancho = 800;
 
-				
-				while (obj.peek() != EOF && nombre != "NIVEL"){
-					if (nombre == "LLAVE"){
-						obj >> x >> y>> w >> h;
-						llaves.push_back(new Entidad(pJuego, x+ancho*lvl, y+alto*lvl,w,h, TLlave, ENull, OLlave));
-					}
-					else if (nombre == "INFORME"){
-						obj >> x >> y >> w >> h >> tipo;
-						if (tipo == 1)
-							objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TInforme1, ENull, OInforme1));//Informe
-						else if (tipo == 2)
-							objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TInforme2, ENull, OInforme2));//Informe
-					}
-					else if (nombre == "PANEL"){
 
-						obj >> x >> y >> w >> h;
-						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TTeclado, ENull, OTeclado));
-					}
-					else if (nombre == "ENEMIGO"){
+			while (obj.peek() != EOF && nombre != "NIVEL"){
+				if (nombre == "LLAVE"){
+					obj >> x >> y >> w >> h;
+					llaves.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TLlave, ENull, OLlave));
+				}
+				else if (nombre == "INFORME"){
+					obj >> x >> y >> w >> h >> tipo;
+					if (tipo == 1)
+						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TInforme1, ENull, OInforme1));//Informe
+					else if (tipo == 2)
+						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TInforme2, ENull, OInforme2));//Informe
+				}
+				else if (nombre == "PANEL"){
 
-						obj >> x >> y >> w >> h;
-						enemigos.push_back(new Enemigo(this, x + ancho*lvl, y + alto*lvl, w, h, TLeon, ENull));
+					obj >> x >> y >> w >> h;
+					objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TTeclado, ENull, OTeclado));
+				}
+				else if (nombre == "ARMA"){
 
-					}
+					obj >> x >> y >> w >> h >> balas >> cadencia;
+					armas.push_back(new Armas(pJuego, x, y, w, h, balas, cadencia, TAk47, ENull, OAk47));
+				}
+				else if (nombre == "ENEMIGO"){
 
-					obj >> nombre;
+					obj >> x >> y >> w >> h;
+					enemigos.push_back(new Enemigo(this, x + ancho*lvl, y + alto*lvl, w, h, TLeon, ENull));
 
 				}
 
-			
+				obj >> nombre;
 
-		
+			}
+		}
 		i++;
 	}
 	obj.close();
@@ -113,6 +118,7 @@ void Mundo::initObjetos()
 
 
 	//HACER UNA SWITCH
+
 	int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
 
 		x = mapa->getXSpawn();
@@ -162,7 +168,12 @@ void Mundo::initObjetos()
 			delete(*itBalasEnem);
 			itBalasEnem = balasEnems.erase(itBalasEnem);
 		}
-
+		list<Armas*>::iterator itArmas = armas.begin();
+		while (!armas.empty() && itArmas != armas.end())
+		{
+			delete(*itArmas);
+			itArmas = armas.erase(itArmas);
+		}
 
 	}
 
@@ -173,7 +184,12 @@ void Mundo::initObjetos()
 		//DIBUJAR MAPA
 		mapa->draw();
 		//Dibujar objetos del juego
-
+		list<Armas*>::const_iterator itArmas = armas.begin();
+		while (!armas.empty() && itArmas != armas.end())
+		{
+			(*itArmas)->draw((*itArmas)->getRect().x, (*itArmas)->getRect().y);
+			itArmas++;
+		}
 		for (int i = objetos.size() - 1; i >= 0; i--)
 			objetos[i]->draw(objetos[i]->getRect().x - camera.x, objetos[i]->getRect().y - camera.y);
 
@@ -436,6 +452,17 @@ void Mundo::initObjetos()
 
 	EntidadJuego * Mundo::compruebaColisionObjetos(){
 		size_t i = 0;
+		SDL_Rect rect, rect3;
+
+		rect.x = psj->getX();
+		rect.y = psj->getY();
+
+		//Rect3 = rect de colision
+		rect3.h = 10;
+		rect3.w = 10;
+		rect3.x = rect.x + 10;
+		rect3.y = rect.y + 40;
+
 
 		while (i < objetos.size() && !checkCollision(psj->getRect(), objetos[i]->getRect()))
 			i++;
@@ -452,12 +479,18 @@ void Mundo::initObjetos()
 			it++;
 
 		}
+		list<Armas*>::const_iterator itArmas = armas.cbegin();
 
-		if (it == llaves.cend())
+		while (!armas.empty() && itArmas != armas.cend() && !checkCollision(psj->getRect(), (*itArmas)->getRect()))
+		{
+			itArmas++;
+		}
+		if (it == llaves.cend() && itArmas == armas.cend())
 			return nullptr;
+		else if (itArmas != armas.cend())
+			return (*itArmas);
 		else
 			return (*it);
-
 	}
 
 	void Mundo::destruyeLlave(EntidadJuego * llave)
@@ -478,7 +511,15 @@ void Mundo::initObjetos()
 
 
 	}
-
+	void Mundo::ponmeArma(){
+		list<Armas*>::iterator it = armas.begin();
+		while (it != armas.end() && !checkCollision((*it)->getRect(),psj->getRect()))//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
+		{
+			it++;
+		}
+		psj->cogeArma((*it));
+		it = armas.erase(it);
+	}
 	void Mundo::destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it)
 	{
 		delete (*it);
@@ -490,8 +531,6 @@ void Mundo::initObjetos()
 	{
 		if (lista == LBalasPersonaje)
 			balasPsj.push_back(bala);
-
 		else
 			balasEnems.push_back(bala);
-
 	}

@@ -7,7 +7,7 @@
 #include <SDL.h>
 #include <iostream>
 #include "MundoVirtual.h"
-
+#include "Armas.h"
 struct Direccion{
 	int x;
 	int y;
@@ -22,18 +22,21 @@ public:
 
 	virtual void update();//Actualiza el estado y devuelve false si el globo queda desinflado
 	virtual void onInput();
+
 	virtual void draw(int x, int y)const; //Para dibujar las balas
 
+	void cogeArma(Armas* arma);
 
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
 	inline float getVida()const { return vida; };
-	SDL_Rect getHUD() { return rectHUD; };
+	inline SDL_Rect getHUD() { return rectHUD; };
 	inline Uint8 getAlpha() { return (vida * 255) / maxVida; };
-	int DamePosAntX(){ return posXAnt; };
-	int DamePosAntY(){ return posYAnt; };
-	int getX(){ return rect.x; };
-	int getY(){ return rect.y; };
+	inline int DamePosAntX(){ return posXAnt; };
+	inline int DamePosAntY(){ return posYAnt; };
+	inline int getX(){ return rect.x; };
+	inline int getY(){ return rect.y; };
+	inline Armas* getArma(){ return arma; }
 	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------
 	void restaVida();
 	//-----------------------------------------------------------------------------
@@ -53,7 +56,7 @@ private:
 	bool balaDestruida, llaveCogida, informeCogido;
 	float vida, maxVida;
 	Direccion dir;
-
+	Armas* arma;
 	MundoVirtual * pMundo;
 	Texturas_t informe;
 
@@ -62,7 +65,7 @@ private:
 	SDL_Rect rectHUD;
 	int posXAnt, posYAnt;
 	bool empuje;
-	SDL_Rect  rectColision;
+	
 
 
 	//Métodos

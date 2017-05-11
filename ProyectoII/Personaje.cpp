@@ -22,6 +22,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 	posXAnt = x;
 	posYAnt = y;
 	retardo = 0;
+	arma = nullptr;
 }
 
 //Destructora
@@ -203,11 +204,13 @@ void Personaje::move(int x, int y)
 }
 
 void Personaje::disparo(){
-	if (SDL_GetTicks() - ultimaBala >= tiempoBala)//Se pide la hora y se compara con la última 
-	{
-		pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TBala, ENull, angulo, LBalasPersonaje, rect.w / 15, rect.h / 15));
-
-		ultimaBala = SDL_GetTicks();
+if (arma != nullptr && arma->getBalas() > 0){
+		if (SDL_GetTicks() - ultimaBala >= arma->getCadencia() )//Se pide la hora y se compara con la última 
+		{
+			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TBala, ENull, angulo, LBalasPersonaje, rect.w / 15, rect.h / 15));
+			arma->restaBalas();
+			ultimaBala = SDL_GetTicks();
+		}
 	}
 }
 
@@ -230,33 +233,37 @@ void Personaje::restaVida(){
 void Personaje::coger(){
 	EntidadJuego * objeto;
 	objeto = pMundo->compruebaColisionObjetos();//Compruebo si estoy colisionando con el obj para poder cogerlo
-
 	if (objeto != nullptr){
-		switch (objeto->getType())
-		{
-		case OInforme1:
-			informe = TInforme1;
-			informeCogido = true;
-			break;
-		case OInforme2:
-			informe = TInforme2;
-			informeCogido = true;
-			break;
+		if (objeto->getType() == OAk47)
+			pMundo->ponmeArma();
+		else{
+			switch (objeto->getType())
+			{
+			case OInforme1:
+				informe = TInforme1;
+				informeCogido = true;
+				break;
+			case OInforme2:
+				informe = TInforme2;
+				informeCogido = true;
+				break;
 
-		case OLlave:
-			pMundo->destruyeLlave(objeto);
-			break;
-		case OTeclado:
-			pJuego->borraEstado = true;
-			pJuego->estadoEnum = ECombinaciones;
+			case OLlave:
+				pMundo->destruyeLlave(objeto);
+				break;
+			case OTeclado:
+				pJuego->borraEstado = true;
+				pJuego->estadoEnum = ECombinaciones;
+				break;
+			}
 		}
 	}
-
-
-
-
 }
-
+void Personaje::cogeArma(Armas* arma){
+	delete this->arma;
+	this->arma = nullptr;
+	this->arma = arma;
+}
 void Personaje::soltarInforme(){
 	informeCogido = false;
 	informe = Texturas_t_SIZE;

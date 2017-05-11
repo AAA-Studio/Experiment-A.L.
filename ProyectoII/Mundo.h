@@ -4,7 +4,7 @@
 #include "MundoVirtual.h"
 #include "EntidadJuego.h"
 #include "Juego.h"
-
+#include "Armas.h"
 #include <SDL.h>
 #include "Mapa.h"
 #include "Personaje.h"
@@ -28,6 +28,7 @@ public:
 	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
 	EntidadJuego * compruebaColisionObjetos();
 	void destruyeLlave(EntidadJuego * llave);
+	void ponmeArma();
 	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it);
 
 		//------------------GETTERS---------------------
@@ -40,7 +41,7 @@ public:
 		else
 			return balasEnems;
 	};
-
+	Armas* getArma();
 	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
 
 	void compruebaPersonaje();
@@ -63,6 +64,7 @@ private:
 	vector<int> puertas;
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
+	list <Armas*> armas;
 	list <Enemigo*> enemigos;
 	list <EntidadJuego*> balasPsj;
 	list <EntidadJuego*> balasEnems;
