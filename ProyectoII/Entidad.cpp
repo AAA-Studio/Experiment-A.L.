@@ -8,15 +8,26 @@ Entidad::Entidad(Juego*pJ, double x, double y, double w, double h, Texturas_t te
 	pTextura = textura;
 	sonido = efecto; 
 	type = tipo;
-
+	visible = true;
 }
 
 Entidad::~Entidad()
 {
 }
 
+void Entidad::move(int x, int y){
+	rect.x += x;
+	rect.y += y;
+
+}
+
+void  Entidad::setVisible(bool visible){ 
+	this->visible = visible; 
+}
+
 void Entidad::draw(int x, int y)const
 {
-	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect,x,y,nullptr);//Dibujamos la textura
+	if (visible)
+		pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect,x,y,nullptr);//Dibujamos la textura
 }
 

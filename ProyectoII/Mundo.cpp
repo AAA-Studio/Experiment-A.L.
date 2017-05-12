@@ -21,6 +21,15 @@ Mundo::Mundo(Juego * pJ, string m)
 	//puertas[0] = 0;
 
 	//pJuego->getMusica(MPlay)->play();
+
+	cinematica = true;
+	contador = 0;
+	objetos[1]->setVisible(false);
+	moverI = false;
+	moverP = false;
+	dibuja = true;
+	veces = 0;
+	primeCinematica = true;
 }
 
 
@@ -28,6 +37,10 @@ Mundo::~Mundo()
 {
 	freeObjetos();
 
+}
+
+void Mundo::startCinematica(){
+	dibuja = false;
 }
 void Mundo::cargaObjetos(){
 	string objts = pJuego->dameObjetos();
@@ -69,7 +82,8 @@ void Mundo::cargaObjetos(){
 				else if (nombre == "INFORME"){
 					obj >> x >> y >> w >> h >> tipo;
 					if (tipo == 1)
-						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TInforme1, ENull, OInforme1));//Informe
+						objetos.push_back(new Entidad(pJuego, 580 + ancho*lvl, 220 + alto*lvl, w, h, TInforme1, ENull, OInforme1));//Informe
+						
 					else if (tipo == 2)
 						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TInforme2, ENull, OInforme2));//Informe
 				}
@@ -105,32 +119,28 @@ static void goPlay(Juego * pj){
 //Crea las texturas para los globos y todos los globos
 void Mundo::initObjetos()
 {
-	// Personaje
-	//Entidad de prueba para colisiones
-	
-	//objetos.push_back(new Boton(pJuego, 500, 500, TPlay, ENull, goPlay));//Puerta
-	
-	
-	
-	
-	//al principio del juego
+	//lala
+		if (primeCinematica)
+		{
+			psj = new Personaje(this, 320, 830, TJugador, ENull);
+		}
+		else
+		{
 
+			//HACER UN SWITCH
+			int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
 
-
-	//HACER UNA SWITCH
-
-	int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
-
-		x = mapa->getXSpawn();
-		y = mapa->getYSpawn();
-		psj = new Personaje(this, x, y, TJugador, ENull);
-		//objetos.push_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
-		//llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
+			x = mapa->getXSpawn();
+			y = mapa->getYSpawn();
+			psj = new Personaje(this, x, y, TJugador, ENull);
+			//objetos.push_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
+			//llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
 			//enemigos.push_back(new Enemigo(this, x + 100, y + 100, TLeon, ENull));
 
 
 			//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));
-	}
+		}
+}
 
 	void Mundo::freeObjetos(){
 		delete psj;
@@ -180,63 +190,67 @@ void Mundo::initObjetos()
 
 	void Mundo::draw()const{
 
-		//Render level
-		//DIBUJAR MAPA
-		mapa->draw();
-		//Dibujar objetos del juego
-		list<Armas*>::const_iterator itArmas = armas.begin();
-		while (!armas.empty() && itArmas != armas.end())
+		if (dibuja)
 		{
-			(*itArmas)->draw((*itArmas)->getRect().x - camera.x, (*itArmas)->getRect().y - camera.y);
-			itArmas++;
-		}
-		for (int i = objetos.size() - 1; i >= 0; i--)
-			objetos[i]->draw(objetos[i]->getRect().x - camera.x, objetos[i]->getRect().y - camera.y);
 
-		list<EntidadJuego*>::const_iterator it = llaves.cbegin();
+			//Render level
+			//DIBUJAR MAPA
+			mapa->draw();
+			//Dibujar objetos del juego
+			list<Armas*>::const_iterator itArmas = armas.begin();
+			while (!armas.empty() && itArmas != armas.end())
+			{
+				(*itArmas)->draw((*itArmas)->getRect().x - camera.x, (*itArmas)->getRect().y - camera.y);
+				itArmas++;
+			}
+			for (int i = objetos.size() - 1; i >= 0; i--)
+				objetos[i]->draw(objetos[i]->getRect().x - camera.x, objetos[i]->getRect().y - camera.y);
 
-		while (!llaves.empty() && it != llaves.cend())
-		{
-			(*it)->draw((*it)->getRect().x - camera.x, (*it)->getRect().y - camera.y);
-			it++;
-		}
+			list<EntidadJuego*>::const_iterator it = llaves.cbegin();
 
-		list<Enemigo*>::const_iterator itEnemigos = enemigos.cbegin();
-		while (!enemigos.empty() && itEnemigos != enemigos.cend())
-		{
-			(*itEnemigos)->draw((*itEnemigos)->getRect().x - camera.x, (*itEnemigos)->getRect().y - camera.y);
-			itEnemigos++;
-		}
-		psj->draw(psj->getRect().x - camera.x, psj->getRect().y - camera.y);
-		/*
-		//Balas
-		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
-		while (!balasPsj.empty() && itBalasPsj != balasPsj.cend())
-		{
+			while (!llaves.empty() && it != llaves.cend())
+			{
+				(*it)->draw((*it)->getRect().x - camera.x, (*it)->getRect().y - camera.y);
+				it++;
+			}
+
+			list<Enemigo*>::const_iterator itEnemigos = enemigos.cbegin();
+			while (!enemigos.empty() && itEnemigos != enemigos.cend())
+			{
+				(*itEnemigos)->draw((*itEnemigos)->getRect().x - camera.x, (*itEnemigos)->getRect().y - camera.y);
+				itEnemigos++;
+			}
+			psj->draw(psj->getRect().x - camera.x, psj->getRect().y - camera.y);
+			/*
+			//Balas
+			list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
+			while (!balasPsj.empty() && itBalasPsj != balasPsj.cend())
+			{
 			(*itBalasPsj)->draw();
 			itBalasPsj++;
-		}*/
+			}*/
 
-		for (auto bala : balasPsj) {
-			bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
-		}
+			for (auto bala : balasPsj) {
+				bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
+			}
 
-		/*list<EntidadJuego*>::const_iterator itBalasEnem = balasEnems.cbegin();
-		while (!balasEnems.empty() && itBalasEnem != balasEnems.cend())
-		{
+			/*list<EntidadJuego*>::const_iterator itBalasEnem = balasEnems.cbegin();
+			while (!balasEnems.empty() && itBalasEnem != balasEnems.cend())
+			{
 			(*itBalasEnem)->draw();
 			itBalasEnem++;
-		}*/
+			}*/
 
-		for (auto bala : balasEnems) {
-			bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
+			for (auto bala : balasEnems) {
+				bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
+			}
+
+
+			pJuego->getTextura(TBlood)->setAlpha(255 - psj->getAlpha());
+			pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
+
+			//pJuego->escribir("HOLA :)",50, 50);
 		}
-
-
-		pJuego->getTextura(TBlood)->setAlpha(255 - psj->getAlpha());
-		pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0,nullptr);
-
-		//pJuego->escribir("HOLA :)",50, 50);
 	}
 
 
@@ -294,6 +308,66 @@ void Mundo::initObjetos()
 		//COLISIONES
 		colBalaEnemigo();
 		colBalaPersonaje();
+		contador++;
+		if (contador == 400)
+			startCinematica();
+
+		if (moverP && veces < 100)
+			veces++;
+		if (moverP && veces == 100)
+		{
+			psj->mover(0, 1);
+		}
+		//lala 142833
+		if (psj->getY() >= 860)
+		{
+			veces++;
+		}
+		if (moverP && veces >= 1)
+			psj->mover(1, 0);
+
+		if (psj->getX() >= 450)
+		{
+			moverP = false;
+			cinematica = false;
+			primeCinematica = false;
+		}
+
+		if (moverI && contador >= 1000){
+			objetos[1]->setVisible(true);
+			objetos[1]->move(0, 1);
+			moverP = true;
+		}
+
+		if (objetos[1]->getY() >= 950){
+			moverI = false;
+
+		}
+		if (!dibuja && contador == 500){
+			psj->setPosChocando(130, 820);
+		}
+		
+		if (dibuja && contador == 600)
+		{
+			dibuja = false;
+			psj->setPosChocando(320, 830);
+		}
+
+		if (!dibuja && contador == 700)
+		{
+			dibuja = true;
+		}
+		
+		if (dibuja && contador == 800)
+		{
+			dibuja = false;
+		}
+
+		if (!dibuja && contador == 900){
+			psj->setPosChocando(360, 900);
+			dibuja = true;
+			moverI = true;
+		}
 	}
 
 
@@ -364,18 +438,23 @@ void Mundo::initObjetos()
 	//Detecta el input del jugador y la pausa
 	void Mundo::onInput(SDL_Event &e){
 
-		//Declaramos el array con los estados de teclado
-		const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
+		if (!cinematica)
+		{
 
-		//Pausa
-		if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
-			pJuego->borraEstado = true;
-			pJuego->estadoEnum = MPausa;
+			//Declaramos el array con los estados de teclado
+			const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
+
+			//Pausa
+			if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
+				pJuego->borraEstado = true;
+				pJuego->estadoEnum = MPausa;
+			}
+
+			//Personaje
+			psj->onInput();
+			compruebaPersonaje();
+
 		}
-
-		//Personaje
-		psj->onInput();
-		compruebaPersonaje();
 		
 
 	}

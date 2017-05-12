@@ -27,6 +27,8 @@ public:
 
 	void cogeArma(Armas* arma);
 
+	virtual void mover(int x, int y);
+
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
 	inline float getVida()const { return vida; };

@@ -20,6 +20,11 @@ public:
 	virtual inline SDL_Rect getRect()const{ return rect; };
 	virtual inline Objetos_t getType() const  { return type; };
 
+	virtual void setVisible(bool visible);
+	virtual void move(int x, int y);
+	virtual int getY(){ return rect.y; }
+	virtual int getX(){ return rect.x; }
+
 
 protected:
 
@@ -29,6 +34,8 @@ protected:
 	Objetos_t type;
 
 	SDL_Rect rect;//Rectángulo para cada textura
+
+	bool visible;
 };
 
 #endif

@@ -73,6 +73,13 @@ private:
 	const Uint32 duracion = 500;
 	Uint32 time;
 	SDL_Rect camera;
+	bool cinematica;
+	int contador;
+	bool moverI;
+	bool moverP;
+	int veces;
+	bool dibuja;
+	bool primeCinematica;
 
 	//-------------------METODOS-------------------
 	void cargaObjetos();
@@ -80,6 +87,7 @@ private:
 	void freeObjetos();
 	void colBalaEnemigo();
 	void colBalaPersonaje();
+	void startCinematica();
 };
 
 #endif

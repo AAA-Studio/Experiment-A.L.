@@ -15,6 +15,7 @@ public:
 	virtual void update();
 	inline void restaVida() { vida--; };
 	inline float getVida()const { return vida; };
+	virtual void mover(int x, int y){}
 
 private:
 	MundoVirtual* pMundo;

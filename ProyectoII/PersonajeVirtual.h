@@ -11,7 +11,10 @@ class PersonajeVirtual : virtual public EntidadJuego
 public:
 
 	virtual void restaVida() = 0;
+
 	virtual float getVida()const = 0;
+
+	virtual void mover(int x, int y) = 0;
 };
 
 #endif

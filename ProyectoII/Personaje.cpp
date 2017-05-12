@@ -43,6 +43,11 @@ void Personaje::update()
 
 }
 
+void Personaje::mover(int x, int y){
+	rect.x += x;
+	rect.y += y;
+}
+
 void Personaje::draw(int x, int y)const
 {
 
