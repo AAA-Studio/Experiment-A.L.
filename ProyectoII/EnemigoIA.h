@@ -45,7 +45,7 @@ protected:
 	float m_maxVelocity;
 	pair <float, float> m_velocity;
 
-	// Sobran algunas, comprobar cuales
+	
 	Entidad* m_target = nullptr;// Puntero al personaje
 
 	int m_currentIndex;

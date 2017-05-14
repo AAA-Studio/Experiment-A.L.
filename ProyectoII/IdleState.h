@@ -4,7 +4,6 @@
 #include "State.h" 
 #include "PathFinding.h"
 
-
 class EnemigoIA;
 
 class IdleState : public State<EnemigoIA>
@@ -19,6 +18,6 @@ public:
 
 private:
 
-	PathFinding* m_pathfinding;
+	PathFinding* m_pathfinding = nullptr;
 };
 #endif

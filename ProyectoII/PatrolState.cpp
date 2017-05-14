@@ -3,7 +3,7 @@
 #include "IdleState.h"
 #include "ChaseState.h"
 
-PatrolState::PatrolState(vector<pair <float, float>> waypoints)
+PatrolState::PatrolState(std::vector<pair <float, float>> waypoints)
 {
 	m_waypoints = waypoints;
 }

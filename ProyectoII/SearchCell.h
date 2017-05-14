@@ -69,11 +69,11 @@ public:
 	}
 
 private:
-	int m_xcoord, m_ycoord; //Coordenadas del enemigo
-	int m_id; //id del enemigo
-	SearchCell * pPadre = nullptr; // puntero a la celda.
-	float G; // distancia acumulada desde la primera celda hasta la celda en la que te encuentras
-	float H; // distancia estimada al objetivo
+	int m_xcoord, m_ycoord;				//Coordenadas del enemigo
+	int m_id;							//id del enemigo
+	SearchCell * pPadre = nullptr;		// puntero a la celda.
+	float G;							// distancia acumulada desde la primera celda hasta la celda en la que te encuentras
+	float H;							// distancia estimada al objetivo
 	
 	
 };

@@ -29,6 +29,7 @@ EnemigoIA::~EnemigoIA()
 
 void EnemigoIA::Initialize() {
 	
+	//m_target será el personaje
 	m_maxVelocity = 50.0f;
 	m_stateMachine = new StateMachine<EnemigoIA>(this);
 	m_stateMachine->ChangeState(new IdleState());
@@ -89,8 +90,8 @@ const pair <float, float> &EnemigoIA::findNextWayPoints(){
 	}
 	// Para debug
 	else{
+
 		initWaypoints();
-		// ????????????????????????????
 		const pair <float, float>& waypoint = m_waypoints[m_currentIndex];
 		m_currentIndex = (int)(rand() % m_waypoints.size() - 1);
 

@@ -15,6 +15,7 @@ public:
 
 		m_owner = pOwner;
 	}
+
 	~StateMachine() {
 		if (m_globalState) {
 
@@ -107,7 +108,7 @@ private:
 	State<character_type>* m_currentState;
 	State<character_type>* m_previousState;
 
-	character_type* m_owner;
+	character_type* m_owner = nullptr;
 
 };
 #endif

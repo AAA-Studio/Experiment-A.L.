@@ -7,7 +7,6 @@
 #include "Enemigo.h"
 #include "MapaVirtual.h"
 #include <vector>
-using namespace std;
 
 /*
 Pathfinding por NathPoints para que sea rapido
@@ -98,7 +97,7 @@ private:
 	// Camino mas corto
 	vector <pair <float, float>> m_closesPaths;
 
-	State m_pathState;
+	State m_pathState = NONE;
 
 };
 #endif
