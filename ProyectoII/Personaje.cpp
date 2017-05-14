@@ -241,6 +241,8 @@ void Personaje::coger(){
 	if (objeto != nullptr){
 		if (objeto->getType() == OAk47)
 			pMundo->ponmeArma();
+		else if (objeto->getType() == OPildora)
+			pMundo->pildoraCogida();
 		else{
 			switch (objeto->getType())
 			{
@@ -272,10 +274,14 @@ void Personaje::cogeArma(Armas* arma){
 void Personaje::soltarInforme(){
 	informeCogido = false;
 	informe = Texturas_t_SIZE;
+}
 
 
-
-
+void Personaje::sumaVida(int vida){
+	if (vida + this->vida > 3)
+		this->vida = 3;
+	else
+		this->vida += vida;
 }
 
 

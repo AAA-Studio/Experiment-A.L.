@@ -54,6 +54,7 @@ void Mundo::cargaObjetos(){
 	string nombre;
 	int i = 1;
 	int y, x, w, h, lvl, tipo, ancho, alto;
+	float salud;
 	alto = 640;
 	while (obj.peek() != EOF){
 
@@ -101,6 +102,12 @@ void Mundo::cargaObjetos(){
 
 					obj >> x >> y >> w >> h;
 					enemigos.push_back(new Enemigo(this, x + ancho*lvl, y + alto*lvl, w, h, TLeon, ENull));
+
+				}
+				else if (nombre == "SALUD"){
+
+					obj >> x >> y >> w >> h >> salud;
+					pildoras.push_back(new Pildoras(pJuego, x + ancho*lvl, y + alto*lvl, w, h,salud, TPildora,ENull, OPildora));
 
 				}
 
@@ -184,7 +191,12 @@ void Mundo::initObjetos()
 			delete(*itArmas);
 			itArmas = armas.erase(itArmas);
 		}
-
+		list<Pildoras*>::iterator itPildoras = pildoras.begin();
+		while (!pildoras.empty() && itPildoras != pildoras.end())
+		{
+			delete(*itPildoras);
+			itPildoras = pildoras.erase(itPildoras);
+		}
 	}
 
 
@@ -202,6 +214,12 @@ void Mundo::initObjetos()
 			{
 				(*itArmas)->draw((*itArmas)->getRect().x - camera.x, (*itArmas)->getRect().y - camera.y);
 				itArmas++;
+			}
+			list<Pildoras*>::const_iterator itPildoras = pildoras.begin();
+			while (!pildoras.empty() && itPildoras != pildoras.end())
+			{
+				(*itPildoras)->draw((*itPildoras)->getRect().x - camera.x, (*itPildoras)->getRect().y - camera.y);
+				itPildoras++;
 			}
 			for (int i = objetos.size() - 1; i >= 0; i--)
 				objetos[i]->draw(objetos[i]->getRect().x - camera.x, objetos[i]->getRect().y - camera.y);
@@ -564,12 +582,22 @@ void Mundo::initObjetos()
 		{
 			itArmas++;
 		}
-		if (it == llaves.cend() && itArmas == armas.cend())
+
+		list<Pildoras*>::const_iterator itPildora = pildoras.cbegin();
+
+		while (!pildoras.empty() && itPildora != pildoras.cend() && !checkCollision(psj->getRect(), (*itPildora)->getRect()))
+		{
+			itPildora++;
+		}
+
+		if (it == llaves.cend() && itArmas == armas.cend() && itPildora == pildoras.cend())
 			return nullptr;
-		else if (itArmas != armas.cend())
+		else if (itArmas != armas.cend() && it == llaves.cend() && itPildora == pildoras.cend())
 			return (*itArmas);
-		else
+		else if (itArmas == armas.cend() && it != llaves.cend() && itPildora == pildoras.cend())
 			return (*it);
+		else if (itArmas == armas.cend() && it == llaves.cend() && itPildora != pildoras.cend())
+			return (*itPildora);
 	}
 
 	void Mundo::destruyeLlave(EntidadJuego * llave)
@@ -598,6 +626,15 @@ void Mundo::initObjetos()
 		}
 		psj->cogeArma((*it));
 		it = armas.erase(it);
+	}
+	void Mundo::pildoraCogida(){
+		list<Pildoras*>::iterator it = pildoras.begin();
+		while (it != pildoras.end() && !checkCollision((*it)->getRect(), psj->getRect()))//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
+		{
+			it++;
+		}
+		psj->sumaVida((*it)->getSalud());
+		it = pildoras.erase(it);
 	}
 	void Mundo::destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it)
 	{

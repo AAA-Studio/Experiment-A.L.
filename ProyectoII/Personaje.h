@@ -29,6 +29,8 @@ public:
 
 	virtual void mover(int x, int y);
 
+	void sumaVida(int vida);
+
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
 	inline float getVida()const { return vida; };

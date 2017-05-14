@@ -35,6 +35,8 @@ public:
 
 	virtual void ponmeArma()=0;
 
+	virtual void pildoraCogida() = 0;
+
 };
 
 #endif

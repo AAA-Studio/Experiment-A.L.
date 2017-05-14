@@ -10,7 +10,7 @@
 #include "Personaje.h"
 #include "Enemigo.h"
 #include <list>
-
+#include "Pildoras.h"
 
 using namespace std;
 
@@ -24,6 +24,7 @@ public:
 	virtual void draw() const;
 	virtual void onInput(SDL_Event &e);
 	virtual void update();
+	void pildoraCogida();
 	bool checkCollision(SDL_Rect a, SDL_Rect b);
 	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
 	EntidadJuego * compruebaColisionObjetos();
@@ -66,6 +67,7 @@ private:
 	list <EntidadJuego*> llaves;
 	list <Armas*> armas;
 	list <Enemigo*> enemigos;
+	list <Pildoras*> pildoras;
 	list <EntidadJuego*> balasPsj;
 	list <EntidadJuego*> balasEnems;
 	Mapa * mapa;
