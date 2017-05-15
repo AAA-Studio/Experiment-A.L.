@@ -12,7 +12,7 @@ class EnemigoIA : public Entidad, PersonajeVirtual
 {
 public:
 
-	EnemigoIA(MundoVirtual*pM, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto/*, vector < pair<float, float>> waypoints*/);
+	EnemigoIA(MundoVirtual*pM, Entidad* target, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto/*, vector < pair<float, float>> waypoints*/);
 	~EnemigoIA();
 
 	void Initialize();

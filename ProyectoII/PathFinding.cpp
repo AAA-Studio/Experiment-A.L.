@@ -81,10 +81,6 @@ void PathFinding::Iterate() {
 		for (SearchCell * iter = m_goalCell; iter; iter = iter->GetParent()) {
 			m_closesPaths.push_back(make_pair(iter->GetCellX() * (float)TILE_WIDTH/2.0f, iter->GetCellY() * (float)TILE_HEIGHT/2.0f));
 		}
-
-		// for (auto iterCell : m_goalCell) {
-		// 	m_closesPaths.push_back(make_pair(iterCell->GetCellX() * (float)TILE_WIDTH / 2.0f, iterCell->GetCellY() * (float)TILE_HEIGHT / 2.0f));
-		// }
 	}
 
 	else {

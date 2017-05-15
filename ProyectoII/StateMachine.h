@@ -14,6 +14,8 @@ public:
 		m_previousState = 0;
 
 		m_owner = pOwner;
+
+		m_globalState = m_currentState = m_previousState;
 	}
 
 	~StateMachine() {
@@ -43,10 +45,10 @@ public:
 			m_currentState->Execute(m_owner);
 		}
 
-		if (m_previousState) {
+		/*if (m_previousState) {
 
 			m_previousState->Execute(m_owner);
-		}
+		}*/
 	}
 
 	void ChangeState(State<character_type>* state) {
@@ -104,9 +106,9 @@ public:
 
 
 private:
-	State<character_type>* m_globalState;
-	State<character_type>* m_currentState;
-	State<character_type>* m_previousState;
+	State<character_type>* m_globalState = NULL;
+	State<character_type>* m_currentState = NULL;
+	State<character_type>* m_previousState = NULL;
 
 	character_type* m_owner = nullptr;
 

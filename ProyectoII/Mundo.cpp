@@ -75,7 +75,7 @@ void Mundo::cargaObjetos(){
 					else if (nombre == "ENEMIGO"){
 
 						obj >> x >> y >> w >> h;
-						enemigos.push_back(new EnemigoIA(this, x, y, w, h, TLeon, ENull));
+						enemigos.push_back(new EnemigoIA(this, psj, x, y, w, h, TLeon, ENull));
 
 					}
 
@@ -133,7 +133,7 @@ void Mundo::initObjetos()
 		x = mapa->getXSpawn();
 		y = mapa->getYSpawn();
 		psj = new Personaje(this, x, y, TJugador, ENull);
-		enemigos.push_back(new EnemigoIA(this, 400, 300, 100, 100, TLeon, ENull));
+		enemigos.push_back(new EnemigoIA(this, psj, 400, 300, 100, 100, TLeon, ENull));
 		//objetos.push_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
 		//llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
 			//enemigos.push_back(new Enemigo(this, x + 100, y + 100, TLeon, ENull));

@@ -7,11 +7,12 @@
 #include <utility>
 #include <gl/GL.h> // Core Opengl functions
 
-EnemigoIA::EnemigoIA(MundoVirtual*pM, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto/*, vector < pair<float, float>> waypoints*/) 
+EnemigoIA::EnemigoIA(MundoVirtual*pM, Entidad* target, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto/*, vector < pair<float, float>> waypoints*/)
 : Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
 {
 	vida = 3;
 	pMundo = pM;
+	m_target = target;
 	m_currentIndex = 0;
 	Initialize();
 	initWaypoints();
