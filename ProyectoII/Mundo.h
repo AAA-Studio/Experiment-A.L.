@@ -54,7 +54,6 @@ public:
 
 	virtual void setCamera(int x, int y){ camera.x = x; camera.y = y; };
 
-
 private:
 	//-------------------ATRIBUTOS---------------
 	Juego * pJuego;

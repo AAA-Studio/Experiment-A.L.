@@ -255,10 +255,9 @@ void Mundo::initObjetos()
 		psj->update();//Update de personaje
 		balaDestruida = false;
 
-		if (psj->getVida() <= 0){
-			pJuego->borraEstado = true;
+		if (psj->getVida() <= 0)
 			pJuego->estadoEnum = MGameOver;
-		}
+		
 		//Balas
 		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
 		while (!balaDestruida && !balasPsj.empty() && itBalasPsj != balasPsj.cend())
@@ -384,7 +383,10 @@ void Mundo::initObjetos()
 			moverP = false;
 			cinematica = false;
 			primeCinematica = false;
+			psj->SetCinematica(cinematica);
 		}
+
+
 	}
 	void Mundo::colBalaEnemigo(){
 
@@ -461,7 +463,6 @@ void Mundo::initObjetos()
 
 			//Pausa
 			if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
-				pJuego->borraEstado = true;
 				pJuego->estadoEnum = MPausa;
 			}
 
@@ -628,3 +629,5 @@ void Mundo::initObjetos()
 		else
 			balasEnems.push_back(bala);
 	}
+
+

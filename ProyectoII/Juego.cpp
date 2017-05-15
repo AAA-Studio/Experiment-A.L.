@@ -370,6 +370,7 @@ void Juego::handle_event(){
 			posMouseX = e.button.x;
 			posMouseY = e.button.y;
 		}
+		
 
 	}
 

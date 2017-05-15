@@ -29,6 +29,8 @@ public:
 
 	virtual void mover(int x, int y);
 
+	inline void SetCinematica(bool c){ cinematica = c; };
+
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
 	inline float getVida()const { return vida; };
@@ -85,5 +87,7 @@ private:
 	void pasos();
 	int cont;
 	int retardo;
+	bool cinematica;
+
 };
 #endif

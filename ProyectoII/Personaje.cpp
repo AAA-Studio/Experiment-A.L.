@@ -23,6 +23,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efecto
 	posYAnt = y;
 	retardo = 0;
 	arma = nullptr;
+	cinematica = true;
 }
 
 //Destructora
@@ -35,11 +36,9 @@ void Personaje::update()
 
 	//Center the camera over the dot
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
+	if (pJuego->indiceMapas<6 && !informeCogido && !cinematica)
 	vida -= 0.001;
 
-	if (!informeCogido){
-		//vida -= 0.0005;
-	}
 
 }
 
