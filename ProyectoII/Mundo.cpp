@@ -39,9 +39,6 @@ Mundo::~Mundo()
 
 }
 
-void Mundo::startCinematica(){
-	dibuja = false;
-}
 void Mundo::cargaObjetos(){
 	string objts = pJuego->dameObjetos();
 	int nivel = pJuego->indiceMapas;
@@ -309,8 +306,41 @@ void Mundo::initObjetos()
 		colBalaEnemigo();
 		colBalaPersonaje();
 		contador++;
+		cinematicaInicial();
+	}
+
+	void Mundo::cinematicaInicial(){
+
+		//comienza la cinematica, el jugador se encuentra en la cama y se deja de dibujar
 		if (contador == 400)
-			startCinematica();
+			dibuja = false;
+		
+		//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
+		if (!dibuja && contador == 500){
+			setCamera(800 * 1, pJuego->indiceMapas % 6 * 640);
+			//psj->setPosChocando(130, 820);
+			dibuja = true;
+		}
+
+		//se deja de dibujar y se cambia al mundo real
+		if (dibuja && contador == 600)
+		{
+			dibuja = false;
+			setCamera(0, pJuego->indiceMapas % 6 * 640);
+			//psj->setPosChocando(320, 830);
+			//camera.x = 320; camera.y = 830;
+		}
+
+		//se vuelve a dibujar, el jugador esta en la cama en el mundo real
+		if (!dibuja && contador == 700)
+		{
+			dibuja = true;
+		}
+
+		if (dibuja && contador == 800)
+		{
+			dibuja = false;
+		}
 
 		if (moverP && veces < 100)
 			veces++;
@@ -324,13 +354,18 @@ void Mundo::initObjetos()
 			veces++;
 		}
 		if (moverP && veces >= 1)
-			psj->mover(1, 0);
+			psj->mover(1, 0);		
 
-		if (psj->getX() >= 450)
-		{
-			moverP = false;
-			cinematica = false;
-			primeCinematica = false;
+		
+
+		
+
+		if (!dibuja && contador == 900){
+			//camera.x = 360; camera.y = 900;
+			//setCamera(800 * 1, pJuego->indiceMapas % 6 * 640);
+			psj->setPosChocando(360, 900);
+			dibuja = true;
+			moverI = true;
 		}
 
 		if (moverI && contador >= 1000){
@@ -343,34 +378,14 @@ void Mundo::initObjetos()
 			moverI = false;
 
 		}
-		if (!dibuja && contador == 500){
-			psj->setPosChocando(130, 820);
-		}
-		
-		if (dibuja && contador == 600)
-		{
-			dibuja = false;
-			psj->setPosChocando(320, 830);
-		}
 
-		if (!dibuja && contador == 700)
+		if (psj->getX() >= 450)
 		{
-			dibuja = true;
-		}
-		
-		if (dibuja && contador == 800)
-		{
-			dibuja = false;
-		}
-
-		if (!dibuja && contador == 900){
-			psj->setPosChocando(360, 900);
-			dibuja = true;
-			moverI = true;
+			moverP = false;
+			cinematica = false;
+			primeCinematica = false;
 		}
 	}
-
-
 	void Mundo::colBalaEnemigo(){
 
 		list<Enemigo*>::iterator itEnemigo = enemigos.begin();

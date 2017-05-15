@@ -1,4 +1,4 @@
-﻿Compilación iniciada a las 12/05/2017 18:21:15.
+﻿Compilación iniciada a las 15/05/2017 23:22:39.
      1>Proyecto "C:\Users\Blanca\Desktop\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mundo.cpp
@@ -27,12 +27,12 @@
      1>c:\users\blanca\desktop\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getY' mediante dominación
                  c:\users\blanca\desktop\experiment-a.l\proyectoii\entidad.h(25) : vea la declaración de 'Entidad::getY'
      1>c:\users\blanca\desktop\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'tipo' : variable local sin referencia
-     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'w' : variable local sin referencia
-     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'h' : variable local sin referencia
-     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'x' : variable local sin referencia
-     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'y' : variable local sin referencia
-     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'lvl' : variable local sin referencia
+     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(53): warning C4101: 'tipo' : variable local sin referencia
+     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(53): warning C4101: 'w' : variable local sin referencia
+     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(53): warning C4101: 'h' : variable local sin referencia
+     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(53): warning C4101: 'x' : variable local sin referencia
+     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(53): warning C4101: 'y' : variable local sin referencia
+     1>c:\users\blanca\desktop\experiment-a.l\proyectoii\mundo.cpp(53): warning C4101: 'lvl' : variable local sin referencia
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Blanca\Desktop\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Blanca\Desktop\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Blanca\Desktop\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Armas.obj
          Debug\Bala.obj
@@ -58,4 +58,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:01.04
+Tiempo transcurrido 00:00:00.98

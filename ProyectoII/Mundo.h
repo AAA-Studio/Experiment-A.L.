@@ -87,7 +87,7 @@ private:
 	void freeObjetos();
 	void colBalaEnemigo();
 	void colBalaPersonaje();
-	void startCinematica();
+	void cinematicaInicial();
 };
 
 #endif
