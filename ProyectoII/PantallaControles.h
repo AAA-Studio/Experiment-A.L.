@@ -7,6 +7,8 @@ public:
 	~PantallaControles();
 
 virtual void draw()const;
+virtual void update();
+virtual void onInput(SDL_Event &e);
 
 private:
 	void initObjetos();
