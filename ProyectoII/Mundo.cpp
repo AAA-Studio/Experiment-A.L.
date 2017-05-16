@@ -278,9 +278,7 @@ void Mundo::initObjetos()
 		{
 			balaDestruida = false;
 			(*itBalasEnem)->update();
-			if (mapa->touchesWall((*itBalasEnem)->getRect()))
-				itBalasEnem = balasEnems.erase(itBalasEnem);
-			else if (!balaDestruida)//Si no ha sido destruida en el update, avanzo
+			if (!balaDestruida)//Si no ha sido destruida en el update, avanzo
 				itBalasEnem++;
 			else
 				itBalasEnem = balasEnems.erase(itBalasEnem);
