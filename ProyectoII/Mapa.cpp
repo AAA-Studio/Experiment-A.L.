@@ -717,7 +717,6 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 	return false;
 
 }
-
 bool Mapa::touchesWall(SDL_Rect box)
 {
 	bool aux = false;
