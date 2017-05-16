@@ -322,7 +322,7 @@ void Mundo::initObjetos()
 		//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
 		if (!dibuja && contador == 500){
 			setCamera(800 * 1, pJuego->indiceMapas % 6 * 640);
-			//psj->setPosChocando(130, 820);
+			cambiaPosPSJ(1120, 830);
 			dibuja = true;
 		}
 
@@ -331,7 +331,7 @@ void Mundo::initObjetos()
 		{
 			dibuja = false;
 			setCamera(0, pJuego->indiceMapas % 6 * 640);
-			//psj->setPosChocando(320, 830);
+			cambiaPosPSJ(320, 830);
 			//camera.x = 320; camera.y = 830;
 		}
 
@@ -367,7 +367,7 @@ void Mundo::initObjetos()
 		if (!dibuja && contador == 900){
 			//camera.x = 360; camera.y = 900;
 			//setCamera(800 * 1, pJuego->indiceMapas % 6 * 640);
-			psj->setPosChocando(360, 900);
+			cambiaPosPSJ(360, 900);
 			dibuja = true;
 			moverI = true;
 		}
