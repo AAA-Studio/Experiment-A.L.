@@ -110,14 +110,14 @@ void Personaje::onInput()
 	{
 		int x = 0, y = 0;
 
-		if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_A])
+		if (keyStatesActuales[SDL_SCANCODE_UP] && keyStatesActuales[SDL_SCANCODE_LEFT])
 		{
 			y += -1;
 			x += -1;
 			animacion(izquierda);
 			angulo = 135;
 		}
-		else if (keyStatesActuales[SDL_SCANCODE_W] && keyStatesActuales[SDL_SCANCODE_D])
+		else if (keyStatesActuales[SDL_SCANCODE_UP] && keyStatesActuales[SDL_SCANCODE_RIGHT])
 		{
 			y += -1;
 			x += 1;
@@ -125,51 +125,51 @@ void Personaje::onInput()
 			angulo = 45;
 
 		}
-		else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_A])
+		else if (keyStatesActuales[SDL_SCANCODE_DOWN] && keyStatesActuales[SDL_SCANCODE_LEFT])
 		{
 			y += 1;
 			x += -1;
 			animacion(izquierda);
 			angulo = 225;
 		}
-		else if (keyStatesActuales[SDL_SCANCODE_S] && keyStatesActuales[SDL_SCANCODE_D])
+		else if (keyStatesActuales[SDL_SCANCODE_DOWN] && keyStatesActuales[SDL_SCANCODE_RIGHT])
 		{
 			y += 1;
 			x += 1;
 			animacion(derecha);
 			angulo = 315;
 		}
-		else if (keyStatesActuales[SDL_SCANCODE_W])
+		else if (keyStatesActuales[SDL_SCANCODE_UP])
 		{
 			y += -1;
 			animacion(arriba);
 			angulo = 90;
 		}
-		else if (keyStatesActuales[SDL_SCANCODE_A])
+		else if (keyStatesActuales[SDL_SCANCODE_LEFT])
 		{
 			x += -1;
 			animacion(izquierda);
 			angulo = 180;
 		}
-		else if (keyStatesActuales[SDL_SCANCODE_S])
+		else if (keyStatesActuales[SDL_SCANCODE_DOWN])
 		{
 			y += 1;
 			animacion(abajo);
 			angulo = 270;
 		}
-		else if (keyStatesActuales[SDL_SCANCODE_D])
+		else if (keyStatesActuales[SDL_SCANCODE_RIGHT])
 		{
 			x += 1;
 			animacion(derecha);
 			angulo = 0;
 		}
 		//Disparo
-		if (keyStatesActuales[SDL_SCANCODE_E])
+		if (keyStatesActuales[SDL_SCANCODE_SPACE])
 		{
 			disparo();
 		}
 		//Caso en el que se coge un objeto
-		if (keyStatesActuales[SDL_SCANCODE_C]){
+		if (keyStatesActuales[SDL_SCANCODE_E]){
 			coger();
 		}
 
@@ -179,7 +179,7 @@ void Personaje::onInput()
 
 	else if (informeCogido)
 	{
-		if (keyStatesActuales[SDL_SCANCODE_Q])
+		if (keyStatesActuales[SDL_SCANCODE_E])
 			soltarInforme();
 
 	}

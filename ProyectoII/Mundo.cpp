@@ -264,13 +264,16 @@ void Mundo::initObjetos()
 		{
 			balaDestruida = false;
 			(*itBalasPsj)->update();
-			if (mapa->touchesWall((*itBalasPsj)->getRect()))
+			if (mapa->touchesWall((*itBalasPsj)->getRect())){
+				delete (*itBalasPsj);
 				itBalasPsj = balasPsj.erase(itBalasPsj);
+			}
 			else if (!balaDestruida)//Si no ha sido destruida en el update, avanzo
 				itBalasPsj++;
-			else
+			else{
+				delete (*itBalasPsj);
 				itBalasPsj = balasPsj.erase(itBalasPsj);
-
+			}
 		}
 
 		list<EntidadJuego*>::iterator itBalasEnem = balasEnems.begin();

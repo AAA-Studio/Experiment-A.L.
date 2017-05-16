@@ -55,4 +55,6 @@ void Menu::draw() const
 	for (int i = objetos.size() - 1; i >= 0; i--)
 		objetos[i]->draw(objetos[i]->getRect().x,objetos[i]->getRect().y);
 
+
+
 }
