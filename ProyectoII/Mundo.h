@@ -53,7 +53,7 @@ public:
 	inline virtual SDL_Rect getCamera() const{ return camera; };
 
 	virtual void setCamera(int x, int y){ camera.x = x; camera.y = y; };
-
+	
 private:
 	//-------------------ATRIBUTOS---------------
 	Juego * pJuego;

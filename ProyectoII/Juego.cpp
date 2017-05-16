@@ -9,7 +9,7 @@
 #include "Mundo.h"
 #include "MundoVirtual.h"
 #include "Combinaciones.h"
-
+#include "PantallaControles.h"
 
 #include <iostream>
 #include <conio.h>
@@ -90,6 +90,9 @@ void Juego::gestionaEstados(Estados_t estado){
 		aux = new GameOver(this);
 		break;
 
+	case MControles:
+		aux = new PantallaControles(this);
+		break;
 	case MPausa:
 		aux = new Pausa(this);
 		pausa = true;
@@ -246,7 +249,7 @@ void Juego::initMedia()
 		"..\\bmps\\botonmenu.png", "..\\bmps\\botonsalir.png", "..\\bmps\\tilesdef.png", "..\\bmps\\llave.png",
 		"..\\bmps\\informe1.png", "..\\bmps\\Informe2.png", "..\\bmps\\uno.png", "..\\bmps\\dos.png", "..\\bmps\\tres.png",
 		"..\\bmps\\cuatro.png", "..\\bmps\\cinco.png", "..\\bmps\\seis.png", "..\\bmps\\siete.png", "..\\bmps\\ocho.png", "..\\bmps\\nueve.png",
-		"..\\bmps\\cero.png", "..\\bmps\\teclado.png", "..\\bmps\\backButton.png", "..\\bmps\\AK47.png" };
+		"..\\bmps\\cero.png", "..\\bmps\\teclado.png", "..\\bmps\\backButton.png", "..\\bmps\\AK47.png","..\\bmps\\Controles.png" };
 
 	for (int i = 0; i < Texturas_t_SIZE - 1; i++)
 	{

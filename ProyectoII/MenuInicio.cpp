@@ -17,10 +17,10 @@ void MenuInicio::draw()const
 	Menu::draw();
 }
 
-static void goPlay(Juego * pj){
+static void goControles(Juego * pj){
 
 	pj->borraEstado = true;
-	pj->estadoEnum = MundoReal;
+	pj->estadoEnum = MControles;
 };
 static void goSalir(Juego * pj){
 	pj->setSalir();
@@ -28,7 +28,7 @@ static void goSalir(Juego * pj){
 
 void MenuInicio::initObjetos(){
 	objetos[0] = new Boton(pJuego, 200, 400, 400, 100, TExit, ENull, goSalir);
-	objetos[1] = new Boton(pJuego, 200, 200, 400, 100, TPlay, ENull, goPlay);
+	objetos[1] = new Boton(pJuego, 200, 200, 400, 100, TPlay, ENull, goControles);
 }
 
 
