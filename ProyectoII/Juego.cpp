@@ -50,7 +50,24 @@ Juego::Juego()
 	numero = 20;
 	
 }
+void Juego::reset(){
+	srand(SDL_GetTicks());//Inicializamos los números aleatorios de manera que cada vez se van modificando
+	exit = false;
+	pWin = nullptr;
+	pRenderer = nullptr;
+	colorWin = { 0, 0, 0, 255 };
+	borraEstado = false;
 
+	for (int i = 0; i < TAMAÑO_LLAVES; i++)
+		llavesCogidas[i] = false;
+
+	combinaciones.reserve(1);
+	combinaciones.emplace_back("3412");
+	puertas[0] = false;
+	numero = 20;
+	indiceMapas = 1;
+	nivel = 0;
+}
 
 bool Juego::getPuerta(int i){
 	return puertas[i];

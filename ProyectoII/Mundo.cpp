@@ -10,6 +10,8 @@
 Mundo::Mundo(Juego * pJ, string m)
 {
 	pJuego = pJ;
+	if (pJuego->nuevoJuego)
+		pJuego->reset();
 	pausa = false;
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	mapa = new Mapa(this, m);

@@ -55,9 +55,10 @@ class Juego
 public:
 	//Constructora, en caso de error muestra un mensaje y deja los atributos nulos y hace un thwrow que se captura en main
 	Juego();
+	void reset();
 	//Destructora
 	~Juego();
-
+	
 	// Arranca el bucle principal y, si se termina el juego. Tambien puede terminar si se cierra la ventana
 	void run();
 
@@ -145,13 +146,14 @@ public:
 	//setter y getter de numero (EstadoCombinaciones)
 	void setNumero(int i){ numero = i; }
 	int getNumero();
-
+	bool nuevoJuego = false;
 
 private:
 
 
 
 	//Atributos
+	
 	int nivel;
 	bool exit;
 	int posMouseX, posMouseY;

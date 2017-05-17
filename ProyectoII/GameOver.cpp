@@ -11,6 +11,7 @@ GameOver::GameOver(Juego * pJ) : Menu(pJ)
 
 
 static void goMenu(Juego * pj){
+	pj->nuevoJuego = true;
 	pj->borraEstado = true;
 	pj->estadoEnum = MInicio;
 };
