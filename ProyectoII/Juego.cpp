@@ -53,8 +53,6 @@ Juego::Juego()
 void Juego::reset(){
 	srand(SDL_GetTicks());//Inicializamos los números aleatorios de manera que cada vez se van modificando
 	exit = false;
-	pWin = nullptr;
-	pRenderer = nullptr;
 	colorWin = { 0, 0, 0, 255 };
 	borraEstado = false;
 
