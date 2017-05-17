@@ -327,8 +327,11 @@ void Mundo::initObjetos()
 		//COLISIONES
 		colBalaEnemigo();
 		colBalaPersonaje();
-		contador++;
-		cinematicaInicial();
+		if (cinematica)
+		{
+			contador++;
+			cinematicaInicial();
+		}
 	}
 
 	void Mundo::cinematicaInicial(){
@@ -398,15 +401,16 @@ void Mundo::initObjetos()
 
 		if (objetos[1]->getY() >= 950){
 			moverI = false;
+			cinematica = false;
+			primeCinematica = false;
+			psj->SetCinematica(cinematica);
 
 		}
 
 		if (psj->getX() >= 450)
 		{
 			moverP = false;
-			cinematica = false;
-			primeCinematica = false;
-			psj->SetCinematica(cinematica);
+			
 		}
 
 
