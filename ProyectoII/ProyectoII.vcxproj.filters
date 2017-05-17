@@ -123,9 +123,6 @@
     <ClCompile Include="Armas.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
-    <ClCompile Include="PantallaControles.cpp">
-      <Filter>Archivos de código fuente\Estados\Menu</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -199,9 +196,6 @@
     </ClInclude>
     <ClInclude Include="Armas.h">
       <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
-    </ClInclude>
-    <ClInclude Include="PantallaControles.h">
-      <Filter>Archivos de encabezado\Estados\Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

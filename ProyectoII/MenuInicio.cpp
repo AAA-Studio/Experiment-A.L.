@@ -20,7 +20,7 @@ void MenuInicio::draw()const
 static void goControles(Juego * pj){
 
 	pj->borraEstado = true;
-	pj->estadoEnum = MControles;
+	pj->estadoEnum = MundoReal;
 };
 static void goSalir(Juego * pj){
 	pj->setSalir();

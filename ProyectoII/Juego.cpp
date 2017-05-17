@@ -9,7 +9,6 @@
 #include "Mundo.h"
 #include "MundoVirtual.h"
 #include "Combinaciones.h"
-#include "PantallaControles.h"
 
 #include <iostream>
 #include <conio.h>
@@ -105,11 +104,6 @@ void Juego::gestionaEstados(Estados_t estado){
 
 	case MGameOver:
 		aux = new GameOver(this);
-		break;
-
-	case MControles:
-		aux = new PantallaControles(this);
-		//controles = true;
 		break;
 	case MPausa:
 		aux = new Pausa(this);

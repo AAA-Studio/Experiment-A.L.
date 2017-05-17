@@ -82,7 +82,6 @@
     <ClCompile Include="MenuInicio.cpp" />
     <ClCompile Include="Mundo.cpp" />
     <ClCompile Include="Musica.cpp" />
-    <ClCompile Include="PantallaControles.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
@@ -108,7 +107,6 @@
     <ClInclude Include="Mundo.h" />
     <ClInclude Include="MundoVirtual.h" />
     <ClInclude Include="Musica.h" />
-    <ClInclude Include="PantallaControles.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
     <ClInclude Include="PersonajeVirtual.h" />

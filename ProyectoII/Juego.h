@@ -38,7 +38,7 @@ const int TAMAÑO_LLAVES = 2;
 
 //------------------ENUMS--------------------------
 
-enum Estados_t{ MInicio, MGameOver, MPausa, MundoReal, MundoOscuro, ECombinaciones,MControles };
+enum Estados_t{ MInicio, MGameOver, MPausa, MundoReal, MundoOscuro, ECombinaciones };
 
 enum  Texturas_t{ TJugador, TBlood, TFondo, TBala, TFuego, TLeon, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2, TUno, TDos, TTres, TCuatro, TCinco, TSeis, TSiete, TOcho, TNueve, TCero, TTeclado, TVolver, TPistola, TControles, TKeypad,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 enum  Efectos_t{ ENull, Efectos_t_SIZE };

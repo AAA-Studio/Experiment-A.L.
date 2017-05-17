@@ -195,6 +195,7 @@ void Mundo::initObjetos()
 			//Render level
 			//DIBUJAR MAPA
 			mapa->draw();
+
 			//Dibujar objetos del juego
 			list<Armas*>::const_iterator itArmas = armas.begin();
 			while (!armas.empty() && itArmas != armas.end())
@@ -247,7 +248,10 @@ void Mundo::initObjetos()
 
 			pJuego->getTextura(TBlood)->setAlpha(255 - psj->getAlpha());
 			pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
-
+			SDL_Rect a = getCamera();
+			a.h = 200;
+			a.w = 400;
+			pJuego->getTextura(TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 			//pJuego->escribir("HOLA :)",50, 50);
 		}
 	}
