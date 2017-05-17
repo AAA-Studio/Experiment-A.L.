@@ -30,7 +30,7 @@ public:
 	virtual void mover(int x, int y);
 
 	inline void SetCinematica(bool c){ cinematica = c; };
-
+	inline void empiezaPerderVida(){ pierdesVida = true; }
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
 	inline float getVida()const { return vida; };
@@ -41,6 +41,7 @@ public:
 	inline int getX(){ return rect.x; };
 	inline int getY(){ return rect.y; };
 	inline Armas* getArma(){ return arma; }
+	inline bool getempiezaPerderVida(){ return pierdesVida; }
 	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------
 	void restaVida();
 	//-----------------------------------------------------------------------------
@@ -69,7 +70,7 @@ private:
 	SDL_Rect rectHUD;
 	int posXAnt, posYAnt;
 	bool empuje;
-	
+	bool pierdesVida = false;
 
 
 	//Métodos

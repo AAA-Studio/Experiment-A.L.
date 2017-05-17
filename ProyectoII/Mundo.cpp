@@ -254,7 +254,8 @@ void Mundo::initObjetos()
 	void Mundo::update(){
 		psj->update();//Update de personaje
 		balaDestruida = false;
-
+		if (pJuego->indiceMapas == 0 && !(psj->getempiezaPerderVida()))
+			psj->empiezaPerderVida();
 		if (psj->getVida() <= 0){
 			pJuego->estadoEnum = MGameOver;
 			pJuego->borraEstado = true;
