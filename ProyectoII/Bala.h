@@ -12,7 +12,6 @@ public:
 	Bala(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto, float ang, ListaBalas_t tBala, int ancho, int alto);
 	~Bala();
 	virtual void update();
-
 private:
 	float incrX, incrY;
 	int velocidad;

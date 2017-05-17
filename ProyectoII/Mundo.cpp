@@ -94,7 +94,7 @@ void Mundo::cargaObjetos(){
 				else if (nombre == "ARMA"){
 
 					obj >> x >> y >> w >> h >> balas >> cadencia;
-					armas.push_back(new Armas(pJuego, x + ancho*lvl, y + alto*lvl, w, h, balas, cadencia, TAk47, ENull, OAk47));
+					armas.push_back(new Armas(pJuego, x + ancho*lvl, y + alto*lvl, w, h, balas, cadencia, TPistola, ENull, OPistola));
 				}
 				else if (nombre == "ENEMIGO"){
 
@@ -267,47 +267,57 @@ void Mundo::initObjetos()
 		while (!balaDestruida && !balasPsj.empty() && itBalasPsj != balasPsj.cend())
 		{
 			balaDestruida = false;
-			(*itBalasPsj)->update();
-			if (mapa->touchesWall((*itBalasPsj)->getRect())){
-				delete (*itBalasPsj);
-				itBalasPsj = balasPsj.erase(itBalasPsj);
+			if (checkCollision(camera, (*itBalasPsj)->getRect())){
+				(*itBalasPsj)->update();
+				if (!balaDestruida && mapa->touchesWall((*itBalasPsj)->getRect())){
+					delete (*itBalasPsj);
+					itBalasPsj = balasPsj.erase(itBalasPsj);
+					balaDestruida = true;
+				}
+				else
+					itBalasPsj++;
 			}
-			else if (!balaDestruida)//Si no ha sido destruida en el update, avanzo
+			else
 				itBalasPsj++;
-			else{
-				delete (*itBalasPsj);
-				itBalasPsj = balasPsj.erase(itBalasPsj);
-			}
 		}
 
 		list<EntidadJuego*>::iterator itBalasEnem = balasEnems.begin();
 		while (!balaDestruida && !balasEnems.empty() && itBalasEnem != balasEnems.end())
 		{
-			balaDestruida = false;
-			(*itBalasEnem)->update();
-			if (!balaDestruida)//Si no ha sido destruida en el update, avanzo
-				itBalasEnem++;
+			if (checkCollision(camera, (*itBalasEnem)->getRect())){
+				balaDestruida = false;
+				(*itBalasEnem)->update();
+				if (!balaDestruida)//Si no ha sido destruida en el update, avanzo
+					itBalasEnem++;
+				else
+					itBalasEnem = balasEnems.erase(itBalasEnem);
+			}
 			else
-				itBalasEnem = balasEnems.erase(itBalasEnem);
+				itBalasEnem++;
 		}
 
 		list<Enemigo*>::const_iterator citEnemigo = enemigos.cbegin();//Update de enemigos
 		while (!enemigos.empty() && citEnemigo != enemigos.cend())
 		{
-			(*citEnemigo)->update();
+			if (checkCollision(camera, (*citEnemigo)->getRect())){
+				(*citEnemigo)->update();
+			}
 			citEnemigo++;
 		}
 
 
 		for (size_t i = 0; i < objetos.size(); i++)//Update de objetos
-			objetos[i]->update();
+			if (checkCollision(camera,objetos[i]->getRect()))
+				objetos[i]->update();
 
 
 		list<EntidadJuego*>::const_iterator cit = llaves.cbegin();
 		while (!llaves.empty() && cit != llaves.cend())//Update de las llaves
 		{
-			(*cit)->update();
-			cit++;
+			if (checkCollision(camera, (*cit)->getRect())){
+				(*cit)->update();
+			}
+				cit++;
 		}
 
 		//COLISIONES
@@ -405,29 +415,32 @@ void Mundo::initObjetos()
 		while (!enemigos.empty() && itEnemigo != enemigos.cend())
 		{
 			list<EntidadJuego*>::iterator it = balasPsj.begin();
-
-			//Recorremos las balas
-			while (!balasPsj.empty() && it != balasPsj.cend())
-			{
-				//Detectamos la colision de la bala con el enemigo
-				if (checkCollision((*it)->getRect(), (*itEnemigo)->getRect()))
+			if (checkCollision(camera, (*itEnemigo)->getRect())){
+				//Recorremos las balas
+				while (!balasPsj.empty() && it != balasPsj.cend())
 				{
-					(*itEnemigo)->restaVida();
-					destruyeBala(balasPsj, it);
-
-					//Caso en el que el enemigo muere
-					if ((*itEnemigo)->getVida() <= 0)
+					//Detectamos la colision de la bala con el enemigo
+					if (checkCollision((*it)->getRect(), (*itEnemigo)->getRect()))
 					{
-						//Recorremos los enemigos para saber cual tiene que eliminarse
-						delete (*itEnemigo);
-						itEnemigo = enemigos.erase(itEnemigo);
+						(*itEnemigo)->restaVida();
+						destruyeBala(balasPsj, it);
+
+						//Caso en el que el enemigo muere
+						if ((*itEnemigo)->getVida() <= 0)
+						{
+							//Recorremos los enemigos para saber cual tiene que eliminarse
+							delete (*itEnemigo);
+							itEnemigo = enemigos.erase(itEnemigo);
+						}
 					}
+					else
+						it++;
 				}
-				else
-					it++;
+				//Incrementamos el iterador si la lista de enemigos no está vacía
+				if (!enemigos.empty())
+					itEnemigo++;
 			}
-			//Incrementamos el iterador si la lista de enemigos no está vacía
-			if (!enemigos.empty())
+			else
 				itEnemigo++;
 		}
 	}

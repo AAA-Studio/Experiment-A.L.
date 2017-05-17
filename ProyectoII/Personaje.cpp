@@ -209,7 +209,7 @@ void Personaje::move(int x, int y)
 }
 
 void Personaje::disparo(){
-if (arma != nullptr && arma->getBalas() > 0){
+if (arma != nullptr && arma->getBalas() > 0 && pMundo->getPJ()->indiceMapas >5){
 		if (SDL_GetTicks() - ultimaBala >= arma->getCadencia() )//Se pide la hora y se compara con la última 
 		{
 			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TBala, ENull, angulo, LBalasPersonaje, rect.w / 15, rect.h / 15));
@@ -239,7 +239,7 @@ void Personaje::coger(){
 	EntidadJuego * objeto;
 	objeto = pMundo->compruebaColisionObjetos();//Compruebo si estoy colisionando con el obj para poder cogerlo
 	if (objeto != nullptr){
-		if (objeto->getType() == OAk47)
+		if (objeto->getType() == OPistola)
 			pMundo->ponmeArma();
 		else{
 			switch (objeto->getType())

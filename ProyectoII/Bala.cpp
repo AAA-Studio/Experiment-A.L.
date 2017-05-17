@@ -93,15 +93,6 @@ void Bala::setAngulo(int ancho, int alto){
 void Bala::update(){
 
 	rect = { rect.x + incrX * 10, rect.y + incrY * 10, rect.w, rect.h };
-	if (SDL_GetTicks() - time >= duracion)//Se pide la hora y se compara con la última 
-	{
-		list<EntidadJuego*> listaBalas = pMundo->getListaBalas(tipoBala);
-		list<EntidadJuego*>::iterator it = listaBalas.begin();
-		while (!listaBalas.empty() && it != listaBalas.end() && (*it) != this)
-		{
-			it++;
-		}
-		pMundo->destruyeBala(listaBalas, it);
-	}
+
 
 }
