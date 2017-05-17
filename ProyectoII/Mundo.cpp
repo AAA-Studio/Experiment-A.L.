@@ -255,9 +255,10 @@ void Mundo::initObjetos()
 		psj->update();//Update de personaje
 		balaDestruida = false;
 
-		if (psj->getVida() <= 0)
+		if (psj->getVida() <= 0){
 			pJuego->estadoEnum = MGameOver;
-		
+			pJuego->borraEstado = true;
+		}
 		//Balas
 		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
 		while (!balaDestruida && !balasPsj.empty() && itBalasPsj != balasPsj.cend())

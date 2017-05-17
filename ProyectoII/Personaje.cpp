@@ -37,7 +37,7 @@ void Personaje::update()
 	//Center the camera over the dot
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
 	if (pJuego->indiceMapas<6 && !informeCogido && !cinematica)
-	vida -= 0.001;
+		vida -= 0.001;
 
 
 }
