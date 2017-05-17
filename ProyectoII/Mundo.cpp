@@ -606,10 +606,10 @@ void Mundo::initObjetos()
 		delete (llave);
 		llave = nullptr;
 
-
-		pJuego->setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
-
-
+		if (pJuego->getLLavesCogidas(0))
+			pJuego->setLlaveCogida(1);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
+		else
+			pJuego->setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
 	}
 	void Mundo::ponmeArma(){
 		list<Armas*>::iterator it = armas.begin();

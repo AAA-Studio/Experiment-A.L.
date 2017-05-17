@@ -9,7 +9,7 @@ Mapa::Mapa(MundoVirtual *pM, string mapa)
 	cargarMapa();
 	buscaSpawn();
 	setCamera();
-
+	Puerta1Abierta = false;
 }
 
 
@@ -372,7 +372,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA AZUL
-				if ((pJuego->getLLavesCogidas(0) )&&(tileMap[i]->getType() == 152))
+				if (((pJuego->getLLavesCogidas(0) || Puerta1Abierta)) && (tileMap[i]->getType() == 152))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.y = felpudo.y + 25;
@@ -380,6 +380,15 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.w = felpudo.w - 25;
 					
 					if (pMundo->checkCollision(box, felpudo)){
+						
+						if (pJuego->getLLavesCogidas(1) && !Puerta1Abierta){
+							Puerta1Abierta = true;
+							pJuego->setLlaveCogida(0);
+						}
+						else if (pJuego->getLLavesCogidas(0) && !Puerta1Abierta){
+							Puerta1Abierta = true;
+							pJuego->setLlaveCogida(0);
+						}
 						pJuego->setNivel(5);
 						tipo = 152;
 						buscaSpawn();

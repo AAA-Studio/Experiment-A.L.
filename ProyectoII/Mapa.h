@@ -30,7 +30,7 @@ private:
 	Juego * pJuego;
 	string nombreMapa;
 	Tile* tileMap[TOTAL_TILES];
-
+	bool Puerta1Abierta;
 	bool cargarMapa();
 	void buscaSpawn();
 	void setCamera();

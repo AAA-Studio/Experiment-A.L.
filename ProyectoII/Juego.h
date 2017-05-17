@@ -30,7 +30,7 @@ const int TOTAL_TILE_SPRITES = 390;
 
 //----------------------------------------------------
 
-const int TAMAÑO_LLAVES = 1;
+const int TAMAÑO_LLAVES = 2;
 
 
 //----------------------------------------------------

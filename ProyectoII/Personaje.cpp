@@ -61,7 +61,8 @@ void Personaje::draw(int x, int y)const
 
 	if (pJuego->getLLavesCogidas(0))
 		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave, 50 , SCREEN_HEIGHT - 100,nullptr);
-
+	if (pJuego->getLLavesCogidas(1))
+		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave, 150, SCREEN_HEIGHT - 100, nullptr);
 }
 
 void Personaje::animacion(animar currentFrame){
