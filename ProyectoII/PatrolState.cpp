@@ -29,7 +29,7 @@ void PatrolState::Execute(EnemigoIA * character) {
 	float distance = sqrt((toTarget.first*toTarget.first) + (toTarget.second*toTarget.second));;
 
 	// distancia con el jugador
-	if (character->IsWithinRangeOfTarget(100.0f)) {
+	if (character->IsWithinRangeOfTarget(20.0f)) {
 		character->GetStateMachine()->ChangeState(new ChaseState());
 		return;
 	}

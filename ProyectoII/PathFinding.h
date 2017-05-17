@@ -71,7 +71,6 @@ private:
 
 	void InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal);
 
-
 	SearchCell * GetNextCell();
 
 	// Primera celda donde se encuentra el enemigo

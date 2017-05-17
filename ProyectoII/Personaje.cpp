@@ -31,7 +31,6 @@ void Personaje::update()
 {
 	if (!informeCogido){
 		vida -= 0.001;
-
 	}
 
 }

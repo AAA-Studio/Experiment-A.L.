@@ -37,7 +37,7 @@ void IdleState::Execute(EnemigoIA * character) {
 			new PatrolState(m_pathfinding->GetClosesPath()));
 	}
 	/* Personaje */ 
-	if (character->IsWithinRangeOfTarget(100.0f)) {
+	if (character->IsWithinRangeOfTarget(20.0f)) {
 		character->GetStateMachine()->ChangeState(new ChaseState());
 	}
 }

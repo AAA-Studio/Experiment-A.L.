@@ -40,9 +40,9 @@ void EnemigoIA::initWaypoints(){
 
 	// Para comprobar que funciona el codigo
 	m_waypoints.resize(4);
-	m_waypoints.emplace_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
-	m_waypoints.emplace_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
-	m_waypoints.emplace_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
+	m_waypoints.push_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
+	m_waypoints.push_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
+	m_waypoints.push_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
 	
 }
 
@@ -84,7 +84,7 @@ const pair <float, float> &EnemigoIA::findNextWayPoints(){
 
 	if (m_waypoints.size() != 0)
 	{
-		const pair <float, float> &waypoint = m_waypoints[m_currentIndex];
+		const pair <float, float>& waypoint = m_waypoints[m_currentIndex];
 		m_currentIndex = (int)(rand() % m_waypoints.size() - 1);
 
 		return waypoint;
@@ -94,7 +94,7 @@ const pair <float, float> &EnemigoIA::findNextWayPoints(){
 
 		initWaypoints();
 		const pair <float, float>& waypoint = m_waypoints[m_currentIndex];
-		m_currentIndex = (int)(rand() % m_waypoints.size() - 1);
+		m_currentIndex = (int)(rand() % m_waypoints.size());
 
 		return waypoint;
 	}

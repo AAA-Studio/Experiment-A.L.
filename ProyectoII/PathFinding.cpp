@@ -31,6 +31,7 @@ void PathFinding::Initialize(pair <float, float>  pStartPos, pair <float, float>
 
 	
 	InitializaStartGoal(&start, &goal);
+	FindPath(pStartPos, pTargetPos);
 
 	m_pathState = SEARCHING;
 }
@@ -309,8 +310,7 @@ void PathFinding::ContinuePath() {
 				
 				m_openList.erase(m_openList.begin() + i);
 
-			}
-				
+			}	
 		}
 	}
 }

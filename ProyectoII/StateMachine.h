@@ -44,19 +44,34 @@ public:
 
 			m_currentState->Execute(m_owner);
 		}
-
-		/*if (m_previousState) {
-
-			m_previousState->Execute(m_owner);
-		}*/
 	}
 
 	void ChangeState(State<character_type>* state) {
+		// m_previousState = m_currentState;
+		// 
+		// 
+		// if (m_currentState) {
+		// 
+		// 	m_currentState->Exit(m_owner);
+		// 	delete m_currentState;
+		// 	m_currentState = 0;
+		// }
+		// 
+		// m_currentState = state;
+		// 
+		// 
+		// // Caso en el que puede que el estado al que vayamos este NULL
+		// if (m_currentState) m_currentState->Enter(m_owner);
+		// 
+		// else {
+		// 	m_currentState = m_previousState;
+		// 	m_currentState->Enter(m_owner);
+		// }
+
 		m_previousState = m_currentState;
 
-
-		if (m_currentState) {
-
+		// Sale del estado y lo borra de la memoria
+		if (m_currentState)  {
 			m_currentState->Exit(m_owner);
 			delete m_currentState;
 			m_currentState = 0;
@@ -64,11 +79,8 @@ public:
 
 		m_currentState = state;
 
-		// Caso en el que puede que el estado al que vayamos este NULL
-		if (m_currentState) m_currentState->Enter(m_owner);
-		
-		else {
-			m_currentState = m_previousState;
+		// Nos aseguramos de que el estado no esta a NULL y lo cambiamos
+		if (m_currentState) { 
 			m_currentState->Enter(m_owner);
 		}
 	}

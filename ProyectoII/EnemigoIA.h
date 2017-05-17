@@ -34,7 +34,6 @@ public:
 	
 	inline void restaVida() { vida--; };
 
-
 protected: 
 	StateMachine<EnemigoIA>* m_stateMachine;
 
