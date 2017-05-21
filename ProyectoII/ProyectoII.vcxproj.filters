@@ -123,6 +123,12 @@
     <ClCompile Include="Armas.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
+    <ClCompile Include="JuegoSDL.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="RecursosSDL.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h">
@@ -196,6 +202,12 @@
     </ClInclude>
     <ClInclude Include="Armas.h">
       <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="JuegoSDL.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="RecursosSDL.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

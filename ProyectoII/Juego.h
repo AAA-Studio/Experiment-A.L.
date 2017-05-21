@@ -1,10 +1,9 @@
 #ifndef Juego_H
 #define Juego_H
 #include "checkML.h"
+
+#include "JuegoSDL.h"
 #include "EstadoJuego.h"
-#include "TexturasSDL.h"
-#include "Fuente.h"
-#include "Musica.h"
 #include <vector>
 #include <string>
 #include <SDL.h>
@@ -40,17 +39,12 @@ const int TAMAÑO_LLAVES = 2;
 
 enum Estados_t{ MInicio, MGameOver, MPausa, MundoReal, MundoOscuro, ECombinaciones };
 
-enum  Texturas_t{ TJugador, TBlood, TFondo, TBala, TFuego, TLeon, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2, TUno, TDos, TTres, TCuatro, TCinco, TSeis, TSiete, TOcho, TNueve, TCero, TTeclado, TVolver, TPistola, TControles, TKeypad,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
-enum  Efectos_t{ ENull, Efectos_t_SIZE };
-enum  Musica_t{ MusicaInicio, Musica_t_SIZE };
-
 enum ListaBalas_t{ LBalasEnemigos, LBalasPersonaje };
-
 
 //----------------------------------------------------
 
 
-class Juego
+class Juego : public JuegoSDL
 {
 public:
 	//Constructora, en caso de error muestra un mensaje y deja los atributos nulos y hace un thwrow que se captura en main
@@ -93,21 +87,6 @@ public:
 
 	//---------------GETTER----------------------
 
-	//Dibujado
-	inline SDL_Renderer * getRender() const{ return pRenderer; };
-	inline TexturasSDL * getTextura(Texturas_t et) const { return texturas[et]; }
-
-	//Musica
-	inline Efecto * getEfecto(Efectos_t et) const { return efectos[et]; }
-	Musica * getMusica(Musica_t et) const { return musica[et]; }
-
-	//Fuente
-	inline Fuente getFuente() const { return fuente; }
-
-	//Ventana
-	inline int getAncho()const{ return winRect.w; }
-	inline int getAlto() const{ return winRect.h; }
-
 	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
 	inline void setLlaveCogida(int indice){ llavesCogidas[indice] = !llavesCogidas[indice]; };
 
@@ -123,9 +102,7 @@ public:
 	//---------------------------------------
 
 	void escribir(string texto, int x, int y){
-		getTextura(TFuente)->renderFont(pRenderer, x, y, texto, fuente);
-
-
+		getResources()->getTextura(TFuente)->renderFont(pRenderer_, x, y, texto,*getResources()->getFuente(FNormal));
 	}
 	// ES PUBLICO PORQUE OS ODIO
 	bool borraEstado;
@@ -161,32 +138,9 @@ private:
 	vector <string> nombreObjetos;
 	int numero; //numero para los teclados del estado combinaciones
 
-	SDL_Window *pWin;//Puntero de la ventana
-	SDL_Renderer *pRenderer;//Puntero del renderizador
-
-	SDL_Rect winRect;//Rectángulo de la ventana
-	SDL_Color colorWin;//Color de la ventana
 
 	vector <EstadoJuego*> vectorEstados;
 	bool llavesCogidas[TAMAÑO_LLAVES];
-
-	TexturasSDL*  texturas[Texturas_t_SIZE];
-	std::vector<TexturasSDL* >  texturas2;
-
-	//AMPLIACIONES
-	Fuente fuente;
-	TexturasSDL * textFuente;
-
-	Musica * musica[Musica_t_SIZE];
-	Efecto * efectos[Efectos_t_SIZE];
-
-	//Inicializa el renderizador, en caso de error muestra un mensaje y deja los atributos nulos
-	void initSDL();
-	//Libera los atributos inicados en initSDL
-	void closeSDL();
-
-	void initMedia();
-	void freeMedia();
 
 	void render();
 
@@ -198,8 +152,6 @@ private:
 
 	vector <string> combinaciones;
 	bool puertas[1];
-
-
 };
 
 #endif

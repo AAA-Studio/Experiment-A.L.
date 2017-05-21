@@ -6,7 +6,7 @@ MenuInicio::MenuInicio(Juego * pJ) : Menu(pJ)
 {
 	objetos.resize(2);
 	initObjetos();
-	pJ->getMusica(MusicaInicio)->play();
+	pJ->getResources()->getMusica(JuegoSDL::MInicio)->play();
 }
 
 void MenuInicio::draw()const
@@ -27,8 +27,8 @@ static void goSalir(Juego * pj){
 }
 
 void MenuInicio::initObjetos(){
-	objetos[0] = new Boton(pJuego, 200, 400, 400, 100, TExit, ENull, goSalir);
-	objetos[1] = new Boton(pJuego, 200, 200, 400, 100, TPlay, ENull, goControles);
+	objetos[0] = new Boton(pJuego, 200, 400, 400, 100, JuegoSDL::TExit, JuegoSDL::ENull, goSalir);
+	objetos[1] = new Boton(pJuego, 200, 200, 400, 100, JuegoSDL::TPlay, JuegoSDL::ENull, goControles);
 }
 
 

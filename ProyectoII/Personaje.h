@@ -17,7 +17,7 @@ struct Direccion{
 class Personaje : public Entidad, public PersonajeVirtual
 {
 public:
-	Personaje(MundoVirtual * pM, int x, int y, Texturas_t color, Efectos_t efecto);//Constructora
+	Personaje(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t color, JuegoSDL::Efectos_t efecto);//Constructora
 	~Personaje();//Destructora
 
 	virtual void update();//Actualiza el estado y devuelve false si el globo queda desinflado
@@ -63,7 +63,7 @@ private:
 	Direccion dir;
 	Armas* arma;
 	MundoVirtual * pMundo;
-	Texturas_t informe;
+	JuegoSDL::Texturas_t informe;
 
 	SDL_Rect rectInforme;
 	SDL_Rect rectLlave;

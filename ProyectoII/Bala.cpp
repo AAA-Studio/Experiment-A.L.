@@ -4,7 +4,7 @@
 #include "Personaje.h"
 
 
-Bala::Bala(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto, float ang, ListaBalas_t tBala, int ancho, int alto) : Entidad(pM->getPJ(), x, y,100,100, textura, efecto, ONull)
+Bala::Bala(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, float ang, ListaBalas_t tBala, int ancho, int alto) : Entidad(pM->getPJ(), x, y, 100, 100, textura, efecto, ONull)
 {
 	rect.w /= 3;
 	rect.h /= 3;

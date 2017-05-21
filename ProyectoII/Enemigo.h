@@ -10,7 +10,7 @@
 class Enemigo : public Entidad, PersonajeVirtual
 {
 public:
-	Enemigo(MundoVirtual*pJ, int x, int y,int w,int h, Texturas_t textura, Efectos_t efecto);
+	Enemigo(MundoVirtual*pJ, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto);
 	~Enemigo();
 	virtual void update();
 	inline void restaVida() { vida--; };

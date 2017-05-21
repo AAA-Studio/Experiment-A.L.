@@ -1,7 +1,7 @@
 #include "Entidad.h"
 
 
-Entidad::Entidad(Juego*pJ, double x, double y, double w, double h, Texturas_t textura, Efectos_t efecto, Objetos_t tipo)
+Entidad::Entidad(Juego*pJ, double x, double y, double w, double h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, Objetos_t tipo)
 {
 	rect = { x, y, w,h };
 	pJuego = pJ;
@@ -28,6 +28,6 @@ void  Entidad::setVisible(bool visible){
 void Entidad::draw(int x, int y)const
 {
 	if (visible)
-		pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect,x,y,nullptr);//Dibujamos la textura
+		pJuego->getResources()->getTextura(pTextura)->draw(pJuego->getRender(), rect,x,y,nullptr);//Dibujamos la textura
 }
 

@@ -8,7 +8,7 @@ typedef void CallBack_t(Juego* jg);
 class Boton : public Entidad
 {
 public:
-	Boton(Juego*pJ, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto, CallBack_t * cb);
+	Boton(Juego*pJ, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, CallBack_t * cb);
 	~Boton();
 	virtual void onInput();
 
