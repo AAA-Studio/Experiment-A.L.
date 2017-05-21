@@ -91,8 +91,5 @@ void Bala::setAngulo(int ancho, int alto){
 
 
 void Bala::update(){
-
 	rect = { rect.x + incrX * 10, rect.y + incrY * 10, rect.w, rect.h };
-
-
 }

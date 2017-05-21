@@ -280,7 +280,7 @@ void Juego::initMedia()
 
 	string archFont = { "..\\bmps\\font.ttf" };
 
-	fuente.load(archFont);
+	fuente.load(archFont,100);
 
 	texturas[TFuente] = new TexturasSDL;
 

@@ -123,7 +123,7 @@ public:
 	//---------------------------------------
 
 	void escribir(string texto, int x, int y){
-		getTextura(TFuente)->render(pRenderer, x, y, texto, fuente);
+		getTextura(TFuente)->renderFont(pRenderer, x, y, texto, fuente);
 
 
 	}
