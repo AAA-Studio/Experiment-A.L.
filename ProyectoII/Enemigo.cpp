@@ -2,7 +2,7 @@
 #include "Bala.h"
 
 
-Enemigo::Enemigo(MundoVirtual*pM, int x, int y,int w ,int h, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y,w,h, textura, efecto, ONull)
+Enemigo::Enemigo(MundoVirtual*pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) : Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
 {
 	vida = 3;
 	angulo = 180;
@@ -21,7 +21,7 @@ void Enemigo::update(){
 void Enemigo::disparo(){
 	if (SDL_GetTicks() - ultimaBala >= tiempoBala)//Se pide la hora y se compara con la última 
 	{
-		pMundo->insertaBala(LBalasEnemigos, new Bala(pMundo, rect.x, rect.y, TFuego, ENull, 177, LBalasEnemigos, rect.w,rect.h));
+		pMundo->insertaBala(LBalasEnemigos, new Bala(pMundo, rect.x, rect.y, rect.w, rect.h, JuegoSDL::TFuego, JuegoSDL::ENull, 177, LBalasEnemigos));
 
 		ultimaBala = SDL_GetTicks();
 	}

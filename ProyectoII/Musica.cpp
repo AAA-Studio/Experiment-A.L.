@@ -2,63 +2,75 @@
 #include "Error.h"
 
 //Música
-Musica::Musica(){
-	pMusic = nullptr;
+Musica::Musica() : pMusic_ (nullptr) {}
+
+Musica::Musica(string const& nombArch) : pMusic_(nullptr) {
+	load(nombArch);
 }
 
 Musica::~Musica(){	
 	close();
-	pMusic = nullptr;
+	pMusic_ = nullptr;
 }
 
-
 void Musica::load(string const& nombArch){
-	
-	pMusic = Mix_LoadMUS(nombArch.c_str());//Cargamos el audio
-	if (pMusic == nullptr)
+	pMusic_ = Mix_LoadMUS(nombArch.c_str());//Cargamos el audio
+	if (pMusic_ == nullptr)
 	{
 		ErrorSonido error("Error al cargar la música " + nombArch);
 		throw error;
-
 	}
 }
 
-void Musica::play(){
-	Mix_PlayMusic(pMusic, -1);
+void Musica::play(int repetitions){
+	Mix_PlayMusic(pMusic_, repetitions);
+}
+
+void Musica::pause() {
+	Mix_PauseMusic();
 }
 
 void Musica::close(){
-	Mix_FreeMusic(pMusic);
+	if (pMusic_ != nullptr) {
+		Mix_FreeMusic(pMusic_);
+		pMusic_ = nullptr;
+	}
 }
 
-
 //Efecto
-Efecto::Efecto(){
-	pChunk = nullptr;
+Efecto::Efecto() : pChunk_ (nullptr) {}
+
+Efecto::Efecto(string const& nombArch) : pChunk_(nullptr) {
+	load(nombArch);
 }
 
 Efecto::~Efecto(){
 	close();
-	pChunk = nullptr;
+	pChunk_ = nullptr;
 }
 
-
 void Efecto::load(string const& nombArch){
-
-	pChunk = Mix_LoadWAV(nombArch.c_str());//Cargamos el audio
-	if (pChunk == nullptr)
+	pChunk_ = Mix_LoadWAV(nombArch.c_str());//Cargamos el audio
+	if (pChunk_ == nullptr)
 	{
 		ErrorSonido error("Error al cargar el efecto de sonido: " + nombArch);
 		throw error;
-
 	}
 }
 
-void Efecto::play(){
-	Mix_PlayChannel(-1, pChunk, 0);
+void Efecto::play(int repetitions){
+	if (pChunk_ != nullptr) 
+		Mix_PlayChannel(-1, pChunk_, repetitions);
+}
 
+void Efecto::pause() {
+	Mix_PauseMusic();
+	//Mix_Pause(-1);
 }
 
 void Efecto::close(){
-	Mix_FreeChunk(pChunk);
+	if (pChunk_ != nullptr) {
+		Mix_FreeChunk(pChunk_);
+		pChunk_ = nullptr;
+	}
 }

@@ -5,7 +5,7 @@
 #include <SDL.h>
 #include "Bala.h"
 #include "Boton.h"
-
+#include <fstream>
 
 Mundo::Mundo(Juego * pJ, string m)
 {
@@ -24,7 +24,7 @@ Mundo::Mundo(Juego * pJ, string m)
 
 	//pJuego->getMusica(MPlay)->play();
 
-	cinematica = true;
+	cinematica = false;
 	contador = 0;
 	objetos[1]->setVisible(false);
 	moverI = false;
@@ -76,30 +76,30 @@ void Mundo::cargaObjetos(){
 			while (obj.peek() != EOF && nombre != "NIVEL"){
 				if (nombre == "LLAVE"){
 					obj >> x >> y >> w >> h;
-					llaves.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TLlave, ENull, OLlave));
+					llaves.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TLlave, JuegoSDL::ENull, OLlave));
 				}
 				else if (nombre == "INFORME"){
 					obj >> x >> y >> w >> h >> tipo;
 					if (tipo == 1)
-						objetos.push_back(new Entidad(pJuego, 580 + ancho*lvl, 220 + alto*lvl, w, h, TInforme1, ENull, OInforme1));//Informe
+						objetos.push_back(new Entidad(pJuego, 580 + ancho*lvl, 220 + alto*lvl, w, h, JuegoSDL::TInforme1, JuegoSDL::ENull, OInforme1));//Informe
 						
 					else if (tipo == 2)
-						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TInforme2, ENull, OInforme2));//Informe
+						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TInforme2, JuegoSDL::ENull, OInforme2));//Informe
 				}
 				else if (nombre == "PANEL"){
 
 					obj >> x >> y >> w >> h;
-					objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, TTeclado, ENull, OTeclado));
+					objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TTeclado, JuegoSDL::ENull, OTeclado));
 				}
 				else if (nombre == "ARMA"){
 
 					obj >> x >> y >> w >> h >> balas >> cadencia;
-					armas.push_back(new Armas(pJuego, x + ancho*lvl, y + alto*lvl, w, h, balas, cadencia, TPistola, ENull, OPistola));
+					armas.push_back(new Armas(pJuego, x + ancho*lvl, y + alto*lvl, w, h, balas, cadencia, JuegoSDL::TPistola, JuegoSDL::ENull, OPistola));
 				}
 				else if (nombre == "ENEMIGO"){
 
 					obj >> x >> y >> w >> h;
-					enemigos.push_back(new Enemigo(this, x + ancho*lvl, y + alto*lvl, w, h, TLeon, ENull));
+					enemigos.push_back(new Enemigo(this, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 				}
 
@@ -121,7 +121,7 @@ void Mundo::initObjetos()
 	//lala
 		if (primeCinematica)
 		{
-			psj = new Personaje(this, 320, 830, TJugador, ENull);
+			psj = new Personaje(this, 400, 830, JuegoSDL::TJugador, JuegoSDL::ENull);
 		}
 		else
 		{
@@ -131,7 +131,7 @@ void Mundo::initObjetos()
 
 			x = mapa->getXSpawn();
 			y = mapa->getYSpawn();
-			psj = new Personaje(this, x, y, TJugador, ENull);
+			psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
 			//objetos.push_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
 			//llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
 			//enemigos.push_back(new Enemigo(this, x + 100, y + 100, TLeon, ENull));
@@ -246,12 +246,12 @@ void Mundo::initObjetos()
 			}
 
 
-			pJuego->getTextura(TBlood)->setAlpha(255 - psj->getAlpha());
-			pJuego->getTextura(TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
+			pJuego->getResources()->getTextura(JuegoSDL::TBlood)->setAlpha(255 - psj->getAlpha());
+			pJuego->getResources()->getTextura(JuegoSDL::TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
 			SDL_Rect a = getCamera();
 			a.h = 200;
 			a.w = 400;
-			pJuego->getTextura(TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
+			pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 			//pJuego->escribir("HOLA :)",50, 50);
 		}
 	}
@@ -327,11 +327,13 @@ void Mundo::initObjetos()
 		//COLISIONES
 		colBalaEnemigo();
 		colBalaPersonaje();
+		
 		if (cinematica)
 		{
 			contador++;
 			cinematicaInicial();
 		}
+		
 	}
 
 	void Mundo::cinematicaInicial(){
@@ -399,7 +401,7 @@ void Mundo::initObjetos()
 			moverP = true;
 		}
 
-		if (objetos[1]->getY() >= 950){
+		if (objetos[1]->getRect().y >= 950){
 			moverI = false;
 			cinematica = false;
 			primeCinematica = false;
@@ -407,7 +409,7 @@ void Mundo::initObjetos()
 
 		}
 
-		if (psj->getX() >= 450)
+		if (psj->getRect().x >= 450)
 		{
 			moverP = false;
 			

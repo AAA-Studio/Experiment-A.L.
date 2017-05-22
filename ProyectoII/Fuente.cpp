@@ -1,20 +1,20 @@
 #include "Fuente.h"
 #include "Error.h"
 
-Fuente::Fuente()
-{
-	pFont = nullptr;
+Fuente::Fuente() : pFont_(nullptr){}
+
+Fuente::Fuente(string const& nombArch, int size) {
+	load(nombArch, size);
 }
 
-Fuente::~Fuente()
-{
-	pFont = nullptr;
+Fuente::~Fuente(){
+	close();
 }
 
-void Fuente::load(string const& nombArch)
+void Fuente::load(string const& nombArch, int size)
 {
-	pFont = TTF_OpenFont(nombArch.c_str(), 100);
-	if (pFont == nullptr)
+	pFont_ = TTF_OpenFont(nombArch.c_str(), size);
+	if (pFont_ == nullptr)
 	{
 		ErrorFuente error("Error al cargar la fuente: " + nombArch);
 		throw error;
@@ -23,10 +23,17 @@ void Fuente::load(string const& nombArch)
 
 void Fuente::close()
 {
-	TTF_CloseFont(pFont);
+	if (pFont_)
+	{
+		TTF_CloseFont(pFont_);
+		pFont_ = nullptr;
+	}
 }
 
 SDL_Surface* Fuente::textSolid(string const& texto, SDL_Color color)
 {
-	return TTF_RenderText_Solid(pFont, texto.c_str(), color);
+	if (pFont_) 
+		return TTF_RenderText_Solid(pFont_, texto.c_str(), color);
+	else 
+		return nullptr;
 }

@@ -8,7 +8,6 @@
 //Clase abstracta no pura que hereda de la raiz EstadoJuego
 class Menu : public EstadoJuego
 {
-
 public:
 	//Métodos
 	Menu(Juego * pJ);
@@ -19,12 +18,11 @@ public:
 	virtual void onInput(SDL_Event &e);
 
 protected:
-
 	//Atributos
 	Juego * pJuego;
 	vector <EntidadJuego*> objetos;
-	void freeObjetos();
 
+	void freeObjetos();
 };
 
 #endif

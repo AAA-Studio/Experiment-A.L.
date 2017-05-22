@@ -1,19 +1,8 @@
 #include "Tile.h"
 
-Tile::Tile(int x, int y, int tileType, Juego * pJ)
-{
-	pJuego = pJ;
-	//Get the offsets
-	mBox.x = x;
-	mBox.y = y;
+Tile::Tile(int x, int y, int tileType, Juego * pJ) : pJuego(pJ), mBox({ x, y, TILE_WIDTH, TILE_HEIGHT }), mType(tileType){}
 
-	//Set the collision box
-	mBox.w = TILE_WIDTH;
-	mBox.h = TILE_HEIGHT;
-
-	//Get the tile type
-	mType = tileType;
-}
+/*
 bool colision(SDL_Rect a, SDL_Rect b){
 	//The sides of the rectangles
 	int leftA, leftB;
@@ -36,12 +25,11 @@ bool colision(SDL_Rect a, SDL_Rect b){
 	//If any of the sides from A are outside of B
 	return !(bottomA <= topB || topA >= bottomB || rightA <= leftB || (leftA >= rightB));
 }
+*/
 
 void Tile::render(const SDL_Rect& camera) const
 {
-	//Show the tile
 	//if (colision(mBox,camera))
-	pJuego->getTextura(TTilemap)->draw(pJuego->getRender(), mBox, mBox.x - camera.x, mBox.y- camera.y, &pJuego->getRectTile(mType));
-
+	pJuego->getResources()->getTextura(JuegoSDL::TTilemap)->draw(pJuego->getRender(), mBox, mBox.x - camera.x, mBox.y - camera.y, &pJuego->getRectTile(mType));
 }
 

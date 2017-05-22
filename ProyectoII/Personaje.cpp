@@ -4,13 +4,13 @@
 #include "Bala.h"
 
 //Constructora
-Personaje::Personaje(MundoVirtual * pM, int x, int y, Texturas_t textura, Efectos_t efecto) : Entidad(pM->getPJ(), x, y, 30,40, textura, efecto, ONull)
+Personaje::Personaje(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) : Entidad(pM->getPJ(), x, y, 30, 40, textura, efecto, ONull)
 {
 	pMundo = pM;
 	rect = { x, y, 31, 50 };
 	rectAn = { 0, 128, 31, 50 };
-	rectInforme = { pJuego->getAncho() / 4, pJuego->getAlto() / 20, 300, 600 };
-	rectLlave = { 50, pJuego->getAlto() - 100, 100, 100 };
+	rectInforme = { pJuego->getWindowWidth() / 4, pJuego->getWindowHeight() / 20, 300, 600 };
+	rectLlave = { 50, pJuego->getWindowWidth() - 100, 100, 100 };
 	rectHUD = { 0, 0, 800, 640 };
 	ultimaBala = SDL_GetTicks();
 	balaDestruida = false;
@@ -37,7 +37,7 @@ void Personaje::update()
 	//Center the camera over the dot
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
 	if (pJuego->indiceMapas<6 && !informeCogido && !cinematica && pierdesVida)
-		vida -= 0.001;
+		vida -= 0.1;
 
 
 }
@@ -49,20 +49,17 @@ void Personaje::mover(int x, int y){
 
 void Personaje::draw(int x, int y)const
 {
-
-	//Entidad::draw(x,y);
-
-	
-	pJuego->getTextura(pTextura)->draw(pJuego->getRender(), rect,x,y, &rectAn);//Dibujamos la textura
+	//Tiene animación, sobrescribe la herencia
+	pJuego->getResources()->getTextura(textura)->draw(pJuego->getRender(), rect,x,y, &rectAn);//Dibujamos la textura
 
 
 	if (informeCogido)
-		pJuego->getTextura(informe)->draw(pJuego->getRender(), rectInforme, rectInforme.x, rectInforme.y,nullptr);
+		pJuego->getResources()->getTextura(informe)->draw(pJuego->getRender(), rectInforme, rectInforme.x, rectInforme.y, nullptr);
 
 	if (pJuego->getLLavesCogidas(0))
-		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave, 50 , SCREEN_HEIGHT - 100,nullptr);
+		pJuego->getResources()->getTextura(JuegoSDL::TLlave)->draw(pJuego->getRender(), rectLlave, 50, SCREEN_HEIGHT - 100, nullptr);
 	if (pJuego->getLLavesCogidas(1))
-		pJuego->getTextura(TLlave)->draw(pJuego->getRender(), rectLlave, 150, SCREEN_HEIGHT - 100, nullptr);
+		pJuego->getResources()->getTextura(JuegoSDL::TLlave)->draw(pJuego->getRender(), rectLlave, 150, SCREEN_HEIGHT - 100, nullptr);
 }
 
 void Personaje::animacion(animar currentFrame){
@@ -212,7 +209,7 @@ void Personaje::disparo(){
 if (arma != nullptr && arma->getBalas() > 0 && pMundo->getPJ()->indiceMapas >5){
 		if (SDL_GetTicks() - ultimaBala >= arma->getCadencia() )//Se pide la hora y se compara con la última 
 		{
-			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TBala, ENull, angulo, LBalasPersonaje, rect.w / 15, rect.h / 15));
+			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, rect.w / 15, rect.h / 15, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje));
 			arma->restaBalas();
 			ultimaBala = SDL_GetTicks();
 		}
@@ -245,11 +242,11 @@ void Personaje::coger(){
 			switch (objeto->getType())
 			{
 			case OInforme1:
-				informe = TInforme1;
+				informe = JuegoSDL::TInforme1;
 				informeCogido = true;
 				break;
 			case OInforme2:
-				informe = TInforme2;
+				informe = JuegoSDL::TInforme2;
 				informeCogido = true;
 				break;
 
@@ -271,11 +268,7 @@ void Personaje::cogeArma(Armas* arma){
 }
 void Personaje::soltarInforme(){
 	informeCogido = false;
-	informe = Texturas_t_SIZE;
-
-
-
-
+	informe = JuegoSDL::Texturas_t_SIZE;
 }
 
 

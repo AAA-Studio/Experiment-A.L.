@@ -11,8 +11,7 @@ class MenuInicio : public Menu
 {
 public:
 	MenuInicio(Juego * pJ);
-	~MenuInicio(){ pJuego->getMusica(MusicaInicio)->close(); };
-	virtual void draw()const;
+	~MenuInicio(){ pJuego->getResources()->getMusica(JuegoSDL::Musica_t::MInicio)->close(); };
 
 private:
 	void initObjetos();

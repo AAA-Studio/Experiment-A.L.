@@ -29,11 +29,6 @@ public:
 	virtual void setVisible(bool visible) = 0;
 
 	virtual void move(int x, int y) = 0;
-
-	virtual int getX() = 0;
-
-	virtual int getY() = 0;
-
 };
 
 #endif

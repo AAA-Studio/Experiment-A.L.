@@ -3,13 +3,7 @@
 
 Pausa::Pausa(Juego * pJ) : Menu(pJ)
 {
-	objetos.resize(2);
 	initObjetos();
-}
-
-
-Pausa::~Pausa()
-{
 }
 
 static void goPlay(Juego * pj){
@@ -21,15 +15,6 @@ static void goMenu(Juego * pj){
 };
 
 void Pausa::initObjetos(){
-	objetos[0] = new Boton(pJuego, 200, 400, 400, 100, TMenu, ENull, goMenu);
-	objetos[1] = new Boton(pJuego, 200, 200, 400, 100, TPlay, ENull, goPlay);
-
-}
-
-void Pausa::draw()const
-{
-	//SDL_Rect fondoRect = { 0, 0, pJuego->getAncho(), pJuego->getAlto() };
-	//pJuego->getTextura(TFondoMenu)->draw(pJuego->getRender(), fondoRect);
-
-	Menu::draw();
+	objetos.push_back(new Boton(pJuego, 200, 400, 400, 100, JuegoSDL::TMenu, JuegoSDL::ENull, goMenu));
+	objetos.push_back(new Boton(pJuego, 200, 200, 400, 100, JuegoSDL::TPlay, JuegoSDL::ENull, goPlay));
 }

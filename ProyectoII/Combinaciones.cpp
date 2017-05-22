@@ -29,13 +29,10 @@ Combinaciones::Combinaciones(Juego* juego, string combinacion, int puerta) : Men
 
 void Combinaciones::update(){
 	
-	for (int i = 0; i < objetos.size(); i++)
-		objetos[i]->update();
+	Menu::update();
 
 	if (combinacion == combTecleada)
-	{
 		acierto = true;
-	}
 
 	if (intentos == 4)
 	{
@@ -50,18 +47,18 @@ void Combinaciones::update(){
 	}
 }
 void Combinaciones::initObjetos(){
-	objetos.emplace_back(new Boton(pJuego, 370, 480, 60, 75, TCero, ENull, cero));
-	objetos.emplace_back(new Boton(pJuego, 280, 190, 60, 75, TUno, ENull, uno));
-	objetos.emplace_back(new Boton(pJuego, 370, 190, 60, 75, TDos, ENull, dos));
-	objetos.emplace_back(new Boton(pJuego, 460, 190, 60, 75, TTres, ENull, tres));
-	objetos.emplace_back(new Boton(pJuego, 280, 290, 60, 75, TCuatro, ENull, cuatro));
-	objetos.emplace_back(new Boton(pJuego, 370, 290, 60, 75, TCinco, ENull, cinco));
-	objetos.emplace_back(new Boton(pJuego, 460, 290, 60, 75, TSeis, ENull, seis));
-	objetos.emplace_back(new Boton(pJuego, 280, 390, 60, 75, TSiete, ENull, siete));
-	objetos.emplace_back(new Boton(pJuego, 370, 390, 60, 75, TOcho, ENull, ocho));
-	objetos.emplace_back(new Boton(pJuego, 460, 390, 60, 75, TNueve, ENull, nueve));
-	objetos.emplace_back(new Boton(pJuego, 280, 480, 60, 75, TVolver, ENull, salir));
-	objetos.emplace_back(new Boton(pJuego, 200, 100, 400, 500, TKeypad, ENull, enter));
+	objetos.emplace_back(new Boton(pJuego, 370, 480, 60, 75, JuegoSDL::TCero, JuegoSDL::ENull, cero));
+	objetos.emplace_back(new Boton(pJuego, 280, 190, 60, 75, JuegoSDL::TUno, JuegoSDL::ENull, uno));
+	objetos.emplace_back(new Boton(pJuego, 370, 190, 60, 75, JuegoSDL::TDos, JuegoSDL::ENull, dos));
+	objetos.emplace_back(new Boton(pJuego, 460, 190, 60, 75, JuegoSDL::TTres, JuegoSDL::ENull, tres));
+	objetos.emplace_back(new Boton(pJuego, 280, 290, 60, 75, JuegoSDL::TCuatro, JuegoSDL::ENull, cuatro));
+	objetos.emplace_back(new Boton(pJuego, 370, 290, 60, 75, JuegoSDL::TCinco, JuegoSDL::ENull, cinco));
+	objetos.emplace_back(new Boton(pJuego, 460, 290, 60, 75, JuegoSDL::TSeis, JuegoSDL::ENull, seis));
+	objetos.emplace_back(new Boton(pJuego, 280, 390, 60, 75, JuegoSDL::TSiete, JuegoSDL::ENull, siete));
+	objetos.emplace_back(new Boton(pJuego, 370, 390, 60, 75, JuegoSDL::TOcho, JuegoSDL::ENull, ocho));
+	objetos.emplace_back(new Boton(pJuego, 460, 390, 60, 75, JuegoSDL::TNueve, JuegoSDL::ENull, nueve));
+	objetos.emplace_back(new Boton(pJuego, 280, 480, 60, 75, JuegoSDL::TVolver, JuegoSDL::ENull, salir));
+	objetos.emplace_back(new Boton(pJuego, 200, 100, 400, 500, JuegoSDL::TKeypad, JuegoSDL::ENull, enter));
 	}
 
 void Combinaciones::draw() const{
@@ -108,8 +105,4 @@ void Combinaciones::onInput(SDL_Event &e){
 		}
 	}
 
-}
-
-Combinaciones::~Combinaciones()
-{
 }

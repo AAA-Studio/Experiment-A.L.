@@ -1,26 +1,19 @@
 #include "Boton.h"
 #include <iostream>
-Boton::Boton(Juego*pJ, int x, int y, int w, int h, Texturas_t textura, Efectos_t efecto, CallBack_t * cb) : Entidad(pJ, x, y, w, h, textura, efecto, ONull)
-{
-	// rect.h = 100;
-	// rect.w = 400;
-	cboton = cb;
-}
 
+Boton::Boton(Juego*pJ, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, CallBack_t * cb) 
+	: Entidad(pJ, x, y, w, h, textura, efecto, ONull)
+, cboton(cb){}
 
-Boton::~Boton()
-{
-}
+Boton::~Boton(){}
 
 void Boton::onInput(){
-	
 	int posMouseX, posMouseY;
 	pJuego->getMousePos(posMouseX, posMouseY);
 
-	//Comprobamos si la pos del ratón coincide con la pos de la textura del globo
-	if (dentro(posMouseX, posMouseY)){
+	//Comprobamos si la pos del ratón coincide con la pos de la textura
+	if (dentro(posMouseX, posMouseY))
 		cboton(pJuego);
-	}
 }
 
 bool Boton::dentro(int x, int y)const

@@ -4,7 +4,7 @@
 class Armas: public Entidad
 {
 public:
-	Armas(Juego*pJ, double x, double y, double w, double h,int balas, int cadencia, Texturas_t textura, Efectos_t efecto, Objetos_t tipo);
+	Armas(Juego*pJ, double x, double y, double w, double h, int balas, int cadencia, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, Objetos_t tipo);
 	~Armas();
 	void disparo();
 	inline int getBalas(){ return balas; }
