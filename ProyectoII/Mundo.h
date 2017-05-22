@@ -18,22 +18,50 @@ using namespace std;
 class Mundo : public MundoVirtual
 {
 public:
+	//Constructora
 	Mundo(Juego * pJ, string mapa);
+
+	//Destructorta
 	virtual ~Mundo();
 
+	//Interfaz
 	virtual void draw() const;
 	virtual void onInput(SDL_Event &e);
 	virtual void update();
+
+	//Colisiones
 	bool checkCollision(SDL_Rect a, SDL_Rect b);
-	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
 	EntidadJuego * compruebaColisionObjetos();
-	void destruyeLlave(EntidadJuego * llave);
-	void ponmeArma();
+	void compruebaColisionPersonaje();
+	void colisionArma();
+
+	//Destruccion objetos
+
+	//Balas
 	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it);
 
-		//------------------GETTERS---------------------
-		inline Mapa* getMapa() const { return mapa; };
+	//Llaves
+	void destruyeLlave(EntidadJuego * llave);
+
+
+
+	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
+	
+	
+	
+
+	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
+
+	
+
+	void cambiaPosPSJ(int x, int y){
+		psj->setPosChocando(x, y);
+	}
+
+	//------------------GETTERS Y SETTER---------------------
+	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
+
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
 		if (lista == LBalasPersonaje)
@@ -41,17 +69,11 @@ public:
 		else
 			return balasEnems;
 	};
-	Armas* getArma();
-	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
 
-	void compruebaPersonaje();
+	
 
-	void cambiaPosPSJ(int x,int y){
-		psj->setPosChocando(x, y);
-	}
-
+	//Camara
 	inline virtual SDL_Rect getCamera() const{ return camera; };
-
 	virtual void setCamera(int x, int y){ camera.x = x; camera.y = y; };
 
 

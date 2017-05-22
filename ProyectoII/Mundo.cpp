@@ -511,35 +511,28 @@ void Mundo::initObjetos()
 
 			//Personaje
 			psj->onInput();
-			compruebaPersonaje();
+			compruebaColisionPersonaje();
 
 		}
 		
 
 	}
-	void Mundo::compruebaPersonaje(){
-		SDL_Rect rect, rect2, rect3;
+	void Mundo::compruebaColisionPersonaje(){
+		SDL_Rect rectPersonaje = psj->getRect(), rectPies;
 
 		int x, y;
 
-		rect.x = psj->getX();
-		rect.y = psj->getY();
+	
+		//Reducimos el ancho y alto del rectangulo de colision
+		rectPies.h = 10;
+		rectPies.w = 10;
 
-		rect2.x = psj->DamePosAntX();
-		rect2.y = psj->DamePosAntY();
+		x = rectPersonaje.x - psj->DamePosAntX();
+		y = rectPersonaje.y - psj->DamePosAntY();
 
-		rect2.w = rect.w = rect2.h = rect.h = 20;
-
-		//Rect3 = rect de colision
-		rect3.h = 10;
-		rect3.w = 10;
-
-		x = rect.x - rect2.x;
-		y = rect.y - rect2.y;
-
-		rect3.x = rect.x + 10;
-		rect3.y = rect.y + 40;
-
+		//Movemos el rectangulo de colision a los pies
+		rectPies.x = rectPersonaje.x + 10;
+		rectPies.y = rectPersonaje.y + 40;
 
 		Direccion dir;
 		dir.x = x;
@@ -547,20 +540,21 @@ void Mundo::initObjetos()
 		psj->setDir(dir);
 
 		int tipo;
-		mapa->touchesDoor(rect3, tipo);
+		mapa->touchesDoor(rectPies, tipo);
 
 		//comprueba la X
-		if (mapa->touchesWall(rect3)){
-			rect.x -= x;
+		if (mapa->touchesWall(rectPies)){
+			rectPersonaje.x -= x;
 		}
 		// comprueba la Y
-		if (mapa->touchesWall(rect3)){
-			rect.y -= y;
+		if (mapa->touchesWall(rectPies)){
+			rectPersonaje.y -= y;
 		}
 
+		//Felpudos
 		if (tipo != 150 && tipo != 155 && tipo != 154 && tipo != 140 && tipo != 158 && tipo != 165 && tipo != 159 && tipo != 153 && tipo != 152 && tipo != 151 && tipo != 114
 			&& tipo != 345 && tipo != 350 && tipo != 349 && tipo != 335 && tipo != 353 && tipo != 360 && tipo != 354 && tipo != 348 && tipo != 347 && tipo != 346 && tipo != 309)
-		psj->setPosChocando(rect.x, rect.y);
+			psj->setPosChocando(rectPersonaje.x, rectPersonaje.y);
 
 	}
 	bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
@@ -649,9 +643,9 @@ void Mundo::initObjetos()
 		else
 			setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
 	}
-	void Mundo::ponmeArma(){
+	void Mundo::colisionArma(){
 		list<Armas*>::iterator it = armas.begin();
-		while (it != armas.end() && !checkCollision((*it)->getRect(),psj->getRect()))//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
+		while (it != armas.end() && !checkCollision((*it)->getRect(),psj->getRect()))//Recorre todas las armas hasta encontrar el arma que tiene que destruir
 		{
 			it++;
 		}

@@ -237,7 +237,7 @@ void Personaje::coger(){
 	objeto = pMundo->compruebaColisionObjetos();//Compruebo si estoy colisionando con el obj para poder cogerlo
 	if (objeto != nullptr){
 		if (objeto->getType() == OPistola)
-			pMundo->ponmeArma();
+			pMundo->colisionArma();
 		else{
 			switch (objeto->getType())
 			{

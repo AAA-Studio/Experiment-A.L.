@@ -33,7 +33,7 @@ public:
 
 	virtual void setCamera(int x,int y) = 0;
 
-	virtual void ponmeArma()=0;
+	virtual void colisionArma() = 0;
 
 	virtual  int getNivel() const = 0;
 	virtual void setNivel(int i) = 0;
