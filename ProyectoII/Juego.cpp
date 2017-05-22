@@ -22,7 +22,7 @@ Juego::Juego() : JuegoSDL(" ", SCREEN_WIDTH, SCREEN_HEIGHT)
 	borraEstado = false;
 
 
-	nombreMapas = { "..\\bmps\\Habitaciones\\mapCompleto.csv" };
+	nombreMapas = { "..\\bmps\\Habitaciones\\MAPACOMPLETO.csv" };
 	nombreObjetos = { "..\\bmps\\Objetos\\Objetos1.csv" };
 
 	recortarTiles();

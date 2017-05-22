@@ -73,7 +73,6 @@ bool Mapa::cargarMapa()
 				tilesLoaded = false;
 				break;
 			}
-
 			//Move to next tile spot
 			x += TILE_WIDTH;
 
@@ -126,7 +125,7 @@ void  Mapa::buscaSpawn(){
 	
 	//spawn azul oscuro
 	else if(pJuego->getNivel() == 3)
-		tipo = 190;
+		tipo = 183;
 
 	//spawn pistacho
 	else if(pJuego->getNivel() == -3)
@@ -134,7 +133,7 @@ void  Mapa::buscaSpawn(){
 
 	//spawn marrón
 	else if (pJuego->getNivel() == 4)
-		tipo = 183;
+		tipo = 190;
 
 	//spawn burdeos
 	else if (pJuego->getNivel() == -4)
@@ -363,7 +362,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-4);
+					pJuego->setNivel(-3);
 					tipo = 153;
 					buscaSpawn();
 					return true;
