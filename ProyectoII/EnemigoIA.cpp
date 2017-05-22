@@ -31,7 +31,7 @@ EnemigoIA::~EnemigoIA()
 void EnemigoIA::Initialize() {
 	
 	//m_target será el personaje
-	m_maxVelocity = 50.0f;
+	m_maxVelocity = 0.0001f;
 	m_stateMachine = new StateMachine<EnemigoIA>(this);
 	m_stateMachine->ChangeState(new IdleState());
 }
@@ -39,10 +39,10 @@ void EnemigoIA::Initialize() {
 void EnemigoIA::initWaypoints(){
 
 	// Para comprobar que funciona el codigo
-	m_waypoints.resize(4);
-	m_waypoints.push_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
-	m_waypoints.push_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
-	m_waypoints.push_back(m_waypoints[m_waypoints.size() - 1] = make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
+	
+	m_waypoints.push_back(make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
+	m_waypoints.push_back(make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
+	m_waypoints.push_back(make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
 	
 }
 
@@ -53,7 +53,7 @@ void EnemigoIA::update() {
 }
 
 void EnemigoIA::ChaseTarget() {
-	m_maxVelocity = 150.0f;
+	m_maxVelocity = 0.0001f;
 	SDL_Rect targetTransform = m_target->getRect();
 
 	//Vectores auxiliares
@@ -74,6 +74,9 @@ void EnemigoIA::ChaseTarget() {
 
 	position.first = position.first + velocity.first * (float)SDL_GetTicks();
 	position.second = position.second + velocity.second * (float)SDL_GetTicks();
+
+	SDL_Rect posRect = { position.first, position.second, rect.w, rect.h };
+	setRect(posRect);
 }
 
 StateMachine<EnemigoIA>*EnemigoIA::GetStateMachine() {

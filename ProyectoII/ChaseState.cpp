@@ -11,7 +11,7 @@ ChaseState::~ChaseState()
 }
 
 void ChaseState::Enter(EnemigoIA * character) {
-	character->SetMaxVelocity(125.0f);
+	character->SetMaxVelocity(0.0001f);
 }
 
 void ChaseState::Execute(EnemigoIA * character) {

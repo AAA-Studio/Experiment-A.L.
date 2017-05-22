@@ -18,6 +18,7 @@ public:
 	virtual void update() {};
 
 	virtual inline SDL_Rect getRect()const{ return rect; };
+	virtual inline void setRect(const SDL_Rect& y_rect) { rect = y_rect; };
 	virtual inline Objetos_t getType() const  { return type; };
 	Entidad * getEntity() { return this; }
 

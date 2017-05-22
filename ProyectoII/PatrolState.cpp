@@ -15,7 +15,7 @@ PatrolState::~PatrolState()
 
 void PatrolState::Enter(EnemigoIA * character) {
 
-	character->SetMaxVelocity(75.0f);
+	character->SetMaxVelocity(0.0001f);
 }
 
 void PatrolState::Execute(EnemigoIA * character) {
@@ -50,14 +50,14 @@ void PatrolState::Execute(EnemigoIA * character) {
 		}
 	}
 
-	pair <float, float> velocity = make_pair (toTarget.first * 50.0f, toTarget.second * 50.0f);
+	pair <float, float> velocity = make_pair (toTarget.first * 0.0001f, toTarget.second * 0.0001f);
 
 	position.first = position.first + velocity.first * (float)SDL_GetTicks();
-	position.second = position.second + velocity.second * (float)SDL_GetTicks();
+	position.second = position.second + velocity.second * (float)SDL_GetTicks(); 
 
-	/*Vector2 velocity = toTarget * 20.0f
-	character->addVelocity(velocity.GetX(), velocity.GetY());
-	*/
+	SDL_Rect posRect = { position.first, position.second, character->getRect().w, character->getRect().h };
+	character->setRect(posRect);
+	
 }
 
 void PatrolState::Exit(EnemigoIA * character) { }

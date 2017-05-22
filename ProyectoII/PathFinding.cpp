@@ -3,6 +3,7 @@
 #include "Tile.h"
 #include <stdio.h> // Input and Output operations
 #include <utility>
+#include <iostream>
 
 PathFinding::PathFinding(MapaVirtual * pGameWorld) : pMapa(pGameWorld)
 {
@@ -29,7 +30,7 @@ void PathFinding::Initialize(pair <float, float>  pStartPos, pair <float, float>
 	goal.setX(floorf(pTargetPos.first / (float)TILE_WIDTH));
 	goal.setY(floorf(pTargetPos.second / (float)TILE_HEIGHT));
 
-	
+	cout << start.GetCellX() << endl;
 	InitializaStartGoal(&start, &goal);
 	FindPath(pStartPos, pTargetPos);
 
@@ -43,22 +44,25 @@ void PathFinding::InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal) {
 		m_startCell = new SearchCell(pStart->GetCellX(), pStart->GetCellY(), NULL);
 	}
 
+	else {// Informacion de las celdas anteriores, coordenadas e id
+		m_startCell->setX(pStart->GetCellX());
+		m_startCell->setY(pStart->GetCellY());
+		m_startCell->SetID(pStart->GetCellY() * LEVEL_WIDTH + pStart->GetCellX());
+	}
+
 	if (!m_goalCell) {
 
 		m_goalCell = new SearchCell(pGoal->GetCellX(), pGoal->GetCellY(), pGoal);
 	}
 
-	// Informacion de las celdas anteriores, coordenadas e id
-	m_startCell->setX(pStart->GetCellX()); 
-	m_startCell->setY(pStart->GetCellY());
-	m_startCell->SetID(pStart->GetCellY() * LEVEL_WIDTH + pStart->GetCellX());
+	else {
+		m_goalCell->setX(pGoal->GetCellX());
+		m_goalCell->setY(pGoal->GetCellY());
+		m_goalCell->SetID(pGoal->GetCellY() * LEVEL_WIDTH + pGoal->GetCellX());
 
-	m_goalCell->setX(pGoal->GetCellX());
-	m_goalCell->setY(pGoal->GetCellY());
-	m_goalCell->SetID(pGoal->GetCellY() * LEVEL_WIDTH + pGoal->GetCellX());
-
-	// El padre del objetivo es la celda que ocupa
-	m_goalCell->SetParent(pGoal);
+		// El padre del objetivo es la celda que ocupa
+		m_goalCell->SetParent(pGoal);
+	}
 
 	m_startCell->setH(m_startCell->ManHattanDistance(m_goalCell));
 }
