@@ -4,6 +4,7 @@
 
 ChaseState::ChaseState() : State<EnemigoIA>()
 {
+	m_stateName = "ChaseState";
 }
 
 ChaseState::~ChaseState()

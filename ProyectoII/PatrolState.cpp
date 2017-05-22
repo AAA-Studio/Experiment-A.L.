@@ -5,6 +5,7 @@
 
 PatrolState::PatrolState(std::vector<pair <float, float>> waypoints) : State<EnemigoIA>()
 {
+	m_stateName = "PatrolState";
 	m_waypoints = waypoints;
 }
 
@@ -52,11 +53,7 @@ void PatrolState::Execute(EnemigoIA * character) {
 	SDL_Rect posRect = { position.first, position.second, character->getRect().w, character->getRect().h };
 	character->setRect(posRect);
 
-	// distancia con el jugador
-	if (character->IsWithinRangeOfTarget(50.0f)) {
-		character->SetVelocity(0, 0);
-		character->GetStateMachine()->ChangeState(new ChaseState());
-	}
+	
 	
 }
 

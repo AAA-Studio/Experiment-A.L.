@@ -5,7 +5,7 @@
 
 IdleState::IdleState() : State<EnemigoIA>()
 {
-
+	m_stateName = "IdleState";
 }
 
 
@@ -38,10 +38,7 @@ void IdleState::Execute(EnemigoIA * character) {
 		// character->GetStateMachine()->ChangeState(new PatrolState(m_pathfinding->GetClosesPath()));
 		character->GetStateMachine()->ChangeState(new PatrolState(character->getWaypoints()));
 	}
-	/* Personaje */ 
-	if (character->IsWithinRangeOfTarget(50.0f)) {
-		character->GetStateMachine()->ChangeState(new ChaseState());
-	}
+	
 }
 
 void IdleState::Exit(EnemigoIA * character) {

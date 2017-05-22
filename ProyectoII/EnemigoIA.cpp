@@ -1,6 +1,7 @@
 #include "EnemigoIA.h"
 #include "IdleState.h"
 #include "SearchCell.h"
+#include "EnemigoIAGlobalState.h"
 #include <math.h>
 #include <stdio.h>
 #include <windows.h>
@@ -34,6 +35,7 @@ void EnemigoIA::Initialize() {
 	m_maxVelocity = 0.0f;
 	m_stateMachine = new StateMachine<EnemigoIA>(this);
 	m_stateMachine->ChangeState(new IdleState());
+	m_stateMachine->SetGlobalState(new EnemigoIAGlobalState());
 }
 
 void EnemigoIA::initWaypoints(){
