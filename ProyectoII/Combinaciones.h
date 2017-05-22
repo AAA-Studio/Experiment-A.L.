@@ -22,6 +22,7 @@ private:
 	string combinacion; //combinacion correcta
 	bool acierto;
 	int puerta;
+	int boton;
 	int intentos;
 	MundoVirtual * pMundo;
 };

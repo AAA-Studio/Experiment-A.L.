@@ -31,8 +31,8 @@ Juego::Juego() : JuegoSDL(" ", SCREEN_WIDTH, SCREEN_HEIGHT)
 	for (int i = 0; i < TAMAÑO_LLAVES; i++)
 		llavesCogidas[i] = false;
 
-	estadoEnum = Estados_t::MInicio;
-	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
+	//estadoEnum = Estados_t::MInicio;
+	//vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
 	
 	//vectorEstados.push_back(new Mundo(this));//Primer estado de la pila
 
@@ -40,7 +40,9 @@ Juego::Juego() : JuegoSDL(" ", SCREEN_WIDTH, SCREEN_HEIGHT)
 	combinaciones.emplace_back("3412");
 	puertas[0] = false;
 	numero = 20;
-	
+
+	estadoEnum = ECombinaciones;
+	vectorEstados.push_back(new Combinaciones(this, combinaciones[0], 0));
 }
 void Juego::reset(){
 	srand(SDL_GetTicks());//Inicializamos los números aleatorios de manera que cada vez se van modificando

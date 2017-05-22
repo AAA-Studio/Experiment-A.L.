@@ -25,6 +25,7 @@ Combinaciones::Combinaciones(Juego* juego, string combinacion, int puerta) : Men
 	intentos = 0;
 	combTecleada = "";
 	initObjetos();
+	boton = 1;
 }
 
 void Combinaciones::update(){
@@ -67,11 +68,40 @@ void Combinaciones::draw() const{
 	//int i = 7;
 	
 	objetos[objetos.size() - 1]->draw(objetos[objetos.size() - 1]->getRect().x, objetos[objetos.size() - 1]->getRect().y);
-	//objetos[i]->draw(objetos[i]->getRect().x, objetos[i]->getRect().y);
+	objetos[boton]->draw(objetos[boton]->getRect().x, objetos[boton]->getRect().y);
+
 }
 
 void Combinaciones::onInput(SDL_Event &e){
 
+	if (e.type == SDL_KEYUP){ //si se pulsa una tecla comprueba que es p
+		if (e.key.keysym.sym == SDLK_RETURN)
+		{
+
+			cout << "hello";
+			combTecleada += to_string(boton);
+			cout << " intentos: " + intentos;
+			cout << " combinacion: " + combTecleada;
+			intentos++;
+		}
+		else if (e.key.keysym.sym == SDLK_RIGHT)
+		{
+			boton += 1;
+		}
+		else if (e.key.keysym.sym == SDLK_LEFT)
+		{
+			boton -= 1;
+		}
+		else if (e.key.keysym.sym == SDLK_UP)
+		{
+			boton -= 3;
+		}
+		else if (e.key.keysym.sym == SDLK_DOWN)
+		{
+			boton += 3;
+		}
+		
+	}
 	if (e.type == SDL_MOUSEBUTTONUP)
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
