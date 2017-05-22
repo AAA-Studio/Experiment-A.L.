@@ -31,10 +31,6 @@ const int TOTAL_TILE_SPRITES = 390;
 
 const int TAMAÑO_LLAVES = 2;
 
-
-//----------------------------------------------------
-
-
 //------------------ENUMS--------------------------
 
 enum Estados_t{ MInicio, MGameOver, MPausa, MundoReal, MundoOscuro, ECombinaciones };

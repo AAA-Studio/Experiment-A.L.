@@ -5,7 +5,7 @@
 #include <SDL.h>
 #include "Bala.h"
 #include "Boton.h"
-
+#include <fstream>
 
 Mundo::Mundo(Juego * pJ, string m)
 {

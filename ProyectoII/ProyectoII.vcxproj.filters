@@ -64,12 +64,15 @@
     <Filter Include="Archivos de encabezado\Entidades\Personajes">
       <UniqueIdentifier>{110a910a-6907-43d3-898d-6f9f083152c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Juego">
+      <UniqueIdentifier>{92fb7524-6841-4d58-81bc-7c62fd2b6bb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Juego">
+      <UniqueIdentifier>{dc6a6610-d239-4d15-8e35-12734f33f589}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Juego.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
     <ClCompile Include="Fuente.cpp">
@@ -123,17 +126,17 @@
     <ClCompile Include="Armas.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
-    <ClCompile Include="JuegoSDL.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="RecursosSDL.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Media</Filter>
+    </ClCompile>
+    <ClCompile Include="Juego.cpp">
+      <Filter>Archivos de código fuente\Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="JuegoSDL.cpp">
+      <Filter>Archivos de código fuente\Juego</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Juego.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="EstadoJuego.h">
       <Filter>Archivos de encabezado\Estados</Filter>
     </ClInclude>
@@ -203,11 +206,14 @@
     <ClInclude Include="Armas.h">
       <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
     </ClInclude>
-    <ClInclude Include="JuegoSDL.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="RecursosSDL.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Media</Filter>
+    </ClInclude>
+    <ClInclude Include="Juego.h">
+      <Filter>Archivos de encabezado\Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="JuegoSDL.h">
+      <Filter>Archivos de encabezado\Juego</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

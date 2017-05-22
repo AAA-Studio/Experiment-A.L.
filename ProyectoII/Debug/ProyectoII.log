@@ -1,7 +1,70 @@
-﻿Compilación iniciada a las 21/05/2017 19:36:56.
+﻿Compilación iniciada a las 22/05/2017 11:26:03.
      1>Proyecto "D:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         D:\Visual 2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Boton.cpp Combinaciones.cpp MenuInicio.cpp Pausa.cpp Personaje.cpp
+         D:\Visual 2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Bala.cpp Juego.cpp Mapa.cpp Mundo.cpp Personaje.cpp Tile.cpp
+         Tile.cpp
+     1>d:\visual 2013\vc\include\crtdbg.h(586): warning C4005: '_malloca' : redefinición de macro
+                 d:\visual 2013\vc\include\malloc.h(224) : vea la definición anterior de '_malloca'
+         Mundo.cpp
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(38): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::move' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(24) : vea la declaración de 'Entidad::move'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getX' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(26) : vea la declaración de 'Entidad::getX'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getY' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(25) : vea la declaración de 'Entidad::getY'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>d:\hlocal\experiment-a.l\proyectoii\mundo.cpp(55): warning C4101: 'tipo' : variable local sin referencia
+     1>d:\hlocal\experiment-a.l\proyectoii\mundo.cpp(55): warning C4101: 'w' : variable local sin referencia
+     1>d:\hlocal\experiment-a.l\proyectoii\mundo.cpp(55): warning C4101: 'h' : variable local sin referencia
+     1>d:\hlocal\experiment-a.l\proyectoii\mundo.cpp(55): warning C4101: 'x' : variable local sin referencia
+     1>d:\hlocal\experiment-a.l\proyectoii\mundo.cpp(55): warning C4101: 'y' : variable local sin referencia
+     1>d:\hlocal\experiment-a.l\proyectoii\mundo.cpp(55): warning C4101: 'lvl' : variable local sin referencia
+         Mapa.cpp
+     1>d:\visual 2013\vc\include\crtdbg.h(586): warning C4005: '_malloca' : redefinición de macro
+                 d:\visual 2013\vc\include\malloc.h(224) : vea la definición anterior de '_malloca'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(38): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::move' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(24) : vea la declaración de 'Entidad::move'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getX' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(26) : vea la declaración de 'Entidad::getX'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getY' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(25) : vea la declaración de 'Entidad::getY'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+         Generando código...
+         Compilando...
          Personaje.cpp
      1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
                  d:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
@@ -29,14 +92,58 @@
      1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
      1>d:\hlocal\experiment-a.l\proyectoii\personaje.cpp(40): warning C4305: '-=' : truncamiento de 'double' a 'float'
      1>d:\hlocal\experiment-a.l\proyectoii\personaje.cpp(215): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-         Pausa.cpp
-         MenuInicio.cpp
-         Combinaciones.cpp
-     1>d:\hlocal\experiment-a.l\proyectoii\combinaciones.cpp(32): warning C4018: '<' : no coinciden signed/unsigned
-     1>d:\hlocal\experiment-a.l\proyectoii\combinaciones.cpp(82): warning C4018: '<' : no coinciden signed/unsigned
-     1>d:\hlocal\experiment-a.l\proyectoii\combinaciones.cpp(89): warning C4018: '<' : no coinciden signed/unsigned
-     1>d:\hlocal\experiment-a.l\proyectoii\combinaciones.cpp(93): warning C4553: '==' : el operador no tiene efecto; ¿ha pensado en '='?
-         Boton.cpp
+         Juego.cpp
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(38): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::move' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(24) : vea la declaración de 'Entidad::move'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getX' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(26) : vea la declaración de 'Entidad::getX'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getY' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(25) : vea la declaración de 'Entidad::getY'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+         Bala.cpp
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>d:\hlocal\experiment-a.l\proyectoii\personaje.h(38): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::move' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(24) : vea la declaración de 'Entidad::move'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getX' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(26) : vea la declaración de 'Entidad::getX'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getY' mediante dominación
+                 d:\hlocal\experiment-a.l\proyectoii\entidad.h(25) : vea la declaración de 'Entidad::getY'
+     1>d:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>d:\hlocal\experiment-a.l\proyectoii\bala.cpp(29): warning C4244: '=' : conversión de 'double' a 'float'; posible pérdida de datos
+     1>d:\hlocal\experiment-a.l\proyectoii\bala.cpp(94): warning C4244: 'inicializando' : conversión de 'float' a 'int'; posible pérdida de datos
          Generando código...
        Link:
          D:\Visual 2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Armas.obj
@@ -65,4 +172,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:10.33
+Tiempo transcurrido 00:00:15.51

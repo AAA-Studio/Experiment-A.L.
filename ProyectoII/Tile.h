@@ -5,27 +5,19 @@
 class Tile
 {
 public:
-	//Initializes position and type
+	//Inicializa posicion y tipo
 	Tile(int x, int y, int tileType, Juego * pJ);
 
-	//Shows the tile
 	void render(const SDL_Rect& camera) const;
 
-	//Get the tile type
 	inline int getType() const { return mType; };
-
-	//Get the collision box
 	inline SDL_Rect getBox() const{ return mBox; };
 	
-
-
 private:
-	//The attributes of the tile
-	SDL_Rect mBox;
+	SDL_Rect mBox;//Caja de colisiones
 	Juego * pJuego;
 
-
-	//The tile type
+	//Tipo de tile
 	int mType;
 };
 #endif

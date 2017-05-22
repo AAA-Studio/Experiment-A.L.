@@ -3,17 +3,14 @@
 #include <SDL.h>
 #include "Tile.h"
 #include "MundoVirtual.h"
-#include <fstream>
 #include <string>
-
 
 class Mapa
 {
 public:
-	Mapa(MundoVirtual * pM, string mapa); ////
+	Mapa(MundoVirtual * pM, string mapa);
 	~Mapa();
 
-	//Checks collision box against set of tiles
 	bool touchesWall(SDL_Rect box);
 	bool touchesDoor(SDL_Rect box, int& tipo);
 
@@ -31,12 +28,12 @@ private:
 	string nombreMapa;
 	Tile* tileMap[TOTAL_TILES];
 	bool Puerta1Abierta;
+	int x, y;//Variables en las que se guarda la pos del Spawn del personaje
+	int nivel;
+
 	bool cargarMapa();
 	void buscaSpawn();
-	void setCamera();
+	void setCamera();//Pone la cámara en el centro de cada nivel cuando se pasa de una sala a otra
 
-	int x, y;
-
-	int nivel = 0;
 };
 #endif

@@ -65,7 +65,7 @@ void Efecto::play(int repetitions){
 
 void Efecto::pause() {
 	Mix_PauseMusic();
-	Mix_Pause(-1);
+	//Mix_Pause(-1);
 }
 
 void Efecto::close(){

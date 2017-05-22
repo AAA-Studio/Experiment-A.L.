@@ -1,21 +1,19 @@
 #include "Mapa.h"
 #include "Mundo.h"
+#include <fstream>
 
-Mapa::Mapa(MundoVirtual *pM, string mapa)
+Mapa::Mapa(MundoVirtual *pM, string mapa) : pMundo(pM), nombreMapa(mapa)
 {
-	pMundo = pM;
-	pJuego = pMundo->getPJ();
-	nombreMapa = mapa;
+	pJuego = pM->getPJ();
 	cargarMapa();
 	buscaSpawn();
 	setCamera();
 	Puerta1Abierta = false;
+	nivel = 0;
 }
-
 
 Mapa::~Mapa()
 {
-	//BORRAR TILES
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
 		if (tileMap[i] == NULL)
@@ -24,17 +22,6 @@ Mapa::~Mapa()
 			tileMap[i] = NULL;
 		}
 	}
-}
-
-void Mapa::setCamera()
-{
-	int ancho;
-	if (pJuego->indiceMapas < 6){
-		ancho = 0;
-		
-	}
-	else ancho = 1;
-	pMundo->setCamera(800 * ancho, pJuego->indiceMapas % 6 * 640);
 }
 
 bool Mapa::cargarMapa()
@@ -118,91 +105,89 @@ void  Mapa::buscaSpawn(){
 
 	if (pJuego->getNivel() == 0){
 		x = 350;
-		y = 350+640;
+		y = 350 + 640;
 		encontrado = true;
 		return;
 	}
+
 	//sale en el spawn gris
-	if (pJuego->getNivel() == -1)
+	else if (pJuego->getNivel() == -1)
 		tipo = 185;
 	//spawn rojo
-	if (pJuego->getNivel() == 1)
+	else if(pJuego->getNivel() == 1)
 		tipo = 180;
 
 	//spawn rosa
-	if (pJuego->getNivel() == 2)
+	else if(pJuego->getNivel() == 2)
 		tipo = 191;
 
 	//spawn morado
-	if (pJuego->getNivel() == -2){
+	else if(pJuego->getNivel() == -2)
 		tipo = 184;
-
-	}
+	
 	//spawn azul oscuro
-	if (pJuego->getNivel() == 3)
+	else if(pJuego->getNivel() == 3)
 		tipo = 190;
 
 	//spawn pistacho
-	if (pJuego->getNivel() == -3)
+	else if(pJuego->getNivel() == -3)
 		tipo = 188;
 
 	//spawn marrón
-	if (pJuego->getNivel() == 4)
+	else if (pJuego->getNivel() == 4)
 		tipo = 183;
 
 	//spawn burdeos
-	if (pJuego->getNivel() == -4)
+	else if (pJuego->getNivel() == -4)
 		tipo = 189;
 
 	//spawn verde
-	if (pJuego->getNivel() == 5)
+	else if (pJuego->getNivel() == 5)
 		tipo = 181;
 
 	//spawn azul
-	if (pJuego->getNivel() == -5)
+	else if (pJuego->getNivel() == -5)
 		tipo = 182;
+
 	//spawn en espejo
-	if (pJuego->indiceMapas<6 && pJuego->getNivel() == -6)
+	else if (pJuego->indiceMapas<6 && pJuego->getNivel() == -6)
 		tipo = 169;
 	//------------------------------------------------------------------------------------//
 	//                                      MUNDO OSCURO								  //
 	//------------------------------------------------------------------------------------//
 	//spawn espejo en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 6)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 6)
 		tipo = 364;
 	//spawn azul en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -5)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -5)
 		tipo = 377;
 	//spawn verde en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 5)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 5)
 		tipo = 376;
 	//spawn rojo en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 1)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 1)
 		tipo = 375;
 	//spawn gris en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -1)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -1)
 		tipo = 380;
 	//spawn morado en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -2)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -2)
 		tipo = 379;
 	//spawn rosa en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 2)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 2)
 		tipo = 386;
 	//spawn burdeos en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -4)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -4)
 		tipo = 384;
 	//spawn pistacho en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == -3)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -3)
 		tipo = 383;
 	//spawn azul oscuro en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 3)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 3)
 		tipo = 385;
 	//spawn pistacho en oscuro
-	if (pJuego->indiceMapas>5 && pJuego->getNivel() == 4)
+	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 4)
 		tipo = 378;
-
-
-
 
 	while (!encontrado && i < TOTAL_TILES)
 	{
@@ -219,14 +204,21 @@ void  Mapa::buscaSpawn(){
 	setCamera();
 }
 
-
+//Pone la cámara en el centro de cada nivel cuando se pasa de una sala a otra
+void Mapa::setCamera()
+{
+	int ancho;
+	if (pJuego->indiceMapas < 6)
+		ancho = 0;
+	else 
+		ancho = 1;
+	pMundo->setCamera(800 * ancho, pJuego->indiceMapas % 6 * 640);
+}
 
 bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 {
-
 	SDL_Rect felpudo;
 	 
-
 	//Go through the tiles
 	for (int i = 0; i < TOTAL_TILES; ++i)
 	{
@@ -252,7 +244,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					}
 				}
 					//PUERTA GRIS
-					if ((tileMap[i]->getType() == 155))
+			else if ((tileMap[i]->getType() == 155))
 					{
 						felpudo = tileMap[i]->getBox();
 						felpudo.x = felpudo.x + 10;
@@ -269,7 +261,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 					}
 				//PUERTA MORADA
-				if ((tileMap[i]->getType() == 154))
+			else if ((tileMap[i]->getType() == 154))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -286,7 +278,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA ROSA
-				if ((tileMap[i]->getType() == 140))
+			else if ((tileMap[i]->getType() == 140))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -302,7 +294,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA PISTACHO
-				if (pJuego->getPuerta(0) && (tileMap[i]->getType() == 158))
+			else if (pJuego->getPuerta(0) && (tileMap[i]->getType() == 158))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -319,7 +311,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA AZUL OSCURO
-				if ((tileMap[i]->getType() == 165))
+			else if ((tileMap[i]->getType() == 165))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -337,7 +329,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA BURDEOS
-				if ( false && (tileMap[i]->getType() == 159))
+			else if (false && (tileMap[i]->getType() == 159))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -354,7 +346,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA MARRÓN
-				if ((tileMap[i]->getType() == 153))
+			else if ((tileMap[i]->getType() == 153))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -372,7 +364,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA AZUL
-				if (((pJuego->getLLavesCogidas(0) || Puerta1Abierta)) && (tileMap[i]->getType() == 152))
+			else if (((pJuego->getLLavesCogidas(0) || Puerta1Abierta)) && (tileMap[i]->getType() == 152))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.y = felpudo.y + 25;
@@ -398,7 +390,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				// PUERTA VERDE
-				if ((tileMap[i]->getType() == 151))
+			else if ((tileMap[i]->getType() == 151))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -416,7 +408,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				}
 
 				// ESPEJO
-				if ((tileMap[i]->getType() == 114))
+			else if ((tileMap[i]->getType() == 114))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -440,7 +432,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				//If the tile is a wall type tile
 				//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
 				//PUERTA ROJA (OSCURO)
-				if ((tileMap[i]->getType() == 345))
+			else if ((tileMap[i]->getType() == 345))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -455,7 +447,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					}
 				}
 				//PUERTA GRIS (OSCURO)
-				if ((tileMap[i]->getType() == 350))
+			else if ((tileMap[i]->getType() == 350))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -472,7 +464,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA MORADA (OSCURO)
-				if ((tileMap[i]->getType() == 349))
+			else if ((tileMap[i]->getType() == 349))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -489,7 +481,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA ROSA (OSCURO)
-				if ((tileMap[i]->getType() == 335))
+			else if ((tileMap[i]->getType() == 335))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -505,7 +497,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA PISTACHO (OSCURO)
-				if ((tileMap[i]->getType() == 353))
+			else if ((tileMap[i]->getType() == 353))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -522,7 +514,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA AZUL OSCURO (OSCURO)
-				if ((tileMap[i]->getType() == 360))
+			else if ((tileMap[i]->getType() == 360))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -540,7 +532,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA BURDEOS (OSCURO)
-				if ((tileMap[i]->getType() == 354))
+			else if ((tileMap[i]->getType() == 354))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -557,7 +549,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA MARRÓN
-				if ((tileMap[i]->getType() == 348))
+			else if ((tileMap[i]->getType() == 348))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -575,7 +567,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				//PUERTA AZUL (OSCURO)
-				if ((tileMap[i]->getType() == 347))
+			else if ((tileMap[i]->getType() == 347))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.y = felpudo.y + 25;
@@ -592,7 +584,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				}
 				// PUERTA VERDE (OSCURO)
-				if ((tileMap[i]->getType() == 346))
+			else if ((tileMap[i]->getType() == 346))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -610,7 +602,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				}
 
 				// ESPEJO (OSCURO)
-				if ((tileMap[i]->getType() == 309))
+			else if ((tileMap[i]->getType() == 309))
 				{
 					felpudo = tileMap[i]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -626,106 +618,13 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					}
 
 				}
-
-				//No colisionar con suelo y alfombras
-				if ((tileMap[i]->getType() != 0
-					&& tileMap[i]->getType() != 1
-					&& tileMap[i]->getType() != 2
-					&& tileMap[i]->getType() != 3
-					&& tileMap[i]->getType() != 16
-					&& tileMap[i]->getType() != 17
-					&& tileMap[i]->getType() != 18
-					&& tileMap[i]->getType() != 30
-					&& tileMap[i]->getType() != 31
-					&& tileMap[i]->getType() != 32
-					&& tileMap[i]->getType() != 33
-					&& tileMap[i]->getType() != 54
-					&& tileMap[i]->getType() != 55
-					&& tileMap[i]->getType() != 82
-					&& tileMap[i]->getType() != 114
-					&& tileMap[i]->getType() != 139
-					&& tileMap[i]->getType() != 140
-					&& tileMap[i]->getType() != 150
-					&& tileMap[i]->getType() != 151
-					&& tileMap[i]->getType() != 152
-					&& tileMap[i]->getType() != 153
-					&& tileMap[i]->getType() != 154
-					&& tileMap[i]->getType() != 155
-					&& tileMap[i]->getType() != 158
-					&& tileMap[i]->getType() != 159
-					&& tileMap[i]->getType() != 165
-					&& tileMap[i]->getType() != 169	
-					&& tileMap[i]->getType() != 180
-					&& tileMap[i]->getType() != 181
-					&& tileMap[i]->getType() != 182
-					&& tileMap[i]->getType() != 183
-					&& tileMap[i]->getType() != 184
-					&& tileMap[i]->getType() != 185
-					&& tileMap[i]->getType() != 186
-					&& tileMap[i]->getType() != 187
-					&& tileMap[i]->getType() != 188
-					&& tileMap[i]->getType() != 189
-					&& tileMap[i]->getType() != 190
-					&& tileMap[i]->getType() != 191
-					//------------------------------------------------------------------------------------//
-					//                                      MUNDO OSCURO								  //
-					//------------------------------------------------------------------------------------//
-
-					&& tileMap[i]->getType() != 195
-					&& tileMap[i]->getType() != 196
-					&& tileMap[i]->getType() != 197
-					&& tileMap[i]->getType() != 199
-					&& tileMap[i]->getType() != 200
-					&& tileMap[i]->getType() != 201
-					&& tileMap[i]->getType() != 202
-					&& tileMap[i]->getType() != 211
-					&& tileMap[i]->getType() != 212
-					&& tileMap[i]->getType() != 213
-					&& tileMap[i]->getType() != 214
-					&& tileMap[i]->getType() != 215
-					&& tileMap[i]->getType() != 216
-					&& tileMap[i]->getType() != 225
-					&& tileMap[i]->getType() != 226
-					&& tileMap[i]->getType() != 227
-					&& tileMap[i]->getType() != 228
-					&& tileMap[i]->getType() != 309
-					&& tileMap[i]->getType() != 334
-					&& tileMap[i]->getType() != 335
-					&& tileMap[i]->getType() != 345
-					&& tileMap[i]->getType() != 346
-					&& tileMap[i]->getType() != 347
-					&& tileMap[i]->getType() != 348
-					&& tileMap[i]->getType() != 349
-					&& tileMap[i]->getType() != 350
-					&& tileMap[i]->getType() != 353
-					&& tileMap[i]->getType() != 354
-					&& tileMap[i]->getType() != 360
-					&& tileMap[i]->getType() != 364
-					&& tileMap[i]->getType() != 375
-					&& tileMap[i]->getType() != 376
-					&& tileMap[i]->getType() != 377
-					&& tileMap[i]->getType() != 378
-					&& tileMap[i]->getType() != 379
-					&& tileMap[i]->getType() != 380
-					&& tileMap[i]->getType() != 382
-					&& tileMap[i]->getType() != 384
-					&& tileMap[i]->getType() != 383
-					&& tileMap[i]->getType() != 385
-					&& tileMap[i]->getType() != 386
-					))
-
-				{
-					//Si se choca con la pared
-					if (pMundo->checkCollision(box, tileMap[i]->getBox()))
-						return true;
-				}
-
 	}
 
 	//If no wall tiles were touched
 	return false;
 
 }
+
 bool Mapa::touchesWall(SDL_Rect box)
 {
 	bool aux = false;
@@ -830,6 +729,4 @@ bool Mapa::touchesWall(SDL_Rect box)
 void Mapa::draw()const{
 	for (int i = 0; i < TOTAL_TILES; ++i)
 		tileMap[i]->render(pMundo->getCamera());
-
-
 }
