@@ -35,6 +35,16 @@ public:
 
 	virtual void ponmeArma()=0;
 
+	virtual  int getNivel() const = 0;
+	virtual void setNivel(int i) = 0;
+
+	virtual int getIndiceMapa()const  = 0;
+	virtual void setIndiceMapa(int i) = 0;
+
+	virtual bool getLLavesCogidas(int indice) const = 0;
+	virtual void setLlaveCogida(int indice) = 0;
+
+
 };
 
 #endif

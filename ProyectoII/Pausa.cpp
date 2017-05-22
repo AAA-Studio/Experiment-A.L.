@@ -10,8 +10,8 @@ static void goPlay(Juego * pj){
 	pj->popState();
 };
 static void goMenu(Juego * pj){
-	pj->borraEstado = true;
-	pj->estadoEnum = MInicio;
+	pj->setBorraEstado(true);
+	pj->setEstadoEnum(MInicio);
 };
 
 void Pausa::initObjetos(){

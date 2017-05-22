@@ -9,8 +9,8 @@ MenuInicio::MenuInicio(Juego * pJ) : Menu(pJ)
 }
 
 static void goControles(Juego * pj){
-	pj->borraEstado = true;
-	pj->estadoEnum = MundoReal;
+	pj->setBorraEstado(true);
+	pj->setEstadoEnum (MundoReal);
 };
 static void goSalir(Juego * pj){
 	pj->setSalir();

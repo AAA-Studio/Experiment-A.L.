@@ -36,7 +36,7 @@ void Personaje::update()
 
 	//Center the camera over the dot
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
-	if (pJuego->indiceMapas<6 && !informeCogido && !cinematica && pierdesVida)
+	if (pMundo->getIndiceMapa() <6 && !informeCogido && !cinematica && pierdesVida)
 		vida -= 0.1;
 
 
@@ -56,9 +56,9 @@ void Personaje::draw(int x, int y)const
 	if (informeCogido)
 		pJuego->getResources()->getTextura(informe)->draw(pJuego->getRender(), rectInforme, rectInforme.x, rectInforme.y, nullptr);
 
-	if (pJuego->getLLavesCogidas(0))
+	if (pMundo->getLLavesCogidas(0))
 		pJuego->getResources()->getTextura(JuegoSDL::TLlave)->draw(pJuego->getRender(), rectLlave, 50, SCREEN_HEIGHT - 100, nullptr);
-	if (pJuego->getLLavesCogidas(1))
+	if (pMundo->getLLavesCogidas(1))
 		pJuego->getResources()->getTextura(JuegoSDL::TLlave)->draw(pJuego->getRender(), rectLlave, 150, SCREEN_HEIGHT - 100, nullptr);
 }
 
@@ -206,7 +206,7 @@ void Personaje::move(int x, int y)
 }
 
 void Personaje::disparo(){
-if (arma != nullptr && arma->getBalas() > 0 && pMundo->getPJ()->indiceMapas >5){
+if (arma != nullptr && arma->getBalas() > 0 && pMundo->getIndiceMapa() >5){
 		if (SDL_GetTicks() - ultimaBala >= arma->getCadencia() )//Se pide la hora y se compara con la última 
 		{
 			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, rect.w / 15, rect.h / 15, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje));
@@ -254,8 +254,8 @@ void Personaje::coger(){
 				pMundo->destruyeLlave(objeto);
 				break;
 			case OTeclado:
-				pJuego->borraEstado = true;
-				pJuego->estadoEnum = ECombinaciones;
+				pJuego->setBorraEstado(true);
+				pJuego->setEstadoEnum(ECombinaciones);
 				break;
 			}
 		}

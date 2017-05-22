@@ -53,6 +53,25 @@ public:
 	inline virtual SDL_Rect getCamera() const{ return camera; };
 
 	virtual void setCamera(int x, int y){ camera.x = x; camera.y = y; };
+
+
+
+	//Saber el nivel del mapa en el que estamos
+	inline int getNivel() const { return nivel; };
+	void setNivel(int i){
+		nivel = i;
+		indiceMapa += nivel;
+	};
+
+	//Mapa
+	inline int getIndiceMapa()const { return indiceMapa; };
+	inline void setIndiceMapa(int i){ indiceMapa = i; };
+
+	//Llaves
+	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
+	inline void setLlaveCogida(int indice) { llavesCogidas[indice] = !llavesCogidas[indice]; };
+
+
 	
 private:
 	//-------------------ATRIBUTOS---------------
@@ -79,6 +98,13 @@ private:
 	int veces;
 	bool dibuja;
 	bool primeCinematica;
+
+	int indiceMapa;
+	int nivel;
+
+	bool llavesCogidas[TAMAÑO_LLAVES];
+
+	
 
 	//-------------------METODOS-------------------
 	void cargaObjetos();

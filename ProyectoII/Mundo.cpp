@@ -10,12 +10,15 @@
 Mundo::Mundo(Juego * pJ, string m)
 {
 	pJuego = pJ;
-	if (pJuego->nuevoJuego)
-		pJuego->reset();
+
+	nivel = 0;
+	indiceMapa = 1;
+
 	pausa = false;
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	mapa = new Mapa(this, m);
 	initObjetos();
+
 	cargaObjetos();
 	abierto = false;
 	balaDestruida = false;
@@ -32,6 +35,14 @@ Mundo::Mundo(Juego * pJ, string m)
 	dibuja = true;
 	veces = 0;
 	primeCinematica = true;
+
+
+
+	for (int i = 0; i < TAMAÑO_LLAVES; i++) //Se inicializan las llaves
+		llavesCogidas[i] = false;
+
+
+
 }
 
 
@@ -42,8 +53,8 @@ Mundo::~Mundo()
 }
 
 void Mundo::cargaObjetos(){
-	string objts = pJuego->dameObjetos();
-	int nivel = pJuego->indiceMapas;
+	string objts = pJuego->getNombreObjetos();
+
 
 	std::ifstream obj(objts);
 	if (!obj.is_open())
@@ -260,11 +271,11 @@ void Mundo::initObjetos()
 	void Mundo::update(){
 		psj->update();//Update de personaje
 		balaDestruida = false;
-		if (pJuego->indiceMapas == 0 && !(psj->getempiezaPerderVida()))
+		if (indiceMapa == 0 && !(psj->getempiezaPerderVida()))
 			psj->empiezaPerderVida();
 		if (psj->getVida() <= 0){
-			pJuego->estadoEnum = MGameOver;
-			pJuego->borraEstado = true;
+			pJuego->setEstadoEnum(MGameOver);
+			pJuego->setBorraEstado(true);
 		}
 		//Balas
 		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
@@ -344,7 +355,7 @@ void Mundo::initObjetos()
 		
 		//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
 		if (!dibuja && contador == 500){
-			setCamera(800 * 1, pJuego->indiceMapas % 6 * 640);
+			setCamera(800 * 1, indiceMapa % 6 * 640);
 			cambiaPosPSJ(1120, 830);
 			dibuja = true;
 		}
@@ -353,7 +364,7 @@ void Mundo::initObjetos()
 		if (dibuja && contador == 600)
 		{
 			dibuja = false;
-			setCamera(0, pJuego->indiceMapas % 6 * 640);
+			setCamera(0, indiceMapa % 6 * 640);
 			cambiaPosPSJ(320, 830);
 			//camera.x = 320; camera.y = 830;
 		}
@@ -475,8 +486,8 @@ void Mundo::initObjetos()
 				destruyeBala(balasEnems, itBalasEnems);
 
 				if (psj->getVida() <= 0){
-					pJuego->borraEstado = true;
-					pJuego->estadoEnum = MGameOver;
+					pJuego->setBorraEstado(true);
+					pJuego->setEstadoEnum (MGameOver);
 				}
 			}
 			else
@@ -495,7 +506,7 @@ void Mundo::initObjetos()
 
 			//Pausa
 			if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
-				pJuego->estadoEnum = MPausa;
+				pJuego->setEstadoEnum (MPausa);
 			}
 
 			//Personaje
@@ -633,10 +644,10 @@ void Mundo::initObjetos()
 		delete (llave);
 		llave = nullptr;
 
-		if (pJuego->getLLavesCogidas(0))
-			pJuego->setLlaveCogida(1);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
+		if (getLLavesCogidas(0))
+			setLlaveCogida(1);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
 		else
-			pJuego->setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
+			setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
 	}
 	void Mundo::ponmeArma(){
 		list<Armas*>::iterator it = armas.begin();

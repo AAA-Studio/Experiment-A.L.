@@ -43,9 +43,10 @@ enum ListaBalas_t{ LBalasEnemigos, LBalasPersonaje };
 class Juego : public JuegoSDL
 {
 public:
+
 	//Constructora, en caso de error muestra un mensaje y deja los atributos nulos y hace un thwrow que se captura en main
 	Juego();
-	void reset();
+
 	//Destructora
 	~Juego();
 	
@@ -62,92 +63,94 @@ public:
 	//Elimina el último estado
 	void popState();
 
-	// en duda
-	void goToPausa(EstadoJuego * estado);
-	void goToControles(EstadoJuego* estado);
-	//crea el estado combinaciones
-	void goToCombinaciones(EstadoJuego* estado);
+	void goToState(EstadoJuego * estado);
 
 	//Sale del programa
 	void inline setSalir() { exit = true; };
 
-	void setNivel(int i){
-		nivel = i;
-		indiceMapas += nivel;
-	};
-	//---------------GETTER----------------------
-	//Saber el nivel del mapa en el que estamos
-	int getNivel() { return nivel; };
-	//Detecta posición del raton
-	void getMousePos(int & mpx, int & mpy) const;
+	//SETTER Y GETTER
+	inline void setBorraEstado(bool borrar){ borraEstado = borrar; };
+	inline bool getBorraEstado()const{ return borraEstado; };
 
-	//---------------GETTER----------------------
-
-	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
-	inline void setLlaveCogida(int indice){ llavesCogidas[indice] = !llavesCogidas[indice]; };
-
-
-	//-----------TILE----------------
-	// NUCA DEJARE DE ODIAROS
-	SDL_Rect gTileClips[TOTAL_TILE_SPRITES]; //Array con los rectángulos de las colisiones
-
-	inline SDL_Rect getRectTile(int numTile){ return gTileClips[numTile]; };//Devuelve la colision del tile pasado como parametro
-
-	void recortarTiles();
-
-	//---------------------------------------
-
-	void escribir(string texto, int x, int y){
-		getResources()->getTextura(TFuente)->renderFont(pRenderer_, x, y, texto,*getResources()->getFuente(FNormal));
-	}
-	// ES PUBLICO PORQUE OS ODIO
-	bool borraEstado;
-	Estados_t estadoEnum;
+	inline Estados_t getEstadoEnum(){ return estadoEnum; };
+	inline void setEstadoEnum(Estados_t est){ estadoEnum = est; };
 
 	void gestionaEstados(Estados_t estado);
 
-	string SelectorDeNiveles();
-	int indiceMapas = 1;
-	//geter de los objetos desde fichero
-	string dameObjetos(){ return nombreObjetos[0]; }
+	//------------ESTADOS------------------------
 
-	//setter para cambiar el estado de una puerta cerrada a abierta
-	void setPuerta(int i, bool estado){ puertas[i] = estado; }
 
-	bool getPuerta(int i);
+	//---------------GETTER Y SETTER----------------------
+	//Raton
+	//Detecta posición del raton
+	void getMousePos(int & mpx, int & mpy) const;
 
-	//setter y getter de numero (EstadoCombinaciones)
+	//Puerta
+	void setPuerta(int i, bool estado){ puertasAbiertas[i] = estado; }
+	inline bool getPuerta(int i)const{ return puertasAbiertas[i]; };
+
+	//Objetos
+	string getNombreObjetos(){ return nombreObjetos; }
+
+	//Combinaciones
+	//Esto debe estar aquÍIIIIIII Numero de la combinacion
 	void setNumero(int i){ numero = i; }
-	int getNumero();
-	bool nuevoJuego = false;
+	inline int getNumero()const{ return numero; };
+
+	//Tile
+	//Devuelve la colision del tile pasado como parametro
+	inline SDL_Rect getRectTile(int numTile){ return gTileClips[numTile]; };
+
+	//---------------GETTER Y SETTER----------------------
+
+	//Metodo para escribir en una parte concreta de la ventana
+	void escribir(string texto, int x, int y){
+		getResources()->getTextura(TFuente)->renderFont(pRenderer_, x, y, texto, *getResources()->getFuente(FNormal));
+	}
+
 
 private:
-
-
-
-	//Atributos
-	
-	int nivel;
-	bool exit;
-	int posMouseX, posMouseY;
-	vector <string> nombreMapas;
-	vector <string> nombreObjetos;
-	int numero; //numero para los teclados del estado combinaciones
-
-
+	//-----------------------------ATRIBUTOS--------------------------
+	//Estados
+	bool borraEstado;
 	vector <EstadoJuego*> vectorEstados;
-	bool llavesCogidas[TAMAÑO_LLAVES];
+	Estados_t estadoEnum;
+	
+	//Raton
+	int posMouseX, posMouseY;
 
+	//Nombre de archivos
+	string nombreMapa;
+	string nombreObjetos;
+
+	//Combinaciones
+	int numero; //numero para los teclados del estado combinaciones
+	bool puertasAbiertas[1];
+	vector <string> combinaciones;//Esto debe estar aquí porque combinaciones es un estado aparte, no pertenece a mundo
+	
+	//Salir del juego 
+	bool exit;
+	
+	//Tile
+	SDL_Rect gTileClips[TOTAL_TILE_SPRITES];
+
+	//---------------------------ATRIBUTOS-----------------------------
+
+
+
+	//----------------------------MÉTODOS--------------------------------
+
+	//Interfaz
+	void handle_event();	// REVISAR
 	void render();
 
-	// REVISAR
-	void handle_event();
+	//Tile
+	void recortarTiles();
 
 	//Añade un nuevo estado
 	void pushState(EstadoJuego * nuevoEstado);
 
-	vector <string> combinaciones;
-	bool puertas[1];
+	//----------------------------MÉTODOS--------------------------------
 };
 
 #endif
