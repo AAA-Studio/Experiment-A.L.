@@ -41,11 +41,6 @@ void Combinaciones::update(){
 		intentos = 0;
 	}
 
-	if (acierto)
-	{
-		pJuego->setPuerta(puerta, acierto);
-		pJuego->popState();		
-	}
 }
 void Combinaciones::initObjetos(){
 	objetos.emplace_back(new Boton(pJuego, 370, 480, 60, 75, JuegoSDL::TCero, JuegoSDL::ENull, cero));
@@ -59,6 +54,7 @@ void Combinaciones::initObjetos(){
 	objetos.emplace_back(new Boton(pJuego, 370, 390, 60, 75, JuegoSDL::TOcho, JuegoSDL::ENull, ocho));
 	objetos.emplace_back(new Boton(pJuego, 460, 390, 60, 75, JuegoSDL::TNueve, JuegoSDL::ENull, nueve));
 	objetos.emplace_back(new Boton(pJuego, 280, 480, 60, 75, JuegoSDL::TVolver, JuegoSDL::ENull, salir));
+	objetos.emplace_back(new Boton(pJuego, 460, 480, 60, 75, JuegoSDL::TCero, JuegoSDL::ENull, enter));
 	objetos.emplace_back(new Boton(pJuego, 200, 100, 400, 500, JuegoSDL::TKeypad, JuegoSDL::ENull, enter));
 	}
 
@@ -77,32 +73,57 @@ void Combinaciones::onInput(SDL_Event &e){
 	if (e.type == SDL_KEYUP){ //si se pulsa una tecla comprueba que es p
 		if (e.key.keysym.sym == SDLK_RETURN)
 		{
-
-			cout << "hello";
-			combTecleada += to_string(boton);
-			cout << " intentos: " + intentos;
-			cout << " combinacion: " + combTecleada;
-			intentos++;
+			if (boton == 11)
+				pulsaEnter();
+			else if (boton == 10)
+				pulsaSalir();
+			else
+			{
+				combTecleada += to_string(boton);
+				cout << " intentos: " + intentos;
+				cout << " combinacion: " + combTecleada;
+				intentos++;
+			}
 		}
-		else if (e.key.keysym.sym == SDLK_RIGHT)
+		else if (e.key.keysym.sym == SDLK_RIGHT && boton != 3 && boton != 6 && boton != 9 && boton != 11)
 		{
-			boton += 1;
+			if (boton == 0)
+				boton = 11;
+			else if (boton == 10)
+				boton = 0;
+			else 
+				boton += 1;
 		}
-		else if (e.key.keysym.sym == SDLK_LEFT)
+		else if (e.key.keysym.sym == SDLK_LEFT && boton != 1 && boton != 4 && boton != 7 && boton != 10)
 		{
-			boton -= 1;
+			if (boton == 0)
+				boton = 10;
+			else if (boton == 11)
+				boton = 0;
+			else
+				boton -= 1;
 		}
-		else if (e.key.keysym.sym == SDLK_UP)
+		else if (e.key.keysym.sym == SDLK_UP && boton != 1 && boton != 2 && boton != 3)
 		{
-			boton -= 3;
+			if (boton == 0)
+				boton = 8;
+			else if (boton == 11)
+				boton = 9;
+			else
+				boton -= 3;
 		}
-		else if (e.key.keysym.sym == SDLK_DOWN)
+		else if (e.key.keysym.sym == SDLK_DOWN && boton != 10 && boton != 11 && boton != 0)
 		{
-			boton += 3;
+			if (boton == 8)
+				boton = 0;
+			else if (boton == 9)
+				boton = 11;
+			else
+				boton += 3;
 		}
 		
 	}
-	if (e.type == SDL_MOUSEBUTTONUP)
+	/*if (e.type == SDL_MOUSEBUTTONUP)
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
@@ -133,6 +154,20 @@ void Combinaciones::onInput(SDL_Event &e){
 			pulsado = false;
 			i = 0;
 		}
-	}
+	}*/
 
+}
+
+void Combinaciones::pulsaEnter()
+{
+	if (acierto)
+	{
+		pJuego->setPuerta(puerta, acierto);
+		pJuego->popState();
+	}
+}
+
+void Combinaciones::pulsaSalir()
+{
+	pJuego->popState();
 }
