@@ -29,11 +29,10 @@ private:
 	Tile* tileMap[TOTAL_TILES];
 	bool Puerta1Abierta;
 	int x, y;//Variables en las que se guarda la pos del Spawn del personaje
-	int nivel;
+	//int nivel;
 
 	bool cargarMapa();
 	void buscaSpawn();
 	void setCamera();//Pone la cámara en el centro de cada nivel cuando se pasa de una sala a otra
-
 };
 #endif

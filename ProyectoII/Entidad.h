@@ -9,7 +9,7 @@ class Entidad : virtual public EntidadJuego
 {
 public:
 
-	Entidad(Juego*pJ, double x, double y, double w, double h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, Objetos_t tipo);
+	Entidad(Juego*pJ, double x, double y, double w, double h, JuegoSDL::Texturas_t tex, JuegoSDL::Efectos_t efecto, Objetos_t tipo);
 
 	virtual ~Entidad();
 
@@ -22,14 +22,10 @@ public:
 
 	virtual void setVisible(bool visible);
 	virtual void move(int x, int y);
-	virtual int getY(){ return rect.y; }
-	virtual int getX(){ return rect.x; }
-
-
 protected:
 
 	Juego * pJuego;//Sustituye al puntero a la textura y al renderizador de la clase globo
-	JuegoSDL::Texturas_t pTextura;
+	JuegoSDL::Texturas_t textura;
 	JuegoSDL::Efectos_t sonido;
 	Objetos_t type;
 

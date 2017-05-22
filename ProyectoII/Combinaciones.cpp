@@ -29,13 +29,10 @@ Combinaciones::Combinaciones(Juego* juego, string combinacion, int puerta) : Men
 
 void Combinaciones::update(){
 	
-	for (int i = 0; i < objetos.size(); i++)
-		objetos[i]->update();
+	Menu::update();
 
 	if (combinacion == combTecleada)
-	{
 		acierto = true;
-	}
 
 	if (intentos == 4)
 	{
@@ -108,8 +105,4 @@ void Combinaciones::onInput(SDL_Event &e){
 		}
 	}
 
-}
-
-Combinaciones::~Combinaciones()
-{
 }

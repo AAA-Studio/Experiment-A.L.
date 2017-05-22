@@ -10,15 +10,14 @@ class Combinaciones : public Menu
 {
 public:
 	Combinaciones(Juego* juego, string combinacion, int puerta);
+	~Combinaciones(){};
 
 	virtual void draw() const;
 	virtual void update();
 	virtual void onInput(SDL_Event &e);
-	~Combinaciones();
 
-protected:
+private:
 	void initObjetos();
-	vector <EntidadJuego*> objetos;
 	string combTecleada; //combinacion tecleada por el jugador
 	string combinacion; //combinacion correcta
 	bool acierto;

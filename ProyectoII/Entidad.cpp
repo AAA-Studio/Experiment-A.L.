@@ -1,19 +1,13 @@
 #include "Entidad.h"
 
 
-Entidad::Entidad(Juego*pJ, double x, double y, double w, double h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, Objetos_t tipo)
+Entidad::Entidad(Juego*pJ, double x, double y, double w, double h, JuegoSDL::Texturas_t tex, JuegoSDL::Efectos_t efecto, Objetos_t tipo)
+	: pJuego(pJ), rect({ x, y, w, h }), textura(tex), sonido(efecto), type (tipo)
 {
-	rect = { x, y, w,h };
-	pJuego = pJ;
-	pTextura = textura;
-	sonido = efecto; 
-	type = tipo;
 	visible = true;
 }
 
-Entidad::~Entidad()
-{
-}
+Entidad::~Entidad(){}
 
 void Entidad::move(int x, int y){
 	rect.x += x;
@@ -28,6 +22,6 @@ void  Entidad::setVisible(bool visible){
 void Entidad::draw(int x, int y)const
 {
 	if (visible)
-		pJuego->getResources()->getTextura(pTextura)->draw(pJuego->getRender(), rect,x,y,nullptr);//Dibujamos la textura
+		pJuego->getResources()->getTextura(textura)->draw(pJuego->getRender(), rect,x,y,nullptr);//Dibujamos la textura
 }
 

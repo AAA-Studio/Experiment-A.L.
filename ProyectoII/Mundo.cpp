@@ -24,7 +24,7 @@ Mundo::Mundo(Juego * pJ, string m)
 
 	//pJuego->getMusica(MPlay)->play();
 
-	cinematica = true;
+	cinematica = false;
 	contador = 0;
 	objetos[1]->setVisible(false);
 	moverI = false;
@@ -121,7 +121,7 @@ void Mundo::initObjetos()
 	//lala
 		if (primeCinematica)
 		{
-			psj = new Personaje(this, 320, 830, JuegoSDL::TJugador, JuegoSDL::ENull);
+			psj = new Personaje(this, 400, 830, JuegoSDL::TJugador, JuegoSDL::ENull);
 		}
 		else
 		{
@@ -327,11 +327,13 @@ void Mundo::initObjetos()
 		//COLISIONES
 		colBalaEnemigo();
 		colBalaPersonaje();
+		
 		if (cinematica)
 		{
 			contador++;
 			cinematicaInicial();
 		}
+		
 	}
 
 	void Mundo::cinematicaInicial(){
@@ -399,7 +401,7 @@ void Mundo::initObjetos()
 			moverP = true;
 		}
 
-		if (objetos[1]->getY() >= 950){
+		if (objetos[1]->getRect().y >= 950){
 			moverI = false;
 			cinematica = false;
 			primeCinematica = false;
@@ -407,7 +409,7 @@ void Mundo::initObjetos()
 
 		}
 
-		if (psj->getX() >= 450)
+		if (psj->getRect().x >= 450)
 		{
 			moverP = false;
 			

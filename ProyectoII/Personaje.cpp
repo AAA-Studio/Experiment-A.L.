@@ -49,11 +49,8 @@ void Personaje::mover(int x, int y){
 
 void Personaje::draw(int x, int y)const
 {
-
-	//Entidad::draw(x,y);
-
-	
-	pJuego->getResources()->getTextura(pTextura)->draw(pJuego->getRender(), rect,x,y, &rectAn);//Dibujamos la textura
+	//Tiene animación, sobrescribe la herencia
+	pJuego->getResources()->getTextura(textura)->draw(pJuego->getRender(), rect,x,y, &rectAn);//Dibujamos la textura
 
 
 	if (informeCogido)
@@ -212,7 +209,7 @@ void Personaje::disparo(){
 if (arma != nullptr && arma->getBalas() > 0 && pMundo->getPJ()->indiceMapas >5){
 		if (SDL_GetTicks() - ultimaBala >= arma->getCadencia() )//Se pide la hora y se compara con la última 
 		{
-			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje, rect.w / 15, rect.h / 15));
+			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, rect.w / 15, rect.h / 15, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje));
 			arma->restaBalas();
 			ultimaBala = SDL_GetTicks();
 		}

@@ -7,9 +7,7 @@ class Pausa : public Menu
 {
 public:
 	Pausa(Juego * pJ);
-	~Pausa();
-
-	virtual void draw() const;
+	~Pausa(){};
 
 private:
 	void initObjetos();

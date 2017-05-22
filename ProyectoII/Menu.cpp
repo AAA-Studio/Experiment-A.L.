@@ -1,11 +1,6 @@
 #include "Menu.h"
 
-Menu::Menu(Juego * pJ)
-{
-	pJuego = pJ;
-
-}
-
+Menu::Menu(Juego * pJ) : pJuego(pJ){}
 
 void Menu::onInput(SDL_Event &e){
 
@@ -41,20 +36,14 @@ void Menu::update()
 
 }
 
-
-//Limpia el buffer y dibuja los objetos
 void Menu::draw() const
 {
-	SDL_Rect rect;
-	rect.x = 0;
-	rect.y = 0;
-	rect.h = 640;	//pJuego->getAlto();
-	rect.w = 800;	//pJuego->getAncho();
+	//Dibujo fondo
+	SDL_Rect rect = { 0, 0, pJuego->getWindowWidth(), pJuego->getWindowHeight() };
 	pJuego->getResources()->getTextura(JuegoSDL::TFondo)->draw(pJuego->getRender(), rect, rect.x, rect.y, nullptr);
+
 	//Dibujar objetos del juego
 	for (int i = objetos.size() - 1; i >= 0; i--)
 		objetos[i]->draw(objetos[i]->getRect().x,objetos[i]->getRect().y);
-
-
 
 }

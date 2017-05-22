@@ -11,7 +11,6 @@ public:
 	GameOver(Juego * pJ);
 	~GameOver(){};
 
-	virtual void draw() const;
 private:
 	void initObjetos();
 
