@@ -24,6 +24,7 @@ Combinaciones::Combinaciones(Juego* juego, string combinacion, int puerta) : Men
 	this->puerta = puerta;
 	intentos = 0;
 	combTecleada = "";
+	juego->setNumero(20);
 	initObjetos();
 }
 

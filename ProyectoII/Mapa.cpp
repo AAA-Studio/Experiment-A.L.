@@ -102,7 +102,7 @@ void  Mapa::buscaSpawn(){
 	bool encontrado = false;
 	int tipo = 0;
 
-	if (pJuego->getNivel() == 0){
+	if (pMundo->getNivel() == 0){
 		x = 350;
 		y = 350 + 640;
 		encontrado = true;
@@ -110,82 +110,82 @@ void  Mapa::buscaSpawn(){
 	}
 
 	//sale en el spawn gris
-	else if (pJuego->getNivel() == -1)
+	else if (pMundo->getNivel() == -1)
 		tipo = 185;
 	//spawn rojo
-	else if(pJuego->getNivel() == 1)
+	else if(pMundo->getNivel() == 1)
 		tipo = 180;
 
 	//spawn rosa
-	else if(pJuego->getNivel() == 2)
+	else if(pMundo->getNivel() == 2)
 		tipo = 191;
 
 	//spawn morado
-	else if(pJuego->getNivel() == -2)
+	else if(pMundo->getNivel() == -2)
 		tipo = 184;
 	
 	//spawn azul oscuro
-	else if(pJuego->getNivel() == 3)
+	else if(pMundo->getNivel() == 3)
 		tipo = 190;
 
 	//spawn pistacho
-	else if(pJuego->getNivel() == -3)
+	else if(pMundo->getNivel() == -3)
 		tipo = 188;
 
 	//spawn marrón
-	else if (pJuego->getNivel() == 4)
+	else if (pMundo->getNivel() == 4)
 		tipo = 183;
 
 	//spawn burdeos
-	else if (pJuego->getNivel() == -4)
+	else if (pMundo->getNivel() == -4)
 		tipo = 189;
 
 	//spawn verde
-	else if (pJuego->getNivel() == 5)
+	else if (pMundo->getNivel() == 5)
 		tipo = 181;
 
 	//spawn azul
-	else if (pJuego->getNivel() == -5)
+	else if (pMundo->getNivel() == -5)
 		tipo = 182;
 
 	//spawn en espejo
-	else if (pJuego->indiceMapas<6 && pJuego->getNivel() == -6)
+	else if (pMundo->getIndiceMapa()<6 && pMundo->getNivel() == -6)
 		tipo = 169;
 	//------------------------------------------------------------------------------------//
 	//                                      MUNDO OSCURO								  //
 	//------------------------------------------------------------------------------------//
 	//spawn espejo en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 6)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 6)
 		tipo = 364;
 	//spawn azul en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -5)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -5)
 		tipo = 377;
 	//spawn verde en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 5)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 5)
 		tipo = 376;
 	//spawn rojo en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 1)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 1)
 		tipo = 375;
 	//spawn gris en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -1)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -1)
 		tipo = 380;
 	//spawn morado en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -2)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -2)
 		tipo = 379;
 	//spawn rosa en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 2)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 2)
 		tipo = 386;
 	//spawn burdeos en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -4)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -4)
 		tipo = 384;
 	//spawn pistacho en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == -3)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -3)
 		tipo = 383;
 	//spawn azul oscuro en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 3)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 3)
 		tipo = 385;
 	//spawn pistacho en oscuro
-	else if (pJuego->indiceMapas>5 && pJuego->getNivel() == 4)
+	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 4)
 		tipo = 378;
 
 	while (!encontrado && i < TOTAL_TILES)
@@ -207,11 +207,11 @@ void  Mapa::buscaSpawn(){
 void Mapa::setCamera()
 {
 	int ancho;
-	if (pJuego->indiceMapas < 6)
+	if (pMundo->getIndiceMapa() < 6)
 		ancho = 0;
 	else 
 		ancho = 1;
-	pMundo->setCamera(800 * ancho, pJuego->indiceMapas % 6 * 640);
+	pMundo->setCamera(800 * ancho, pMundo->getIndiceMapa() % 6 * 640);
 }
 
 bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
@@ -245,7 +245,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-1);
+					pMundo->setNivel(-1);
 					tipo = 150;
 					buscaSpawn();
 					return true;
@@ -261,7 +261,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(1);
+					pMundo->setNivel(1);
 					tipo = 155;
 					buscaSpawn();
 					return true;
@@ -278,7 +278,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(2);
+					pMundo->setNivel(2);
 					tipo = 154;
 					buscaSpawn();
 					return true;
@@ -294,7 +294,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-2);
+					pMundo->setNivel(-2);
 					tipo = 140;
 					buscaSpawn();
 					return true;
@@ -310,7 +310,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(3);
+					pMundo->setNivel(3);
 					tipo = 158;
 					buscaSpawn();
 					return true;
@@ -328,7 +328,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-3);
+					pMundo->setNivel(-3);
 					tipo = 165;
 					buscaSpawn();
 					return true;
@@ -345,7 +345,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(4);
+					pMundo->setNivel(4);
 					tipo = 159;
 					buscaSpawn();
 					return true;
@@ -363,7 +363,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-4);
+					pMundo->setNivel(-4);
 					tipo = 153;
 					buscaSpawn();
 					return true;
@@ -372,7 +372,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 			}
 			//PUERTA AZUL
-			else if (((pJuego->getLLavesCogidas(0) || Puerta1Abierta)) && (tileMap[indice]->getType() == 152))
+			else if (((pMundo->getLLavesCogidas(0) || Puerta1Abierta)) && (tileMap[indice]->getType() == 152))
 			{
 				felpudo = tileMap[indice]->getBox();
 				felpudo.y = felpudo.y + 25;
@@ -381,15 +381,15 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				if (pMundo->checkCollision(box, felpudo)){
 
-					if (pJuego->getLLavesCogidas(1) && !Puerta1Abierta){
+					if (pMundo->getLLavesCogidas(1) && !Puerta1Abierta){
 						Puerta1Abierta = true;
-						pJuego->setLlaveCogida(0);
+						pMundo->setLlaveCogida(0);
 					}
-					else if (pJuego->getLLavesCogidas(0) && !Puerta1Abierta){
+					else if (pMundo->getLLavesCogidas(0) && !Puerta1Abierta){
 						Puerta1Abierta = true;
-						pJuego->setLlaveCogida(0);
+						pMundo->setLlaveCogida(0);
 					}
-					pJuego->setNivel(5);
+					pMundo->setNivel(5);
 					tipo = 152;
 					buscaSpawn();
 					return true;
@@ -406,7 +406,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-5);
+					pMundo->setNivel(-5);
 					tipo = 151;
 					buscaSpawn();
 					return true;
@@ -424,7 +424,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(6);
+					pMundo->setNivel(6);
 					tipo = 114;
 					buscaSpawn();
 					return true;
@@ -448,7 +448,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-1);
+					pMundo->setNivel(-1);
 					tipo = 345;
 					buscaSpawn();
 					return true;
@@ -464,7 +464,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(1);
+					pMundo->setNivel(1);
 					tipo = 350;
 					buscaSpawn();
 					return true;
@@ -481,7 +481,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(2);
+					pMundo->setNivel(2);
 					tipo = 349;
 					buscaSpawn();
 					return true;
@@ -497,7 +497,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-2);
+					pMundo->setNivel(-2);
 					tipo = 335;
 					buscaSpawn();
 					return true;
@@ -513,7 +513,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(3);
+					pMundo->setNivel(3);
 					tipo = 353;
 					buscaSpawn();
 					return true;
@@ -531,7 +531,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-3);
+					pMundo->setNivel(-3);
 					tipo = 360;
 					buscaSpawn();
 					return true;
@@ -548,7 +548,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(4);
+					pMundo->setNivel(4);
 					tipo = 354;
 					buscaSpawn();
 					return true;
@@ -566,7 +566,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-4);
+					pMundo->setNivel(-4);
 					tipo = 348;
 					buscaSpawn();
 					return true;
@@ -583,7 +583,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 25;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(5);
+					pMundo->setNivel(5);
 					tipo = 347;
 					buscaSpawn();
 					return true;
@@ -600,7 +600,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-5);
+					pMundo->setNivel(-5);
 					tipo = 346;
 					buscaSpawn();
 					return true;
@@ -618,7 +618,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				felpudo.w = felpudo.w - 20;
 
 				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(-6);
+					pMundo->setNivel(-6);
 					tipo = 309;
 					buscaSpawn();
 					return true;
