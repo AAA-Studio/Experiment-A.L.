@@ -19,6 +19,8 @@ IdleState::~IdleState()
 
 void IdleState::Enter(EnemigoIA * character) {
 
+	character->SetMaxVelocity(0);
+
 	m_pathfinding = new PathFinding(character->getMapa());
 	
 	pair <float, float> targetLocation = character->findNextWayPoints();
@@ -33,8 +35,9 @@ void IdleState::Execute(EnemigoIA * character) {
 	/* nuevo waypoint*/
 	if (m_pathfinding->GetpathState() == PathFinding::FOUND_GOAL) {
 
-		character->GetStateMachine()->ChangeState(
-			new PatrolState(m_pathfinding->GetClosesPath()));
+		// character->GetStateMachine()->ChangeState(
+		// 	new PatrolState(m_pathfinding->GetClosesPath()));
+		character->GetStateMachine()->ChangeState(new PatrolState(character->getWaypoints()));
 	}
 	/* Personaje */ 
 	if (character->IsWithinRangeOfTarget(20.0f)) {

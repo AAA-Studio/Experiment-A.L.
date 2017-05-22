@@ -1,113 +1,118 @@
-﻿Compilación iniciada a las 22/05/2017 13:19:30.
-     1>Proyecto "D:\hlocal\2 GDV\2 Cuatrimestre\Proyecto\Sprint 12\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
+﻿Compilación iniciada a las 22/05/2017 15:59:56.
+     1>Proyecto "C:\hlocal\Proyecto 2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ChaseState.cpp EnemigoIA.cpp IdleState.cpp PathFinding.cpp PatrolState.cpp
-         PathFinding.cpp
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(35): warning C4244: 'argumento' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(35): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(36): warning C4244: 'argumento' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(36): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(37): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(38): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(43): warning C4244: '=' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(44): warning C4244: '=' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(60): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(61): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(66): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(67): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(48): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(49): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(59): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(60): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(93): warning C4244: 'inicializando' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(94): warning C4244: 'inicializando' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(121): warning C4018: '<' : no coinciden signed/unsigned
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(126): warning C4018: '<' : no coinciden signed/unsigned
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(136): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(137): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(142): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(143): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(179): warning C4018: '<' : no coinciden signed/unsigned
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(217): warning C4244: 'argumento' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(219): warning C4244: 'argumento' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(288): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(291): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(294): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(297): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(300): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(303): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(306): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(309): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(311): warning C4018: '<' : no coinciden signed/unsigned
-     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\utility(157): warning C4244: 'inicializando' : conversión de 'int' a 'float'; posible pérdida de datos
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(281) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(std::pair<int,int> &&)' que se está compilando
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(281) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(std::pair<int,int> &&)' que se está compilando
-     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\utility(144): warning C4244: 'inicializando' : conversión de 'int' a 'float'; posible pérdida de datos
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(329) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(_Other1 &&,_Other2 &&)' que se está compilando
-                 with
-                 [
-                     _Other1=int
-         ,            _Other2=int
-                 ]
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\pathfinding.cpp(329) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(_Other1 &&,_Other2 &&)' que se está compilando
-                 with
-                 [
-                     _Other1=int
-         ,            _Other2=int
-                 ]
+         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Bala.cpp ChaseState.cpp EnemigoIA.cpp IdleState.cpp Juego.cpp Mapa.cpp Mundo.cpp PatrolState.cpp Personaje.cpp
+         IdleState.cpp
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(35): warning C4244: 'argumento' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(35): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(36): warning C4244: 'argumento' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(36): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(37): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(38): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(43): warning C4244: '=' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(44): warning C4244: '=' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(60): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(61): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(66): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(67): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(9): warning C4005: 'M_PI' : redefinición de macro
+                 c:\hlocal\proyecto 2\experiment-a.l\sdl2-2.0.4\include\sdl_stdinc.h(436) : vea la definición anterior de 'M_PI'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(27): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\software\programacion\msvstudio2013\vc\include\utility(157): warning C4244: 'inicializando' : conversión de 'int' a 'float'; posible pérdida de datos
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\idlestate.cpp(27) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(std::pair<int,int> &&)' que se está compilando
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\idlestate.cpp(27) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(std::pair<int,int> &&)' que se está compilando
+         Generando código...
+         Compilando...
+         Mundo.cpp
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\personaje.h(72): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\personaje.h(72): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\personaje.h(32): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(9): warning C4005: 'M_PI' : redefinición de macro
+                 c:\hlocal\proyecto 2\experiment-a.l\sdl2-2.0.4\include\sdl_stdinc.h(436) : vea la definición anterior de 'M_PI'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(27): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
          EnemigoIA.cpp
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigoia.h(9): warning C4005: 'M_PI' : redefinición de macro
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\sdl2-2.0.4\include\sdl_stdinc.h(436) : vea la definición anterior de 'M_PI'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigoia.h(72): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::draw' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigoia.h(72): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::onInput' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigoia.h(72): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::getRect' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigoia.h(72): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::getType' mediante dominación
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigoia.h(27): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(35): warning C4244: 'argumento' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(35): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(36): warning C4244: 'argumento' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(36): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(37): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(38): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(43): warning C4244: '=' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(44): warning C4244: '=' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(60): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(61): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(66): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\searchcell.h(67): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigoia.cpp(78): warning C4244: 'inicializando' : conversión de 'float' a 'int'; posible pérdida de datos
-     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\utility(157): warning C4244: 'inicializando' : conversión de 'int' a 'float'; posible pérdida de datos
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigoia.cpp(43) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(std::pair<int,int> &&)' que se está compilando
-                 d:\hlocal\2 gdv\2 cuatrimestre\proyecto\sprint 12\experiment-a.l\proyectoii\enemigoia.cpp(43) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(std::pair<int,int> &&)' que se está compilando
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(27): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(9): warning C4005: 'M_PI' : redefinición de macro
+                 c:\hlocal\proyecto 2\experiment-a.l\sdl2-2.0.4\include\sdl_stdinc.h(436) : vea la definición anterior de 'M_PI'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(76): warning C4250: 'EnemigoIA' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\entidad.h(22) : vea la declaración de 'Entidad::getType'
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.h(27): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(35): warning C4244: 'argumento' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(35): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(36): warning C4244: 'argumento' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(36): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(37): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(38): warning C4244: 'return' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(43): warning C4244: '=' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(44): warning C4244: '=' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(60): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(61): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(66): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\searchcell.h(67): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.cpp(78): warning C4244: 'inicializando' : conversión de 'float' a 'int'; posible pérdida de datos
+     1>c:\software\programacion\msvstudio2013\vc\include\utility(157): warning C4244: 'inicializando' : conversión de 'int' a 'float'; posible pérdida de datos
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.cpp(43) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(std::pair<int,int> &&)' que se está compilando
+                 c:\hlocal\proyecto 2\experiment-a.l\proyectoii\enemigoia.cpp(43) : vea la referencia a la creación de instancias de plantilla de función 'std::pair<float,float>::pair<int,int,void>(std::pair<int,int> &&)' que se está compilando
          Generando código...
          Omitiendo... (no se detectaron cambios relevantes)
+         Personaje.cpp
          PatrolState.cpp
-         IdleState.cpp
+         Mapa.cpp
+         Juego.cpp
          ChaseState.cpp
+         Bala.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\hlocal\2 GDV\2 Cuatrimestre\Proyecto\Sprint 12\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\hlocal\2 GDV\2 Cuatrimestre\Proyecto\Sprint 12\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\hlocal\2 GDV\2 Cuatrimestre\Proyecto\Sprint 12\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Bala.obj
+         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Bala.obj
          Debug\Boton.obj
          Debug\ChaseState.obj
          Debug\Combinaciones.obj
@@ -130,9 +135,9 @@
          Debug\Personaje.obj
          Debug\TexturasSDL.obj
          Debug\Tile.obj
-         ProyectoII.vcxproj -> D:\hlocal\2 GDV\2 Cuatrimestre\Proyecto\Sprint 12\Experiment-A.L\bin\ProyectoIIDebug.exe
-     1>Compilación del proyecto terminada "D:\hlocal\2 GDV\2 Cuatrimestre\Proyecto\Sprint 12\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos).
+         ProyectoII.vcxproj -> C:\hlocal\Proyecto 2\Experiment-A.L\bin\ProyectoIIDebug.exe
+     1>Compilación del proyecto terminada "C:\hlocal\Proyecto 2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos).
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:05.04
+Tiempo transcurrido 00:00:01.76

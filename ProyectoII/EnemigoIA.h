@@ -31,6 +31,10 @@ public:
 	void SetMaxVelocity(float maxVelocity) { m_maxVelocity = maxVelocity; }
 	// void SetVelocity(float velocityX, float velocityY) { m_velocity.SetX(velocityX); m_velocity.SetY(velocityY); }
 	void SetVelocity(float velocityX, float velocityY) { m_velocity.first = velocityX; m_velocity.second = velocityY; }
+
+
+	// Auxiliar de momento
+	inline std::vector<pair <float, float>> getWaypoints() const { return m_waypoints; }
 	
 	inline void restaVida() { vida--; };
 
