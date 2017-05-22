@@ -25,7 +25,7 @@ const int LEVEL_HEIGHT = 15360;
 const int TILE_WIDTH = 32;
 const int TILE_HEIGHT = 32;
 const int TOTAL_TILES = 24000;
-const int TOTAL_TILE_SPRITES = 690;
+const int TOTAL_TILE_SPRITES = 1000;
 
 //----------------------------------------------------
 

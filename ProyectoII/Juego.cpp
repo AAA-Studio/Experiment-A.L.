@@ -252,7 +252,7 @@ void Juego::handle_event(){
 void Juego::recortarTiles()
 {
 	int k = 0;
-	for (int i = 0; i <= 800; i += 32)
+	for (int i = 0; i <= 1440; i += 32)
 	{
 		for (int j = 0; j <= 448; j += 32)
 		{
