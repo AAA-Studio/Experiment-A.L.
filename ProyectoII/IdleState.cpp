@@ -40,7 +40,7 @@ void IdleState::Execute(EnemigoIA * character) {
 		character->GetStateMachine()->ChangeState(new PatrolState(character->getWaypoints()));
 	}
 	/* Personaje */ 
-	if (character->IsWithinRangeOfTarget(20.0f)) {
+	if (character->IsWithinRangeOfTarget(50.0f)) {
 		character->GetStateMachine()->ChangeState(new ChaseState());
 	}
 }
