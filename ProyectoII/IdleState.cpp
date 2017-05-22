@@ -3,7 +3,7 @@
 #include "PatrolState.h"
 #include "ChaseState.h"
 
-IdleState::IdleState()
+IdleState::IdleState() : State<EnemigoIA>()
 {
 
 }
@@ -35,8 +35,7 @@ void IdleState::Execute(EnemigoIA * character) {
 	/* nuevo waypoint*/
 	if (m_pathfinding->GetpathState() == PathFinding::FOUND_GOAL) {
 
-		// character->GetStateMachine()->ChangeState(
-		// 	new PatrolState(m_pathfinding->GetClosesPath()));
+		// character->GetStateMachine()->ChangeState(new PatrolState(m_pathfinding->GetClosesPath()));
 		character->GetStateMachine()->ChangeState(new PatrolState(character->getWaypoints()));
 	}
 	/* Personaje */ 

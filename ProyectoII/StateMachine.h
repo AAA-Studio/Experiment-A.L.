@@ -15,7 +15,7 @@ public:
 
 		m_owner = pOwner;
 
-		m_globalState = m_currentState = m_previousState;
+		
 	}
 
 	~StateMachine() {
@@ -47,26 +47,6 @@ public:
 	}
 
 	void ChangeState(State<character_type>* state) {
-		// m_previousState = m_currentState;
-		// 
-		// 
-		// if (m_currentState) {
-		// 
-		// 	m_currentState->Exit(m_owner);
-		// 	delete m_currentState;
-		// 	m_currentState = 0;
-		// }
-		// 
-		// m_currentState = state;
-		// 
-		// 
-		// // Caso en el que puede que el estado al que vayamos este NULL
-		// if (m_currentState) m_currentState->Enter(m_owner);
-		// 
-		// else {
-		// 	m_currentState = m_previousState;
-		// 	m_currentState->Enter(m_owner);
-		// }
 
 		m_previousState = m_currentState;
 

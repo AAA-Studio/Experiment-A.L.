@@ -30,7 +30,7 @@ void PathFinding::Initialize(pair <float, float>  pStartPos, pair <float, float>
 	goal.setX(floorf(pTargetPos.first / (float)TILE_WIDTH));
 	goal.setY(floorf(pTargetPos.second / (float)TILE_HEIGHT));
 
-	cout << start.GetCellX() << endl;
+	cout << "Posicion Enemigo(" << start.GetCellX() << ", " << start.GetCellY() << "); " << endl;
 	InitializaStartGoal(&start, &goal);
 	FindPath(pStartPos, pTargetPos);
 

@@ -67,18 +67,16 @@ void EnemigoIA::ChaseTarget() {
 		
 		toTarget.first /= distance;
 		toTarget.second /= distance;
-
-		pair <float, float> velocity = make_pair(toTarget.first * 35.0f, toTarget.second * 35.0f);
-
-		position.first = position.first + velocity.first * (float)SDL_GetTicks();
-		position.second = position.second + velocity.second * (float)SDL_GetTicks();
-
-		SDL_Rect posRect = { position.first, position.second, rect.w, rect.h };
-		setRect(posRect);
 	}
-		
 
-	
+	pair <float, float> velocity = make_pair(toTarget.first * 0.35f, toTarget.second * 0.35f);
+
+	position.first = position.first + velocity.first * (float)SDL_GetTicks();
+	position.second = position.second + velocity.second * (float)SDL_GetTicks();
+
+	SDL_Rect posRect = { position.first, position.second, rect.w, rect.h };
+	setRect(posRect);
+
 }
 
 StateMachine<EnemigoIA>*EnemigoIA::GetStateMachine() {

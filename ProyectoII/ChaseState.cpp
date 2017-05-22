@@ -2,7 +2,7 @@
 #include "EnemigoIA.h"
 #include "IdleState.h"
 
-ChaseState::ChaseState()
+ChaseState::ChaseState() : State<EnemigoIA>()
 {
 }
 
@@ -11,19 +11,17 @@ ChaseState::~ChaseState()
 }
 
 void ChaseState::Enter(EnemigoIA * character) {
-	character->SetMaxVelocity(0.0001f);
+	character->SetMaxVelocity(0.2f);
 }
 
 void ChaseState::Execute(EnemigoIA * character) {
 	
+	character->ChaseTarget();
+	
 	if (!character->IsWithinRangeOfTarget(150.0f)) {
 		character->GetStateMachine()->ChangeState(new IdleState());
 		return;
-	}
-	
-	else {
-		character->ChaseTarget();
-	}
+	} 	
 }
 
 void ChaseState::Exit(EnemigoIA * character) {
