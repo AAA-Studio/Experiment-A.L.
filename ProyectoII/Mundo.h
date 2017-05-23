@@ -61,7 +61,7 @@ public:
 			return balasEnems;
 	};
 
-	inline PersonajeVirtual * getPersonaje(){ return psj; };
+	inline Personaje* getPersonaje(){ return psj; };
 
 	//Camara
 	inline virtual SDL_Rect getCamera() const{ return camera; };
@@ -143,7 +143,7 @@ private:
 	void colBalaPersonaje();
 
 	//Cinematica
-	void cinematicaInicial();
+	//void cinematicaInicial();
 
 	//-------------------METODOS-------------------
 };

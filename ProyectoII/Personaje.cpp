@@ -16,7 +16,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t textu
 	balaDestruida = false;
 	llaveCogida = false;
 	informeCogido = false;
-	vida = maxVida = 3;
+	vida = 3;
 	angulo = 90;
 	empuje = false;
 	posXAnt = x;
@@ -33,8 +33,6 @@ Personaje::~Personaje()
 
 void Personaje::update()
 {
-
-	//Center the camera over the dot
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
 	if (pMundo->getIndiceMapa() <6 && !informeCogido && !cinematica && pierdesVida)
 		vida -= 0.1;
@@ -42,10 +40,6 @@ void Personaje::update()
 
 }
 
-void Personaje::mover(int x, int y){
-	rect.x += x;
-	rect.y += y;
-}
 
 void Personaje::draw(int x, int y)const
 {
@@ -204,7 +198,6 @@ void Personaje::move(int x, int y)
 	rect.x += 3*x;
 	rect.y += 3*y;
 }
-
 void Personaje::disparo(){
 if (arma != nullptr && arma->getBalas() > 0 && pMundo->getIndiceMapa() >5){
 		if (SDL_GetTicks() - ultimaBala >= arma->getCadencia() )//Se pide la hora y se compara con la última 
@@ -215,23 +208,13 @@ if (arma != nullptr && arma->getBalas() > 0 && pMundo->getIndiceMapa() >5){
 		}
 	}
 }
-
-
-
-
-
-
-
-//Necesito la dirección del personaje para poder empujarle hacia atrás
 void Personaje::empujeHaciaAtras(){
 	empuje = true;
 	ultimoEmpuje = SDL_GetTicks();
 }
-
 void Personaje::restaVida(){
 	vida -= 1;
 }
-
 void Personaje::coger(){
 	EntidadJuego * objeto;
 	objeto = pMundo->compruebaColisionObjetos();//Compruebo si estoy colisionando con el obj para poder cogerlo
@@ -256,7 +239,6 @@ void Personaje::coger(){
 			break;
 		case OPistola:
 			pMundo->destruyeArma();
-
 			break;
 
 			
@@ -264,6 +246,7 @@ void Personaje::coger(){
 	}
 }
 void Personaje::cogeArma(Armas* arma){
+	//Borra el arma anterior y añade la currente
 	delete this->arma;
 	this->arma = nullptr;
 	this->arma = arma;

@@ -7,28 +7,31 @@
 #include "Boton.h"
 #include <fstream>
 
+//Metodos ordenadiiiiiiiiiiiiiisimos :D
+
 Mundo::Mundo(Juego * pJ, string m)
 {
 	pJuego = pJ;
+	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
+	psj = nullptr;
+	mundo = MReal;
+
+	//Mapa
 	nivel = 0;
 	indiceMapa = 1;
-
-	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-	psj = nullptr;
 	mapa = new Mapa(this, m);
+
 	initObjetos();
-
 	cargaObjetos();
-	balaDestruida = false;
 
+	balaDestruida = false;
 	//pausa = false;
 	//abierto = false;
 	//cerraduras[0] = false;
 	//puertas[0] = 0;
 
-	//pJuego->getMusica(MPlay)->play();
-
+	//HABRA QUE QUITAR ESTOOOOOOOOOOOOOOOOOO
 	cinematica = false;
 	contador = 0;
 	objetos[1]->setVisible(false);
@@ -37,26 +40,20 @@ Mundo::Mundo(Juego * pJ, string m)
 	dibuja = true;
 	veces = 0;
 	primeCinematica = true;
-	mundo = MReal;
 	pJuego->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->play();
 
 	psj->empiezaPerderVida();
 
-
 	for (int i = 0; i < TAMAÑO_LLAVES; i++) //Se inicializan las llaves
 		llavesCogidas[i] = false;
-
-
-
 }
-
-
 Mundo::~Mundo()
 {
 	freeObjetos();
 
 }
 
+//Objetos
 void Mundo::cargaObjetos(){
 	string objts = pJuego->getNombreObjetos();
 
@@ -77,7 +74,7 @@ void Mundo::cargaObjetos(){
 			obj >> nombre;
 
 
-		int y, x,w,h, lvl, tipo,cadencia,balas;
+		int cadencia,balas;
 		if (nombre == "NIVEL"){
 
 			obj >> lvl;
@@ -127,11 +124,6 @@ void Mundo::cargaObjetos(){
 	}
 	obj.close();
 }
-static void goPlay(Juego * pj){
-
-};
-
-//Crea las texturas para los globos y todos los globos
 void Mundo::initObjetos()
 {
 	//lala
@@ -143,8 +135,6 @@ void Mundo::initObjetos()
 		}
 		else
 		{
-
-			//HACER UN SWITCH
 			int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
 
 			x = mapa->getXSpawn();
@@ -153,8 +143,7 @@ void Mundo::initObjetos()
 
 		}
 }
-
-	void Mundo::freeObjetos(){
+void Mundo::freeObjetos(){
 		delete psj;
 		psj = nullptr;
 
@@ -165,6 +154,7 @@ void Mundo::initObjetos()
 		}
 
 		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
+
 		while (!enemigos.empty() && itEnemigo != enemigos.end())
 		{
 			delete(*itEnemigo);
@@ -190,6 +180,7 @@ void Mundo::initObjetos()
 			delete(*itBalasEnem);
 			itBalasEnem = balasEnems.erase(itBalasEnem);
 		}
+
 		list<Armas*>::iterator itArmas = armas.begin();
 		while (!armas.empty() && itArmas != armas.end())
 		{
@@ -199,87 +190,62 @@ void Mundo::initObjetos()
 
 	}
 
-
-	void Mundo::draw()const{
+void Mundo::draw()const{
 
 		if (dibuja)
 		{
-
-			//Render level
 			//DIBUJAR MAPA
 			mapa->draw();
 
 			//Dibujar objetos del juego
-			list<Armas*>::const_iterator itArmas = armas.begin();
-			while (!armas.empty() && itArmas != armas.end())
-			{
-				(*itArmas)->draw((*itArmas)->getRect().x - camera.x, (*itArmas)->getRect().y - camera.y);
-				itArmas++;
-			}
-			for (int i = objetos.size() - 1; i >= 0; i--)
-				objetos[i]->draw(objetos[i]->getRect().x - camera.x, objetos[i]->getRect().y - camera.y);
+			//Armas
+			for (auto arma : armas)
+				arma->draw(arma->getRect().x - camera.x, arma->getRect().y - camera.y);
 
-			list<EntidadJuego*>::const_iterator it = llaves.cbegin();
+			for (auto objeto: objetos)
+				objeto->draw(objeto->getRect().x - camera.x, objeto->getRect().y - camera.y);
+				
+			for (auto llave : llaves)
+				llave->draw(llave->getRect().x - camera.x, llave->getRect().y - camera.y);
 
-			while (!llaves.empty() && it != llaves.cend())
-			{
-				(*it)->draw((*it)->getRect().x - camera.x, (*it)->getRect().y - camera.y);
-				it++;
-			}
+			for (auto enemigo : enemigos)
+				enemigo->draw(enemigo->getRect().x - camera.x, enemigo->getRect().y - camera.y);
 
-			list<Enemigo*>::const_iterator itEnemigos = enemigos.cbegin();
-			while (!enemigos.empty() && itEnemigos != enemigos.cend())
-			{
-				(*itEnemigos)->draw((*itEnemigos)->getRect().x - camera.x, (*itEnemigos)->getRect().y - camera.y);
-				itEnemigos++;
-			}
+
 			psj->draw(psj->getRect().x - camera.x, psj->getRect().y - camera.y);
-			/*
-			//Balas
-			list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
-			while (!balasPsj.empty() && itBalasPsj != balasPsj.cend())
-			{
-			(*itBalasPsj)->draw();
-			itBalasPsj++;
-			}*/
-
-			for (auto bala : balasPsj) {
+	
+			//Balas personaje
+			for (auto bala : balasPsj) 
 				bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
-			}
-
-			/*list<EntidadJuego*>::const_iterator itBalasEnem = balasEnems.cbegin();
-			while (!balasEnems.empty() && itBalasEnem != balasEnems.cend())
-			{
-			(*itBalasEnem)->draw();
-			itBalasEnem++;
-			}*/
-
-			for (auto bala : balasEnems) {
+			
+			//Balas enemigo
+			for (auto bala : balasEnems) 
 				bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
-			}
-
-
+			
+			//Dibujo sangre
 			pJuego->getResources()->getTextura(JuegoSDL::TBlood)->setAlpha(255 - psj->getAlpha());
 			pJuego->getResources()->getTextura(JuegoSDL::TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
+
+			//Dibujo controles
 			SDL_Rect a = getCamera();
 			a.h = 200;
 			a.w = 400;
 			pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
+
 			//pJuego->escribir("HOLA :)",50, 50);
 		}
 	}
-
-
-	void Mundo::update(){
+void Mundo::update(){
 		psj->update();//Update de personaje
 		balaDestruida = false;
 
-			
+		//Caso GameOver
 		if (psj->getVida() <= 0){
 			pJuego->setEstadoEnum(MGameOver);
 			pJuego->setBorraEstado(true);
 		}
-		//Balas
+
+		//Balas personaje
 		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
 		while (!balaDestruida && !balasPsj.empty() && itBalasPsj != balasPsj.cend())
 		{
@@ -298,6 +264,7 @@ void Mundo::initObjetos()
 				itBalasPsj++;
 		}
 
+		//Balas enemigo
 		list<EntidadJuego*>::iterator itBalasEnem = balasEnems.begin();
 		while (!balaDestruida && !balasEnems.empty() && itBalasEnem != balasEnems.end())
 		{
@@ -313,28 +280,22 @@ void Mundo::initObjetos()
 				itBalasEnem++;
 		}
 
-		list<Enemigo*>::const_iterator citEnemigo = enemigos.cbegin();//Update de enemigos
-		while (!enemigos.empty() && citEnemigo != enemigos.cend())
-		{
-			if (checkCollision(camera, (*citEnemigo)->getRect())){
-				(*citEnemigo)->update();
-			}
-			citEnemigo++;
+		//Enemigos
+		for (auto enemigo : enemigos){
+			if (checkCollision(camera, enemigo->getRect()))
+				enemigo->update();
 		}
 
-
-		for (size_t i = 0; i < objetos.size(); i++)//Update de objetos
-			if (checkCollision(camera,objetos[i]->getRect()))
-				objetos[i]->update();
-
-
-		list<EntidadJuego*>::const_iterator cit = llaves.cbegin();
-		while (!llaves.empty() && cit != llaves.cend())//Update de las llaves
-		{
-			if (checkCollision(camera, (*cit)->getRect())){
-				(*cit)->update();
-			}
-				cit++;
+		//Update de objetos
+		for (auto obj : objetos){
+			if (checkCollision(camera, obj->getRect()))
+				obj->update();
+		}
+			
+		//Update de las llaves
+		for (auto llave : llaves){
+			if (checkCollision(camera, llave->getRect()))
+				llave->update();			
 		}
 
 		//COLISIONES
@@ -344,168 +305,21 @@ void Mundo::initObjetos()
 		if (cinematica)
 		{
 			contador++;
-			cinematicaInicial();
+			//cinematicaInicial();
 		}
 		
 	}
-
-	void Mundo::cinematicaInicial(){
-
-		//comienza la cinematica, el jugador se encuentra en la cama y se deja de dibujar
-		if (contador == 400)
-			dibuja = false;
-		
-		//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
-		if (!dibuja && contador == 500){
-			setCamera(800 * 1, indiceMapa % 6 * 640);
-			psj->setRect({1120,830,psj->getRect().w,psj->getRect().h}); //ESTO SE HARIA CON SETRECT DEL PERSONAJE
-			dibuja = true;
-		}
-
-		//se deja de dibujar y se cambia al mundo real
-		if (dibuja && contador == 600)
-		{
-			dibuja = false;
-			setCamera(0, indiceMapa % 6 * 640);
-			psj->setRect({ 320, 830, psj->getRect().w, psj->getRect().h });
-			//camera.x = 320; camera.y = 830;
-		}
-
-		//se vuelve a dibujar, el jugador esta en la cama en el mundo real
-		if (!dibuja && contador == 700)
-		{
-			dibuja = true;
-		}
-
-		if (dibuja && contador == 800)
-		{
-			dibuja = false;
-		}
-
-		if (moverP && veces < 100)
-			veces++;
-		if (moverP && veces == 100)
-		{
-			psj->mover(0, 1);
-		}
-		//lala 142833
-		if (psj->getRect().y >= 860)
-		{
-			veces++;
-		}
-		if (moverP && veces >= 1)
-			psj->mover(1, 0);		
-
-		
-		if (!dibuja && contador == 900){
-			psj->setRect({ 360, 900, psj->getRect().w, psj->getRect().h });
-			dibuja = true;
-			moverI = true;
-		}
-
-		if (moverI && contador >= 1000){
-			objetos[1]->setVisible(true);
-			objetos[1]->move(0, 1);
-			moverP = true;
-		}
-
-		if (objetos[1]->getRect().y >= 950){
-			moverI = false;
-			cinematica = false;
-			primeCinematica = false;
-			psj->SetCinematica(cinematica);
-
-		}
-
-		if (psj->getRect().x >= 450)
-		{
-			moverP = false;
-			
-		}
-
-
-	}
-	void Mundo::colBalaEnemigo(){
-
-		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
-
-		//Recorremos los enemigos
-		while (!enemigos.empty() && itEnemigo != enemigos.cend())
-		{
-			list<EntidadJuego*>::iterator it = balasPsj.begin();
-			if (checkCollision(camera, (*itEnemigo)->getRect())){
-				//Recorremos las balas
-				while (!balasPsj.empty() && it != balasPsj.cend())
-				{
-					//Detectamos la colision de la bala con el enemigo
-					if (checkCollision((*it)->getRect(), (*itEnemigo)->getRect()))
-					{
-						(*itEnemigo)->restaVida();
-						destruyeBala(balasPsj, it);
-
-						//Caso en el que el enemigo muere
-						if ((*itEnemigo)->getVida() <= 0)
-						{
-							//Recorremos los enemigos para saber cual tiene que eliminarse
-							delete (*itEnemigo);
-							itEnemigo = enemigos.erase(itEnemigo);
-						}
-					}
-					else
-						it++;
-				}
-				//Incrementamos el iterador si la lista de enemigos no está vacía
-				if (!enemigos.empty())
-					itEnemigo++;
-			}
-			else
-				itEnemigo++;
-		}
-	}
-
-
-	void Mundo::colBalaPersonaje(){
-
-		list<EntidadJuego*>::iterator itBalasEnems = balasEnems.begin();
-
-		//Colision balas con personaje 
-		while (!balasEnems.empty() && itBalasEnems != balasEnems.end())
-		{
-			//Si el psj colisiona con el enemigo
-			if (checkCollision(psj->getRect(), (*itBalasEnems)->getRect())){
-				//Se pide la hora y se compara con la última 
-				if (SDL_GetTicks() - time >= duracion)
-				{
-					time = SDL_GetTicks();
-					psj->restaVida();
-				}
-
-				destruyeBala(balasEnems, itBalasEnems);
-
-				if (psj->getVida() <= 0){
-					pJuego->setBorraEstado(true);
-					pJuego->setEstadoEnum (MGameOver);
-				}
-			}
-			else
-				itBalasEnems++;
-		}
-	}
-
-	//Detecta el input del jugador y la pausa
-	void Mundo::onInput(SDL_Event &e){
+void Mundo::onInput(SDL_Event &e){
 
 		if (!cinematica) // NO PLS
 		{
-
 			//Declaramos el array con los estados de teclado
 			const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
 
 			//Pausa
-			if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
+			if (keyStatesActuales[SDL_SCANCODE_ESCAPE])
 				pJuego->setEstadoEnum (MPausa);
-			}
-
+			
 			//Personaje
 			psj->onInput();
 			compruebaColisionPersonaje();
@@ -514,72 +328,53 @@ void Mundo::initObjetos()
 		
 
 	}
-	void Mundo::compruebaColisionPersonaje(){
-		SDL_Rect rectPersonaje = psj->getRect(), rectPies;
 
-		int x, y;
 
-	
-		//Reducimos el ancho y alto del rectangulo de colision
-		rectPies.h = 10;
-		rectPies.w = 10;
-
-		x = rectPersonaje.x - psj->DamePosAntX();
-		y = rectPersonaje.y - psj->DamePosAntY();
-
-		//Movemos el rectangulo de colision a los pies
-		rectPies.x = rectPersonaje.x + 10;
-		rectPies.y = rectPersonaje.y + 40;
-
-		Direccion dir;
-		dir.x = x;
-		dir.y = y;
-		psj->setDir(dir);
-
-		int tipo;
-		mapa->touchesDoor(rectPies, tipo);
-
-		//comprueba la X
-		if (mapa->touchesWall(rectPies)){
-			rectPersonaje.x -= x;
-		}
-		// comprueba la Y
-		if (mapa->touchesWall(rectPies)){
-			rectPersonaje.y -= y;
-		}
-
-		//Felpudos
-		if (tipo != 150 && tipo != 155 && tipo != 154 && tipo != 140 && tipo != 158 && tipo != 165 && tipo != 159 && tipo != 153 && tipo != 152 && tipo != 151 && tipo != 114
-			&& tipo != 345 && tipo != 350 && tipo != 349 && tipo != 335 && tipo != 353 && tipo != 360 && tipo != 354 && tipo != 348 && tipo != 347 && tipo != 346 && tipo != 309)
-			psj->setPosChocando(rectPersonaje.x, rectPersonaje.y);
-
-	}
-	bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
+//Destruir objetos
+void Mundo::destruyeLlave(EntidadJuego * llave)
 	{
-		//The sides of the rectangles
-		int leftA, leftB;
-		int rightA, rightB;
-		int topA, topB;
-		int bottomA, bottomB;
+		list<EntidadJuego*>::iterator it = llaves.begin();
+		while (it != llaves.end() && (*it) != llave)//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
+		{
+			it++;
+		}
 
-		//Calculate the sides of rect A
-		leftA = a.x;
-		rightA = a.x + a.w;
-		topA = a.y;
-		bottomA = a.y + a.h;
+		//Elimina la llave
+		it = llaves.erase(it);
+		delete (llave);
+		llave = nullptr;
 
-		//Calculate the sides of rect B
-		leftB = b.x;
-		rightB = b.x + b.w;
-		topB = b.y;
-		bottomB = b.y + b.h;
-
-		//If any of the sides from A are outside of B
-		return !(bottomA <= topB || topA >= bottomB || rightA <= leftB || (leftA >= rightB));
-
+		if (getLLavesCogidas(0))
+			setLlaveCogida(1);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
+		else
+			setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
+	}
+void Mundo::destruyeArma(){
+		list<Armas*>::iterator it = armas.begin();
+		while (it != armas.end() && !checkCollision((*it)->getRect(),psj->getRect()))//Recorre todas las armas hasta encontrar el arma que tiene que destruir
+		{
+			it++;
+		}
+		psj->cogeArma((*it));
+		it = armas.erase(it);
+	}
+void Mundo::destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it)
+	{
+		delete (*it);
+		it = lista.erase(it);
+		balaDestruida = true;
 	}
 
-	EntidadJuego * Mundo::compruebaColisionObjetos(){
+void Mundo::insertaBala(ListaBalas_t lista, EntidadJuego * bala)
+	{
+		if (lista == LBalasPersonaje)
+			balasPsj.push_back(bala);
+		else
+			balasEnems.push_back(bala);
+	}
+
+//Colisiones
+EntidadJuego * Mundo::compruebaColisionObjetos(){
 		size_t i = 0;
 		SDL_Rect rect, rect3;
 
@@ -621,47 +416,204 @@ void Mundo::initObjetos()
 		else
 			return (*it);
 	}
+void Mundo::compruebaColisionPersonaje(){
+	SDL_Rect rectPersonaje = psj->getRect(), rectPies;
 
-	void Mundo::destruyeLlave(EntidadJuego * llave)
-	{
-		list<EntidadJuego*>::iterator it = llaves.begin();
-		while (it != llaves.end() && (*it) != llave)//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
+	int x, y;
+
+
+	//Reducimos el ancho y alto del rectangulo de colision
+	rectPies.h = 10;
+	rectPies.w = 10;
+
+	x = rectPersonaje.x - psj->DamePosAntX();
+	y = rectPersonaje.y - psj->DamePosAntY();
+
+	//Movemos el rectangulo de colision a los pies
+	rectPies.x = rectPersonaje.x + 10;
+	rectPies.y = rectPersonaje.y + 40;
+
+	Direccion dir;
+	dir.x = x;
+	dir.y = y;
+	psj->setDir(dir);
+
+	int tipo;
+	mapa->touchesDoor(rectPies, tipo);
+
+	//comprueba la X
+	if (mapa->touchesWall(rectPies)){
+		rectPersonaje.x -= x;
+	}
+	// comprueba la Y
+	if (mapa->touchesWall(rectPies)){
+		rectPersonaje.y -= y;
+	}
+
+	//Felpudos
+	if (tipo != 150 && tipo != 155 && tipo != 154 && tipo != 140 && tipo != 158 && tipo != 165 && tipo != 159 && tipo != 153 && tipo != 152 && tipo != 151 && tipo != 114
+		&& tipo != 345 && tipo != 350 && tipo != 349 && tipo != 335 && tipo != 353 && tipo != 360 && tipo != 354 && tipo != 348 && tipo != 347 && tipo != 346 && tipo != 309)
+		psj->setPosChocando(rectPersonaje.x, rectPersonaje.y);
+
+}
+void Mundo::colBalaEnemigo(){
+
+		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
+
+		//Recorremos los enemigos
+		while (!enemigos.empty() && itEnemigo != enemigos.cend())
 		{
-			it++;
+			list<EntidadJuego*>::iterator it = balasPsj.begin();
+			if (checkCollision(camera, (*itEnemigo)->getRect())){
+				//Recorremos las balas
+				while (!balasPsj.empty() && it != balasPsj.cend())
+				{
+					//Detectamos la colision de la bala con el enemigo
+					if (checkCollision((*it)->getRect(), (*itEnemigo)->getRect()))
+					{
+						(*itEnemigo)->restaVida();
+						destruyeBala(balasPsj, it);
+
+						//Caso en el que el enemigo muere
+						if ((*itEnemigo)->getVida() <= 0)
+						{
+							//Recorremos los enemigos para saber cual tiene que eliminarse
+							delete (*itEnemigo);
+							itEnemigo = enemigos.erase(itEnemigo);
+						}
+					}
+					else
+						it++;
+				}
+				//Incrementamos el iterador si la lista de enemigos no está vacía
+				if (!enemigos.empty())
+					itEnemigo++;
+			}
+			else
+				itEnemigo++;
+		}
+	}
+void Mundo::colBalaPersonaje(){
+
+		list<EntidadJuego*>::iterator itBalasEnems = balasEnems.begin();
+
+		//Colision balas con personaje 
+		while (!balasEnems.empty() && itBalasEnems != balasEnems.end())
+		{
+			//Si el psj colisiona con el enemigo
+			if (checkCollision(psj->getRect(), (*itBalasEnems)->getRect())){
+				//Se pide la hora y se compara con la última 
+				if (SDL_GetTicks() - time >= duracion)
+				{
+					time = SDL_GetTicks();
+					psj->restaVida();
+				}
+
+				destruyeBala(balasEnems, itBalasEnems);
+			}
+			else
+				itBalasEnems++;
+		}
+	}
+bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
+{
+	//The sides of the rectangles
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	//Calculate the sides of rect A
+	leftA = a.x;
+	rightA = a.x + a.w;
+	topA = a.y;
+	bottomA = a.y + a.h;
+
+	//Calculate the sides of rect B
+	leftB = b.x;
+	rightB = b.x + b.w;
+	topB = b.y;
+	bottomB = b.y + b.h;
+
+	//If any of the sides from A are outside of B
+	return !(bottomA <= topB || topA >= bottomB || rightA <= leftB || (leftA >= rightB));
+
+}
+
+//Cinematica
+/*void Mundo::cinematicaInicial(){
+
+		//comienza la cinematica, el jugador se encuentra en la cama y se deja de dibujar
+		if (contador == 400)
+			dibuja = false;
+
+		//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
+		if (!dibuja && contador == 500){
+			setCamera(800 * 1, indiceMapa % 6 * 640);
+			psj->setRect({ 1120, 830, psj->getRect().w, psj->getRect().h }); //ESTO SE HARIA CON SETRECT DEL PERSONAJE
+			dibuja = true;
 		}
 
-		//Elimina la llave
-		it = llaves.erase(it);
-		delete (llave);
-		llave = nullptr;
-
-		if (getLLavesCogidas(0))
-			setLlaveCogida(1);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
-		else
-			setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
-	}
-	void Mundo::destruyeArma(){
-		list<Armas*>::iterator it = armas.begin();
-		while (it != armas.end() && !checkCollision((*it)->getRect(),psj->getRect()))//Recorre todas las armas hasta encontrar el arma que tiene que destruir
+		//se deja de dibujar y se cambia al mundo real
+		if (dibuja && contador == 600)
 		{
-			it++;
+			dibuja = false;
+			setCamera(0, indiceMapa % 6 * 640);
+			psj->setRect({ 320, 830, psj->getRect().w, psj->getRect().h });
+			//camera.x = 320; camera.y = 830;
 		}
-		psj->cogeArma((*it));
-		it = armas.erase(it);
-	}
-	void Mundo::destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it)
-	{
-		delete (*it);
-		it = lista.erase(it);
-		balaDestruida = true;
-	}
 
-	void Mundo::insertaBala(ListaBalas_t lista, EntidadJuego * bala)
-	{
-		if (lista == LBalasPersonaje)
-			balasPsj.push_back(bala);
-		else
-			balasEnems.push_back(bala);
-	}
+		//se vuelve a dibujar, el jugador esta en la cama en el mundo real
+		if (!dibuja && contador == 700)
+		{
+			dibuja = true;
+		}
+
+		if (dibuja && contador == 800)
+		{
+			dibuja = false;
+		}
+
+		if (moverP && veces < 100)
+			veces++;
+		if (moverP && veces == 100)
+		{
+			psj->mover(0, 1);
+		}
+		//lala 142833
+		if (psj->getRect().y >= 860)
+		{
+			veces++;
+		}
+		if (moverP && veces >= 1)
+			psj->mover(1, 0);
 
 
+		if (!dibuja && contador == 900){
+			psj->setRect({ 360, 900, psj->getRect().w, psj->getRect().h });
+			dibuja = true;
+			moverI = true;
+		}
+
+		if (moverI && contador >= 1000){
+			objetos[1]->setVisible(true);
+			objetos[1]->move(0, 1);
+			moverP = true;
+		}
+
+		if (objetos[1]->getRect().y >= 950){
+			moverI = false;
+			cinematica = false;
+			primeCinematica = false;
+			psj->SetCinematica(cinematica);
+
+		}
+
+		if (psj->getRect().x >= 450)
+		{
+			moverP = false;
+
+		}
+
+
+	}*/

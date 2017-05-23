@@ -4,11 +4,12 @@
 #include "EstadoJuego.h"
 #include "EntidadJuego.h"
 #include "Juego.h"
+
 #include <list>
-#include "PersonajeVirtual.h"
 
 enum Mundo_t{ MReal, MOscuro };
 
+class Personaje;
 //Clase abstracta que hereda de la raiz EstadoJuego
 class MundoVirtual : public EstadoJuego
 {
@@ -29,22 +30,22 @@ public:
 	virtual void insertaBala(ListaBalas_t lista, EntidadJuego * bala) = 0;
 
 	
-	//Getters y Setters
+	//Getters 
 	virtual Juego* getPJ()const = 0;
-	virtual PersonajeVirtual * getPersonaje() = 0;
+	virtual Personaje * getPersonaje() = 0;
 	virtual SDL_Rect getCamera() const = 0;
 	virtual  int getNivel() const = 0;
 	virtual int getIndiceMapa()const = 0;
 	virtual bool getLLavesCogidas(int indice) const = 0;
 	virtual  Mundo_t getMundo()const = 0;
 	virtual list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const = 0;
+
+	// Setters
 	virtual void setCamera(int x, int y) = 0;
 	virtual void setNivel(int i) = 0;
 	virtual void setIndiceMapa(int i) = 0;
 	virtual void setLlaveCogida(int indice) = 0;
 	virtual void setMundo(Mundo_t m) = 0;
-
-
 };
 
 #endif
