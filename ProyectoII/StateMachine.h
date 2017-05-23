@@ -77,7 +77,7 @@ public:
 		}
 	}
 
-	State<character_type>* GetCurrentState() { return GetCurrentState; };
+	State<character_type>* GetCurrentState() { return m_currentState; };
 
 
 private:

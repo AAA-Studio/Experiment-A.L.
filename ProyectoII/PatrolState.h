@@ -4,6 +4,7 @@
 #include "State.h" 
 #include <vector>
 
+
 class EnemigoIA;
 
 class PatrolState : public State<EnemigoIA>

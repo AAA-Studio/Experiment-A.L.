@@ -16,11 +16,11 @@ public:
 	virtual void Execute(character_type * character) = 0;
 	virtual void Exit (character_type * character) = 0;
 
-	inline string getStateName() const { return getStateName; }
+	std::string getStateName() { return m_stateName; }
 
 protected:
 
-	string m_stateName;
+	std::string m_stateName;
 
 };
 #endif

@@ -2,6 +2,7 @@
 #include "EnemigoIA.h"
 #include "IdleState.h"
 #include "ChaseState.h"
+#include "Mundo.h"
 
 PatrolState::PatrolState(std::vector<pair <float, float>> waypoints) : State<EnemigoIA>()
 {
@@ -22,6 +23,7 @@ void PatrolState::Enter(EnemigoIA * character) {
 void PatrolState::Execute(EnemigoIA * character) {
 
 	pair <float, float> waypoint = m_waypoints[m_waypoints.size() - 1];
+	
 
 	// Posicion del enemigo
 	pair <float, float> position(character->getRect().x, character->getRect().y);
@@ -44,7 +46,6 @@ void PatrolState::Execute(EnemigoIA * character) {
 		}
 	}
 
-
 	pair <float, float> velocity = make_pair(toTarget.first * 0.0001f, toTarget.second * 0.0001f);
 
 	position.first = position.first + velocity.first * (float)SDL_GetTicks();
@@ -52,9 +53,6 @@ void PatrolState::Execute(EnemigoIA * character) {
 
 	SDL_Rect posRect = { position.first, position.second, character->getRect().w, character->getRect().h };
 	character->setRect(posRect);
-
-	
-	
 }
 
 void PatrolState::Exit(EnemigoIA * character) { }
