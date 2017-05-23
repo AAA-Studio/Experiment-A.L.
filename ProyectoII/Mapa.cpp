@@ -10,6 +10,7 @@ Mapa::Mapa(MundoVirtual *pM, string mapa)
 	buscaSpawn();
 	setCamera();
 	Puerta1Abierta = false;
+	
 }
 
 
@@ -248,7 +249,9 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-1);
 						tipo = 150;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
+						
 					}
 				}
 					//PUERTA GRIS
@@ -264,6 +267,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 							pJuego->setNivel(1);
 							tipo = 155;
 							buscaSpawn();
+							pMundo->getPJ()->getEfecto(EPuerta)->play();
 							return true;
 						}
 
@@ -281,6 +285,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(2);
 						tipo = 154;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 					}
 
@@ -297,6 +302,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-2);
 						tipo = 140;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 					}
 
@@ -313,6 +319,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(3);
 						tipo = 158;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -331,6 +338,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-3);
 						tipo = 165;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -344,10 +352,12 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.h = felpudo.h - 15;
 					felpudo.w = felpudo.w - 20;
 
+					
 					if (pMundo->checkCollision(box, felpudo)){
 						pJuego->setNivel(4);
 						tipo = 159;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -366,6 +376,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-4);
 						tipo = 153;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -381,6 +392,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					
 					if (pMundo->checkCollision(box, felpudo)){
 						
+						
 						if (pJuego->getLLavesCogidas(1) && !Puerta1Abierta){
 							Puerta1Abierta = true;
 							pJuego->setLlaveCogida(0);
@@ -392,6 +404,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(5);
 						tipo = 152;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -409,6 +422,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-5);
 						tipo = 151;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -427,6 +441,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(6);
 						tipo = 114;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EEspejo)->play();
 						return true;
 
 					}
@@ -451,6 +466,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-1);
 						tipo = 345;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 					}
 				}
@@ -467,6 +483,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(1);
 						tipo = 350;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 					}
 
@@ -484,6 +501,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(2);
 						tipo = 349;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 					}
 
@@ -500,6 +518,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-2);
 						tipo = 335;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 					}
 
@@ -516,6 +535,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(3);
 						tipo = 353;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -534,6 +554,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-3);
 						tipo = 360;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -551,6 +572,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(4);
 						tipo = 354;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -569,6 +591,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-4);
 						tipo = 348;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -586,6 +609,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(5);
 						tipo = 347;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -603,6 +627,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-5);
 						tipo = 346;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EPuerta)->play();
 						return true;
 
 					}
@@ -621,6 +646,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pJuego->setNivel(-6);
 						tipo = 309;
 						buscaSpawn();
+						pMundo->getPJ()->getEfecto(EEspejo)->play();
 						return true;
 
 					}

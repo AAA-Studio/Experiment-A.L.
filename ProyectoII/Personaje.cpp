@@ -215,6 +215,7 @@ if (arma != nullptr && arma->getBalas() > 0 && pMundo->getPJ()->indiceMapas >5){
 			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, TBala, ENull, angulo, LBalasPersonaje, rect.w / 15, rect.h / 15));
 			arma->restaBalas();
 			ultimaBala = SDL_GetTicks();
+			pMundo->getPJ()->getEfecto(EBala)->play();
 		}
 	}
 }
@@ -241,20 +242,24 @@ void Personaje::coger(){
 	if (objeto != nullptr){
 		if (objeto->getType() == OPistola)
 			pMundo->ponmeArma();
+			
 		else{
 			switch (objeto->getType())
 			{
 			case OInforme1:
 				informe = TInforme1;
 				informeCogido = true;
+				pMundo->getPJ()->getEfecto(EInforme)->play();
 				break;
 			case OInforme2:
 				informe = TInforme2;
 				informeCogido = true;
+				pMundo->getPJ()->getEfecto(EInforme)->play();
 				break;
 
 			case OLlave:
 				pMundo->destruyeLlave(objeto);
+				pMundo->getPJ()->getEfecto(ELlave)->play();
 				break;
 			case OTeclado:
 				pJuego->borraEstado = true;

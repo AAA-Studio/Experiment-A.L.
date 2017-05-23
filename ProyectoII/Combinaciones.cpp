@@ -37,14 +37,19 @@ void Combinaciones::update(){
 		acierto = true;
 	}
 
+
 	if (intentos == 4)
 	{
 		combTecleada = "";
 		intentos = 0;
+		if (!acierto){
+			pJuego->getEfecto(EIncorrecto)->play();
+		}
 	}
 
 	if (acierto)
 	{
+		pJuego->getEfecto(ECorrecto)->play();
 		pJuego->setPuerta(puerta, acierto);
 		pJuego->popState();		
 	}
@@ -79,6 +84,7 @@ void Combinaciones::onInput(SDL_Event &e){
 	{
 		if (e.button.button == SDL_BUTTON_LEFT)
 		{
+			pJuego->getEfecto(EPulsar)->play();
 			for (int j = 0; j < objetos.size(); j++)
 			{
 				objetos[j]->onInput();

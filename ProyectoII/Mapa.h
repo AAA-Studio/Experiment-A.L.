@@ -34,6 +34,7 @@ private:
 	bool cargarMapa();
 	void buscaSpawn();
 	void setCamera();
+	
 
 	int x, y;
 

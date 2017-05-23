@@ -285,14 +285,52 @@ void Juego::initMedia()
 	texturas[TFuente] = new TexturasSDL;
 
 	//Efecto
-	/*string archAudioWav = { "..\\sounds\\Efectos-de-sonido-Explosion-de-un-globo.wav" };
-	efectos[EGlobo] = new Efecto();
-	efectos[EGlobo]->load(archAudioWav);*/
+	string archAudioWav = { "..\\sounds\\shootmp3.wav" };
+	efectos[EBala] = new Efecto();
+	efectos[EBala]->load(archAudioWav);
+
+	string archAudioWav2 = { "..\\sounds\\doormp3.mp3" };
+	efectos[EPuerta] = new Efecto();
+	efectos[EPuerta]->load(archAudioWav2);
+
+	string archAudioWav3 = { "..\\sounds\\oscuro.mp3" };
+	efectos[EEspejo] = new Efecto();
+	efectos[EEspejo]->load(archAudioWav3);
+
+	string archAudioWav4 = { "..\\sounds\\cerrada.mp3" };
+	efectos[ECerrada] = new Efecto();
+	efectos[ECerrada]->load(archAudioWav4);
+
+	string archAudioWav5 = { "..\\sounds\\correcto.wav" };
+	efectos[ECorrecto] = new Efecto();
+	efectos[ECorrecto]->load(archAudioWav5);
+
+	string archAudioWav6 = { "..\\sounds\\pulsar.wav" };
+	efectos[EPulsar] = new Efecto();
+	efectos[EPulsar]->load(archAudioWav6);
+
+	string archAudioWav7 = { "..\\sounds\\wrong.mp3" };
+	efectos[EIncorrecto] = new Efecto();
+	efectos[EIncorrecto]->load(archAudioWav7);
+
+	string archAudioWav8 = { "..\\sounds\\objeto.wav" };
+	efectos[EObjeto] = new Efecto();
+	efectos[EObjeto]->load(archAudioWav8);
+
+	string archAudioWav9 = { "..\\sounds\\informe.wav" };
+	efectos[EInforme] = new Efecto();
+	efectos[EInforme]->load(archAudioWav9);
+
+	string archAudioWav10 = { "..\\sounds\\llave abre puerta.wav" };
+	efectos[ELlave] = new Efecto();
+	efectos[ELlave]->load(archAudioWav10);
 
 	//Música
 	string archAudioMp3 = { "..\\sounds\\mInicio.mp3" };
 	musica[MusicaInicio] = new Musica();
 	musica[MusicaInicio]->load(archAudioMp3);
+
+	
 
 }
 

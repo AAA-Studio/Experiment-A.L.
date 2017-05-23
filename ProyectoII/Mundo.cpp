@@ -626,6 +626,8 @@ void Mundo::initObjetos()
 		it = llaves.erase(it);
 		delete (llave);
 		llave = nullptr;
+		pJuego->getEfecto(EObjeto)->play();
+
 
 		if (pJuego->getLLavesCogidas(0))
 			pJuego->setLlaveCogida(1);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
@@ -640,6 +642,7 @@ void Mundo::initObjetos()
 		}
 		psj->cogeArma((*it));
 		it = armas.erase(it);
+		pJuego->getEfecto(EObjeto)->play();
 	}
 	void Mundo::destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it)
 	{
