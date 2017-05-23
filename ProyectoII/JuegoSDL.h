@@ -22,7 +22,7 @@ public:
 	};
 	static std::vector<std::string> JuegoSDL::fontFiles_;
 
-	enum  Musica_t{ MInicio, Musica_t_SIZE };
+	enum  Musica_t{ MInicio,MReal,MOscuro, Musica_t_SIZE };
 	static std::vector<std::string> musicFiles_;
 
 	enum  Efectos_t{ ENull, Efectos_t_SIZE };

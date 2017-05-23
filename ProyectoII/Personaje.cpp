@@ -236,28 +236,30 @@ void Personaje::coger(){
 	EntidadJuego * objeto;
 	objeto = pMundo->compruebaColisionObjetos();//Compruebo si estoy colisionando con el obj para poder cogerlo
 	if (objeto != nullptr){
-		if (objeto->getType() == OPistola)
-			pMundo->colisionArma();
-		else{
-			switch (objeto->getType())
-			{
-			case OInforme1:
-				informe = JuegoSDL::TInforme1;
-				informeCogido = true;
-				break;
-			case OInforme2:
-				informe = JuegoSDL::TInforme2;
-				informeCogido = true;
-				break;
+		switch (objeto->getType())
+		{
+		case OInforme1:
+			informe = JuegoSDL::TInforme1;
+			informeCogido = true;
+			break;
+		case OInforme2:
+			informe = JuegoSDL::TInforme2;
+			informeCogido = true;
+			break;
 
-			case OLlave:
-				pMundo->destruyeLlave(objeto);
-				break;
-			case OTeclado:
-				pJuego->setBorraEstado(true);
-				pJuego->setEstadoEnum(ECombinaciones);
-				break;
-			}
+		case OLlave:
+			pMundo->destruyeLlave(objeto);
+			break;
+		case OTeclado:
+			pJuego->setBorraEstado(true);
+			pJuego->setEstadoEnum(ECombinaciones);
+			break;
+		case OPistola:
+			pMundo->destruyeArma();
+
+			break;
+
+			
 		}
 	}
 }

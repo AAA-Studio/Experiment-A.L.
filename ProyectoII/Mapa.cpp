@@ -102,92 +102,130 @@ void  Mapa::buscaSpawn(){
 	bool encontrado = false;
 	int tipo = 0;
 
-	if (pMundo->getNivel() == 0){
-		x = 350;
-		y = 350 + 640;
-		encontrado = true;
-		return;
+
+	if (pMundo->getMundo() == Mundo_t::MReal)
+	{
+		if (pMundo->getNivel() == 0){
+			x = 350;
+			y = 350 + 640;
+			encontrado = true;
+			return;
+		}
+
+		//sale en el spawn gris
+		else if (pMundo->getNivel() == -1)
+			tipo = 185;
+		//spawn rojo
+		else if (pMundo->getNivel() == 1)
+			tipo = 180;
+
+		//spawn rosa
+		else if (pMundo->getNivel() == 2)
+			tipo = 191;
+
+		//spawn morado
+		else if (pMundo->getNivel() == -2)
+			tipo = 184;
+
+		//spawn azul oscuro
+		else if (pMundo->getNivel() == 3)
+			tipo = 190;
+
+		//spawn pistacho
+		else if (pMundo->getNivel() == -3)
+			tipo = 188;
+
+		//spawn marrón
+		else if (pMundo->getNivel() == 4)
+			tipo = 183;
+
+		//spawn burdeos
+		else if (pMundo->getNivel() == -4)
+			tipo = 189;
+
+		//spawn verde
+		else if (pMundo->getNivel() == 5)
+			tipo = 181;
+
+		//spawn azul
+		else if (pMundo->getNivel() == -5)
+			tipo = 182;
+
+		//spawn en espejo
+		else if (pMundo->getIndiceMapa() < 6 && pMundo->getNivel() == -6){
+			tipo = 169;
+			pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MOscuro)->closeAndLoad();
+			pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->play();
+		}
 	}
-
-	//sale en el spawn gris
-	else if (pMundo->getNivel() == -1)
-		tipo = 185;
-	//spawn rojo
-	else if(pMundo->getNivel() == 1)
-		tipo = 180;
-
-	//spawn rosa
-	else if(pMundo->getNivel() == 2)
-		tipo = 191;
-
-	//spawn morado
-	else if(pMundo->getNivel() == -2)
-		tipo = 184;
-	
-	//spawn azul oscuro
-	else if(pMundo->getNivel() == 3)
-		tipo = 190;
-
-	//spawn pistacho
-	else if(pMundo->getNivel() == -3)
-		tipo = 188;
-
-	//spawn marrón
-	else if (pMundo->getNivel() == 4)
-		tipo = 183;
-
-	//spawn burdeos
-	else if (pMundo->getNivel() == -4)
-		tipo = 189;
-
-	//spawn verde
-	else if (pMundo->getNivel() == 5)
-		tipo = 181;
-
-	//spawn azul
-	else if (pMundo->getNivel() == -5)
-		tipo = 182;
-
-	//spawn en espejo
-	else if (pMundo->getIndiceMapa()<6 && pMundo->getNivel() == -6)
-		tipo = 169;
 	//------------------------------------------------------------------------------------//
 	//                                      MUNDO OSCURO								  //
 	//------------------------------------------------------------------------------------//
 	//spawn espejo en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 6)
-		tipo = 364;
-	//spawn azul en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -5)
-		tipo = 377;
-	//spawn verde en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 5)
-		tipo = 376;
-	//spawn rojo en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 1)
-		tipo = 375;
-	//spawn gris en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -1)
-		tipo = 380;
-	//spawn morado en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -2)
-		tipo = 379;
-	//spawn rosa en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 2)
-		tipo = 386;
-	//spawn burdeos en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -4)
-		tipo = 384;
-	//spawn pistacho en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == -3)
-		tipo = 383;
-	//spawn azul oscuro en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 3)
-		tipo = 385;
-	//spawn pistacho en oscuro
-	else if (pMundo->getIndiceMapa()>5 && pMundo->getNivel() == 4)
-		tipo = 378;
 
+	if (pMundo->getMundo() == Mundo_t::MOscuro){
+
+		switch (pMundo->getNivel()){
+
+		//Espejo
+		case 6:
+			tipo = 364;
+			pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->closeAndLoad();
+			pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MOscuro)->play();
+			break;
+
+		//spawn verde en oscuro
+		case 5:
+			tipo = 376;
+			break;
+
+		//spawn azul en oscuro
+		case -5:
+			tipo = 377;
+			break;
+
+		//spawn rojo en oscuro
+		case 1:
+			tipo = 375;
+			break;
+
+		//spawn gris en oscuro
+		case -1:
+			tipo = 380;
+			break;
+
+		//spawn rosa en oscuro
+		case 2:
+			tipo = 386;
+			break;
+
+		//spawn morado en oscuro
+		case -2:
+			tipo = 379;
+			break;
+
+		//spawn pistacho en oscuro
+		case 4:
+			tipo = 378;
+			break;
+
+		//spawn burdeos en oscuro
+		case -4:
+			tipo = 384;
+			break;
+
+		//spawn azul oscuro en oscuro
+		case 3:
+			tipo = 385;
+			break;
+
+		//spawn pistacho en oscuro: Se puede ser gilipollas
+		case -3:
+			tipo = 383;
+			break;
+
+		}		
+	}
 	while (!encontrado && i < TOTAL_TILES)
 	{
 		if (tileMap[i]->getType() == tipo){
@@ -198,8 +236,11 @@ void  Mapa::buscaSpawn(){
 		}
 		i++;
 	}
-
-	pMundo->cambiaPosPSJ(x, y);
+		if (pMundo->getPersonaje() != nullptr)
+		{
+			SDL_Rect rectPj = pMundo->getPersonaje()->getRect();
+			pMundo->getPersonaje()->setRect({ x, y, rectPj.w, rectPj.h });
+		}
 	setCamera();
 }
 
@@ -426,9 +467,9 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(6);
 					tipo = 114;
+					pMundo->setMundo(Mundo_t::MOscuro);
 					buscaSpawn();
 					return true;
-
 				}
 
 			}
@@ -620,9 +661,9 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-6);
 					tipo = 309;
+					pMundo->setMundo(Mundo_t::MReal);
 					buscaSpawn();
 					return true;
-
 				}
 
 			}

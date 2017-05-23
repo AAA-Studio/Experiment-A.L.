@@ -15,6 +15,7 @@ public:
 	virtual float getVida()const = 0;
 
 	virtual void mover(int x, int y) = 0;
+
 };
 
 #endif

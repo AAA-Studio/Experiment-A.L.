@@ -14,6 +14,9 @@
 
 using namespace std;
 
+
+
+
 //Clase abstracta que hereda de la raiz ObjetoJuego e implementa utilidades para las subclases
 class Mundo : public MundoVirtual
 {
@@ -30,37 +33,25 @@ public:
 	virtual void update();
 
 	//Colisiones
-	bool checkCollision(SDL_Rect a, SDL_Rect b);
-	EntidadJuego * compruebaColisionObjetos();
-	void compruebaColisionPersonaje();
-	void colisionArma();
+	bool checkCollision(SDL_Rect a, SDL_Rect b);//Lo necesito desde mapa
+	EntidadJuego * compruebaColisionObjetos();//Se le llama desde personaje cuando pulsa la tecla 'E'
 
 	//Destruccion objetos
-
-	//Balas
 	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it);
-
-	//Llaves
 	void destruyeLlave(EntidadJuego * llave);
+	void destruyeArma();
 
-
-
+	//Insertar objetos
 	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
-	
-	
-	
-
 	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
 
 	
-
-	void cambiaPosPSJ(int x, int y){
-		psj->setPosChocando(x, y);
-	}
-
+	
 	//------------------GETTERS Y SETTER---------------------
 	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
+	inline Mundo_t getMundo()const{ return mundo; };
+	virtual void setMundo(Mundo_t m){ mundo = m; };
 
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
@@ -70,13 +61,11 @@ public:
 			return balasEnems;
 	};
 
-	
+	inline PersonajeVirtual * getPersonaje(){ return psj; };
 
 	//Camara
 	inline virtual SDL_Rect getCamera() const{ return camera; };
 	virtual void setCamera(int x, int y){ camera.x = x; camera.y = y; };
-
-
 
 	//Saber el nivel del mapa en el que estamos
 	inline int getNivel() const { return nivel; };
@@ -96,23 +85,42 @@ public:
 
 	
 private:
+
 	//-------------------ATRIBUTOS---------------
+	//Referencias a otros modulos
 	Juego * pJuego;
+	Mapa * mapa;
+
+	//Mapa
+	int indiceMapa;
+	int nivel;
+
+	//Mundo
+	Mundo_t mundo;
+
+	//Entidades
 	Personaje * psj;
-	bool abierto;
-	vector<bool> cerraduras;
-	vector<int> puertas;
+	list <Enemigo*> enemigos;
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	list <Armas*> armas;
-	list <Enemigo*> enemigos;
+	SDL_Rect camera;
+
+	//Balas
 	list <EntidadJuego*> balasPsj;
 	list <EntidadJuego*> balasEnems;
-	Mapa * mapa;
-	bool pausa, balaDestruida;
-	const Uint32 duracion = 500;
 	Uint32 time;
-	SDL_Rect camera;
+	const Uint32 duracion = 500;
+	bool balaDestruida;
+
+	//Puertas
+	bool llavesCogidas[TAMAÑO_LLAVES];
+	//bool abierto;
+	//vector<bool> cerraduras;
+	//vector<int> puertas;
+	//bool pausa;
+
+	//Atributos referentes a cinematica
 	bool cinematica;
 	int contador;
 	bool moverI;
@@ -120,21 +128,24 @@ private:
 	int veces;
 	bool dibuja;
 	bool primeCinematica;
+	//-------------------ATRIBUTOS---------------
 
-	int indiceMapa;
-	int nivel;
-
-	bool llavesCogidas[TAMAÑO_LLAVES];
-
-	
 
 	//-------------------METODOS-------------------
-	void cargaObjetos();
+	//Objetos
 	void initObjetos();
+	void cargaObjetos();//Carga objetos de fichero
 	void freeObjetos();
+
+	//Colisiones
+	void compruebaColisionPersonaje();//Colision con muros y puertas
 	void colBalaEnemigo();
 	void colBalaPersonaje();
+
+	//Cinematica
 	void cinematicaInicial();
+
+	//-------------------METODOS-------------------
 };
 
 #endif

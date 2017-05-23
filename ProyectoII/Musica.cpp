@@ -4,7 +4,7 @@
 //Música
 Musica::Musica() : pMusic_ (nullptr) {}
 
-Musica::Musica(string const& nombArch) : pMusic_(nullptr) {
+Musica::Musica(string const& nombArch) : pMusic_(nullptr), nombArchivo(nombArch) {
 	load(nombArch);
 }
 
@@ -14,7 +14,9 @@ Musica::~Musica(){
 }
 
 void Musica::load(string const& nombArch){
+	nombArchivo = nombArch;
 	pMusic_ = Mix_LoadMUS(nombArch.c_str());//Cargamos el audio
+
 	if (pMusic_ == nullptr)
 	{
 		ErrorSonido error("Error al cargar la música " + nombArch);
@@ -36,6 +38,11 @@ void Musica::close(){
 		pMusic_ = nullptr;
 	}
 }
+void Musica::closeAndLoad(){
+	close();
+	load(nombArchivo);
+}
+
 
 //Efecto
 Efecto::Efecto() : pChunk_ (nullptr) {}

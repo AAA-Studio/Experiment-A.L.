@@ -38,8 +38,8 @@ public:
 	inline Uint8 getAlpha() { return (vida * 255) / maxVida; };
 	inline int DamePosAntX(){ return posXAnt; };
 	inline int DamePosAntY(){ return posYAnt; };
-	inline int getX(){ return rect.x; };
-	inline int getY(){ return rect.y; };
+	inline void setRect(SDL_Rect rectPsj){ rect = rectPsj; };
+	inline SDL_Rect getRect()const{ return rect; };
 	inline Armas* getArma(){ return arma; }
 	inline bool getempiezaPerderVida(){ return pierdesVida; }
 	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------

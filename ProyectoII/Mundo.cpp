@@ -14,14 +14,16 @@ Mundo::Mundo(Juego * pJ, string m)
 	nivel = 0;
 	indiceMapa = 1;
 
-	pausa = false;
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	psj = nullptr;
 	mapa = new Mapa(this, m);
 	initObjetos();
 
 	cargaObjetos();
-	abierto = false;
 	balaDestruida = false;
+
+	//pausa = false;
+	//abierto = false;
 	//cerraduras[0] = false;
 	//puertas[0] = 0;
 
@@ -35,7 +37,10 @@ Mundo::Mundo(Juego * pJ, string m)
 	dibuja = true;
 	veces = 0;
 	primeCinematica = true;
+	mundo = MReal;
+	pJuego->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->play();
 
+	psj->empiezaPerderVida();
 
 
 	for (int i = 0; i < TAMAÑO_LLAVES; i++) //Se inicializan las llaves
@@ -133,6 +138,8 @@ void Mundo::initObjetos()
 		if (primeCinematica)
 		{
 			psj = new Personaje(this, 400, 830, JuegoSDL::TJugador, JuegoSDL::ENull);
+			enemigos.push_back(new Enemigo(this, 400, 830,100,100, JuegoSDL::TLeon, JuegoSDL::ENull));
+
 		}
 		else
 		{
@@ -143,12 +150,7 @@ void Mundo::initObjetos()
 			x = mapa->getXSpawn();
 			y = mapa->getYSpawn();
 			psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
-			//objetos.push_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
-			//llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
-			//enemigos.push_back(new Enemigo(this, x + 100, y + 100, TLeon, ENull));
 
-
-			//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));
 		}
 }
 
@@ -271,8 +273,8 @@ void Mundo::initObjetos()
 	void Mundo::update(){
 		psj->update();//Update de personaje
 		balaDestruida = false;
-		if (indiceMapa == 0 && !(psj->getempiezaPerderVida()))
-			psj->empiezaPerderVida();
+
+			
 		if (psj->getVida() <= 0){
 			pJuego->setEstadoEnum(MGameOver);
 			pJuego->setBorraEstado(true);
@@ -356,7 +358,7 @@ void Mundo::initObjetos()
 		//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
 		if (!dibuja && contador == 500){
 			setCamera(800 * 1, indiceMapa % 6 * 640);
-			cambiaPosPSJ(1120, 830);
+			psj->setRect({1120,830,psj->getRect().w,psj->getRect().h}); //ESTO SE HARIA CON SETRECT DEL PERSONAJE
 			dibuja = true;
 		}
 
@@ -365,7 +367,7 @@ void Mundo::initObjetos()
 		{
 			dibuja = false;
 			setCamera(0, indiceMapa % 6 * 640);
-			cambiaPosPSJ(320, 830);
+			psj->setRect({ 320, 830, psj->getRect().w, psj->getRect().h });
 			//camera.x = 320; camera.y = 830;
 		}
 
@@ -387,7 +389,7 @@ void Mundo::initObjetos()
 			psj->mover(0, 1);
 		}
 		//lala 142833
-		if (psj->getY() >= 860)
+		if (psj->getRect().y >= 860)
 		{
 			veces++;
 		}
@@ -395,13 +397,8 @@ void Mundo::initObjetos()
 			psj->mover(1, 0);		
 
 		
-
-		
-
 		if (!dibuja && contador == 900){
-			//camera.x = 360; camera.y = 900;
-			//setCamera(800 * 1, pJuego->indiceMapas % 6 * 640);
-			cambiaPosPSJ(360, 900);
+			psj->setRect({ 360, 900, psj->getRect().w, psj->getRect().h });
 			dibuja = true;
 			moverI = true;
 		}
@@ -498,7 +495,7 @@ void Mundo::initObjetos()
 	//Detecta el input del jugador y la pausa
 	void Mundo::onInput(SDL_Event &e){
 
-		if (!cinematica)
+		if (!cinematica) // NO PLS
 		{
 
 			//Declaramos el array con los estados de teclado
@@ -586,8 +583,8 @@ void Mundo::initObjetos()
 		size_t i = 0;
 		SDL_Rect rect, rect3;
 
-		rect.x = psj->getX();
-		rect.y = psj->getY();
+		rect.x = psj->getRect().x;
+		rect.y = psj->getRect().y;
 
 		//Rect3 = rect de colision
 		rect3.h = 10;
@@ -643,7 +640,7 @@ void Mundo::initObjetos()
 		else
 			setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
 	}
-	void Mundo::colisionArma(){
+	void Mundo::destruyeArma(){
 		list<Armas*>::iterator it = armas.begin();
 		while (it != armas.end() && !checkCollision((*it)->getRect(),psj->getRect()))//Recorre todas las armas hasta encontrar el arma que tiene que destruir
 		{

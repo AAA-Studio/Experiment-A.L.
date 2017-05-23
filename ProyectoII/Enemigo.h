@@ -23,7 +23,7 @@ private:
 	int vida;
 	const float tiempoBala = 1000;
 	Uint32 ultimaBala;
-	int angulo;
+	float angulo;
 
 };
 
