@@ -115,9 +115,11 @@ void Mundo::cargaObjetos(){
 				}
 				else if (nombre == "INTERRUPTOR"){
 
-					obj >> x >> y >> w >> h;
-					listInter.push_back(new Interruptor(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TCero, JuegoSDL::ENull, OInterruptor));
-
+					obj >> x >> y >> w >> h >> tipo;
+					if (tipo == 1)
+						listInter.push_back(new Interruptor(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TInterruptor, JuegoSDL::ENull, OInterruptor1));
+					else if (tipo == 2)
+						listInter.push_back(new Interruptor(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TInterruptor, JuegoSDL::ENull, OInterruptor2));
 				}
 
 				obj >> nombre;

@@ -258,7 +258,7 @@ void Personaje::coger(){
 				pJuego->setBorraEstado(true);
 				pJuego->setEstadoEnum(ECombinaciones);
 				break;
-			case OInterruptor:
+			case OInterruptor1:
 				pMundo->setPulsado();
 				//pMundo->destruyeInterruptor();
 				break;

@@ -287,7 +287,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 			}
 			//PUERTA ROSA
-			else if ((tileMap[indice]->getType() == 140))
+			else if ((encendido)&&(tileMap[indice]->getType() == 140))
 			{
 				felpudo = tileMap[indice]->getBox();
 				felpudo.x = felpudo.x + 10;
