@@ -6,7 +6,7 @@
 #include "Bala.h"
 #include "Boton.h"
 #include <fstream>
-#include "PasoDeNivel.h"
+
 
 //Metodos ordenadiiiiiiiiiiiiiisimos :D
 
@@ -50,6 +50,8 @@ Mundo::Mundo(Juego * pJ, string m)
 		llavesCogidas[i] = false;
 
 	alfo = 0;
+	pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);
+	nivelCambiado = false;
 }
 Mundo::~Mundo()
 {
@@ -236,16 +238,15 @@ void Mundo::draw()const{
 			a.w = 400;
 			pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 			
-			//pJuego->escribir("HOLA :)",50, 50);
+			pJuego->escribir("¿Y esa nota?", pJuego->getWindowWidth()/2, pJuego->getWindowHeight()/2);
 			//Dibujar fondo negro
-			if (pasoNivel){
-				pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(255 - alfo);
-				pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), a, 0, 0, nullptr);
-				
 
-				
+			a.h = 640;
+			a.w = 800;
+			if (pasoNivel || nivelCambiado){
+				pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);		
 			}
-			pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
+			pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 
 		}
 	}
@@ -321,19 +322,29 @@ void Mundo::update(){
 			contador++;
 			//cinematicaInicial();
 		}
-		alfo += 10;
-		if (alfo > 255){
-			alfo = 0;
-			pasoNivel = false;
-			mapa->buscaSpawn();
+		if (pasoNivel){
+			alfo += 10;
+			if (alfo > 255){			
+				pasoNivel = false;
+				nivelCambiado = true;
+				mapa->buscaSpawn();
 
+			}
+			
+		}
+		if (nivelCambiado){
+			alfo -= 10;
+			if(alfo ==0)//Se pide la hora y se compara con la última 
+			{
+				alfo = 0;
+				nivelCambiado = false;
+			}
 		}
 
-		
 	}
 void Mundo::onInput(SDL_Event &e){
 
-		if (!cinematica) // NO PLS
+		if (!nivelCambiado && !pasoNivel) // NO PLS
 		{
 			//Declaramos el array con los estados de teclado
 			const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
@@ -344,7 +355,10 @@ void Mundo::onInput(SDL_Event &e){
 			
 			//Personaje
 			psj->onInput();
-			compruebaColisionPersonaje();
+			if (!pasoNivel && !nivelCambiado)
+				compruebaColisionPersonaje();
+
+
 
 		}
 		
@@ -461,12 +475,15 @@ void Mundo::compruebaColisionPersonaje(){
 	psj->setDir(dir);
 
 	int tipo;
-	if (mapa->touchesDoor(rectPies, tipo))
+	mapa->touchesDoor(rectPies, tipo);
+
+	
+	/*if (mapa->touchesDoor(rectPies, tipo))
 	{
 
 		EstadoJuego * aux = new PasoDeNivel(pJuego);
 		pJuego->goToState(aux);
-	}
+	}*/
 
 	//comprueba la X
 	if (mapa->touchesWall(rectPies)){

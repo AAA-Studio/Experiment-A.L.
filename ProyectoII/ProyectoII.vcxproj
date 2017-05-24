@@ -83,7 +83,6 @@
     <ClCompile Include="MenuInicio.cpp" />
     <ClCompile Include="Mundo.cpp" />
     <ClCompile Include="Musica.cpp" />
-    <ClCompile Include="PasoDeNivel.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
     <ClCompile Include="RecursosSDL.cpp" />
@@ -111,7 +110,6 @@
     <ClInclude Include="Mundo.h" />
     <ClInclude Include="MundoVirtual.h" />
     <ClInclude Include="Musica.h" />
-    <ClInclude Include="PasoDeNivel.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
     <ClInclude Include="RecursosSDL.h" />

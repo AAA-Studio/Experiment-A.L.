@@ -108,7 +108,6 @@ public:
 		getResources()->getTextura(TFuente)->renderFont(pRenderer_, x, y, texto, *getResources()->getFuente(FNormal));
 	}
 
-
 private:
 	//-----------------------------ATRIBUTOS--------------------------
 	//Estados

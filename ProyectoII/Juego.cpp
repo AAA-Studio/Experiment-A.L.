@@ -8,7 +8,7 @@
 #include "Mundo.h"
 #include "MundoVirtual.h"
 #include "Combinaciones.h"
-#include "PasoDeNivel.h"
+
 
 #include <iostream>
 #include <conio.h>
@@ -60,10 +60,7 @@ void Juego::gestionaEstados(Estados_t estado){
 		aux = new Pausa(this);
 		goToState(aux);
 		break;
-	case MPasoDeNivel:
-		aux = new PasoDeNivel(this);
-		goToState(aux);
-		break;
+
 
 		//Mundos
 	case MundoReal:
