@@ -250,12 +250,17 @@ void Personaje::coger(){
 				informeCogido = true;
 				break;
 
+
 			case OLlave:
 				pMundo->destruyeLlave(objeto);
 				break;
 			case OTeclado:
 				pJuego->setBorraEstado(true);
 				pJuego->setEstadoEnum(ECombinaciones);
+				break;
+			case OInterruptor:
+				pMundo->setPulsado();
+				//pMundo->destruyeInterruptor();
 				break;
 			}
 		}

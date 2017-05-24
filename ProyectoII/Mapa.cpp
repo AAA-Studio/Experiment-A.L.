@@ -9,6 +9,7 @@ Mapa::Mapa(MundoVirtual *pM, string mapa) : pMundo(pM), nombreMapa(mapa)
 	buscaSpawn();
 	setCamera();
 	Puerta1Abierta = false;
+	encendido = false;
 }
 
 Mapa::~Mapa()
@@ -237,7 +238,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//If the tile is a wall type tile
 			//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
 			//PUERTA ROJA
-			if ((tileMap[indice]->getType() == 150))
+			if ((encendido)&&(tileMap[indice]->getType() == 150))
 			{
 				felpudo = tileMap[indice]->getBox();
 				felpudo.x = felpudo.x + 10;

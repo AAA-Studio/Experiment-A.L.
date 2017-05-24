@@ -8,6 +8,7 @@
 #include <iostream>
 #include "MundoVirtual.h"
 #include "Armas.h"
+
 struct Direccion{
 	int x;
 	int y;
@@ -79,6 +80,8 @@ private:
 	void soltar(Objetos_t obj);
 	void move(int x, int y);
 	void soltarInforme();
+	
+
 
 	//Animación
 	SDL_Rect  rectAn;

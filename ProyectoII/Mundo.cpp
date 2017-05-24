@@ -113,6 +113,12 @@ void Mundo::cargaObjetos(){
 					enemigos.push_back(new Enemigo(this, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 				}
+				else if (nombre == "INTERRUPTOR"){
+
+					obj >> x >> y >> w >> h;
+					listInter.push_back(new Interruptor(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TCero, JuegoSDL::ENull, OInterruptor));
+
+				}
 
 				obj >> nombre;
 
@@ -195,6 +201,7 @@ void Mundo::initObjetos()
 			itArmas = armas.erase(itArmas);
 		}
 
+
 	}
 
 
@@ -207,6 +214,10 @@ void Mundo::initObjetos()
 			//DIBUJAR MAPA
 			mapa->draw();
 
+			//dibuja interruptores
+			for (auto inter : listInter){
+				inter->draw(inter->getRect().x - camera.x, inter->getRect().y - camera.y);
+			}
 			//Dibujar objetos del juego
 			list<Armas*>::const_iterator itArmas = armas.begin();
 			while (!armas.empty() && itArmas != armas.end())
@@ -216,7 +227,6 @@ void Mundo::initObjetos()
 			}
 			for (int i = objetos.size() - 1; i >= 0; i--)
 				objetos[i]->draw(objetos[i]->getRect().x - camera.x, objetos[i]->getRect().y - camera.y);
-
 			list<EntidadJuego*>::const_iterator it = llaves.cbegin();
 
 			while (!llaves.empty() && it != llaves.cend())
@@ -256,6 +266,8 @@ void Mundo::initObjetos()
 				bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
 			}
 
+
+			
 
 			pJuego->getResources()->getTextura(JuegoSDL::TBlood)->setAlpha(255 - psj->getAlpha());
 			pJuego->getResources()->getTextura(JuegoSDL::TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
@@ -623,12 +635,21 @@ void Mundo::initObjetos()
 		{
 			itArmas++;
 		}
-		if (it == llaves.cend() && itArmas == armas.cend())
+		list<Interruptor*>::const_iterator itInterrup = listInter.cbegin();
+
+		while (!listInter.empty() && itInterrup != listInter.cend() && !checkCollision(psj->getRect(), (*itInterrup)->getRect()))
+		{
+			itInterrup++;
+		}
+
+		if (it == llaves.cend() && itArmas == armas.cend() && itInterrup == listInter.cend())
 			return nullptr;
-		else if (itArmas != armas.cend())
-			return (*itArmas);
-		else
+		else if (it != llaves.cend() && itArmas == armas.cend() && itInterrup == listInter.cend())
 			return (*it);
+		else if (it == llaves.cend() && itArmas != armas.cend() && itInterrup == listInter.cend())
+			return (*itArmas);
+		else if (it == llaves.cend() && itArmas == armas.cend() && itInterrup != listInter.cend())
+			return (*itInterrup);
 	}
 
 	void Mundo::destruyeLlave(EntidadJuego * llave)
@@ -673,4 +694,18 @@ void Mundo::initObjetos()
 			balasEnems.push_back(bala);
 	}
 
+	void Mundo::setPulsado(){
+		mapa->setPulsado(true);
+	}
+
+	void Mundo::destruyeInterruptor(){
+		list<Interruptor*>::const_iterator itInterrup = listInter.cbegin();
+
+		while (!listInter.empty() && itInterrup != listInter.cend() && !checkCollision(psj->getRect(), (*itInterrup)->getRect()))
+		{
+			itInterrup++;
+		}
+		delete (*itInterrup);
+		itInterrup = listInter.erase(itInterrup);
+	}
 

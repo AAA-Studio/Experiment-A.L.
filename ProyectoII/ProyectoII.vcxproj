@@ -75,6 +75,7 @@
     <ClCompile Include="Entidad.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Interruptor.cpp" />
     <ClCompile Include="Juego.cpp" />
     <ClCompile Include="JuegoSDL.cpp" />
     <ClCompile Include="main.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Interruptor.h" />
     <ClInclude Include="Juego.h" />
     <ClInclude Include="JuegoSDL.h" />
     <ClInclude Include="Mapa.h" />

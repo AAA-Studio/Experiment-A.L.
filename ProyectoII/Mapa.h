@@ -20,7 +20,7 @@ public:
 	inline Tile** getTileMap() { return tileMap; };
 	inline int getXSpawn() const{ return x; };
 	inline int getYSpawn() const{ return y; };
-
+	inline void setPulsado(bool p){ encendido = p; };
 
 private:
 	MundoVirtual * pMundo;
@@ -34,5 +34,6 @@ private:
 	bool cargarMapa();
 	void buscaSpawn();
 	void setCamera();//Pone la cámara en el centro de cada nivel cuando se pasa de una sala a otra
+	bool encendido;
 };
 #endif

@@ -5,6 +5,7 @@
 #include "EntidadJuego.h"
 #include "Juego.h"
 #include "Armas.h"
+#include "Interruptor.h"
 #include <SDL.h>
 #include "Mapa.h"
 #include "Personaje.h"
@@ -70,8 +71,8 @@ public:
 	//Llaves
 	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
 	inline void setLlaveCogida(int indice) { llavesCogidas[indice] = !llavesCogidas[indice]; };
-
-
+	void setPulsado();
+	void destruyeInterruptor();
 	
 private:
 	//-------------------ATRIBUTOS---------------
@@ -83,10 +84,12 @@ private:
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	list <Armas*> armas;
+	list <Interruptor*> listInter;
 	list <Enemigo*> enemigos;
 	list <EntidadJuego*> balasPsj;
 	list <EntidadJuego*> balasEnems;
 	Mapa * mapa;
+	Interruptor * inter;
 	bool pausa, balaDestruida;
 	const Uint32 duracion = 500;
 	Uint32 time;

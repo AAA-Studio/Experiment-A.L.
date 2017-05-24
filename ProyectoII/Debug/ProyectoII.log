@@ -1,28 +1,35 @@
-﻿Build started 22/05/2017 18:04:57.
-     1>Project "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" on node 2 (Build target(s)).
+﻿Compilación iniciada a las 24/05/2017 15:49:20.
+     1>Proyecto "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Juego.cpp
-         Juego.cpp
-     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : inherits 'Entidad::Entidad::getRect' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : see declaration of 'Entidad::getRect'
-     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : inherits 'Entidad::Entidad::getType' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : see declaration of 'Entidad::getType'
-     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : inherits 'Entidad::Entidad::setVisible' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : see declaration of 'Entidad::setVisible'
-     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(38): warning C4244: 'return' : conversion from 'float' to 'Uint8', possible loss of data
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::draw' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(16) : see declaration of 'Entidad::draw'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::onInput' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(17) : see declaration of 'Entidad::onInput'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::getRect' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : see declaration of 'Entidad::getRect'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::getType' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : see declaration of 'Entidad::getType'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::setVisible' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : see declaration of 'Entidad::setVisible'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : inherits 'Entidad::Entidad::move' via dominance
-                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(24) : see declaration of 'Entidad::move'
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversion from 'const int' to 'float', possible loss of data
+         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mundo.cpp
+         Mundo.cpp
+     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(96): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(96): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(96): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(39): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::draw' mediante dominación
+                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(16) : vea la declaración de 'Entidad::draw'
+     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::onInput' mediante dominación
+                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(17) : vea la declaración de 'Entidad::onInput'
+     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getRect' mediante dominación
+                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
+     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::getType' mediante dominación
+                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(21) : vea la declaración de 'Entidad::getType'
+     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::setVisible' mediante dominación
+                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(23) : vea la declaración de 'Entidad::setVisible'
+     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::move' mediante dominación
+                 c:\hlocal\experiment-a.l\proyectoii\entidad.h(24) : vea la declaración de 'Entidad::move'
+     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(66): warning C4101: 'tipo' : variable local sin referencia
+     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(66): warning C4101: 'w' : variable local sin referencia
+     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(66): warning C4101: 'h' : variable local sin referencia
+     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(66): warning C4101: 'x' : variable local sin referencia
+     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(66): warning C4101: 'y' : variable local sin referencia
+     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(66): warning C4101: 'lvl' : variable local sin referencia
+     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(653): warning C4715: 'Mundo::compruebaColisionObjetos' : no todas las rutas de acceso de control devuelven un valor
        Link:
          C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Armas.obj
          Debug\Bala.obj
@@ -32,6 +39,7 @@
          Debug\Entidad.obj
          Debug\Fuente.obj
          Debug\GameOver.obj
+         Debug\Interruptor.obj
          Debug\Juego.obj
          Debug\JuegoSDL.obj
          Debug\main.obj
@@ -46,8 +54,8 @@
          Debug\TexturasSDL.obj
          Debug\Tile.obj
          ProyectoII.vcxproj -> C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe
-     1>Done Building Project "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build target(s)).
+     1>Compilación del proyecto terminada "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos).
 
-Build succeeded.
+Compilación correcta.
 
-Time Elapsed 00:00:01.04
+Tiempo transcurrido 00:00:00.90

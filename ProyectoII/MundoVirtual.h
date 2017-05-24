@@ -44,7 +44,9 @@ public:
 	virtual bool getLLavesCogidas(int indice) const = 0;
 	virtual void setLlaveCogida(int indice) = 0;
 
+	virtual void setPulsado() = 0;
 
+	virtual void destruyeInterruptor() = 0;
 };
 
 #endif
