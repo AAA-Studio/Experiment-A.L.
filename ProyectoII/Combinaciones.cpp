@@ -1,5 +1,6 @@
 #include "Combinaciones.h"
 #include "Boton.h"
+#include "Entidad.h"
 #include <iostream>
 using namespace std;
 
@@ -43,19 +44,19 @@ void Combinaciones::update(){
 
 }
 void Combinaciones::initObjetos(){
-	objetos.emplace_back(new Boton(pJuego, 370, 480, 60, 75, JuegoSDL::TCero, JuegoSDL::ENull, cero));
-	objetos.emplace_back(new Boton(pJuego, 280, 190, 60, 75, JuegoSDL::TUno, JuegoSDL::ENull, uno));
-	objetos.emplace_back(new Boton(pJuego, 370, 190, 60, 75, JuegoSDL::TDos, JuegoSDL::ENull, dos));
-	objetos.emplace_back(new Boton(pJuego, 460, 190, 60, 75, JuegoSDL::TTres, JuegoSDL::ENull, tres));
-	objetos.emplace_back(new Boton(pJuego, 280, 290, 60, 75, JuegoSDL::TCuatro, JuegoSDL::ENull, cuatro));
-	objetos.emplace_back(new Boton(pJuego, 370, 290, 60, 75, JuegoSDL::TCinco, JuegoSDL::ENull, cinco));
-	objetos.emplace_back(new Boton(pJuego, 460, 290, 60, 75, JuegoSDL::TSeis, JuegoSDL::ENull, seis));
-	objetos.emplace_back(new Boton(pJuego, 280, 390, 60, 75, JuegoSDL::TSiete, JuegoSDL::ENull, siete));
-	objetos.emplace_back(new Boton(pJuego, 370, 390, 60, 75, JuegoSDL::TOcho, JuegoSDL::ENull, ocho));
-	objetos.emplace_back(new Boton(pJuego, 460, 390, 60, 75, JuegoSDL::TNueve, JuegoSDL::ENull, nueve));
-	objetos.emplace_back(new Boton(pJuego, 280, 480, 60, 75, JuegoSDL::TVolver, JuegoSDL::ENull, salir));
-	objetos.emplace_back(new Boton(pJuego, 460, 480, 60, 75, JuegoSDL::TCero, JuegoSDL::ENull, enter));
-	objetos.emplace_back(new Boton(pJuego, 200, 100, 400, 500, JuegoSDL::TKeypad, JuegoSDL::ENull, enter));
+	objetos.emplace_back(new Entidad(pJuego, 365, 480, 70, 80, JuegoSDL::TCero, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 275, 185, 70, 80, JuegoSDL::TUno, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 365, 185, 70, 80, JuegoSDL::TDos, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 455, 185, 70, 80, JuegoSDL::TTres, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 275, 285, 70, 80, JuegoSDL::TCuatro, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 365, 285, 70, 80, JuegoSDL::TCinco, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 455, 285, 70, 80, JuegoSDL::TSeis, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 275, 385, 70, 80, JuegoSDL::TSiete, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 365, 385, 70, 80, JuegoSDL::TOcho, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 455, 385, 70, 80, JuegoSDL::TNueve, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 275, 480, 70, 80, JuegoSDL::TVolver, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 455, 480, 70, 80, JuegoSDL::TEnter, JuegoSDL::ENull, ONull));
+	objetos.emplace_back(new Entidad(pJuego, 200, 100, 400, 500, JuegoSDL::TKeypad, JuegoSDL::ENull, ONull));
 	}
 
 void Combinaciones::draw() const{
@@ -64,8 +65,10 @@ void Combinaciones::draw() const{
 	//int i = 7;
 	
 	objetos[objetos.size() - 1]->draw(objetos[objetos.size() - 1]->getRect().x, objetos[objetos.size() - 1]->getRect().y);
+	
+	//objetos[boton]->draw(objetos[boton]->getRect().x, objetos[boton]->getRect().y);
 	objetos[boton]->draw(objetos[boton]->getRect().x, objetos[boton]->getRect().y);
-
+	
 }
 
 void Combinaciones::onInput(SDL_Event &e){
@@ -123,39 +126,6 @@ void Combinaciones::onInput(SDL_Event &e){
 		}
 		
 	}
-	/*if (e.type == SDL_MOUSEBUTTONUP)
-	{
-		if (e.button.button == SDL_BUTTON_LEFT)
-		{
-			for (int j = 0; j < objetos.size(); j++)
-			{
-				objetos[j]->onInput();
-			}
-			int i = 0;
-			bool pulsado = false;
-			
-			while (i < objetos.size() && !pulsado)
-			{
-				//objetos[i]->onInput();
-				if (i == 10)
-					pulsado == true;
-				else if (pJuego->getNumero() == i)
-				{
-					combTecleada += to_string(pJuego->getNumero());
-					intentos++;
-					pulsado = true;
-					cout << " intentos: " + intentos;
-					cout << " combinacion: " + combTecleada;
-					pJuego->setNumero(20);
-				}
-				
-				i++;
-			}
-			pulsado = false;
-			i = 0;
-		}
-	}*/
-
 }
 
 void Combinaciones::pulsaEnter()

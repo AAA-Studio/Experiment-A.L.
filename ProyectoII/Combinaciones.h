@@ -27,7 +27,7 @@ private:
 	bool enterPulsado;
 	void pulsaEnter(); //metodo que se llama al pulsar el botón enter
 	void pulsaSalir(); //metodo que se llama al pulsar el boton salir
-
+	std::vector<JuegoSDL::Texturas_t> texturas;
 };
 #endif
 

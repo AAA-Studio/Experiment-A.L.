@@ -1,4 +1,4 @@
-﻿Compilación iniciada a las 22/05/2017 22:36:18.
+﻿Compilación iniciada a las 24/05/2017 16:46:20.
      1>Proyecto "C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Combinaciones.cpp
@@ -30,4 +30,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:00.85
+Tiempo transcurrido 00:00:00.89
