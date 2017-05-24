@@ -8,6 +8,7 @@
 #include "Mundo.h"
 #include "MundoVirtual.h"
 #include "Combinaciones.h"
+#include "PasoDeNivel.h"
 
 #include <iostream>
 #include <conio.h>
@@ -57,6 +58,10 @@ void Juego::gestionaEstados(Estados_t estado){
 		break;
 	case MPausa:
 		aux = new Pausa(this);
+		goToState(aux);
+		break;
+	case MPasoDeNivel:
+		aux = new PasoDeNivel(this);
 		goToState(aux);
 		break;
 
@@ -149,7 +154,7 @@ void Juego::render()
 }
 
 void Juego::changeState(EstadoJuego *estado){
-	Sleep(1000); // ES IMPOSIBLE QUE DEJE DE ODIAROS; HAY QUE HACER UN ESTADO INTERMEDIO
+	//Sleep(1000); // ES IMPOSIBLE QUE DEJE DE ODIAROS; HAY QUE HACER UN ESTADO INTERMEDIO
 	popState();
 	pushState(estado);
 }

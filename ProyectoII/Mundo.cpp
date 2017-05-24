@@ -6,6 +6,7 @@
 #include "Bala.h"
 #include "Boton.h"
 #include <fstream>
+#include "PasoDeNivel.h"
 
 //Metodos ordenadiiiiiiiiiiiiiisimos :D
 
@@ -31,6 +32,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	//cerraduras[0] = false;
 	//puertas[0] = 0;
 
+	pasoNivel = false;
 	//HABRA QUE QUITAR ESTOOOOOOOOOOOOOOOOOO
 	cinematica = false;
 	contador = 0;
@@ -46,6 +48,8 @@ Mundo::Mundo(Juego * pJ, string m)
 
 	for (int i = 0; i < TAMAÑO_LLAVES; i++) //Se inicializan las llaves
 		llavesCogidas[i] = false;
+
+	alfo = 0;
 }
 Mundo::~Mundo()
 {
@@ -231,8 +235,18 @@ void Mundo::draw()const{
 			a.h = 200;
 			a.w = 400;
 			pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
-
+			
 			//pJuego->escribir("HOLA :)",50, 50);
+			//Dibujar fondo negro
+			if (pasoNivel){
+				pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(255 - alfo);
+				pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), a, 0, 0, nullptr);
+				
+
+				
+			}
+			pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
+
 		}
 	}
 void Mundo::update(){
@@ -307,6 +321,14 @@ void Mundo::update(){
 			contador++;
 			//cinematicaInicial();
 		}
+		alfo += 10;
+		if (alfo > 255){
+			alfo = 0;
+			pasoNivel = false;
+			mapa->buscaSpawn();
+
+		}
+
 		
 	}
 void Mundo::onInput(SDL_Event &e){
@@ -439,7 +461,12 @@ void Mundo::compruebaColisionPersonaje(){
 	psj->setDir(dir);
 
 	int tipo;
-	mapa->touchesDoor(rectPies, tipo);
+	if (mapa->touchesDoor(rectPies, tipo))
+	{
+
+		EstadoJuego * aux = new PasoDeNivel(pJuego);
+		pJuego->goToState(aux);
+	}
 
 	//comprueba la X
 	if (mapa->touchesWall(rectPies)){

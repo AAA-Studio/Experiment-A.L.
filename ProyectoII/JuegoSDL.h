@@ -14,7 +14,7 @@ class JuegoSDL {
 public:
 	//Se definen los enums de todos los recursos
 
-	enum  Texturas_t{ TJugador, TBlood, TFondo, TBala, TFuego, TLeon, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2, TUno, TDos, TTres, TCuatro, TCinco, TSeis, TSiete, TOcho, TNueve, TCero, TTeclado, TVolver, TPistola, TControles, TKeypad,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
+	enum  Texturas_t{ TJugador, TBlood, TFondo, TBala, TFuego, TLeon, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2, TUno, TDos, TTres, TCuatro, TCinco, TSeis, TSiete, TOcho, TNueve, TCero, TTeclado, TVolver, TPistola, TControles, TKeypad, TPuerta, TNegro,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 	static std::vector<std::string> imageFiles_;
 
 	enum Fuentes_t {
@@ -25,7 +25,7 @@ public:
 	enum  Musica_t{ MInicio,MReal,MOscuro, Musica_t_SIZE };
 	static std::vector<std::string> musicFiles_;
 
-	enum  Efectos_t{ ENull, Efectos_t_SIZE };
+	enum  Efectos_t{ EPuerta,ENull, Efectos_t_SIZE };
 	static std::vector<std::string> soundEffectFiles_;
 
 public:

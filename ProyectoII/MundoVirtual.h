@@ -39,8 +39,11 @@ public:
 	virtual bool getLLavesCogidas(int indice) const = 0;
 	virtual  Mundo_t getMundo()const = 0;
 	virtual list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const = 0;
+	virtual bool getPasoNivel()const = 0;
+
 
 	// Setters
+	virtual  void setPasoNivel(bool pNivel) = 0;
 	virtual void setCamera(int x, int y) = 0;
 	virtual void setNivel(int i) = 0;
 	virtual void setIndiceMapa(int i) = 0;

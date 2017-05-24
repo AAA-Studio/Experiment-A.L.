@@ -288,7 +288,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-1);
 					tipo = 150;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 			}
@@ -304,7 +304,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(1);
 					tipo = 155;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 
@@ -321,7 +321,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(2);
 					tipo = 154;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 
@@ -337,7 +337,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-2);
 					tipo = 140;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 
@@ -353,7 +353,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(3);
 					tipo = 158;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -371,7 +371,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-3);
 					tipo = 165;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -388,7 +388,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(4);
 					tipo = 159;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -406,7 +406,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-4);
 					tipo = 153;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -432,7 +432,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					}
 					pMundo->setNivel(5);
 					tipo = 152;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -449,7 +449,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-5);
 					tipo = 151;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -468,7 +468,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(6);
 					tipo = 114;
 					pMundo->setMundo(Mundo_t::MOscuro);
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 
@@ -491,7 +491,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-1);
 					tipo = 345;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 			}
@@ -507,7 +507,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(1);
 					tipo = 350;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 
@@ -524,7 +524,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(2);
 					tipo = 349;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 
@@ -540,7 +540,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-2);
 					tipo = 335;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 
@@ -556,7 +556,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(3);
 					tipo = 353;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -574,7 +574,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-3);
 					tipo = 360;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -591,7 +591,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(4);
 					tipo = 354;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -609,7 +609,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-4);
 					tipo = 348;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -626,7 +626,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(5);
 					tipo = 347;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -643,7 +643,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-5);
 					tipo = 346;
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 
 				}
@@ -662,7 +662,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-6);
 					tipo = 309;
 					pMundo->setMundo(Mundo_t::MReal);
-					buscaSpawn();
+					pMundo->setPasoNivel(true);
 					return true;
 				}
 

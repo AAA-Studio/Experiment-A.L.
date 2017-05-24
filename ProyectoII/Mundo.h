@@ -52,6 +52,8 @@ public:
 	inline Juego* getPJ() const{ return pJuego; };
 	inline Mundo_t getMundo()const{ return mundo; };
 	virtual void setMundo(Mundo_t m){ mundo = m; };
+	inline bool getPasoNivel(){ return pasoNivel; };
+	inline void setPasoNivel(bool pNivel){ pasoNivel = pNivel; };
 
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
@@ -115,6 +117,8 @@ private:
 
 	//Puertas
 	bool llavesCogidas[TAMAÑO_LLAVES];
+	bool pasoNivel;
+	Uint32 alfo;
 	//bool abierto;
 	//vector<bool> cerraduras;
 	//vector<int> puertas;
