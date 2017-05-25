@@ -13,6 +13,7 @@ public:
 
 	bool touchesWall(SDL_Rect box);
 	bool touchesDoor(SDL_Rect box, int& tipo);
+	bool tileColision(Tile * tile);
 
 	void draw()const;
 	void buscaSpawn();
@@ -21,6 +22,12 @@ public:
 	inline Tile** getTileMap() { return tileMap; };
 	inline int getXSpawn() const{ return x; };
 	inline int getYSpawn() const{ return y; };
+	inline Tile* GetTileAt(int x, int y) {
+		if (tileMap == NULL || x < 0 || x >= LEVEL_WIDTH || y < 0 || y >= LEVEL_HEIGHT)
+			return NULL;
+
+		return tileMap[y * LEVEL_WIDTH + x];
+	}
 
 
 private:

@@ -8,7 +8,7 @@
 #include <list>
 
 enum Mundo_t{ MReal, MOscuro };
-
+class Mapa;
 class Personaje;
 //Clase abstracta que hereda de la raiz EstadoJuego
 class MundoVirtual : public EstadoJuego
@@ -40,6 +40,7 @@ public:
 	virtual  Mundo_t getMundo()const = 0;
 	virtual list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const = 0;
 	virtual bool getPasoNivel()const = 0;
+	virtual Mapa* getMapa() const = 0;
 
 
 	// Setters

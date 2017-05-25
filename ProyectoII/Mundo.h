@@ -14,9 +14,6 @@
 
 using namespace std;
 
-
-
-
 //Clase abstracta que hereda de la raiz ObjetoJuego e implementa utilidades para las subclases
 class Mundo : public MundoVirtual
 {
@@ -83,8 +80,6 @@ public:
 	//Llaves
 	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
 	inline void setLlaveCogida(int indice) { llavesCogidas[indice] = !llavesCogidas[indice]; };
-
-
 	
 private:
 

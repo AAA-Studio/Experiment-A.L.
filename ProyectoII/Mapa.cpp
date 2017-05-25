@@ -786,6 +786,44 @@ bool Mapa::touchesWall(SDL_Rect box)
 	return salir;
 }
 
+bool Mapa::tileColision(Tile * tile){
+	return (
+		//------------------------------------------------------------------------------------//
+		//                                      MUNDO OSCURO								  //
+		//------------------------------------------------------------------------------------//
+		tile->getType() != 195
+		&& tile->getType() != 196
+		&& tile->getType() != 197
+		&& tile->getType() != 199
+		&& tile->getType() != 200
+		&& tile->getType() != 201
+		&& tile->getType() != 202
+		&& tile->getType() != 211
+		&& tile->getType() != 212
+		&& tile->getType() != 213
+		&& tile->getType() != 214
+		&& tile->getType() != 215
+		&& tile->getType() != 216
+		&& tile->getType() != 225
+		&& tile->getType() != 226
+		&& tile->getType() != 227
+		&& tile->getType() != 228
+		&& tile->getType() != 309
+		&& tile->getType() != 334
+		&& tile->getType() != 364
+		&& tile->getType() != 375
+		&& tile->getType() != 376
+		&& tile->getType() != 377
+		&& tile->getType() != 378
+		&& tile->getType() != 379
+		&& tile->getType() != 380
+		&& tile->getType() != 382
+		&& tile->getType() != 384
+		&& tile->getType() != 383
+		&& tile->getType() != 385
+		&& tile->getType() != 386);
+}
+
 void Mapa::draw()const{
 	for (int i = 0; i < TOTAL_TILES; ++i)
 		tileMap[i]->render(pMundo->getCamera());

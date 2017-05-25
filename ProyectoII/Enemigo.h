@@ -20,7 +20,7 @@ public:
 private:
 	MundoVirtual* pMundo;
 	void disparo();
-	int vida;
+	float vida;
 	const float tiempoBala = 1000;
 	Uint32 ultimaBala;
 	float angulo;

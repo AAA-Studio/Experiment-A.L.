@@ -70,6 +70,12 @@
     <Filter Include="Archivos de encabezado\Juego">
       <UniqueIdentifier>{dc6a6610-d239-4d15-8e35-12734f33f589}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Maquina de estados IA">
+      <UniqueIdentifier>{1f208bff-b010-41b8-8264-56989ce716c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Maquina de estados IA">
+      <UniqueIdentifier>{8bdb4ead-be70-4aff-bdf8-17a3ff695d5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -134,6 +140,24 @@
     </ClCompile>
     <ClCompile Include="JuegoSDL.cpp">
       <Filter>Archivos de código fuente\Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFinding.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemigoIA.cpp">
+      <Filter>Archivos de código fuente\Entidades\Personajes</Filter>
+    </ClCompile>
+    <ClCompile Include="ChaseState.cpp">
+      <Filter>Archivos de código fuente\Maquina de estados IA</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemigoIAGlobalState.cpp">
+      <Filter>Archivos de código fuente\Maquina de estados IA</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>Archivos de código fuente\Maquina de estados IA</Filter>
+    </ClCompile>
+    <ClCompile Include="PatrolState.cpp">
+      <Filter>Archivos de código fuente\Maquina de estados IA</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +235,33 @@
     </ClInclude>
     <ClInclude Include="JuegoSDL.h">
       <Filter>Archivos de encabezado\Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="PathFinding.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchCell.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemigoIA.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="ChaseState.h">
+      <Filter>Archivos de encabezado\Maquina de estados IA</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemigoIAGlobalState.h">
+      <Filter>Archivos de encabezado\Maquina de estados IA</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>Archivos de encabezado\Maquina de estados IA</Filter>
+    </ClInclude>
+    <ClInclude Include="PatrolState.h">
+      <Filter>Archivos de encabezado\Maquina de estados IA</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Archivos de encabezado\Maquina de estados IA</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Archivos de encabezado\Maquina de estados IA</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
