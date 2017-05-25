@@ -59,8 +59,12 @@ private:
 	//Variablles de tiempo
 	const float tiempoBala = 1000;
 	const float tiempoEmpuje = 500;
+	const float tiempoInput = 500;
+
 	Uint32 ultimoEmpuje;
 	Uint32 ultimaBala;
+	Uint32 ultimoInput;
+
 
 	Direccion dir;
 	int posXAnt, posYAnt;

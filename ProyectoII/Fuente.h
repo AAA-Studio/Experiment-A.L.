@@ -16,7 +16,7 @@ public:
 
 	void load(string const& nombArch, int size);
 	void close();
-	SDL_Surface* textSolid(string const& texto, SDL_Color color);
+	SDL_Surface* textSolid(string const& texto, SDL_Color color) const ;
 
 private:
 	TTF_Font * pFont_;

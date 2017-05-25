@@ -34,6 +34,10 @@ Juego::Juego() : JuegoSDL(" ", SCREEN_WIDTH, SCREEN_HEIGHT)
 	numero = -1;
 	puertasAbiertas[0] = false; //Se inicializa la 1a puerta
 
+	font_ = getResources()->getFuente(JuegoSDL::Fuentes_t::FNormal);
+
+	textFuente.loadFromText(pRenderer_, "Press SPACE to start", { 255, 255, 255, 1 }, *font_);
+
 }
 
 

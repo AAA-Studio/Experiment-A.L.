@@ -103,7 +103,7 @@ private:
 	//Entidades
 	Personaje * psj;
 	list <Enemigo*> enemigos;
-	vector <EntidadJuego*> objetos;
+	list <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	list <Armas*> armas;
 	SDL_Rect camera;
@@ -120,6 +120,8 @@ private:
 	bool pasoNivel;
 	bool nivelCambiado;
 	Uint32 alfo;
+
+	bool colObjeto;
 	//bool abierto;
 	//vector<bool> cerraduras;
 	//vector<int> puertas;

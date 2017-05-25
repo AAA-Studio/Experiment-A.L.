@@ -25,12 +25,12 @@ public:
 	inline int getH() const{ return texRect.h; };
 
 	void load(SDL_Renderer* pRenderer, string const& nombArch);//Imagenes
-	void loadFromText(SDL_Renderer * pRender, string const& texto, SDL_Color color, Fuente fuente);//Fuentes
+	void loadFromText(SDL_Renderer * pRender, string const& texto, SDL_Color color, const Fuente& fuente);//Fuentes
 
 	//UTILIZAR VALORES POR DEFECTO PARA ANIMACIONES O ROTACIONES
 	//void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, int x, int y, SDL_Rect* texRect = NULL)const;
 	void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, int x, int y, SDL_Rect const * texRect)const;
-	void renderFont(SDL_Renderer * pRenderer, int px, int py, string const& texto, Fuente fuente);
+	void renderFont(SDL_Renderer * pRenderer, int px, int py, Fuente fuente);
 
 
 	//-----------TILE----------------------

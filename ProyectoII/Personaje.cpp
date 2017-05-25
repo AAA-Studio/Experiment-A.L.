@@ -12,7 +12,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t textu
 	rectInforme = { pJuego->getWindowWidth() / 4, pJuego->getWindowHeight() / 20, 300, 600 };
 	rectLlave = { 50, pJuego->getWindowWidth() - 100, 100, 100 };
 	rectHUD = { 0, 0, 800, 640 };
-	ultimaBala = SDL_GetTicks();
+	ultimaBala = ultimoInput = SDL_GetTicks();
 	balaDestruida = false;
 	llaveCogida = false;
 	informeCogido = false;
@@ -162,7 +162,11 @@ void Personaje::onInput()
 		}
 		//Caso en el que se coge un objeto
 		if (keyStatesActuales[SDL_SCANCODE_E]){
-			coger();
+			if (SDL_GetTicks() - ultimoInput >= tiempoInput)//Se pide la hora y se compara con la última 
+			{
+				coger();
+				ultimoInput = SDL_GetTicks();
+			}
 		}
 
 
@@ -171,8 +175,13 @@ void Personaje::onInput()
 
 	else if (informeCogido)
 	{
-		if (keyStatesActuales[SDL_SCANCODE_E])
-			soltarInforme();
+		if (SDL_GetTicks() - ultimoInput >= tiempoInput)//Se pide la hora y se compara con la última 
+		{
+			if (keyStatesActuales[SDL_SCANCODE_E]){
+				soltarInforme();
+				ultimoInput = SDL_GetTicks();
+			}
+		}
 
 	}
 

@@ -52,6 +52,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	alfo = 0;
 	pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);
 	nivelCambiado = false;
+	colObjeto = false;
 }
 Mundo::~Mundo()
 {
@@ -153,10 +154,13 @@ void Mundo::freeObjetos(){
 		delete psj;
 		psj = nullptr;
 
-		for (size_t i = 0; i < objetos.size(); i++)//Se destruyen los objetos
+
+		list<EntidadJuego*>::const_iterator itObj = objetos.cbegin();
+		while (!objetos.empty() && itObj != objetos.end())
 		{
-			delete(objetos[i]);
-			objetos[i] = nullptr;
+			delete(*itObj);
+			itObj= objetos.erase(itObj);
+		
 		}
 
 		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
@@ -236,9 +240,9 @@ void Mundo::draw()const{
 			SDL_Rect a = getCamera();
 			a.h = 200;
 			a.w = 400;
-			pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
+			//pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 			
-			//pJuego->escribir("¿Y esa nota?", pJuego->getWindowWidth()/2, pJuego->getWindowHeight()/2);
+			
 			//Dibujar fondo negro
 
 			a.h = 640;
@@ -248,11 +252,18 @@ void Mundo::draw()const{
 			}
 			pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 
+			if (colObjeto){
+				pJuego->escribir(psj->getRect().x - camera.x - 20, psj->getRect().y - camera.y + 50);
+			}
 		}
 	}
 void Mundo::update(){
 		psj->update();//Update de personaje
 		balaDestruida = false;
+		colObjeto = false;
+
+
+
 
 		//Caso GameOver
 		if (psj->getVida() <= 0){
@@ -302,17 +313,51 @@ void Mundo::update(){
 		}
 
 		//Update de objetos
-		for (auto obj : objetos){
-			if (checkCollision(camera, obj->getRect()))
-				obj->update();
+		list<EntidadJuego*>::iterator obj = objetos.begin();
+
+		while (!colObjeto && !objetos.empty() && obj != objetos.end()){
+			if (checkCollision(camera, (*obj)->getRect())){
+				if (checkCollision(psj->getRect(), (*obj)->getRect()))
+					colObjeto = true;
+				else
+					colObjeto = false;
+			}
+			(*obj)->update();
+
+			obj++;
 		}
+		list<EntidadJuego*>::iterator itLlave = llaves.begin();
 			
 		//Update de las llaves
-		for (auto llave : llaves){
-			if (checkCollision(camera, llave->getRect()))
-				llave->update();			
+		while (!colObjeto && !llaves.empty() && itLlave != llaves.end()){
+			if (checkCollision(camera, (*itLlave)->getRect()))
+			{
+				if (checkCollision(psj->getRect(), (*itLlave)->getRect()))
+					colObjeto = true;
+				else
+					colObjeto = false;
+			}
+
+			(*itLlave)->update();
+			itLlave++;
 		}
 
+
+		list<Armas*>::iterator itArma = armas.begin();
+
+		//Update de las llaves
+		while (!colObjeto && !armas.empty() && itArma != armas.end()){
+			if (checkCollision(camera, (*itArma)->getRect()))
+			{
+				if (checkCollision(psj->getRect(), (*itArma)->getRect()))
+					colObjeto = true;
+				else
+					colObjeto = false;
+			}
+
+			(*itArma)->update();
+			itArma++;
+		}
 		//COLISIONES
 		colBalaEnemigo();
 		colBalaPersonaje();
@@ -424,33 +469,33 @@ EntidadJuego * Mundo::compruebaColisionObjetos(){
 		rect3.y = rect.y + 40;
 
 
-		while (i < objetos.size() && !checkCollision(psj->getRect(), objetos[i]->getRect()))
-			i++;
+		list<EntidadJuego*>::const_iterator itObj = objetos.cbegin();
+
+		while (!objetos.empty() && itObj != objetos.cend() && !checkCollision(psj->getRect(), (*itObj)->getRect()))
+			itObj++;
 
 		//Si lo he encontrado en los informes
-		if (i != objetos.size())
-			return objetos[i];
+		if (itObj != objetos.cend())
+			return (*itObj);
 
 		//Si no, sigo buscando en la lista de llaves
 		list<EntidadJuego*>::const_iterator it = llaves.cbegin();
 
 		while (!llaves.empty() && it != llaves.cend() && !checkCollision(psj->getRect(), (*it)->getRect()))
-		{
 			it++;
 
-		}
+		if (it != llaves.cend())
+			return (*it);
+	
 		list<Armas*>::const_iterator itArmas = armas.cbegin();
 
 		while (!armas.empty() && itArmas != armas.cend() && !checkCollision(psj->getRect(), (*itArmas)->getRect()))
-		{
 			itArmas++;
-		}
-		if (it == llaves.cend() && itArmas == armas.cend())
-			return nullptr;
-		else if (itArmas != armas.cend())
+		
+		if (itArmas != armas.cend())
 			return (*itArmas);
-		else
-			return (*it);
+
+		return nullptr;
 	}
 void Mundo::compruebaColisionPersonaje(){
 	SDL_Rect rectPersonaje = psj->getRect(), rectPies;

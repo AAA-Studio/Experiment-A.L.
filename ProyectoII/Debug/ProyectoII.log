@@ -1,4 +1,4 @@
-﻿Compilación iniciada a las 25/05/2017 11:16:01.
+﻿Compilación iniciada a las 25/05/2017 13:21:28.
      1>Proyecto "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
          C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mundo.cpp
@@ -32,4 +32,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:00.78
+Tiempo transcurrido 00:00:00.81

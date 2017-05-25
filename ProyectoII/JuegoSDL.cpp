@@ -11,7 +11,7 @@ std::vector<std::string> JuegoSDL::imageFiles_{ "..\\bmps\\AL.png", "..\\bmps\\b
 
 
 std::vector<std::string> JuegoSDL::fontFiles_{ 
-	"..\\bmps\\font.ttf" };
+	"..\\bmps\\selawk.ttf" };
 
 std::vector<std::string> JuegoSDL::musicFiles_{ "..\\sounds\\mInicio.mp3",
 "..\\sounds\\MundoReal.mp3", "..\\sounds\\MundoOscuro.mp3" };
