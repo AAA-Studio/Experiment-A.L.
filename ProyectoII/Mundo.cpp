@@ -31,7 +31,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	moverP = false;
 	dibuja = true;
 	veces = 0;
-	primeCinematica = true;
+	primeCinematica = false;
 }
 
 
@@ -67,7 +67,7 @@ void Mundo::cargaObjetos(){
 			obj >> lvl;
 			obj >> nombre;
 
-			if (lvl < 6)
+			if (lvl < 24)
 				ancho = 0;
 			else
 				ancho = 800;
@@ -76,30 +76,30 @@ void Mundo::cargaObjetos(){
 			while (obj.peek() != EOF && nombre != "NIVEL"){
 				if (nombre == "LLAVE"){
 					obj >> x >> y >> w >> h;
-					llaves.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TLlave, JuegoSDL::ENull, OLlave));
+					llaves.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLlave, JuegoSDL::ENull, OLlave));
 				}
 				else if (nombre == "INFORME"){
 					obj >> x >> y >> w >> h >> tipo;
 					if (tipo == 1)
-						objetos.push_back(new Entidad(pJuego, 580 + ancho*lvl, 220 + alto*lvl, w, h, JuegoSDL::TInforme1, JuegoSDL::ENull, OInforme1));//Informe
+						objetos.push_back(new Entidad(pJuego, 580 + ancho, 220 + alto*(lvl % 24), w, h, JuegoSDL::TInforme1, JuegoSDL::ENull, OInforme1));//Informe
 						
 					else if (tipo == 2)
-						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TInforme2, JuegoSDL::ENull, OInforme2));//Informe
+						objetos.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInforme2, JuegoSDL::ENull, OInforme2));//Informe
 				}
 				else if (nombre == "PANEL"){
 
 					obj >> x >> y >> w >> h;
-					objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TTeclado, JuegoSDL::ENull, OTeclado));
+					objetos.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TTeclado, JuegoSDL::ENull, OTeclado));
 				}
 				else if (nombre == "ARMA"){
 
 					obj >> x >> y >> w >> h >> balas >> cadencia;
-					armas.push_back(new Armas(pJuego, x + ancho*lvl, y + alto*lvl, w, h, balas, cadencia, JuegoSDL::TPistola, JuegoSDL::ENull, OPistola));
+					armas.push_back(new Armas(pJuego, x + ancho, y + alto*(lvl % 24), w, h, balas, cadencia, JuegoSDL::TPistola, JuegoSDL::ENull, OPistola));
 				}
 				else if (nombre == "ENEMIGO"){
 
 					obj >> x >> y >> w >> h;
-					enemigos.push_back(new Enemigo(this, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
+					enemigos.push_back(new Enemigo(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 				}
 
@@ -344,7 +344,7 @@ void Mundo::initObjetos()
 		
 		//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
 		if (!dibuja && contador == 500){
-			setCamera(800 * 1, pJuego->indiceMapas % 6 * 640);
+			setCamera(800 * 1, pJuego->indiceMapas % 24 * 640);
 			cambiaPosPSJ(1120, 830);
 			dibuja = true;
 		}
@@ -353,7 +353,7 @@ void Mundo::initObjetos()
 		if (dibuja && contador == 600)
 		{
 			dibuja = false;
-			setCamera(0, pJuego->indiceMapas % 6 * 640);
+			setCamera(0, pJuego->indiceMapas % 24 * 640);
 			cambiaPosPSJ(320, 830);
 			//camera.x = 320; camera.y = 830;
 		}
@@ -547,8 +547,135 @@ void Mundo::initObjetos()
 			rect.y -= y;
 		}
 
-		if (tipo != 150 && tipo != 155 && tipo != 154 && tipo != 140 && tipo != 158 && tipo != 165 && tipo != 159 && tipo != 153 && tipo != 152 && tipo != 151 && tipo != 114
-			&& tipo != 345 && tipo != 350 && tipo != 349 && tipo != 335 && tipo != 353 && tipo != 360 && tipo != 354 && tipo != 348 && tipo != 347 && tipo != 346 && tipo != 309)
+		if (tipo != 0
+			&& tipo != 1
+			&& tipo != 2
+			&& tipo != 3
+			&& tipo != 4
+			&& tipo != 5
+			&& tipo != 6
+			&& tipo != 7
+			&& tipo != 16
+			&& tipo != 17
+			&& tipo != 18
+			&& tipo != 19
+			&& tipo != 20
+			&& tipo != 21
+			&& tipo != 22
+			&& tipo != 23
+			&& tipo != 27
+			&& tipo != 28
+			&& tipo != 29
+			&& tipo != 30
+			&& tipo != 31
+			&& tipo != 32
+			&& tipo != 33
+			&& tipo != 42
+			&& tipo != 43
+			&& tipo != 44
+			&& tipo != 54
+			&& tipo != 55
+			&& tipo != 56
+			&& tipo != 57
+			&& tipo != 58
+			&& tipo != 59
+			&& tipo != 64
+			&& tipo != 114
+			&& tipo != 140
+			&& tipo != 150
+			&& tipo != 151
+			&& tipo != 152
+			&& tipo != 153
+			&& tipo != 154
+			&& tipo != 155
+			&& tipo != 157
+			&& tipo != 158
+			&& tipo != 159
+			&& tipo != 165
+			&& tipo != 169
+			&& tipo != 174
+			&& tipo != 180
+			&& tipo != 181
+			&& tipo != 182
+			&& tipo != 183
+			&& tipo != 184
+			&& tipo != 185
+			&& tipo != 186
+			&& tipo != 187
+			&& tipo != 188
+			&& tipo != 189
+			&& tipo != 190
+			&& tipo != 191
+			&& tipo != 338
+			&& tipo != 339
+			&& tipo != 340
+			//------------------------------------------------------------------------------------//
+			//                                      MUNDO OSCURO								  //
+			//------------------------------------------------------------------------------------//
+
+			&& tipo != 345
+			&& tipo != 346
+			&& tipo != 347
+			&& tipo != 348
+			&& tipo != 349
+			&& tipo != 350
+			&& tipo != 351
+			&& tipo != 352
+			&& tipo != 361
+			&& tipo != 362
+			&& tipo != 363
+			&& tipo != 364
+			&& tipo != 365
+			&& tipo != 366
+			&& tipo != 367
+			&& tipo != 368
+			&& tipo != 372
+			&& tipo != 373
+			&& tipo != 374
+			&& tipo != 375
+			&& tipo != 376
+			&& tipo != 377
+			&& tipo != 378
+			&& tipo != 387
+			&& tipo != 388
+			&& tipo != 389
+			&& tipo != 399
+			&& tipo != 400
+			&& tipo != 401
+			&& tipo != 402
+			&& tipo != 403
+			&& tipo != 404
+			&& tipo != 409
+			&& tipo != 459
+			&& tipo != 485
+			&& tipo != 495
+			&& tipo != 496
+			&& tipo != 497
+			&& tipo != 498
+			&& tipo != 499
+			&& tipo != 500
+			&& tipo != 501
+			&& tipo != 502
+			&& tipo != 503
+			&& tipo != 504
+			&& tipo != 510
+			&& tipo != 514
+			&& tipo != 519
+			&& tipo != 525
+			&& tipo != 526
+			&& tipo != 527
+			&& tipo != 528
+			&& tipo != 529
+			&& tipo != 530
+			&& tipo != 531
+			&& tipo != 532
+			&& tipo != 533
+			&& tipo != 534
+			&& tipo != 535
+			&& tipo != 536
+			&& tipo != 683
+			&& tipo != 684
+			&& tipo != 685)
 		psj->setPosChocando(rect.x, rect.y);
 
 	}
