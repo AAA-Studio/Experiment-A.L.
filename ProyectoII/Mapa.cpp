@@ -516,26 +516,52 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					}
 				}
 				else if (pJuego->indiceMapas != 0){
-					felpudo = tileMap[indice]->getBox();
-					felpudo.y = felpudo.y + 25;
-					felpudo.h = felpudo.h - 15;
-					felpudo.w = felpudo.w - 25;
+					if (pJuego->indiceMapas == 6){
+						felpudo = tileMap[indice]->getBox();
+						felpudo.y = felpudo.y + 25;
+						felpudo.h = felpudo.h - 15;
+						felpudo.w = felpudo.w - 25;
 
-					if (pMundo->checkCollision(box, felpudo)){
+						if (pMundo->checkCollision(box, felpudo)){
 
-						if (pJuego->getLLavesCogidas(1) && !Puerta1Abierta){
-							Puerta1Abierta = true;
-							pJuego->setLlaveCogida(0);
+							if (pJuego->getLLavesCogidas(1) && !Puerta1Abierta){
+								Puerta1Abierta = true;
+								pJuego->setLlaveCogida(0);
+							}
+							else if (pJuego->getLLavesCogidas(0) && !Puerta1Abierta){
+								Puerta1Abierta = true;
+								pJuego->setLlaveCogida(0);
+							}
+							pJuego->setNivel(5);
+							tipo = 152;
+							buscaSpawn();
+							return true;
+
 						}
-						else if (pJuego->getLLavesCogidas(0) && !Puerta1Abierta){
-							Puerta1Abierta = true;
-							pJuego->setLlaveCogida(0);
-						}
-						pJuego->setNivel(5);
-						tipo = 152;
-						buscaSpawn();
-						return true;
+					}
+					else{
+						felpudo = tileMap[indice]->getBox();
+						felpudo.y = felpudo.y - 5;
+						felpudo.x = felpudo.x + 7;
+						felpudo.h = felpudo.h - 15;
+						felpudo.w = felpudo.w - 25;
 
+						if (pMundo->checkCollision(box, felpudo)){
+
+							if (pJuego->getLLavesCogidas(1) && !Puerta1Abierta){
+								Puerta1Abierta = true;
+								pJuego->setLlaveCogida(0);
+							}
+							else if (pJuego->getLLavesCogidas(0) && !Puerta1Abierta){
+								Puerta1Abierta = true;
+								pJuego->setLlaveCogida(0);
+							}
+							pJuego->setNivel(5);
+							tipo = 152;
+							buscaSpawn();
+							return true;
+
+						}
 					}
 				}
 
@@ -753,17 +779,34 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//PUERTA AZUL (OSCURO)
 			else if ((tileMap[indice]->getType() == 497))
 			{
-				felpudo = tileMap[indice]->getBox();
-				felpudo.y = felpudo.y + 25;
-				felpudo.h = felpudo.h - 15;
-				felpudo.w = felpudo.w - 25;
+				if (pJuego->indiceMapas == 24 || pJuego->indiceMapas == 30){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 25;
 
-				if (pMundo->checkCollision(box, felpudo)){
-					pJuego->setNivel(5);
-					tipo = 497;
-					buscaSpawn();
-					return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(5);
+						tipo = 497;
+						buscaSpawn();
+						return true;
 
+					}
+				}				
+				else{
+					felpudo = tileMap[indice]->getBox();
+					felpudo.y = felpudo.y - 5;
+					felpudo.x = felpudo.x + 7;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 25;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pJuego->setNivel(5);
+						tipo = 497;
+						buscaSpawn();
+						return true;
+
+					}
 				}
 
 			}
