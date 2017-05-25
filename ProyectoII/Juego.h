@@ -13,19 +13,19 @@ using namespace std;
 
 //-----------------CONSTANTES----------------------
 
-//Screen dimension constants
+//Screen dimension constants pixels
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 640;
 
-//The dimensions of the level
+//The dimensions of the level pixels
 const int LEVEL_WIDTH = 1600;
-const int LEVEL_HEIGHT = 3840;
+const int LEVEL_HEIGHT = 15360;
 
 //Tile constants
 const int TILE_WIDTH = 32;
 const int TILE_HEIGHT = 32;
-const int TOTAL_TILES = 6000;
-const int TOTAL_TILE_SPRITES = 390;
+const int TOTAL_TILES = 24000;
+const int TOTAL_TILE_SPRITES = 1000;
 
 //----------------------------------------------------
 

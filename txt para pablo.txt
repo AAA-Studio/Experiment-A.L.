@@ -11,6 +11,8 @@ pistacho = 158   *
 burdeos = 159     *
 rosa = 140     *
 azul oscuro = 165    *
+gris paso nivel = 174  *
+espejo = 114*
 
 TILES SPAWN:
 rojo = 180      *
@@ -25,7 +27,41 @@ pistacho = 188    *
 burdeos = 189    *
 rosa = 191        * 
 azul oscuro = 190   *
+espejo = 169*
 
+OSCURO
+
+
+TILES FELPUDOS:
+rojo = 495	* 
+verde = 496	*
+azul = 497	*
+marron = 498	*
+morado = 499	*      
+gris = 500	*  
+amarillo = 501	(imagino que será el complementario al naranja aunque falta el espejo)
+naranja = 502	(ascensor)
+pistacho = 503	*
+burdeos = 504	*
+rosa = 485	*
+azul oscuro = 510	*
+gris paso nivel = 519	*
+espejo = 459 *
+
+TILES SPAWN:
+rojo = 525      *
+verde = 526	*
+azul = 527	*
+marron = 528	*
+morado = 529	*
+gris = 530	*  
+amarillo = 531	
+naranja = 532
+pistacho = 533	*
+burdeos = 534	*
+rosa = 536	* 
+azul oscuro = 535	*
+espejo = 514
 Forma de uso de los spwans y los felpudos:
 
 En mundo REAL:

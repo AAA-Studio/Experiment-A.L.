@@ -21,8 +21,9 @@ Juego::Juego() : JuegoSDL(" ", SCREEN_WIDTH, SCREEN_HEIGHT)
 	exit = false;
 	borraEstado = false;
 
-	nombreMapa = "..\\bmps\\Habitaciones\\mapCompleto.csv";
-	nombreObjetos = "..\\bmps\\Objetos\\Objetos1.csv";
+
+	nombreMapa = { "..\\bmps\\Habitaciones\\MAPACOMPLETO.csv" };
+	nombreObjetos = { "..\\bmps\\Objetos\\Objetos1.csv" };
 
 	recortarTiles();
 
@@ -184,7 +185,7 @@ void Juego::getMousePos(int & mpx, int & mpy) const
 void Juego::recortarTiles()
 {
 	int k = 0;
-	for (int i = 0; i <= 800; i += 32)
+	for (int i = 0; i <= 1440; i += 32)
 	{
 		for (int j = 0; j <= 448; j += 32)
 		{

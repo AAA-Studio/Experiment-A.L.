@@ -36,7 +36,8 @@ void Personaje::update()
 
 	//Center the camera over the dot
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
-	if (pMundo->getIndiceMapa() <6 && !informeCogido && !cinematica && pierdesVida)
+
+	if (pMundo->getIndiceMapa()  < 24 && !informeCogido && !cinematica && pierdesVida)
 		vida -= 0.1;
 
 
@@ -206,7 +207,8 @@ void Personaje::move(int x, int y)
 }
 
 void Personaje::disparo(){
-if (arma != nullptr && arma->getBalas() > 0 && pMundo->getIndiceMapa() >5){
+
+	if (arma != nullptr && arma->getBalas() > 0 && pMundo->getIndiceMapa() >23){
 		if (SDL_GetTicks() - ultimaBala >= arma->getCadencia() )//Se pide la hora y se compara con la última 
 		{
 			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, rect.w / 15, rect.h / 15, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje));
