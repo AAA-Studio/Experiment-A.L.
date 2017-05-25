@@ -36,7 +36,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	//HABRA QUE QUITAR ESTOOOOOOOOOOOOOOOOOO
 	cinematica = false;
 	contador = 0;
-	objetos[1]->setVisible(false);
+	//objetos[1]->setVisible(false);
 	moverI = false;
 	moverP = false;
 	dibuja = true;
@@ -136,7 +136,7 @@ void Mundo::initObjetos()
 		if (primeCinematica)
 		{
 			psj = new Personaje(this, 400, 830, JuegoSDL::TJugador, JuegoSDL::ENull);
-			enemigos.push_back(new Enemigo(this, 400, 830,100,100, JuegoSDL::TLeon, JuegoSDL::ENull));
+			//enemigos.push_back(new Enemigo(this, 400, 830,100,100, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 		}
 		else
@@ -238,7 +238,7 @@ void Mundo::draw()const{
 			a.w = 400;
 			pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 			
-			pJuego->escribir("¿Y esa nota?", pJuego->getWindowWidth()/2, pJuego->getWindowHeight()/2);
+			//pJuego->escribir("¿Y esa nota?", pJuego->getWindowWidth()/2, pJuego->getWindowHeight()/2);
 			//Dibujar fondo negro
 
 			a.h = 640;
