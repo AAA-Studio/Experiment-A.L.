@@ -10,7 +10,7 @@
 #include "Personaje.h"
 #include "Enemigo.h"
 #include <list>
-
+#include "EnemigoIA.h"
 
 using namespace std;
 
@@ -98,6 +98,7 @@ private:
 	//Entidades
 	Personaje * psj;
 	list <Enemigo*> enemigos;
+	list <EnemigoIA*> enemigosIA;
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	list <Armas*> armas;

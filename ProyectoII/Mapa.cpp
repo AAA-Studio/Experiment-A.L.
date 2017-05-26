@@ -788,10 +788,49 @@ bool Mapa::touchesWall(SDL_Rect box)
 
 bool Mapa::tileColision(Tile * tile){
 	return (
+			tile->getType() != 0
+			&& tile->getType() != 1
+			&& tile->getType() != 2
+			&& tile->getType() != 3
+			&& tile->getType() != 16
+			&& tile->getType() != 17
+			&& tile->getType() != 18
+			&& tile->getType() != 30
+			&& tile->getType() != 31
+			&& tile->getType() != 32
+			&& tile->getType() != 33
+			&& tile->getType() != 54
+			&& tile->getType() != 55
+			&& tile->getType() != 82
+			&& tile->getType() != 114
+			&& tile->getType() != 139
+			&& tile->getType() != 140
+			&& tile->getType() != 150
+			&& tile->getType() != 151
+			&& tile->getType() != 152
+			&& tile->getType() != 153
+			&& tile->getType() != 154
+			&& tile->getType() != 155
+			&& tile->getType() != 158
+			&& tile->getType() != 159
+			&& tile->getType() != 165
+			&& tile->getType() != 169
+			&& tile->getType() != 180
+			&& tile->getType() != 181
+			&& tile->getType() != 182
+			&& tile->getType() != 183
+			&& tile->getType() != 184
+			&& tile->getType() != 185
+			&& tile->getType() != 186
+			&& tile->getType() != 187
+			&& tile->getType() != 188
+			&& tile->getType() != 189
+			&& tile->getType() != 190
+			&& tile->getType() != 191
 		//------------------------------------------------------------------------------------//
 		//                                      MUNDO OSCURO								  //
 		//------------------------------------------------------------------------------------//
-		tile->getType() != 195
+		&& tile->getType() != 195
 		&& tile->getType() != 196
 		&& tile->getType() != 197
 		&& tile->getType() != 199

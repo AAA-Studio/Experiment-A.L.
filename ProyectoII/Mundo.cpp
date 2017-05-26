@@ -4,9 +4,8 @@
 #include <iostream>
 #include <SDL.h>
 #include "Bala.h"
-#include "Boton.h"
 #include <fstream>
-
+#include "EnemigoIA.h"
 
 //Metodos ordenadiiiiiiiiiiiiiisimos :D
 
@@ -136,8 +135,12 @@ void Mundo::initObjetos()
 		if (primeCinematica)
 		{
 			psj = new Personaje(this, 400, 830, JuegoSDL::TJugador, JuegoSDL::ENull);
-			//enemigos.push_back(new Enemigo(this, 400, 830,100,100, JuegoSDL::TLeon, JuegoSDL::ENull));
+			vector < pair<float, float>> waypoints;
+			waypoints.push_back(make_pair(450, 840));
+			waypoints.push_back(make_pair(450, 1200));
+			waypoints.push_back(make_pair(700, 1000));
 
+			enemigosIA.push_back(new EnemigoIA(this, psj, 400, 830, 100, 100, JuegoSDL::TLeon, JuegoSDL::ENull, waypoints));
 		}
 		else
 		{
@@ -160,12 +163,19 @@ void Mundo::freeObjetos(){
 		}
 
 		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
-
 		while (!enemigos.empty() && itEnemigo != enemigos.end())
 		{
 			delete(*itEnemigo);
 			itEnemigo = enemigos.erase(itEnemigo);
 		}
+
+		list<EnemigoIA*>::iterator itEnemigoIA = enemigosIA.begin();
+		while (!enemigosIA.empty() && itEnemigoIA != enemigosIA.end())
+		{
+			delete(*itEnemigoIA);
+			itEnemigoIA = enemigosIA.erase(itEnemigoIA);
+		}
+
 
 		list<EntidadJuego*>::const_iterator it = llaves.cbegin();
 		for (; it != llaves.cend() && llaves.empty(); it++){
@@ -217,6 +227,8 @@ void Mundo::draw()const{
 			for (auto enemigo : enemigos)
 				enemigo->draw(enemigo->getRect().x - camera.x, enemigo->getRect().y - camera.y);
 
+			for (auto enemigoIA : enemigosIA)
+				enemigoIA->draw(enemigoIA->getRect().x - camera.x, enemigoIA->getRect().y - camera.y);
 
 			psj->draw(psj->getRect().x - camera.x, psj->getRect().y - camera.y);
 	
@@ -299,6 +311,10 @@ void Mundo::update(){
 		for (auto enemigo : enemigos){
 			if (checkCollision(camera, enemigo->getRect()))
 				enemigo->update();
+		}
+		for (auto enemigoIA : enemigosIA){
+			if (checkCollision(camera, enemigoIA->getRect()))
+				enemigoIA->update();
 		}
 
 		//Update de objetos

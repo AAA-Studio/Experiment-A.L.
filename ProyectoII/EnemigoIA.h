@@ -1,9 +1,9 @@
 #ifndef _H_EnemigoIA_H_
 #define _H_EnemigoIA_H_
 
-#include "Enemigo.h"
+#include "Entidad.h"
 #include "StateMachine.h"
-#include "Mundo.h"
+#include "MundoVirtual.h"
 #include <vector>
 
 #define M_PI 3.1416
@@ -12,7 +12,8 @@ class EnemigoIA : public Entidad
 {
 public:
 
-	EnemigoIA(MundoVirtual*pM, Entidad* target, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, vector < pair<float, float>> waypoints);
+	EnemigoIA(MundoVirtual*pM, Entidad* target, int x, int y, int w, int h, JuegoSDL::Texturas_t textura,
+		JuegoSDL::Efectos_t efecto, vector < pair<float, float>> waypoints);
 	~EnemigoIA();
 
 	void Initialize();
@@ -56,8 +57,6 @@ protected:
 private:
 	MundoVirtual* pMundo = nullptr;
 	float vida;
-
-	void initWaypoints();
 
 	/*
 	int angle;

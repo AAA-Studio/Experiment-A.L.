@@ -6,14 +6,15 @@
 #include <math.h>
 #include <windows.h>
 #include <utility>
+#include <iostream>
 
 EnemigoIA::EnemigoIA(MundoVirtual*pM, Entidad* target, int x, int y, int w, int h,
 	JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, vector < pair<float, float>> waypoints)
 	: Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull), pMundo(pM), vida(3), m_target(target),
 	m_currentIndex(0), m_waypoints(waypoints)
 {
+	std::cout << m_currentIndex << endl;
 	Initialize();
-	initWaypoints();
 }
 
 
@@ -35,16 +36,6 @@ void EnemigoIA::Initialize() {
 	m_stateMachine->SetGlobalState(new EnemigoIAGlobalState());
 }
 
-void EnemigoIA::initWaypoints(){
-
-	// Para comprobar que funciona el codigo
-	
-	m_waypoints.push_back(make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
-	m_waypoints.push_back(make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
-	m_waypoints.push_back(make_pair(rand() % LEVEL_WIDTH, rand() % LEVEL_HEIGHT));
-	
-}
-
 void EnemigoIA::update() {
 
 	Entidad::update();
@@ -52,7 +43,7 @@ void EnemigoIA::update() {
 }
 
 void EnemigoIA::ChaseTarget() {
-	m_maxVelocity = 0.0001f;
+	m_maxVelocity = 2.0f;
 	SDL_Rect targetTransform = m_target->getRect();
 
 	//Vectores auxiliares
@@ -70,8 +61,8 @@ void EnemigoIA::ChaseTarget() {
 
 	pair <float, float> velocity = make_pair(toTarget.first * m_maxVelocity, toTarget.second * m_maxVelocity);
 
-	position.first = position.first + velocity.first * (float)SDL_GetTicks();
-	position.second = position.second + velocity.second * (float)SDL_GetTicks();
+	position.first = position.first + velocity.first;
+	position.second = position.second + velocity.second;
 
 	SDL_Rect posRect = { position.first, position.second, rect.w, rect.h };
 	setRect(posRect);
@@ -84,17 +75,10 @@ StateMachine<EnemigoIA>*EnemigoIA::GetStateMachine() {
 
 const pair <float, float> &EnemigoIA::findNextWayPoints(){
 
+	std::cout << m_currentIndex << endl;
+
 	if (m_waypoints.size() != 0)
 	{
-		const pair <float, float>& waypoint = m_waypoints[m_currentIndex];
-		m_currentIndex = (int)(rand() % m_waypoints.size() - 1);
-
-		return waypoint;
-	}
-	// Para debug
-	else{
-
-		initWaypoints();
 		const pair <float, float>& waypoint = m_waypoints[m_currentIndex];
 		m_currentIndex = (int)(rand() % m_waypoints.size());
 

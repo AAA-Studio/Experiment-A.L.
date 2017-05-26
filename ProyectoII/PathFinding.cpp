@@ -83,7 +83,7 @@ void PathFinding::Iterate() {
 		m_goalCell->SetParent(currentCell);
 
 		// Movimiento sin algoritmos, el iter es el personaje y guardas el camino hacia el objetivo
-		for (SearchCell * iter = m_goalCell; iter; iter = iter->GetParent()) {
+		for (SearchCell * iter = m_goalCell; iter != m_startCell; iter = iter->GetParent()) {
 			m_closesPaths.push_back(make_pair(iter->GetCellX() * (float)TILE_WIDTH/2.0f, iter->GetCellY() * (float)TILE_HEIGHT/2.0f));
 		}
 	}
