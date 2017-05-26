@@ -337,6 +337,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-1);
 					tipo = 150;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);   
 					return true;
 				}
 			}
@@ -353,6 +354,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(1);
 					tipo = 155;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 				}
 
@@ -370,6 +372,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(2);
 					tipo = 154;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 				}
 
@@ -386,6 +389,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-2);
 					tipo = 140;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 				}
 
@@ -403,6 +407,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo->setNivel(3);
 						tipo = 158;
 						buscaSpawn();
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
 					}
 				}
@@ -416,6 +421,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo->setNivel(3);
 						tipo = 158;
 						buscaSpawn();
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
 
 					}
@@ -434,6 +440,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-4);
 					tipo = 165;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -452,6 +459,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo->setNivel(4);
 						tipo = 159;
 						buscaSpawn();
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
 					}
 				}
@@ -465,6 +473,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo->setNivel(4);
 						tipo = 159;
 						buscaSpawn();
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
 					}
 				}
@@ -483,6 +492,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-3);
 					tipo = 153;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -510,6 +520,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo->setNivel(5);
 						tipo = 152;
 						buscaSpawn();
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
 
 					}
@@ -534,6 +545,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 							pMundo->setNivel(5);
 							tipo = 152;
 							buscaSpawn();
+							pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 							return true;
 
 						}
@@ -558,6 +570,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 							pMundo->setNivel(5);
 							tipo = 152;
 							buscaSpawn();
+							pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 							return true;
 
 						}
@@ -577,6 +590,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-5);
 					tipo = 151;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -594,6 +608,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(6);
 					tipo = 157;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -611,6 +626,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-6);
 					tipo = 174;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -628,6 +644,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(24);
 					tipo = 114;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(2)->play(0);
 					return true;
 
 				}
@@ -652,6 +669,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-1);
 					tipo = 495;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 				}
 			}
@@ -668,6 +686,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(1);
 					tipo = 500;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 				}
 
@@ -685,6 +704,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(2);
 					tipo = 499;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 				}
 
@@ -701,6 +721,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-2);
 					tipo = 485;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 				}
 
@@ -717,6 +738,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(3);
 					tipo = 503;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -735,6 +757,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-4);
 					tipo = 510;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -752,6 +775,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(4);
 					tipo = 504;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -770,6 +794,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-3);
 					tipo = 498;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -803,6 +828,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo ->setNivel(5);
 						tipo = 497;
 						buscaSpawn();
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
 
 					}
@@ -821,6 +847,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-5);
 					tipo = 496;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -838,6 +865,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(6);
 					tipo = 502;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -855,6 +883,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-6);
 					tipo = 519;
 					buscaSpawn();
+					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
 				}
@@ -872,7 +901,8 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-24);
 					tipo = 459;
-					buscaSpawn();
+					buscaSpawn(); 
+					pMundo->getPJ()->getResources()->getEfecto(2)->play(0);
 					return true;
 
 				}

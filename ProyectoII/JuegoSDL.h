@@ -25,7 +25,7 @@ public:
 	enum  Musica_t{ MInicio, Musica_t_SIZE };
 	static std::vector<std::string> musicFiles_;
 
-	enum  Efectos_t{ ENull, Efectos_t_SIZE };
+	enum  Efectos_t{ EBala, EPuerta, EEspejo, ECerrada, ECorrecto, EPulsar, EIncorrecto, EObjeto, EInforme, ELlave, ENull, Efectos_t_SIZE };
 	static std::vector<std::string> soundEffectFiles_;
 
 public:

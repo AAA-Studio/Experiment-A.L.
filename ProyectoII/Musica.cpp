@@ -59,6 +59,7 @@ void Efecto::load(string const& nombArch){
 }
 
 void Efecto::play(int repetitions){
+	//repetitions = 1;
 	if (pChunk_ != nullptr) 
 		Mix_PlayChannel(-1, pChunk_, repetitions);
 }

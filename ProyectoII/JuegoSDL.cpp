@@ -15,7 +15,9 @@ std::vector<std::string> JuegoSDL::fontFiles_{
 
 std::vector<std::string> JuegoSDL::musicFiles_{ "..\\sounds\\mInicio.mp3" };
 
-std::vector<std::string> JuegoSDL::soundEffectFiles_{ };
+std::vector<std::string> JuegoSDL::soundEffectFiles_{ "..\\sounds\\shootmp3.wav", "..\\sounds\\doormp3.mp3", "..\\sounds\\oscuro.mp3" ,
+"..\\sounds\\cerrada.mp3", "..\\sounds\\correcto.wav", "..\\sounds\\pulsar.wav", "..\\sounds\\wrong.mp3", "..\\sounds\\objeto.wav" ,
+"..\\sounds\\informe.wav", "..\\sounds\\llave abre puerta.wav"};
 
 JuegoSDL::JuegoSDL(std::string windowTitle, int width, int height) :
 windowTitle_(windowTitle), width_(width), height_(height) {

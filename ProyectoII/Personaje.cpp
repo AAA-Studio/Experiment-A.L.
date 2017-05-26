@@ -214,6 +214,7 @@ void Personaje::disparo(){
 			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, rect.w / 15, rect.h / 15, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje));
 			arma->restaBalas();
 			ultimaBala = SDL_GetTicks();
+			pJuego->getResources()->getEfecto(0)->play(0);
 		}
 	}
 }
@@ -246,10 +247,12 @@ void Personaje::coger(){
 			case OInforme1:
 				informe = JuegoSDL::TInforme1;
 				informeCogido = true;
+				pJuego->getResources()->getEfecto(8)->play(0);
 				break;
 			case OInforme2:
 				informe = JuegoSDL::TInforme2;
 				informeCogido = true;
+				pJuego->getResources()->getEfecto(8)->play(0);
 				break;
 
 			case OLlave:
