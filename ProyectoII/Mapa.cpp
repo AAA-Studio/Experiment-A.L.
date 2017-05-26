@@ -915,7 +915,6 @@ bool Mapa::touchesWall(SDL_Rect box)
 				&& tileMap[indice]->getType() != 20
 				&& tileMap[indice]->getType() != 21
 				&& tileMap[indice]->getType() != 22
-				&& tileMap[indice]->getType() != 23
 				&& tileMap[indice]->getType() != 27
 				&& tileMap[indice]->getType() != 28
 				&& tileMap[indice]->getType() != 29
@@ -928,11 +927,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				&& tileMap[indice]->getType() != 44
 				&& tileMap[indice]->getType() != 54
 				&& tileMap[indice]->getType() != 55
-				&& tileMap[indice]->getType() != 56
 				&& tileMap[indice]->getType() != 57
 				&& tileMap[indice]->getType() != 58
 				&& tileMap[indice]->getType() != 59
-				&& tileMap[indice]->getType() != 64
 				&& tileMap[indice]->getType() != 114
 				&& tileMap[indice]->getType() != 140
 				&& tileMap[indice]->getType() != 150
@@ -960,6 +957,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 				&& tileMap[indice]->getType() != 189
 				&& tileMap[indice]->getType() != 190
 				&& tileMap[indice]->getType() != 191
+				&& tileMap[indice]->getType() != 281
+				&& tileMap[indice]->getType() != 282
 				&& tileMap[indice]->getType() != 338
 				&& tileMap[indice]->getType() != 339
 				&& tileMap[indice]->getType() != 340
@@ -982,7 +981,6 @@ bool Mapa::touchesWall(SDL_Rect box)
 				&& tileMap[indice]->getType() != 365
 				&& tileMap[indice]->getType() != 366
 				&& tileMap[indice]->getType() != 367
-				&& tileMap[indice]->getType() != 368
 				&& tileMap[indice]->getType() != 372
 				&& tileMap[indice]->getType() != 373
 				&& tileMap[indice]->getType() != 374
@@ -995,11 +993,9 @@ bool Mapa::touchesWall(SDL_Rect box)
 				&& tileMap[indice]->getType() != 389
 				&& tileMap[indice]->getType() != 399
 				&& tileMap[indice]->getType() != 400
-				&& tileMap[indice]->getType() != 401
 				&& tileMap[indice]->getType() != 402
 				&& tileMap[indice]->getType() != 403
 				&& tileMap[indice]->getType() != 404
-				&& tileMap[indice]->getType() != 409
 				&& tileMap[indice]->getType() != 459
 				&& tileMap[indice]->getType() != 485
 				&& tileMap[indice]->getType() != 495
@@ -1027,6 +1023,8 @@ bool Mapa::touchesWall(SDL_Rect box)
 				&& tileMap[indice]->getType() != 534
 				&& tileMap[indice]->getType() != 535
 				&& tileMap[indice]->getType() != 536
+				&& tileMap[indice]->getType() != 626
+				&& tileMap[indice]->getType() != 627
 				&& tileMap[indice]->getType() != 683
 				&& tileMap[indice]->getType() != 684
 				&& tileMap[indice]->getType() != 685

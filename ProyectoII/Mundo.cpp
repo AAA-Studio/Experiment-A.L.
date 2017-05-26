@@ -570,7 +570,6 @@ void Mundo::initObjetos()
 			&& tipo != 20
 			&& tipo != 21
 			&& tipo != 22
-			&& tipo != 23
 			&& tipo != 27
 			&& tipo != 28
 			&& tipo != 29
@@ -583,11 +582,9 @@ void Mundo::initObjetos()
 			&& tipo != 44
 			&& tipo != 54
 			&& tipo != 55
-			&& tipo != 56
 			&& tipo != 57
 			&& tipo != 58
 			&& tipo != 59
-			&& tipo != 64
 			&& tipo != 114
 			&& tipo != 140
 			&& tipo != 150
@@ -614,6 +611,8 @@ void Mundo::initObjetos()
 			&& tipo != 189
 			&& tipo != 190
 			&& tipo != 191
+			&& tipo != 281
+			&& tipo != 282
 			&& tipo != 338
 			&& tipo != 339
 			&& tipo != 340
@@ -636,7 +635,6 @@ void Mundo::initObjetos()
 			&& tipo != 365
 			&& tipo != 366
 			&& tipo != 367
-			&& tipo != 368
 			&& tipo != 372
 			&& tipo != 373
 			&& tipo != 374
@@ -649,11 +647,9 @@ void Mundo::initObjetos()
 			&& tipo != 389
 			&& tipo != 399
 			&& tipo != 400
-			&& tipo != 401
 			&& tipo != 402
 			&& tipo != 403
 			&& tipo != 404
-			&& tipo != 409
 			&& tipo != 459
 			&& tipo != 485
 			&& tipo != 495
@@ -681,6 +677,8 @@ void Mundo::initObjetos()
 			&& tipo != 534
 			&& tipo != 535
 			&& tipo != 536
+			&& tipo != 626
+			&& tipo != 627
 			&& tipo != 683
 			&& tipo != 684
 			&& tipo != 685)
