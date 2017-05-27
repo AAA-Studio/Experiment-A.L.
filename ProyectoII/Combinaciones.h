@@ -22,8 +22,12 @@ private:
 	string combinacion; //combinacion correcta
 	bool acierto;
 	int puerta;
+	int boton;
 	int intentos;
-	MundoVirtual * pMundo;
+	bool enterPulsado;
+	void pulsaEnter(); //metodo que se llama al pulsar el botón enter
+	void pulsaSalir(); //metodo que se llama al pulsar el boton salir
+	std::vector<JuegoSDL::Texturas_t> texturas;
 };
 #endif
 

@@ -92,11 +92,7 @@ public:
 	//Objetos
 	string getNombreObjetos(){ return nombreObjetos; }
 
-	//Combinaciones
-	//Esto debe estar aquÍIIIIIII Numero de la combinacion
-	void setNumero(int i){ numero = i; }
-	inline int getNumero()const{ return numero; };
-
+	
 	//Tile
 	//Devuelve la colision del tile pasado como parametro
 	inline SDL_Rect getRectTile(int numTile){ return gTileClips[numTile]; };
@@ -124,7 +120,6 @@ private:
 	string nombreObjetos;
 
 	//Combinaciones
-	int numero; //numero para los teclados del estado combinaciones
 	bool puertasAbiertas[1];
 	vector <string> combinaciones;//Esto debe estar aquí porque combinaciones es un estado aparte, no pertenece a mundo
 	

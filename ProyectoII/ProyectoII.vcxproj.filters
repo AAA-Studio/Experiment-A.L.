@@ -136,7 +136,7 @@
       <Filter>Archivos de código fuente\Juego</Filter>
     </ClCompile>
     <ClCompile Include="CinematicaInicial.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Estados\Mundo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +219,7 @@
       <Filter>Archivos de encabezado\Juego</Filter>
     </ClInclude>
     <ClInclude Include="CinematicaInicial.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Estados\Mundo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -28,16 +28,16 @@ Juego::Juego() : JuegoSDL(" ", SCREEN_WIDTH, SCREEN_HEIGHT)
 
 	recortarTiles();
 
+
 	estadoEnum = Estados_t::MInicio;
 	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
 
+	combinaciones.reserve(1);
 	combinaciones.emplace_back("3412");
-
-	numero = -1;
+	
 	puertasAbiertas[0] = false; //Se inicializa la 1a puerta
 
 }
-
 
 //Destructora
 Juego::~Juego()
