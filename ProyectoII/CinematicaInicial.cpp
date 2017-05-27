@@ -87,18 +87,18 @@ void CinematicaInicial::draw() const{
 void CinematicaInicial::cinematicaInicial(){
 
 	//comienza la cinematica, el jugador se encuentra en la cama y se deja de dibujar
-	if (contador == 400)
+	if (contador == 300)
 		dibuja = false;
 
 	//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
-	if (contador == 500){
+	if (contador == 400){
 		setCamera(800 * 1, indiceMapa % 6 * 640);
 		cambiaPosPSJ(1120, 830);
 		dibuja = true;
 	}
 
 	//se deja de dibujar y se cambia al mundo real
-	if (contador == 600)
+	if (contador == 500)
 	{
 		dibuja = false;
 		setCamera(0, indiceMapa % 6 * 640);
@@ -106,23 +106,23 @@ void CinematicaInicial::cinematicaInicial(){
 	}
 
 	//se vuelve a dibujar, el jugador esta en la cama en el mundo real
-	if (contador == 700)
+	if (contador == 600)
 	{
 		dibuja = true;
 	}
 
-	if (contador == 800)
+	if (contador == 700)
 	{
 		dibuja = false;
 	}
 
-	if (!dibuja && contador == 900){
+	if (!dibuja && contador == 800){
 		cambiaPosPSJ(360, 900);
 		dibuja = true;
 		moverI = true;
 	}
 
-	if (moverI && contador >= 1000){
+	if (moverI && contador >= 900){
 		objetos[0]->setVisible(true);
 		objetos[0]->move(0, 1);
 	}
