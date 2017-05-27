@@ -20,21 +20,11 @@ Mundo::Mundo(Juego * pJ, string m)
 	initObjetos();
 
 	cargaObjetos();
-	abierto = false;
+	
 	balaDestruida = false;
-	//cerraduras[0] = false;
-	//puertas[0] = 0;
 
 	//pJuego->getMusica(MPlay)->play();
 
-	cinematica = false;
-	contador = 0;
-	objetos[1]->setVisible(false);
-	moverI = false;
-	moverP = false;
-	dibuja = true;
-	veces = 0;
-	primeCinematica = true;
 
 
 
@@ -92,7 +82,7 @@ void Mundo::cargaObjetos(){
 				else if (nombre == "INFORME"){
 					obj >> x >> y >> w >> h >> tipo;
 					if (tipo == 1)
-						objetos.push_back(new Entidad(pJuego, 580 + ancho*lvl, 220 + alto*lvl, w, h, JuegoSDL::TInforme1, JuegoSDL::ENull, OInforme1));//Informe
+						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TInforme1, JuegoSDL::ENull, OInforme1));//Informe
 						
 					else if (tipo == 2)
 						objetos.push_back(new Entidad(pJuego, x + ancho*lvl, y + alto*lvl, w, h, JuegoSDL::TInforme2, JuegoSDL::ENull, OInforme2));//Informe
@@ -128,17 +118,16 @@ static void goPlay(Juego * pj){
 
 //Crea las texturas para los globos y todos los globos
 void Mundo::initObjetos()
-{
-	//lala
-		if (primeCinematica)
-		{
-			psj = new Personaje(this, 400, 830, JuegoSDL::TJugador, JuegoSDL::ENull);
-		}
-		else
-		{
+{	
+
+	int x = 360;
+	int y = 900;
+	psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
+		
+		
 
 			//HACER UN SWITCH
-			int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
+			/*int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
 
 			x = mapa->getXSpawn();
 			y = mapa->getYSpawn();
@@ -148,8 +137,8 @@ void Mundo::initObjetos()
 			//enemigos.push_back(new Enemigo(this, x + 100, y + 100, TLeon, ENull));
 
 
-			//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));
-		}
+			//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));*/
+		
 }
 
 	void Mundo::freeObjetos(){
@@ -199,9 +188,6 @@ void Mundo::initObjetos()
 
 
 	void Mundo::draw()const{
-
-		if (dibuja)
-		{
 
 			//Render level
 			//DIBUJAR MAPA
@@ -264,7 +250,7 @@ void Mundo::initObjetos()
 			a.w = 400;
 			pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 			//pJuego->escribir("HOLA :)",50, 50);
-		}
+		
 	}
 
 
@@ -339,95 +325,10 @@ void Mundo::initObjetos()
 		colBalaEnemigo();
 		colBalaPersonaje();
 		
-		if (cinematica)
-		{
-			contador++;
-			cinematicaInicial();
-		}
+		
 		
 	}
 
-void Mundo::cinematicaInicial(){
-
-		//comienza la cinematica, el jugador se encuentra en la cama y se deja de dibujar
-		if (contador == 400)
-			dibuja = false;
-		
-		//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
-		if (!dibuja && contador == 500){
-			setCamera(800 * 1, indiceMapa % 6 * 640);
-			cambiaPosPSJ(1120, 830);
-			dibuja = true;
-		}
-
-		//se deja de dibujar y se cambia al mundo real
-		if (dibuja && contador == 600)
-		{
-			dibuja = false;
-			setCamera(0, indiceMapa % 6 * 640);
-			cambiaPosPSJ(320, 830);
-			//camera.x = 320; camera.y = 830;
-		}
-
-		//se vuelve a dibujar, el jugador esta en la cama en el mundo real
-		if (!dibuja && contador == 700)
-		{
-			dibuja = true;
-		}
-
-		if (dibuja && contador == 800)
-		{
-			dibuja = false;
-		}
-
-		if (moverP && veces < 100)
-			veces++;
-		if (moverP && veces == 100)
-		{
-			psj->mover(0, 1);
-		}
-		//lala 142833
-		if (psj->getY() >= 860)
-		{
-			veces++;
-		}
-		if (moverP && veces >= 1)
-			psj->mover(1, 0);		
-
-		
-
-		
-
-		if (!dibuja && contador == 900){
-			//camera.x = 360; camera.y = 900;
-			//setCamera(800 * 1, pJuego->indiceMapas % 6 * 640);
-			cambiaPosPSJ(360, 900);
-			dibuja = true;
-			moverI = true;
-		}
-
-		if (moverI && contador >= 1000){
-			objetos[1]->setVisible(true);
-			objetos[1]->move(0, 1);
-			moverP = true;
-		}
-
-		if (objetos[1]->getRect().y >= 950){
-			moverI = false;
-			cinematica = false;
-			primeCinematica = false;
-			psj->SetCinematica(cinematica);
-
-		}
-
-		if (psj->getRect().x >= 450)
-		{
-			moverP = false;
-			
-		}
-
-
-}
 	void Mundo::colBalaEnemigo(){
 
 		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
@@ -498,8 +399,7 @@ void Mundo::cinematicaInicial(){
 	//Detecta el input del jugador y la pausa
 	void Mundo::onInput(SDL_Event &e){
 
-		if (!cinematica)
-		{
+		
 
 			//Declaramos el array con los estados de teclado
 			const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
@@ -513,7 +413,7 @@ void Mundo::cinematicaInicial(){
 			psj->onInput();
 			compruebaPersonaje();
 
-		}
+		
 		
 
 	}

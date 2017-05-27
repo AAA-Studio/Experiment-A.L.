@@ -19,7 +19,7 @@ public:
 	virtual void update();
 	
 	bool checkCollision(SDL_Rect a, SDL_Rect b){ return false; }
-	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
+	inline void añadeObjeto(EntidadJuego * obj){}
 	EntidadJuego * compruebaColisionObjetos(){ return nullptr; }
 	virtual void destruyeLlave(EntidadJuego * llave){}
 	virtual void ponmeArma(){}
@@ -30,9 +30,6 @@ public:
 	inline Juego* getPJ() const{ return pJuego; };
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
-		if (lista == LBalasPersonaje)
-			return balasPsj;
-		else
 			return balasEnems;
 	};
 	void insertaBala(ListaBalas_t lista, EntidadJuego * bala){}
@@ -61,8 +58,8 @@ public:
 	inline void setIndiceMapa(int i){ indiceMapa = i; };
 
 	//Llaves
-	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
-	inline void setLlaveCogida(int indice) { llavesCogidas[indice] = !llavesCogidas[indice]; };
+	inline bool getLLavesCogidas(int indice) const{ return nullptr; }
+	inline void setLlaveCogida(int indice) {}
 
 
 
@@ -70,25 +67,14 @@ private:
 	//-------------------ATRIBUTOS---------------
 	Juego * pJuego;
 	Personaje * psj;
-	bool abierto;
-	vector<bool> cerraduras;
-	vector<int> puertas;
 	vector <EntidadJuego*> objetos;
-	list <EntidadJuego*> llaves;
-	list <Armas*> armas;
-	list <Enemigo*> enemigos;
-	list <EntidadJuego*> balasPsj;
 	list <EntidadJuego*> balasEnems;
 	Mapa * mapa;
-	bool pausa, balaDestruida;
-	const Uint32 duracion = 500;
-	Uint32 time;
+	bool pausa;
 	SDL_Rect camera;
-	bool cinematica;
+
 	int contador;
 	bool moverI;
-	bool moverP;
-	int veces;
 	bool dibuja;
 	bool primeCinematica;
 

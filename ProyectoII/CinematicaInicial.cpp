@@ -9,31 +9,21 @@ CinematicaInicial::CinematicaInicial(Juego * pJ, string mapa)
 	indiceMapa = 1;
 
 	pausa = false;
+
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	this->mapa = new Mapa(this, mapa);
 	initObjetos();
 
 	cargaObjetos();
-	abierto = false;
-	balaDestruida = false;
-	//cerraduras[0] = false;
-	//puertas[0] = 0;
 
-	//pJuego->getMusica(MPlay)->play();
+	psj->SetCinematica(true);
 
-	cinematica = true;
 	contador = 0;
 	objetos[0]->setVisible(false);
 	moverI = false;
-	moverP = false;
 	dibuja = true;
-	veces = 0;
-	primeCinematica = true;
 
 
-
-	for (int i = 0; i < TAMAÑO_LLAVES; i++) //Se inicializan las llaves
-		llavesCogidas[i] = false;
 
 }
 
@@ -65,11 +55,9 @@ void CinematicaInicial::freeObjetos(){
 void CinematicaInicial::update(){
 	psj->update();//Update de personaje
 
-	if (cinematica)
-	{
 		contador++;
 		cinematicaInicial();
-	}
+	
 }
 
 void CinematicaInicial::draw() const{
@@ -92,7 +80,7 @@ void CinematicaInicial::draw() const{
 		a.h = 200;
 		a.w = 400;
 		pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
-		//pJuego->escribir("HOLA :)",50, 50);
+		//pJuego->escribir("HOLA :)",200, 200);
 	}
 }
 
@@ -103,53 +91,32 @@ void CinematicaInicial::cinematicaInicial(){
 		dibuja = false;
 
 	//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
-	if (!dibuja && contador == 500){
+	if (contador == 500){
 		setCamera(800 * 1, indiceMapa % 6 * 640);
 		cambiaPosPSJ(1120, 830);
 		dibuja = true;
 	}
 
 	//se deja de dibujar y se cambia al mundo real
-	if (dibuja && contador == 600)
+	if (contador == 600)
 	{
 		dibuja = false;
 		setCamera(0, indiceMapa % 6 * 640);
 		cambiaPosPSJ(320, 830);
-		//camera.x = 320; camera.y = 830;
 	}
 
 	//se vuelve a dibujar, el jugador esta en la cama en el mundo real
-	if (!dibuja && contador == 700)
+	if (contador == 700)
 	{
 		dibuja = true;
 	}
 
-	if (dibuja && contador == 800)
+	if (contador == 800)
 	{
 		dibuja = false;
 	}
 
-	if (moverP && veces < 100)
-		veces++;
-	if (moverP && veces == 100)
-	{
-		psj->mover(0, 1);
-	}
-	//lala 142833
-	if (psj->getY() >= 860)
-	{
-		veces++;
-	}
-	if (moverP && veces >= 1)
-		psj->mover(1, 0);
-
-
-
-
-
 	if (!dibuja && contador == 900){
-		//camera.x = 360; camera.y = 900;
-		//setCamera(800 * 1, pJuego->indiceMapas % 6 * 640);
 		cambiaPosPSJ(360, 900);
 		dibuja = true;
 		moverI = true;
@@ -158,22 +125,14 @@ void CinematicaInicial::cinematicaInicial(){
 	if (moverI && contador >= 1000){
 		objetos[0]->setVisible(true);
 		objetos[0]->move(0, 1);
-		moverP = true;
 	}
 
 	if (objetos[0]->getRect().y >= 950){
 		moverI = false;
-		cinematica = false;
-		primeCinematica = false;
-		psj->SetCinematica(cinematica);
-
+		pJuego->setBorraEstado(true);
+		pJuego->setEstadoEnum(MundoReal);
 	}
 
-	if (psj->getRect().x >= 450)
-	{
-		moverP = false;
-
-	}
 
 }
 

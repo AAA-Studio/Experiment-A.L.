@@ -23,7 +23,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t textu
 	posYAnt = y;
 	retardo = 0;
 	arma = nullptr;
-	cinematica = true;
+	cinematica = false;
 }
 
 //Destructora
