@@ -1,8 +1,8 @@
-﻿Compilación iniciada a las 27/05/2017 14:09:23.
+﻿Compilación iniciada a las 27/05/2017 15:03:44.
      1>Proyecto "C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mundo.cpp
-         Mundo.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CinematicaInicial.cpp
+         CinematicaInicial.cpp
      1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getRect' mediante dominación
                  c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\entidad.h(20) : vea la declaración de 'Entidad::getRect'
      1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\personaje.h(93): warning C4250: 'Personaje' : hereda 'Entidad::Entidad::getType' mediante dominación
@@ -23,12 +23,6 @@
      1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\enemigo.h(28): warning C4250: 'Enemigo' : hereda 'Entidad::Entidad::move' mediante dominación
                  c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\entidad.h(24) : vea la declaración de 'Entidad::move'
      1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'tipo' : variable local sin referencia
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'w' : variable local sin referencia
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'h' : variable local sin referencia
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'x' : variable local sin referencia
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'y' : variable local sin referencia
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\mundo.cpp(56): warning C4101: 'lvl' : variable local sin referencia
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Armas.obj
          Debug\Bala.obj
@@ -57,4 +51,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:00.90
+Tiempo transcurrido 00:00:01.03

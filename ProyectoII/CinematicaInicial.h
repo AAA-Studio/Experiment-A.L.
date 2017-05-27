@@ -15,7 +15,7 @@ public:
 	virtual ~CinematicaInicial();
 
 	virtual void draw() const;
-	virtual void onInput(SDL_Event &e){}
+	virtual void onInput(SDL_Event &e);
 	virtual void update();
 	
 	bool checkCollision(SDL_Rect a, SDL_Rect b){ return false; }

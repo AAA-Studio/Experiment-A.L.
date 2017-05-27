@@ -80,7 +80,7 @@ void CinematicaInicial::draw() const{
 		a.h = 200;
 		a.w = 400;
 		pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
-		//pJuego->escribir("HOLA :)",200, 200);
+		//pJuego->escribir("Pulsa ESPACIO para saltar",200, 200);
 	}
 }
 
@@ -139,5 +139,14 @@ void CinematicaInicial::cinematicaInicial(){
 CinematicaInicial::~CinematicaInicial()
 {
 	freeObjetos();
+}
+
+void CinematicaInicial::onInput(SDL_Event &e){
+	if (e.type == SDL_KEYUP){ //si se pulsa una tecla comprueba que es p
+		if (e.key.keysym.sym == SDLK_SPACE){
+			pJuego->setBorraEstado(true);
+			pJuego->setEstadoEnum(MundoReal);
+		}
+	}
 }
 
