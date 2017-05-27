@@ -14,19 +14,21 @@ Combinaciones::Combinaciones(Juego* juego, string combinacion, int puerta) : Men
 	combTecleada = "";
 	initObjetos();
 	boton = 1;
+	
 }
 
 void Combinaciones::update(){
 	
 	Menu::update();
 
-	if (combinacion == combTecleada)
+	if (combinacion == combTecleada){
 		acierto = true;
-
+	}
 	if (intentos == 4)
 	{
 		combTecleada = "";
 		intentos = 0;
+		
 	}
 
 }
@@ -63,6 +65,7 @@ void Combinaciones::onInput(SDL_Event &e){
 	if (e.type == SDL_KEYUP){ 
 		if (e.key.keysym.sym == SDLK_RETURN) //si se pulsa la tecla enter
 		{
+			pJuego->getResources()->getEfecto(5)->play(0);
 			if (boton == 11)
 				pulsaEnter(); //la tecla enter de teclado comprueba la combinacion
 			else if (boton == 10) 
@@ -119,9 +122,12 @@ void Combinaciones::pulsaEnter()
 {
 	if (acierto) //si acierta sale de combinaciones y la puerta se abre
 	{
+		pJuego->getResources()->getEfecto(4)->play(0);
 		pJuego->setPuerta(puerta, acierto);
 		pJuego->popState();
-	}
+		
+	}else
+		pJuego->getResources()->getEfecto(6)->play(0);
 }
 
 void Combinaciones::pulsaSalir() //metodo para salir de combinaciones en caso de que se pulse su tecla correspondiente
