@@ -347,7 +347,7 @@ void Mundo::initObjetos()
 		
 	}
 
-	void Mundo::cinematicaInicial(){
+void Mundo::cinematicaInicial(){
 
 		//comienza la cinematica, el jugador se encuentra en la cama y se deja de dibujar
 		if (contador == 400)
@@ -427,7 +427,7 @@ void Mundo::initObjetos()
 		}
 
 
-	}
+}
 	void Mundo::colBalaEnemigo(){
 
 		list<Enemigo*>::iterator itEnemigo = enemigos.begin();

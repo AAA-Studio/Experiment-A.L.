@@ -9,6 +9,7 @@
 #include "Mundo.h"
 #include "MundoVirtual.h"
 #include "Combinaciones.h"
+#include "CinematicaInicial.h"
 
 #include <iostream>
 #include <conio.h>
@@ -26,8 +27,11 @@ Juego::Juego() : JuegoSDL(" ", SCREEN_WIDTH, SCREEN_HEIGHT)
 
 	recortarTiles();
 
-	estadoEnum = Estados_t::MInicio;
-	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
+	//estadoEnum = Estados_t::MInicio;
+	//vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
+	
+	estadoEnum = Estados_t::CinematicaI;
+	vectorEstados.push_back(new CinematicaInicial(this, nombreMapa));
 
 	combinaciones.emplace_back("3412");
 
@@ -70,7 +74,10 @@ void Juego::gestionaEstados(Estados_t estado){
 		aux = new Combinaciones(this, combinaciones[0], 0);
 		goToState(aux);
 		break;
-
+	case CinematicaI:
+		aux = new CinematicaInicial(this, nombreMapa);
+		changeState(aux);
+		break;
 	default:
 		aux = new MenuInicio(this);
 		changeState(aux);
