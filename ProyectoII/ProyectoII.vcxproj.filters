@@ -136,7 +136,7 @@
       <Filter>Archivos de código fuente\Juego</Filter>
     </ClCompile>
     <ClCompile Include="Interruptor.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +219,7 @@
       <Filter>Archivos de encabezado\Juego</Filter>
     </ClInclude>
     <ClInclude Include="Interruptor.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

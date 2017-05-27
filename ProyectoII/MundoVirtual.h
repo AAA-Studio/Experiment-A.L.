@@ -45,6 +45,7 @@ public:
 	virtual void setLlaveCogida(int indice) = 0;
 
 	virtual void setPulsado() = 0;
+	virtual void setPulsado2() = 0;
 
 	virtual void destruyeInterruptor() = 0;
 };

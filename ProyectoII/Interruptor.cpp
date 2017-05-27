@@ -11,10 +11,7 @@ Interruptor::~Interruptor()
 {
 }
 
-void Interruptor::pulsar()
-{
-	if (pulsado) 
-		pulsado = false;
-	else
-		pulsado = true;
-}
+
+
+
+

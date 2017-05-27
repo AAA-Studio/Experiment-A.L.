@@ -71,7 +71,10 @@ public:
 	//Llaves
 	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
 	inline void setLlaveCogida(int indice) { llavesCogidas[indice] = !llavesCogidas[indice]; };
+
+	//Interruptores
 	void setPulsado();
+	void setPulsado2();
 	void destruyeInterruptor();
 	
 private:

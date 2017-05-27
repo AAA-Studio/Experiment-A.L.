@@ -10,6 +10,8 @@ Mapa::Mapa(MundoVirtual *pM, string mapa) : pMundo(pM), nombreMapa(mapa)
 	setCamera();
 	Puerta1Abierta = false;
 	encendido = false;
+	encendido2 = false;
+	
 }
 
 Mapa::~Mapa()
@@ -287,7 +289,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 			}
 			//PUERTA ROSA
-			else if ((encendido)&&(tileMap[indice]->getType() == 140))
+			else if ((encendido2)&&(tileMap[indice]->getType() == 140))
 			{
 				felpudo = tileMap[indice]->getBox();
 				felpudo.x = felpudo.x + 10;
@@ -338,7 +340,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 			}
 			//PUERTA BURDEOS
-			else if (false && (tileMap[indice]->getType() == 159))
+			else if ((pulsados() == true) && (tileMap[indice]->getType() == 159))
 			{
 				felpudo = tileMap[indice]->getBox();
 				felpudo.x = felpudo.x + 10;
@@ -634,6 +636,12 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 	return false;
 
 }
+
+bool Mapa::pulsados()
+{
+	if ((encendido) && (encendido2))
+		return encendido;
+};
 
 bool Mapa::touchesWall(SDL_Rect box)
 {

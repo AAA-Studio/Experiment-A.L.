@@ -262,6 +262,11 @@ void Personaje::coger(){
 				pMundo->setPulsado();
 				//pMundo->destruyeInterruptor();
 				break;
+			case OInterruptor2:
+				pMundo->setPulsado2();
+				//pMundo->destruyeInterruptor();
+				break;
+			
 			}
 		}
 	}

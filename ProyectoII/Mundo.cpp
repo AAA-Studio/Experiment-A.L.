@@ -699,6 +699,9 @@ void Mundo::initObjetos()
 	void Mundo::setPulsado(){
 		mapa->setPulsado(true);
 	}
+	void Mundo::setPulsado2(){
+		mapa->setPulsado2(true);
+	}
 
 	void Mundo::destruyeInterruptor(){
 		list<Interruptor*>::const_iterator itInterrup = listInter.cbegin();

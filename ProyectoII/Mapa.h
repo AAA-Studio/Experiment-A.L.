@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "Tile.h"
 #include "MundoVirtual.h"
+
 #include <string>
 
 class Mapa
@@ -20,7 +21,12 @@ public:
 	inline Tile** getTileMap() { return tileMap; };
 	inline int getXSpawn() const{ return x; };
 	inline int getYSpawn() const{ return y; };
-	inline void setPulsado(bool p){ encendido = p; };
+
+	//--------------------SETTER----------------
+	inline void setPulsado(bool p){ encendido = p;   };
+	inline void setPulsado2(bool p){ encendido2 = p; };
+
+	
 
 private:
 	MundoVirtual * pMundo;
@@ -34,6 +40,13 @@ private:
 	bool cargarMapa();
 	void buscaSpawn();
 	void setCamera();//Pone la cámara en el centro de cada nivel cuando se pasa de una sala a otra
-	bool encendido;
+
+	bool encendido;	//para abrir la primera puerta 
+	bool encendido2; //para abrir la segunda puerta
+	bool pulsados(); //metodo que comprueba si los 2 botones han sido pulsados
+
+	
+	
+
 };
 #endif
