@@ -135,6 +135,9 @@
     <ClCompile Include="JuegoSDL.cpp">
       <Filter>Archivos de código fuente\Juego</Filter>
     </ClCompile>
+    <ClCompile Include="CinematicaInicial.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EstadoJuego.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="JuegoSDL.h">
       <Filter>Archivos de encabezado\Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="CinematicaInicial.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

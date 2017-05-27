@@ -9,6 +9,7 @@
 #include "Mundo.h"
 #include "MundoVirtual.h"
 #include "Combinaciones.h"
+#include "CinematicaInicial.h"
 
 #include <iostream>
 #include <conio.h>
@@ -71,7 +72,10 @@ void Juego::gestionaEstados(Estados_t estado){
 		aux = new Combinaciones(this, combinaciones[0], 0);
 		goToState(aux);
 		break;
-
+	case CinematicaI:
+		aux = new CinematicaInicial(this, nombreMapa);
+		changeState(aux);
+		break;
 	default:
 		aux = new MenuInicio(this);
 		changeState(aux);

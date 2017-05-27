@@ -10,7 +10,7 @@ MenuInicio::MenuInicio(Juego * pJ) : Menu(pJ)
 
 static void goControles(Juego * pj){
 	pj->setBorraEstado(true);
-	pj->setEstadoEnum (MundoReal);
+	pj->setEstadoEnum (CinematicaI);
 };
 static void goSalir(Juego * pj){
 	pj->setSalir();

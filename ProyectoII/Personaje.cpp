@@ -23,7 +23,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t textu
 	posYAnt = y;
 	retardo = 0;
 	arma = nullptr;
-	cinematica = true;
+	cinematica = false;
 }
 
 //Destructora
@@ -38,7 +38,7 @@ void Personaje::update()
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
 
 	if (pMundo->getIndiceMapa()  < 24 && !informeCogido && !cinematica && pierdesVida)
-		vida -= 0.1;
+		vida -= 0.001;
 
 
 }

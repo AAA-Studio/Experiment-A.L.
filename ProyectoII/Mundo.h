@@ -77,9 +77,7 @@ private:
 	//-------------------ATRIBUTOS---------------
 	Juego * pJuego;
 	Personaje * psj;
-	bool abierto;
-	vector<bool> cerraduras;
-	vector<int> puertas;
+
 	vector <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	list <Armas*> armas;
@@ -91,13 +89,7 @@ private:
 	const Uint32 duracion = 500;
 	Uint32 time;
 	SDL_Rect camera;
-	bool cinematica;
-	int contador;
-	bool moverI;
-	bool moverP;
-	int veces;
-	bool dibuja;
-	bool primeCinematica;
+	
 
 	int indiceMapa;
 	int nivel;
@@ -112,7 +104,7 @@ private:
 	void freeObjetos();
 	void colBalaEnemigo();
 	void colBalaPersonaje();
-	void cinematicaInicial();
+	
 };
 
 #endif
