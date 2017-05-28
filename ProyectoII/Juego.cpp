@@ -1,5 +1,4 @@
 #include "Juego.h"
-
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 #include "Error.h"
@@ -10,6 +9,7 @@
 #include "MundoVirtual.h"
 #include "Combinaciones.h"
 #include "CinematicaInicial.h"
+
 
 #include <iostream>
 #include <conio.h>
@@ -30,12 +30,16 @@ Juego::Juego() : JuegoSDL(" ", SCREEN_WIDTH, SCREEN_HEIGHT)
 
 
 	estadoEnum = Estados_t::MInicio;
-	vectorEstados.push_back(new MenuInicio(this));//Primer estado de la pila
+	vectorEstados.push_back(new Mundo(this, nombreMapa));//Primer estado de la pila
 
 	combinaciones.reserve(1);
 	combinaciones.emplace_back("3412");
 	
 	puertasAbiertas[0] = false; //Se inicializa la 1a puerta
+
+	font_ = getResources()->getFuente(JuegoSDL::Fuentes_t::FNormal);
+
+	textFuente.loadFromText(pRenderer_, "Press SPACE to start", { 255, 255, 255, 1 }, *font_);
 
 }
 
@@ -62,6 +66,7 @@ void Juego::gestionaEstados(Estados_t estado){
 		aux = new Pausa(this);
 		goToState(aux);
 		break;
+
 
 		//Mundos
 	case MundoReal:
@@ -155,7 +160,7 @@ void Juego::render()
 }
 
 void Juego::changeState(EstadoJuego *estado){
-	Sleep(1000); // ES IMPOSIBLE QUE DEJE DE ODIAROS; HAY QUE HACER UN ESTADO INTERMEDIO
+	//Sleep(1000); // ES IMPOSIBLE QUE DEJE DE ODIAROS; HAY QUE HACER UN ESTADO INTERMEDIO
 	popState();
 	pushState(estado);
 }

@@ -114,7 +114,6 @@
     <ClInclude Include="Musica.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
-    <ClInclude Include="PersonajeVirtual.h" />
     <ClInclude Include="RecursosSDL.h" />
     <ClInclude Include="TexturasSDL.h" />
     <ClInclude Include="Tile.h" />

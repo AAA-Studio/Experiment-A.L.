@@ -15,6 +15,7 @@ public:
 	bool touchesDoor(SDL_Rect box, int& tipo);
 
 	void draw()const;
+	void buscaSpawn();
 
 	//--------------------GETTER----------------
 	inline Tile** getTileMap() { return tileMap; };
@@ -32,7 +33,7 @@ private:
 	//int nivel;
 
 	bool cargarMapa();
-	void buscaSpawn();
+	
 	void setCamera();//Pone la cámara en el centro de cada nivel cuando se pasa de una sala a otra
 };
 #endif

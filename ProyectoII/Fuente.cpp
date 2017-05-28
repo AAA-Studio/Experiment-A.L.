@@ -30,7 +30,7 @@ void Fuente::close()
 	}
 }
 
-SDL_Surface* Fuente::textSolid(string const& texto, SDL_Color color)
+SDL_Surface* Fuente::textSolid(string const& texto, SDL_Color color) const
 {
 	if (pFont_) 
 		return TTF_RenderText_Solid(pFont_, texto.c_str(), color);

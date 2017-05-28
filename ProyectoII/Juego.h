@@ -33,7 +33,7 @@ const int TAMAÑO_LLAVES = 2;
 
 //------------------ENUMS--------------------------
 
-enum Estados_t{ MInicio, MGameOver, MPausa, MundoReal, MundoOscuro, ECombinaciones, CinematicaI };
+enum Estados_t{ MInicio, MGameOver, MPausa, MundoReal, MundoOscuro, /*MPasoDeNivel*/ ECombinaciones, CinematicaI };
 
 enum ListaBalas_t{ LBalasEnemigos, LBalasPersonaje };
 
@@ -100,10 +100,10 @@ public:
 	//---------------GETTER Y SETTER----------------------
 
 	//Metodo para escribir en una parte concreta de la ventana
-	void escribir(string texto, int x, int y){
-		getResources()->getTextura(TFuente)->renderFont(pRenderer_, x, y, texto, *getResources()->getFuente(FNormal));
+	void escribir(int x, int y){
+		textFuente.renderFont(pRenderer_,x,y, *font_);
+		//getResources()->getTextura(TFuente)->renderFont(pRenderer_, x, y, texto, *getResources()->getFuente(FNormal));
 	}
-
 
 private:
 	//-----------------------------ATRIBUTOS--------------------------
@@ -128,6 +128,10 @@ private:
 	
 	//Tile
 	SDL_Rect gTileClips[TOTAL_TILE_SPRITES];
+
+	//Fuente
+	Fuente* font_;
+	TexturasSDL textFuente;
 
 	//---------------------------ATRIBUTOS-----------------------------
 

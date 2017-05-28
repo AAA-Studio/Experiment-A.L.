@@ -12,11 +12,11 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t textu
 	rectInforme = { pJuego->getWindowWidth() / 4, pJuego->getWindowHeight() / 20, 300, 600 };
 	rectLlave = { 50, pJuego->getWindowWidth() - 100, 100, 100 };
 	rectHUD = { 0, 0, 800, 640 };
-	ultimaBala = SDL_GetTicks();
+	ultimaBala = ultimoInput = SDL_GetTicks();
 	balaDestruida = false;
 	llaveCogida = false;
 	informeCogido = false;
-	vida = maxVida = 3;
+	vida = 3;
 	angulo = 90;
 	empuje = false;
 	posXAnt = x;
@@ -33,8 +33,6 @@ Personaje::~Personaje()
 
 void Personaje::update()
 {
-
-	//Center the camera over the dot
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
 
 	if (pMundo->getIndiceMapa()  < 24 && !informeCogido && !cinematica && pierdesVida)
@@ -43,10 +41,6 @@ void Personaje::update()
 
 }
 
-void Personaje::mover(int x, int y){
-	rect.x += x;
-	rect.y += y;
-}
 
 void Personaje::draw(int x, int y)const
 {
@@ -169,7 +163,11 @@ void Personaje::onInput()
 		}
 		//Caso en el que se coge un objeto
 		if (keyStatesActuales[SDL_SCANCODE_E]){
-			coger();
+			if (SDL_GetTicks() - ultimoInput >= tiempoInput)//Se pide la hora y se compara con la última 
+			{
+				coger();
+				ultimoInput = SDL_GetTicks();
+			}
 		}
 
 
@@ -178,8 +176,13 @@ void Personaje::onInput()
 
 	else if (informeCogido)
 	{
-		if (keyStatesActuales[SDL_SCANCODE_E])
-			soltarInforme();
+		if (SDL_GetTicks() - ultimoInput >= tiempoInput)//Se pide la hora y se compara con la última 
+		{
+			if (keyStatesActuales[SDL_SCANCODE_E]){
+				soltarInforme();
+				ultimoInput = SDL_GetTicks();
+			}
+		}
 
 	}
 
@@ -205,7 +208,6 @@ void Personaje::move(int x, int y)
 	rect.x += 3*x;
 	rect.y += 3*y;
 }
-
 void Personaje::disparo(){
 
 	if (arma != nullptr && arma->getBalas() > 0 && pMundo->getIndiceMapa() >23){
@@ -218,55 +220,45 @@ void Personaje::disparo(){
 		}
 	}
 }
-
-
-
-
-
-
-
-//Necesito la dirección del personaje para poder empujarle hacia atrás
 void Personaje::empujeHaciaAtras(){
 	empuje = true;
 	ultimoEmpuje = SDL_GetTicks();
 }
-
 void Personaje::restaVida(){
 	vida -= 1;
 }
-
 void Personaje::coger(){
 	EntidadJuego * objeto;
 	objeto = pMundo->compruebaColisionObjetos();//Compruebo si estoy colisionando con el obj para poder cogerlo
 	if (objeto != nullptr){
-		if (objeto->getType() == OPistola)
-			pMundo->ponmeArma();
-		else{
-			switch (objeto->getType())
-			{
-			case OInforme1:
-				informe = JuegoSDL::TInforme1;
-				informeCogido = true;
-				pJuego->getResources()->getEfecto(8)->play(0);
-				break;
-			case OInforme2:
-				informe = JuegoSDL::TInforme2;
-				informeCogido = true;
-				pJuego->getResources()->getEfecto(8)->play(0);
-				break;
-
-			case OLlave:
-				pMundo->destruyeLlave(objeto);
-				break;
-			case OTeclado:
-				pJuego->setBorraEstado(true);
-				pJuego->setEstadoEnum(ECombinaciones);
-				break;
-			}
+		switch (objeto->getType())
+		{
+		case OInforme1:
+			informe = JuegoSDL::TInforme1;
+			informeCogido = true;
+			pJuego->getResources()->getEfecto(8)->play(0);
+			break;
+		case OInforme2:
+			informe = JuegoSDL::TInforme2;
+			informeCogido = true;
+			pJuego->getResources()->getEfecto(8)->play(0);
+			break;
+		case OLlave:
+			pMundo->destruyeLlave(objeto);
+			break;
+		case OTeclado:
+			pJuego->setBorraEstado(true);
+			pJuego->setEstadoEnum(ECombinaciones);
+			break;
+		case OPistola:
+			pMundo->destruyeArma();
+			break;
+	
 		}
 	}
 }
 void Personaje::cogeArma(Armas* arma){
+	//Borra el arma anterior y añade la currente
 	delete this->arma;
 	this->arma = nullptr;
 	this->arma = arma;

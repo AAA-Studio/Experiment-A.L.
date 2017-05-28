@@ -24,6 +24,8 @@ public:
 
 	virtual SDL_Rect getRect() const = 0;
 
+	virtual void setRect(SDL_Rect r) = 0;
+
 	virtual Objetos_t getType() const = 0;
 
 	virtual void setVisible(bool visible) = 0;

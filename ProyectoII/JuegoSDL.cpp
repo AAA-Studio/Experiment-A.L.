@@ -7,13 +7,13 @@ std::vector<std::string> JuegoSDL::imageFiles_{ "..\\bmps\\AL.png", "..\\bmps\\b
 "..\\bmps\\informe1.png", "..\\bmps\\Informe2.png", "..\\bmps\\uno.png", "..\\bmps\\dos.png", "..\\bmps\\tres.png",
 "..\\bmps\\cuatro.png", "..\\bmps\\cinco.png", "..\\bmps\\seis.png", "..\\bmps\\siete.png", "..\\bmps\\ocho.png", "..\\bmps\\nueve.png",
 "..\\bmps\\cero.png", "..\\bmps\\teclado.png", "..\\bmps\\backButton.png", "..\\bmps\\pistola.png", "..\\bmps\\Controles.png",
-"..\\bmps\\Keypad.png", "..\\bmps\\enter.png" };
-
+"..\\bmps\\Keypad.png", "..\\bmps\\enter.png", "..\\bmps\\negro.png" };
 
 std::vector<std::string> JuegoSDL::fontFiles_{ 
-	"..\\bmps\\font.ttf" };
+	"..\\bmps\\selawk.ttf" };
 
-std::vector<std::string> JuegoSDL::musicFiles_{ "..\\sounds\\mInicio.mp3" };
+std::vector<std::string> JuegoSDL::musicFiles_{ "..\\sounds\\mInicio.mp3",
+"..\\sounds\\MundoReal.mp3", "..\\sounds\\MundoOscuro.mp3" };
 
 std::vector<std::string> JuegoSDL::soundEffectFiles_{ "..\\sounds\\shootmp3.wav", "..\\sounds\\doormp3.mp3", "..\\sounds\\oscuro.mp3" ,
 "..\\sounds\\cerrada.mp3", "..\\sounds\\correcto.wav", "..\\sounds\\pulsar.wav", "..\\sounds\\wrong.mp3", "..\\sounds\\objeto.wav" ,

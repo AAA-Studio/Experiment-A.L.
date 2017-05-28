@@ -14,26 +14,47 @@
 
 using namespace std;
 
+
+
+
 //Clase abstracta que hereda de la raiz ObjetoJuego e implementa utilidades para las subclases
 class Mundo : public MundoVirtual
 {
 public:
+	//Constructora
 	Mundo(Juego * pJ, string mapa);
+
+	//Destructorta
 	virtual ~Mundo();
 
+	//Interfaz
 	virtual void draw() const;
 	virtual void onInput(SDL_Event &e);
 	virtual void update();
-	bool checkCollision(SDL_Rect a, SDL_Rect b);
-	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
-	EntidadJuego * compruebaColisionObjetos();
-	void destruyeLlave(EntidadJuego * llave);
-	void ponmeArma();
-	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it);
 
-		//------------------GETTERS---------------------
-		inline Mapa* getMapa() const { return mapa; };
+	//Colisiones
+	bool checkCollision(SDL_Rect a, SDL_Rect b);//Lo necesito desde mapa
+	EntidadJuego * compruebaColisionObjetos();//Se le llama desde personaje cuando pulsa la tecla 'E'
+
+	//Destruccion objetos
+	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it);
+	void destruyeLlave(EntidadJuego * llave);
+	void destruyeArma();
+
+	//Insertar objetos
+	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
+	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
+
+	
+	
+	//------------------GETTERS Y SETTER---------------------
+	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
+	inline Mundo_t getMundo()const{ return mundo; };
+	virtual void setMundo(Mundo_t m){ mundo = m; };
+	inline bool getPasoNivel()const{ return pasoNivel; };
+	inline void setPasoNivel(bool pNivel){ pasoNivel = pNivel; };
+
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
 		if (lista == LBalasPersonaje)
@@ -41,20 +62,12 @@ public:
 		else
 			return balasEnems;
 	};
-	Armas* getArma();
-	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
 
-	void compruebaPersonaje();
+	inline Personaje* getPersonaje(){ return psj; };
 
-	void cambiaPosPSJ(int x,int y){
-		psj->setPosChocando(x, y);
-	}
-
+	//Camara
 	inline virtual SDL_Rect getCamera() const{ return camera; };
-
 	virtual void setCamera(int x, int y){ camera.x = x; camera.y = y; };
-
-
 
 	//Saber el nivel del mapa en el que estamos
 	inline int getNivel() const { return nivel; };
@@ -74,37 +87,63 @@ public:
 
 	
 private:
+
 	//-------------------ATRIBUTOS---------------
+	//Referencias a otros modulos
 	Juego * pJuego;
-	Personaje * psj;
-
-	vector <EntidadJuego*> objetos;
-	list <EntidadJuego*> llaves;
-	list <Armas*> armas;
-	list <Enemigo*> enemigos;
-	list <EntidadJuego*> balasPsj;
-	list <EntidadJuego*> balasEnems;
 	Mapa * mapa;
-	bool pausa, balaDestruida;
-	const Uint32 duracion = 500;
-	Uint32 time;
-	SDL_Rect camera;
-	
 
+	//Mapa
 	int indiceMapa;
 	int nivel;
 
-	bool llavesCogidas[TAMAÑO_LLAVES];
+	//Mundo
+	Mundo_t mundo;
 
+	//Entidades
+	Personaje * psj;
+
+	list <Enemigo*> enemigos;
+	list <EntidadJuego*> objetos;
+	list <EntidadJuego*> llaves;
+	list <Armas*> armas;
+	SDL_Rect camera;
+
+	//Balas
+	list <EntidadJuego*> balasPsj;
+	list <EntidadJuego*> balasEnems;
+	Uint32 time;
 	
+	const Uint32 duracion = 500;
+	bool balaDestruida;
+
+	//Puertas
+	bool llavesCogidas[TAMAÑO_LLAVES];
+	bool pasoNivel;
+	bool nivelCambiado;
+	Uint32 alfo;
+
+	bool colObjeto;
+	//bool abierto;
+	//vector<bool> cerraduras;
+	//vector<int> puertas;
+	//bool pausa;
+
+	//-------------------ATRIBUTOS---------------
+
 
 	//-------------------METODOS-------------------
-	void cargaObjetos();
+	//Objetos
 	void initObjetos();
+	void cargaObjetos();//Carga objetos de fichero
 	void freeObjetos();
+
+	//Colisiones
+	void compruebaColisionPersonaje();//Colision con muros y puertas
 	void colBalaEnemigo();
 	void colBalaPersonaje();
 	
+	//-------------------METODOS-------------------
 };
 
 #endif

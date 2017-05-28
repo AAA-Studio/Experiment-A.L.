@@ -18,6 +18,7 @@ public:
 	virtual void update() {};
 
 	virtual inline SDL_Rect getRect()const{ return rect; };
+	virtual inline void setRect(SDL_Rect r) { rect = r; };
 	virtual inline Objetos_t getType() const  { return type; };
 
 	virtual void setVisible(bool visible);

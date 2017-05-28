@@ -7,29 +7,47 @@
 #include "Boton.h"
 #include <fstream>
 
+
+//Metodos ordenadiiiiiiiiiiiiiisimos :D
+
 Mundo::Mundo(Juego * pJ, string m)
 {
 	pJuego = pJ;
+	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
+	psj = nullptr;
+	mundo = MReal;
+
+	//Mapa
 	nivel = 0;
 	indiceMapa = 1;
-
-	pausa = false;
-	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	mapa = new Mapa(this, m);
-	initObjetos();
 
+	initObjetos();
 	cargaObjetos();
 	
-	balaDestruida = false;
 
-	//pJuego->getMusica(MPlay)->play();
+
+	balaDestruida = false;
+	//pausa = false;
+	//abierto = false;
+	//cerraduras[0] = false;
+	//puertas[0] = 0;
+
+	pasoNivel = false;
+	//objetos[1]->setVisible(false);
+	pJuego->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->play();
+
+	psj->empiezaPerderVida();
 
 	for (int i = 0; i < TAMAÑO_LLAVES; i++) //Se inicializan las llaves
 		llavesCogidas[i] = false;
 
+	alfo = 0;
+	pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);
+	nivelCambiado = false;
+	colObjeto = false;
 }
-
 
 Mundo::~Mundo()
 {
@@ -37,6 +55,7 @@ Mundo::~Mundo()
 
 }
 
+//Objetos
 void Mundo::cargaObjetos(){
 	string objts = pJuego->getNombreObjetos();
 
@@ -57,7 +76,7 @@ void Mundo::cargaObjetos(){
 			obj >> nombre;
 
 
-		int y, x,w,h, lvl, tipo,cadencia,balas;
+		int cadencia,balas;
 		if (nombre == "NIVEL"){
 
 			obj >> lvl;
@@ -108,46 +127,33 @@ void Mundo::cargaObjetos(){
 	}
 	obj.close();
 }
-static void goPlay(Juego * pj){
-
-};
-
-//Crea las texturas para los globos y todos los globos
 void Mundo::initObjetos()
 {	
-
 	int x = 360;
 	int y = 900;
 	psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
 		
-		
-
-			//HACER UN SWITCH
-			/*int x = 0, y = 0;//Posiciones del jugador para cuando no encuentre el spawn
-
-			x = mapa->getXSpawn();
-			y = mapa->getYSpawn();
-			psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
-			//objetos.push_back(new Entidad(pJuego, 350, 300, TTeclado, ENull, OTeclado));
-			//llaves.push_back(new Entidad(pJuego, 400, 300, TLlave, ENull, OLlave));//Llave
-			//enemigos.push_back(new Enemigo(this, x + 100, y + 100, TLeon, ENull));
-
-
-			//objetos.push_back (new Boton(pJuego, 0, 0, TPlay, ENull, goPlay));*/
-		
+	//x = mapa->getXSpawn();
+	//y = mapa->getYSpawn();
+	//psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
+	
 }
 
-	void Mundo::freeObjetos(){
+void Mundo::freeObjetos(){
 		delete psj;
 		psj = nullptr;
 
-		for (size_t i = 0; i < objetos.size(); i++)//Se destruyen los objetos
+
+		list<EntidadJuego*>::const_iterator itObj = objetos.cbegin();
+		while (!objetos.empty() && itObj != objetos.end())
 		{
-			delete(objetos[i]);
-			objetos[i] = nullptr;
+			delete(*itObj);
+			itObj= objetos.erase(itObj);
+		
 		}
 
 		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
+
 		while (!enemigos.empty() && itEnemigo != enemigos.end())
 		{
 			delete(*itEnemigo);
@@ -173,6 +179,7 @@ void Mundo::initObjetos()
 			delete(*itBalasEnem);
 			itBalasEnem = balasEnems.erase(itBalasEnem);
 		}
+
 		list<Armas*>::iterator itArmas = armas.begin();
 		while (!armas.empty() && itArmas != armas.end())
 		{
@@ -182,84 +189,79 @@ void Mundo::initObjetos()
 
 	}
 
-
-	void Mundo::draw()const{
-
-			//Render level
-			//DIBUJAR MAPA
-			mapa->draw();
-
-			//Dibujar objetos del juego
-			list<Armas*>::const_iterator itArmas = armas.begin();
-			while (!armas.empty() && itArmas != armas.end())
-			{
-				(*itArmas)->draw((*itArmas)->getRect().x - camera.x, (*itArmas)->getRect().y - camera.y);
-				itArmas++;
-			}
-			for (int i = objetos.size() - 1; i >= 0; i--)
-				objetos[i]->draw(objetos[i]->getRect().x - camera.x, objetos[i]->getRect().y - camera.y);
-
-			list<EntidadJuego*>::const_iterator it = llaves.cbegin();
-
-			while (!llaves.empty() && it != llaves.cend())
-			{
-				(*it)->draw((*it)->getRect().x - camera.x, (*it)->getRect().y - camera.y);
-				it++;
-			}
-
-			list<Enemigo*>::const_iterator itEnemigos = enemigos.cbegin();
-			while (!enemigos.empty() && itEnemigos != enemigos.cend())
-			{
-				(*itEnemigos)->draw((*itEnemigos)->getRect().x - camera.x, (*itEnemigos)->getRect().y - camera.y);
-				itEnemigos++;
-			}
-			psj->draw(psj->getRect().x - camera.x, psj->getRect().y - camera.y);
-			/*
-			//Balas
-			list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
-			while (!balasPsj.empty() && itBalasPsj != balasPsj.cend())
-			{
-			(*itBalasPsj)->draw();
-			itBalasPsj++;
-			}*/
-
-			for (auto bala : balasPsj) {
-				bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
-			}
-
-			/*list<EntidadJuego*>::const_iterator itBalasEnem = balasEnems.cbegin();
-			while (!balasEnems.empty() && itBalasEnem != balasEnems.cend())
-			{
-			(*itBalasEnem)->draw();
-			itBalasEnem++;
-			}*/
-
-			for (auto bala : balasEnems) {
-				bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
-			}
+void Mundo::draw()const{
 
 
-			pJuego->getResources()->getTextura(JuegoSDL::TBlood)->setAlpha(255 - psj->getAlpha());
-			pJuego->getResources()->getTextura(JuegoSDL::TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
-			SDL_Rect a = getCamera();
-			a.h = 200;
-			a.w = 400;
-			pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
-			//pJuego->escribir("HOLA :)",50, 50);
+	//DIBUJAR MAPA
+	mapa->draw();
+
+	//Dibujar objetos del juego
+	//Armas
+	for (auto arma : armas)
+		arma->draw(arma->getRect().x - camera.x, arma->getRect().y - camera.y);
+
+	for (auto objeto: objetos)
+		objeto->draw(objeto->getRect().x - camera.x, objeto->getRect().y - camera.y);
+				
+	for (auto llave : llaves)
+		llave->draw(llave->getRect().x - camera.x, llave->getRect().y - camera.y);
+
+	for (auto enemigo : enemigos)
+		enemigo->draw(enemigo->getRect().x - camera.x, enemigo->getRect().y - camera.y);
+
+
+	psj->draw(psj->getRect().x - camera.x, psj->getRect().y - camera.y);
+	
+			//Balas personaje
+	for (auto bala : balasPsj) 
+		bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
+			
+	//Balas enemigo
+	for (auto bala : balasEnems) 
+		bala->draw(bala->getRect().x - camera.x, bala->getRect().y - camera.y);
+			
+	//Dibujo sangre
+	pJuego->getResources()->getTextura(JuegoSDL::TBlood)->setAlpha(255 - psj->getAlpha());
+	pJuego->getResources()->getTextura(JuegoSDL::TBlood)->draw(pJuego->getRender(), psj->getHUD(), 0, 0, nullptr);
+
+	//Dibujo controles
+	SDL_Rect a = getCamera();
+	a.h = 200;
+	a.w = 400;
+
+	pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 		
-	}
+			
+			
+	//Dibujar fondo negro
 
+	a.h = 640;
+	a.w = 800;
+	if (pasoNivel || nivelCambiado)
+		pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);		
+	
+	pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 
-	void Mundo::update(){
+	if (colObjeto)
+		pJuego->escribir(psj->getRect().x - camera.x - 20, psj->getRect().y - camera.y + 50);
+			
+}
+
+void Mundo::update(){
 		psj->update();//Update de personaje
 		balaDestruida = false;
-		if (indiceMapa == 0 && !(psj->getempiezaPerderVida()))
-			psj->empiezaPerderVida();
+		colObjeto = false;
+
+
+
+
+		//Caso GameOver
 		if (psj->getVida() <= 0){
 			pJuego->setEstadoEnum(MGameOver);
 			pJuego->setBorraEstado(true);
 		}
-		//Balas
+
+		//Balas personaje
 		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
 		while (!balaDestruida && !balasPsj.empty() && itBalasPsj != balasPsj.cend())
 		{
@@ -278,6 +280,7 @@ void Mundo::initObjetos()
 				itBalasPsj++;
 		}
 
+		//Balas enemigo
 		list<EntidadJuego*>::iterator itBalasEnem = balasEnems.begin();
 		while (!balaDestruida && !balasEnems.empty() && itBalasEnem != balasEnems.end())
 		{
@@ -293,37 +296,371 @@ void Mundo::initObjetos()
 				itBalasEnem++;
 		}
 
-		list<Enemigo*>::const_iterator citEnemigo = enemigos.cbegin();//Update de enemigos
-		while (!enemigos.empty() && citEnemigo != enemigos.cend())
-		{
-			if (checkCollision(camera, (*citEnemigo)->getRect())){
-				(*citEnemigo)->update();
+		//Enemigos
+		for (auto enemigo : enemigos){
+			if (checkCollision(camera, enemigo->getRect()))
+				enemigo->update();
+		}
+
+		//Update de objetos
+		list<EntidadJuego*>::iterator obj = objetos.begin();
+
+		while (!colObjeto && !objetos.empty() && obj != objetos.end()){
+			if (checkCollision(camera, (*obj)->getRect())){
+				if (checkCollision(psj->getRect(), (*obj)->getRect()))
+					colObjeto = true;
+				else
+					colObjeto = false;
 			}
-			citEnemigo++;
+			(*obj)->update();
+
+			obj++;
+		}
+		list<EntidadJuego*>::iterator itLlave = llaves.begin();
+			
+		//Update de las llaves
+		while (!colObjeto && !llaves.empty() && itLlave != llaves.end()){
+			if (checkCollision(camera, (*itLlave)->getRect()))
+			{
+				if (checkCollision(psj->getRect(), (*itLlave)->getRect()))
+					colObjeto = true;
+				else
+					colObjeto = false;
+			}
+
+			(*itLlave)->update();
+			itLlave++;
 		}
 
 
-		for (size_t i = 0; i < objetos.size(); i++)//Update de objetos
-			if (checkCollision(camera,objetos[i]->getRect()))
-				objetos[i]->update();
+		list<Armas*>::iterator itArma = armas.begin();
 
-
-		list<EntidadJuego*>::const_iterator cit = llaves.cbegin();
-		while (!llaves.empty() && cit != llaves.cend())//Update de las llaves
-		{
-			if (checkCollision(camera, (*cit)->getRect())){
-				(*cit)->update();
+		//Update de las llaves
+		while (!colObjeto && !armas.empty() && itArma != armas.end()){
+			if (checkCollision(camera, (*itArma)->getRect()))
+			{
+				if (checkCollision(psj->getRect(), (*itArma)->getRect()))
+					colObjeto = true;
+				else
+					colObjeto = false;
 			}
-				cit++;
-		}
 
+			(*itArma)->update();
+			itArma++;
+		}
 		//COLISIONES
 		colBalaEnemigo();
 		colBalaPersonaje();
 		
+		if (pasoNivel){
+			alfo += 10;
+			if (alfo > 255){			
+				pasoNivel = false;
+				nivelCambiado = true;
+				mapa->buscaSpawn();
+
+			}
+			
+		}
+		if (nivelCambiado){
+			alfo -= 10;
+			if(alfo ==0)//Se pide la hora y se compara con la última 
+			{
+				alfo = 0;
+				nivelCambiado = false;
+			}
+		}
+
+	}
+void Mundo::onInput(SDL_Event &e){
+
+		if (!nivelCambiado && !pasoNivel) // NO PLS
+		{
+			//Declaramos el array con los estados de teclado
+			const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
+
+			//Pausa
+			if (keyStatesActuales[SDL_SCANCODE_ESCAPE])
+				pJuego->setEstadoEnum (MPausa);
+			
+			//Personaje
+			psj->onInput();
+			if (!pasoNivel && !nivelCambiado)
+				compruebaColisionPersonaje();
+
+
+
+		}
+		
+
 	}
 
-	void Mundo::colBalaEnemigo(){
+
+//Destruir objetos
+void Mundo::destruyeLlave(EntidadJuego * llave)
+	{
+		list<EntidadJuego*>::iterator it = llaves.begin();
+		while (it != llaves.end() && (*it) != llave)//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
+		{
+			it++;
+		}
+
+		//Elimina la llave
+		it = llaves.erase(it);
+		delete (llave);
+		llave = nullptr;
+
+		pJuego->getResources()->getEfecto(7)->play(0);
+
+
+		if (getLLavesCogidas(0))
+			setLlaveCogida(1);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
+		else
+			setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
+	}
+void Mundo::destruyeArma(){
+		list<Armas*>::iterator it = armas.begin();
+		while (it != armas.end() && !checkCollision((*it)->getRect(),psj->getRect()))//Recorre todas las armas hasta encontrar el arma que tiene que destruir
+		{
+			it++;
+		}
+		psj->cogeArma((*it));
+		it = armas.erase(it);
+		pJuego->getResources()->getEfecto(7)->play(0);
+
+	}
+void Mundo::destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it)
+	{
+		delete (*it);
+		it = lista.erase(it);
+		balaDestruida = true;
+	}
+
+void Mundo::insertaBala(ListaBalas_t lista, EntidadJuego * bala)
+	{
+		if (lista == LBalasPersonaje)
+			balasPsj.push_back(bala);
+		else
+			balasEnems.push_back(bala);
+	}
+
+//Colisiones
+EntidadJuego * Mundo::compruebaColisionObjetos(){
+		size_t i = 0;
+		SDL_Rect rect, rect3;
+
+		rect.x = psj->getRect().x;
+		rect.y = psj->getRect().y;
+
+		//Rect3 = rect de colision
+		rect3.h = 10;
+		rect3.w = 10;
+		rect3.x = rect.x + 10;
+		rect3.y = rect.y + 40;
+
+
+		list<EntidadJuego*>::const_iterator itObj = objetos.cbegin();
+
+		while (!objetos.empty() && itObj != objetos.cend() && !checkCollision(psj->getRect(), (*itObj)->getRect()))
+			itObj++;
+
+		//Si lo he encontrado en los informes
+		if (itObj != objetos.cend())
+			return (*itObj);
+
+		//Si no, sigo buscando en la lista de llaves
+		list<EntidadJuego*>::const_iterator it = llaves.cbegin();
+
+		while (!llaves.empty() && it != llaves.cend() && !checkCollision(psj->getRect(), (*it)->getRect()))
+			it++;
+
+		if (it != llaves.cend())
+			return (*it);
+	
+		list<Armas*>::const_iterator itArmas = armas.cbegin();
+
+		while (!armas.empty() && itArmas != armas.cend() && !checkCollision(psj->getRect(), (*itArmas)->getRect()))
+			itArmas++;
+		
+		if (itArmas != armas.cend())
+			return (*itArmas);
+
+		return nullptr;
+	}
+void Mundo::compruebaColisionPersonaje(){
+	SDL_Rect rectPersonaje = psj->getRect(), rectPies;
+
+	int x, y;
+
+
+	//Reducimos el ancho y alto del rectangulo de colision
+	rectPies.h = 10;
+	rectPies.w = 10;
+
+	x = rectPersonaje.x - psj->DamePosAntX();
+	y = rectPersonaje.y - psj->DamePosAntY();
+
+	//Movemos el rectangulo de colision a los pies
+	rectPies.x = rectPersonaje.x + 10;
+	rectPies.y = rectPersonaje.y + 40;
+
+	Direccion dir;
+	dir.x = x;
+	dir.y = y;
+	psj->setDir(dir);
+
+	int tipo;
+	mapa->touchesDoor(rectPies, tipo);
+
+	
+	/*if (mapa->touchesDoor(rectPies, tipo))
+	{
+
+		EstadoJuego * aux = new PasoDeNivel(pJuego);
+		pJuego->goToState(aux);
+	}*/
+
+	//comprueba la X
+	if (mapa->touchesWall(rectPies)){
+		rectPersonaje.x -= x;
+	}
+	// comprueba la Y
+	if (mapa->touchesWall(rectPies)){
+		rectPersonaje.y -= y;
+	}
+
+	//Felpudos
+	if (tipo != 0
+		&& tipo != 1
+		&& tipo != 2
+		&& tipo != 3
+		&& tipo != 4
+		&& tipo != 5
+		&& tipo != 6
+		&& tipo != 7
+		&& tipo != 16
+		&& tipo != 17
+		&& tipo != 18
+		&& tipo != 19
+		&& tipo != 20
+		&& tipo != 21
+		&& tipo != 22
+		&& tipo != 27
+		&& tipo != 28
+		&& tipo != 29
+		&& tipo != 30
+		&& tipo != 31
+		&& tipo != 32
+		&& tipo != 33
+		&& tipo != 42
+		&& tipo != 43
+		&& tipo != 44
+		&& tipo != 54
+		&& tipo != 55
+		&& tipo != 57
+		&& tipo != 58
+		&& tipo != 59
+		&& tipo != 114
+		&& tipo != 140
+		&& tipo != 150
+		&& tipo != 151
+		&& tipo != 152
+		&& tipo != 153
+		&& tipo != 154
+		&& tipo != 155
+		&& tipo != 157
+		&& tipo != 158
+		&& tipo != 159
+		&& tipo != 165
+		&& tipo != 169
+		&& tipo != 174
+		&& tipo != 180
+		&& tipo != 181
+		&& tipo != 182
+		&& tipo != 183
+		&& tipo != 184
+		&& tipo != 185
+		&& tipo != 186
+		&& tipo != 187
+		&& tipo != 188
+		&& tipo != 189
+		&& tipo != 190
+		&& tipo != 191
+		&& tipo != 281
+		&& tipo != 282
+		&& tipo != 338
+		&& tipo != 339
+		&& tipo != 340
+		//------------------------------------------------------------------------------------//
+		//                                      MUNDO OSCURO								  //
+		//------------------------------------------------------------------------------------//
+
+		&& tipo != 345
+		&& tipo != 346
+		&& tipo != 347
+		&& tipo != 348
+		&& tipo != 349
+		&& tipo != 350
+		&& tipo != 351
+		&& tipo != 352
+		&& tipo != 361
+		&& tipo != 362
+		&& tipo != 363
+		&& tipo != 364
+		&& tipo != 365
+		&& tipo != 366
+		&& tipo != 367
+		&& tipo != 372
+		&& tipo != 373
+		&& tipo != 374
+		&& tipo != 375
+		&& tipo != 376
+		&& tipo != 377
+		&& tipo != 378
+		&& tipo != 387
+		&& tipo != 388
+		&& tipo != 389
+		&& tipo != 399
+		&& tipo != 400
+		&& tipo != 402
+		&& tipo != 403
+		&& tipo != 404
+		&& tipo != 459
+		&& tipo != 485
+		&& tipo != 495
+		&& tipo != 496
+		&& tipo != 497
+		&& tipo != 498
+		&& tipo != 499
+		&& tipo != 500
+		&& tipo != 501
+		&& tipo != 502
+		&& tipo != 503
+		&& tipo != 504
+		&& tipo != 510
+		&& tipo != 514
+		&& tipo != 519
+		&& tipo != 525
+		&& tipo != 526
+		&& tipo != 527
+		&& tipo != 528
+		&& tipo != 529
+		&& tipo != 530
+		&& tipo != 531
+		&& tipo != 532
+		&& tipo != 533
+		&& tipo != 534
+		&& tipo != 535
+		&& tipo != 536
+		&& tipo != 626
+		&& tipo != 627
+		&& tipo != 683
+		&& tipo != 684
+		&& tipo != 685)
+		psj->setPosChocando(rectPersonaje.x, rectPersonaje.y);
+
+}
+void Mundo::colBalaEnemigo(){
 
 		list<Enemigo*>::iterator itEnemigo = enemigos.begin();
 
@@ -360,9 +697,7 @@ void Mundo::initObjetos()
 				itEnemigo++;
 		}
 	}
-
-
-	void Mundo::colBalaPersonaje(){
+void Mundo::colBalaPersonaje(){
 
 		list<EntidadJuego*>::iterator itBalasEnems = balasEnems.begin();
 
@@ -379,320 +714,32 @@ void Mundo::initObjetos()
 				}
 
 				destruyeBala(balasEnems, itBalasEnems);
-
-				if (psj->getVida() <= 0){
-					pJuego->setBorraEstado(true);
-					pJuego->setEstadoEnum (MGameOver);
-				}
 			}
 			else
 				itBalasEnems++;
 		}
 	}
+bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
+{
+	//The sides of the rectangles
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
 
-	//Detecta el input del jugador y la pausa
-	void Mundo::onInput(SDL_Event &e){
+	//Calculate the sides of rect A
+	leftA = a.x;
+	rightA = a.x + a.w;
+	topA = a.y;
+	bottomA = a.y + a.h;
 
-		
+	//Calculate the sides of rect B
+	leftB = b.x;
+	rightB = b.x + b.w;
+	topB = b.y;
+	bottomB = b.y + b.h;
 
-			//Declaramos el array con los estados de teclado
-			const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
+	//If any of the sides from A are outside of B
+	return !(bottomA <= topB || topA >= bottomB || rightA <= leftB || (leftA >= rightB));
 
-			//Pausa
-			if (keyStatesActuales[SDL_SCANCODE_ESCAPE]){
-				pJuego->setEstadoEnum (MPausa);
-			}
-
-			//Personaje
-			psj->onInput();
-			compruebaPersonaje();
-
-		
-		
-
-	}
-	void Mundo::compruebaPersonaje(){
-		SDL_Rect rect, rect2, rect3;
-
-		int x, y;
-
-		rect.x = psj->getX();
-		rect.y = psj->getY();
-
-		rect2.x = psj->DamePosAntX();
-		rect2.y = psj->DamePosAntY();
-
-		rect2.w = rect.w = rect2.h = rect.h = 20;
-
-		//Rect3 = rect de colision
-		rect3.h = 10;
-		rect3.w = 10;
-
-		x = rect.x - rect2.x;
-		y = rect.y - rect2.y;
-
-		rect3.x = rect.x + 10;
-		rect3.y = rect.y + 40;
-
-
-		Direccion dir;
-		dir.x = x;
-		dir.y = y;
-		psj->setDir(dir);
-
-		int tipo;
-		mapa->touchesDoor(rect3, tipo);
-
-		//comprueba la X
-		if (mapa->touchesWall(rect3)){
-			rect.x -= x;
-		}
-		// comprueba la Y
-		if (mapa->touchesWall(rect3)){
-			rect.y -= y;
-		}
-
-		if (tipo != 0
-			&& tipo != 1
-			&& tipo != 2
-			&& tipo != 3
-			&& tipo != 4
-			&& tipo != 5
-			&& tipo != 6
-			&& tipo != 7
-			&& tipo != 16
-			&& tipo != 17
-			&& tipo != 18
-			&& tipo != 19
-			&& tipo != 20
-			&& tipo != 21
-			&& tipo != 22
-			&& tipo != 27
-			&& tipo != 28
-			&& tipo != 29
-			&& tipo != 30
-			&& tipo != 31
-			&& tipo != 32
-			&& tipo != 33
-			&& tipo != 42
-			&& tipo != 43
-			&& tipo != 44
-			&& tipo != 54
-			&& tipo != 55
-			&& tipo != 57
-			&& tipo != 58
-			&& tipo != 59
-			&& tipo != 114
-			&& tipo != 140
-			&& tipo != 150
-			&& tipo != 151
-			&& tipo != 152
-			&& tipo != 153
-			&& tipo != 154
-			&& tipo != 155
-			&& tipo != 157
-			&& tipo != 158
-			&& tipo != 159
-			&& tipo != 165
-			&& tipo != 169
-			&& tipo != 174
-			&& tipo != 180
-			&& tipo != 181
-			&& tipo != 182
-			&& tipo != 183
-			&& tipo != 184
-			&& tipo != 185
-			&& tipo != 186
-			&& tipo != 187
-			&& tipo != 188
-			&& tipo != 189
-			&& tipo != 190
-			&& tipo != 191
-			&& tipo != 281
-			&& tipo != 282
-			&& tipo != 338
-			&& tipo != 339
-			&& tipo != 340
-			//------------------------------------------------------------------------------------//
-			//                                      MUNDO OSCURO								  //
-			//------------------------------------------------------------------------------------//
-
-			&& tipo != 345
-			&& tipo != 346
-			&& tipo != 347
-			&& tipo != 348
-			&& tipo != 349
-			&& tipo != 350
-			&& tipo != 351
-			&& tipo != 352
-			&& tipo != 361
-			&& tipo != 362
-			&& tipo != 363
-			&& tipo != 364
-			&& tipo != 365
-			&& tipo != 366
-			&& tipo != 367
-			&& tipo != 372
-			&& tipo != 373
-			&& tipo != 374
-			&& tipo != 375
-			&& tipo != 376
-			&& tipo != 377
-			&& tipo != 378
-			&& tipo != 387
-			&& tipo != 388
-			&& tipo != 389
-			&& tipo != 399
-			&& tipo != 400
-			&& tipo != 402
-			&& tipo != 403
-			&& tipo != 404
-			&& tipo != 459
-			&& tipo != 485
-			&& tipo != 495
-			&& tipo != 496
-			&& tipo != 497
-			&& tipo != 498
-			&& tipo != 499
-			&& tipo != 500
-			&& tipo != 501
-			&& tipo != 502
-			&& tipo != 503
-			&& tipo != 504
-			&& tipo != 510
-			&& tipo != 514
-			&& tipo != 519
-			&& tipo != 525
-			&& tipo != 526
-			&& tipo != 527
-			&& tipo != 528
-			&& tipo != 529
-			&& tipo != 530
-			&& tipo != 531
-			&& tipo != 532
-			&& tipo != 533
-			&& tipo != 534
-			&& tipo != 535
-			&& tipo != 536
-			&& tipo != 626
-			&& tipo != 627
-			&& tipo != 683
-			&& tipo != 684
-			&& tipo != 685)
-		psj->setPosChocando(rect.x, rect.y);
-
-	}
-	bool Mundo::checkCollision(SDL_Rect a, SDL_Rect b)
-	{
-		//The sides of the rectangles
-		int leftA, leftB;
-		int rightA, rightB;
-		int topA, topB;
-		int bottomA, bottomB;
-
-		//Calculate the sides of rect A
-		leftA = a.x;
-		rightA = a.x + a.w;
-		topA = a.y;
-		bottomA = a.y + a.h;
-
-		//Calculate the sides of rect B
-		leftB = b.x;
-		rightB = b.x + b.w;
-		topB = b.y;
-		bottomB = b.y + b.h;
-
-		//If any of the sides from A are outside of B
-		return !(bottomA <= topB || topA >= bottomB || rightA <= leftB || (leftA >= rightB));
-
-	}
-
-	EntidadJuego * Mundo::compruebaColisionObjetos(){
-		size_t i = 0;
-		SDL_Rect rect, rect3;
-
-		rect.x = psj->getX();
-		rect.y = psj->getY();
-
-		//Rect3 = rect de colision
-		rect3.h = 10;
-		rect3.w = 10;
-		rect3.x = rect.x + 10;
-		rect3.y = rect.y + 40;
-
-
-		while (i < objetos.size() && !checkCollision(psj->getRect(), objetos[i]->getRect()))
-			i++;
-
-		//Si lo he encontrado en los informes
-		if (i != objetos.size())
-			return objetos[i];
-
-		//Si no, sigo buscando en la lista de llaves
-		list<EntidadJuego*>::const_iterator it = llaves.cbegin();
-
-		while (!llaves.empty() && it != llaves.cend() && !checkCollision(psj->getRect(), (*it)->getRect()))
-		{
-			it++;
-
-		}
-		list<Armas*>::const_iterator itArmas = armas.cbegin();
-
-		while (!armas.empty() && itArmas != armas.cend() && !checkCollision(psj->getRect(), (*itArmas)->getRect()))
-		{
-			itArmas++;
-		}
-		if (it == llaves.cend() && itArmas == armas.cend())
-			return nullptr;
-		else if (itArmas != armas.cend())
-			return (*itArmas);
-		else
-			return (*it);
-	}
-
-	void Mundo::destruyeLlave(EntidadJuego * llave)
-	{
-		list<EntidadJuego*>::iterator it = llaves.begin();
-		while (it != llaves.end() && (*it) != llave)//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
-		{
-			it++;
-		}
-
-		//Elimina la llave
-		it = llaves.erase(it);
-		delete (llave);
-		llave = nullptr;
-		pJuego->getResources()->getEfecto(7)->play(0);
-			
-
-		if (getLLavesCogidas(0))
-			setLlaveCogida(1);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
-		else
-			setLlaveCogida(0);//Pone a true la llave a eliminar en el array de booleanos de las llaves de juego
-	}
-	void Mundo::ponmeArma(){
-		list<Armas*>::iterator it = armas.begin();
-		while (it != armas.end() && !checkCollision((*it)->getRect(),psj->getRect()))//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
-		{
-			it++;
-		}
-		psj->cogeArma((*it));
-		it = armas.erase(it);
-		pJuego->getResources()->getEfecto(7)->play(0);
-	}
-	void Mundo::destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it)
-	{
-		delete (*it);
-		it = lista.erase(it);
-		balaDestruida = true;
-	}
-
-	void Mundo::insertaBala(ListaBalas_t lista, EntidadJuego * bala)
-	{
-		if (lista == LBalasPersonaje)
-			balasPsj.push_back(bala);
-		else
-			balasEnems.push_back(bala);
-	}
-
-
+}

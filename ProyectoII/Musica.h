@@ -16,10 +16,12 @@ public:
 	void load(string const& nombArch);
 	void play(int repetitions = -1);
 	void pause();
+	void closeAndLoad();
 	void close();
 
 private:	
 	Mix_Music * pMusic_;
+	string nombArchivo;
 
 };
 

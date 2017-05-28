@@ -61,6 +61,14 @@ public:
 	inline bool getLLavesCogidas(int indice) const{ return nullptr; }
 	inline void setLlaveCogida(int indice) {}
 
+	void destruyeArma(){};
+
+	inline Personaje* getPersonaje(){ return psj; };
+	inline Mundo_t getMundo()const{ return MReal; };
+	inline bool getPasoNivel()const{ return true; };
+	inline void setPasoNivel(bool pNivel){  };
+	virtual void setMundo(Mundo_t m){};
+
 
 
 private:

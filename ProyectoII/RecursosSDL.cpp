@@ -21,7 +21,7 @@ void RecursosSDL::setFonts(std::vector<std::string> fonts) {
 	numOfFonts_ = fonts.size();
 	fonts_ = new Fuente*[numOfFonts_];
 	for (int i = 0; i < numOfFonts_; i++) {
-		fonts_[i] = new Fuente(fonts[i],100);
+		fonts_[i] = new Fuente(fonts[i],20);
 	}
 }
 

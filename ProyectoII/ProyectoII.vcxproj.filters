@@ -194,9 +194,6 @@
     <ClInclude Include="Personaje.h">
       <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
     </ClInclude>
-    <ClInclude Include="PersonajeVirtual.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
-    </ClInclude>
     <ClInclude Include="Enemigo.h">
       <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
     </ClInclude>

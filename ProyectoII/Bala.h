@@ -1,7 +1,6 @@
 #ifndef Bala_H
 #define Bala_H
 #include "checkML.h"
-#include "PersonajeVirtual.h"
 #include "Entidad.h"
 #include "MundoVirtual.h"
 
