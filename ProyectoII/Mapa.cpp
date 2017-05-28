@@ -107,108 +107,120 @@ void  Mapa::buscaSpawn(){
 		encontrado = true;
 		return;
 	}
-	//------------------------------------------------------ PLANTA 5 ------------------------------------------------------------//
 
-	//sale en el spawn gris
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == -1)
-		tipo = 185;
-	//spawn rojo
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == 1)
-		tipo = 180;
+	//VEMOS QUE TIPO DE SPAWN DEBE BUSCAR
 
-	//spawn rosa
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == 2)
-		tipo = 191;
+	//------------------------------------------------------------------------------------//
+	//                                      MUNDO REAL								      //
+	//------------------------------------------------------------------------------------//
 
-	//spawn morado
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == -2)
-		tipo = 184;
 
-	//spawn azul oscuro
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == 3)
-		tipo = 183;
+	if (pMundo->getIndiceMapa() < 24){
+		//sale en el spawn gris
+		if (pMundo->getNivel() == -1)
+			tipo = 185;
+		//spawn rojo
+		else if (pMundo->getNivel() == 1)
+			tipo = 180;
 
-	//spawn pistacho
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == -3)
-		tipo = 188;
+		//spawn rosa
+		else if (pMundo->getNivel() == 2)
+			tipo = 191;
 
-	//spawn marrón
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == 4)
-		tipo = 190;
+		//spawn morado
+		else if (pMundo->getNivel() == -2)
+			tipo = 184;
 
-	//spawn burdeos
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == -4)
-		tipo = 189;
+		//spawn azul oscuro
+		else if (pMundo->getNivel() == 3)
+			tipo = 183;
 
-	//spawn verde
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == 5)
-		tipo = 181;
+		//spawn pistacho
+		else if (pMundo->getNivel() == -3)
+			tipo = 188;
 
-	//spawn azul
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == -5)
-		tipo = 182;
+		//spawn marrón
+		else if (pMundo->getNivel() == 4)
+			tipo = 190;
 
-	//spawn en espejo
-	else if (pMundo->getIndiceMapa() < 24 && pMundo->getNivel() == -24)
-	{
+		//spawn burdeos
+		else if (pMundo->getNivel() == -4)
+			tipo = 189;
 
-		tipo = 169;
-		pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MOscuro)->closeAndLoad();
-		pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->play();
+		//spawn verde
+		else if (pMundo->getNivel() == 5)
+			tipo = 181;
+
+		//spawn azul
+		else if (pMundo->getNivel() == -5)
+			tipo = 182;
+
+		//spawn en espejo
+		else if (pMundo->getNivel() == -24)
+		{
+
+			tipo = 169;
+			pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MOscuro)->closeAndLoad();
+			pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->play();
+		}
+		//spawn amarillo
+		else if (pMundo->getNivel() == 6)
+			tipo = 186;
+		//spawn naranja
+		else if (pMundo->getNivel() == -6)
+			tipo = 187;
 	}
-	//spawn amarillo
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == 6)
-		tipo = 186;
-	//spawn naranja
-	else if (pMundo->getIndiceMapa()<24 && pMundo->getNivel() == -6)
-		tipo = 187;
 	//------------------------------------------------------------------------------------//
 	//                                      MUNDO OSCURO								  //
 	//------------------------------------------------------------------------------------//
-	//spawn espejo en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == 24)
-	{
+	else{
+		//spawn espejo en oscuro
+		if (pMundo->getNivel() == 24)
+		{
 
-		tipo = 514;
-		pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->closeAndLoad();
-		pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MOscuro)->play();
+			tipo = 514;
+			pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->closeAndLoad();
+			pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MOscuro)->play();
+		}
+		//spawn azul en oscuro
+		else if (pMundo->getNivel() == -5)
+			tipo = 527;
+		//spawn verde en oscuro
+		else if (pMundo->getNivel() == 5)
+			tipo = 526;
+		//spawn rojo en oscuro
+		else if (pMundo->getNivel() == 1)
+			tipo = 525;
+		//spawn gris en oscuro
+		else if (pMundo->getNivel() == -1)
+			tipo = 530;
+		//spawn morado en oscuro
+		else if (pMundo->getNivel() == -2)
+			tipo = 529;
+		//spawn rosa en oscuro
+		else if (pMundo->getNivel() == 2)
+			tipo = 536;
+		//spawn burdeos en oscuro
+		else if (pMundo->getNivel() == -4)
+			tipo = 534;
+		//spawn pistacho en oscuro
+		else if (pMundo->getNivel() == -3)
+			tipo = 533;
+		//spawn caca en oscuro
+		else if (pMundo->getNivel() == 3)
+			tipo = 528;
+		//spawn azul oscuro en oscuro
+		else if (pMundo->getNivel() == 4)
+			tipo = 535;
+		//spawn amarillo oscuro
+		else if (pMundo->getNivel() == 6)
+			tipo = 531;
+		//spawn naranja oscuro
+		else if (pMundo->getNivel() == -6)
+			tipo = 532;
 	}
-	//spawn azul en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == -5)
-		tipo = 527;
-	//spawn verde en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == 5)
-		tipo = 526;
-	//spawn rojo en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == 1)
-		tipo = 525;
-	//spawn gris en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == -1)
-		tipo = 530;
-	//spawn morado en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == -2)
-		tipo = 529;
-	//spawn rosa en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == 2)
-		tipo = 536;
-	//spawn burdeos en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == -4)
-		tipo = 534;
-	//spawn pistacho en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == -3)
-		tipo = 533;
-	//spawn caca en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == 3)
-		tipo = 528;
-	//spawn azul oscuro en oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == 4)
-		tipo = 535;
-	//spawn amarillo oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == 6)
-		tipo = 531;
-	//spawn naranja oscuro
-	else if (pMundo->getIndiceMapa()>23 && pMundo->getNivel() == -6)
-		tipo = 532;
+
+	//////////////////////////////RESTRICCIONES PARA BUSCAR EL SPAWN EN DONDE SE DEBE ////////////////////////////////////////
 	int x, y, h, w;
 	if (pMundo->getIndiceMapa() < 24){
 		x = 0;
@@ -286,6 +298,9 @@ void  Mapa::buscaSpawn(){
 
 		}
 	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// se busca el spawn donde se debe
 	while (!encontrado && i < TOTAL_TILES)
 	{
 		if (tileMap[i]->getType() == tipo && tileMap[i]->getBox().x >= x && tileMap[i]->getBox().x + tileMap[i]->getBox().w <= w
@@ -411,6 +426,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//PUERTA PISTACHO
 			else if (tileMap[indice]->getType() == 158)
 			{
+				//Planta 5 necesitas el codigo
 				if (pJuego->getPuerta(0) && pMundo->getIndiceMapa() == 0){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -425,6 +441,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						return true;
 					}
 				}
+				//En las demas no
 				else if (pMundo->getIndiceMapa() != 0){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -463,21 +480,8 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//PUERTA BURDEOS
 			else if (tileMap[indice]->getType() == 159)
 			{
-				if (pMundo->getIndiceMapa() == 0 && false){
-					felpudo = tileMap[indice]->getBox();
-					felpudo.x = felpudo.x + 10;
-					felpudo.h = felpudo.h - 15;
-					felpudo.w = felpudo.w - 20;
-
-					if (pMundo->checkCollision(box, felpudo)){
-						pMundo->setNivel(4);
-						tipo = 159;
-						pMundo->setPasoNivel(true);
-						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
-						return true;
-					}
-				}
-				else if (pMundo->getIndiceMapa() != 0) {
+				//Como en la planta 5 esta bloqueada solo miro las demas
+				if (pMundo->getIndiceMapa() != 0) {
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
@@ -515,6 +519,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//PUERTA AZUL
 			else if (tileMap[indice]->getType() == 152)
 			{
+				//necesitas llave en el nivel 1
 				if ((pMundo->getLLavesCogidas(0) || Puerta1Abierta) && pMundo->getIndiceMapa() == 0){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.y = felpudo.y + 25;
@@ -522,12 +527,12 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.w = felpudo.w - 25;
 
 					if (pMundo->checkCollision(box, felpudo)){
-
-						if (pMundo->getLLavesCogidas(1) && !Puerta1Abierta){
+						//Por si tienes dos
+						if (!Puerta1Abierta && pMundo->getLLavesCogidas(1)){
 							Puerta1Abierta = true;
 							pMundo->setLlaveCogida(0);
 						}
-						else if (pMundo->getLLavesCogidas(0) && !Puerta1Abierta){
+						else if (!Puerta1Abierta && pMundo->getLLavesCogidas(0)){
 							Puerta1Abierta = true;
 							pMundo->setLlaveCogida(0);
 						}
@@ -536,10 +541,11 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo->setPasoNivel(true);
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
-
 					}
 				}
+
 				else if (pMundo->getIndiceMapa() != 0){
+					//para cuando es vertical, ponemos bien el collider
 					if (pMundo->getIndiceMapa() == 6){
 						felpudo = tileMap[indice]->getBox();
 						felpudo.y = felpudo.y + 25;
@@ -547,15 +553,6 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						felpudo.w = felpudo.w - 25;
 
 						if (pMundo->checkCollision(box, felpudo)){
-
-							if (pMundo->getLLavesCogidas(1) && !Puerta1Abierta){
-								Puerta1Abierta = true;
-								pMundo->setLlaveCogida(0);
-							}
-							else if (pMundo->getLLavesCogidas(0) && !Puerta1Abierta){
-								Puerta1Abierta = true;
-								pMundo->setLlaveCogida(0);
-							}
 							pMundo->setNivel(5);
 							tipo = 152;
 							pMundo->setPasoNivel(true);
@@ -564,6 +561,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 						}
 					}
+					//Si es horizontal ponemos el collider bien
 					else{
 						felpudo = tileMap[indice]->getBox();
 						felpudo.y = felpudo.y - 5;
@@ -572,15 +570,6 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						felpudo.w = felpudo.w - 25;
 
 						if (pMundo->checkCollision(box, felpudo)){
-
-							if (pMundo->getLLavesCogidas(1) && !Puerta1Abierta){
-								Puerta1Abierta = true;
-								pMundo->setLlaveCogida(0);
-							}
-							else if (pMundo->getLLavesCogidas(0) && !Puerta1Abierta){
-								Puerta1Abierta = true;
-								pMundo->setLlaveCogida(0);
-							}
 							pMundo->setNivel(5);
 							tipo = 152;
 							pMundo->setPasoNivel(true);
@@ -818,6 +807,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//PUERTA AZUL (OSCURO)
 			else if ((tileMap[indice]->getType() == 497))
 			{
+				//Si es vertical ponemos el collider bien
 				if (pMundo->getIndiceMapa() == 24 || pMundo->getIndiceMapa() == 30){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.y = felpudo.y + 25;
@@ -832,6 +822,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 					}
 				}
+				//Si es horizontal ponemos el collider bien
 				else{
 					felpudo = tileMap[indice]->getBox();
 					felpudo.y = felpudo.y - 5;
