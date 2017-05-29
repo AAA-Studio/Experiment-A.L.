@@ -22,9 +22,11 @@ public:
 	inline void añadeObjeto(EntidadJuego * obj){}
 	EntidadJuego * compruebaColisionObjetos(){ return nullptr; }
 	virtual void destruyeLlave(EntidadJuego * llave){}
-	virtual void ponmeArma(){}
 	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it){}
-
+	void pildoraCogida(){}
+	void setPulsado(){}
+	void setPulsado2(){}
+	void destruyeInterruptor(){}
 	//------------------GETTERS---------------------
 	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };

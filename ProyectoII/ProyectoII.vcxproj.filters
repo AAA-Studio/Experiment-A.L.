@@ -138,6 +138,12 @@
     <ClCompile Include="CinematicaInicial.cpp">
       <Filter>Archivos de código fuente\Estados\Mundo</Filter>
     </ClCompile>
+    <ClCompile Include="Pildoras.cpp">
+      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="Interruptor.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EstadoJuego.h">
@@ -217,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="CinematicaInicial.h">
       <Filter>Archivos de encabezado\Estados\Mundo</Filter>
+    </ClInclude>
+    <ClInclude Include="Pildoras.h">
+      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="Interruptor.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

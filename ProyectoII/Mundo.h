@@ -8,6 +8,8 @@
 #include <SDL.h>
 #include "Mapa.h"
 #include "Personaje.h"
+#include "Pildoras.h"
+#include "Interruptor.h"
 #include "Enemigo.h"
 #include <list>
 
@@ -40,13 +42,15 @@ public:
 	void destruyeBala(list <EntidadJuego*> & lista, list<EntidadJuego*>::iterator & it);
 	void destruyeLlave(EntidadJuego * llave);
 	void destruyeArma();
-
+	virtual void destruyeInterruptor();
 	//Insertar objetos
 	inline void añadeObjeto(EntidadJuego * obj){ objetos.push_back(obj); };
 	void insertaBala(ListaBalas_t lista, EntidadJuego * bala);
+	void pildoraCogida();
+	virtual void setPulsado();
+	virtual void setPulsado2();
 
-	
-	
+
 	//------------------GETTERS Y SETTER---------------------
 	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
@@ -114,6 +118,8 @@ private:
 	list <EntidadJuego*> objetos;
 	list <EntidadJuego*> llaves;
 	list <Armas*> armas;
+	list <Pildoras*> pildoras;
+	list <Interruptor*> interruptores;
 	SDL_Rect camera;
 
 	//Balas

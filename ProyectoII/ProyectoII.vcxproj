@@ -76,6 +76,7 @@
     <ClCompile Include="Entidad.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Interruptor.cpp" />
     <ClCompile Include="Juego.cpp" />
     <ClCompile Include="JuegoSDL.cpp" />
     <ClCompile Include="main.cpp" />
@@ -86,6 +87,7 @@
     <ClCompile Include="Musica.cpp" />
     <ClCompile Include="Pausa.cpp" />
     <ClCompile Include="Personaje.cpp" />
+    <ClCompile Include="Pildoras.cpp" />
     <ClCompile Include="RecursosSDL.cpp" />
     <ClCompile Include="TexturasSDL.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -104,6 +106,7 @@
     <ClInclude Include="EstadoJuego.h" />
     <ClInclude Include="Fuente.h" />
     <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Interruptor.h" />
     <ClInclude Include="Juego.h" />
     <ClInclude Include="JuegoSDL.h" />
     <ClInclude Include="Mapa.h" />
@@ -114,6 +117,7 @@
     <ClInclude Include="Musica.h" />
     <ClInclude Include="Pausa.h" />
     <ClInclude Include="Personaje.h" />
+    <ClInclude Include="Pildoras.h" />
     <ClInclude Include="RecursosSDL.h" />
     <ClInclude Include="TexturasSDL.h" />
     <ClInclude Include="Tile.h" />

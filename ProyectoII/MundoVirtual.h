@@ -23,13 +23,16 @@ public:
 	virtual void destruyeLlave(EntidadJuego * llave) = 0;
 	virtual void destruyeBala(list <EntidadJuego*> &lista, list<EntidadJuego*>::iterator & it) = 0;
 	virtual void destruyeArma() = 0;
-
+	virtual void destruyeInterruptor() = 0;
 
 	//Insertar objetos
 	virtual void añadeObjeto(EntidadJuego * obj) = 0;
 	virtual void insertaBala(ListaBalas_t lista, EntidadJuego * bala) = 0;
+	virtual void pildoraCogida() = 0;
+	virtual void setPulsado() = 0;
+	virtual void setPulsado2() = 0;
 
-	
+
 	//Getters 
 	virtual Juego* getPJ()const = 0;
 	virtual Personaje * getPersonaje() = 0;

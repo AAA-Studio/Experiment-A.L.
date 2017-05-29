@@ -253,7 +253,17 @@ void Personaje::coger(){
 		case OPistola:
 			pMundo->destruyeArma();
 			break;
-	
+		case OPildoras:
+			pMundo->pildoraCogida();
+			break;
+		case OInterruptor1:
+			pMundo->setPulsado();
+			//pMundo->destruyeInterruptor();
+			break;
+		case OInterruptor2:
+			pMundo->setPulsado2();
+			//pMundo->destruyeInterruptor();
+			break;
 		}
 	}
 }
@@ -266,6 +276,13 @@ void Personaje::cogeArma(Armas* arma){
 void Personaje::soltarInforme(){
 	informeCogido = false;
 	informe = JuegoSDL::Texturas_t_SIZE;
+}
+
+void Personaje::sumaVida(int vida){
+	if (vida + this->vida > 3)
+		this->vida = 3;
+	else
+		this->vida += vida;
 }
 
 

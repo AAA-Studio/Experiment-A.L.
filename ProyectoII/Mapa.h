@@ -22,6 +22,9 @@ public:
 	inline int getXSpawn() const{ return x; };
 	inline int getYSpawn() const{ return y; };
 
+	//--------------------SETTER----------------
+	inline void setPulsado(bool p){ encendido = p; };
+	inline void setPulsado2(bool p){ encendido2 = p; };
 
 private:
 	MundoVirtual * pMundo;
@@ -29,6 +32,11 @@ private:
 	string nombreMapa;
 	Tile* tileMap[TOTAL_TILES];
 	bool Puerta1Abierta;
+
+	bool encendido = false;	//para abrir la primera puerta 
+	bool encendido2 = false; //para abrir la segunda puerta
+	bool pulsados(); //metodo que comprueba si los 2 botones han sido pulsados
+
 	int x, y;//Variables en las que se guarda la pos del Spawn del personaje
 	//int nivel;
 

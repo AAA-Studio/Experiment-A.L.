@@ -6,7 +6,7 @@ std::vector<std::string> JuegoSDL::imageFiles_{ "..\\bmps\\AL.png", "..\\bmps\\b
 "..\\bmps\\botonmenu.png", "..\\bmps\\botonsalir.png", "..\\bmps\\tilesdef.png", "..\\bmps\\llave.png",
 "..\\bmps\\informe1.png", "..\\bmps\\Informe2.png", "..\\bmps\\uno.png", "..\\bmps\\dos.png", "..\\bmps\\tres.png",
 "..\\bmps\\cuatro.png", "..\\bmps\\cinco.png", "..\\bmps\\seis.png", "..\\bmps\\siete.png", "..\\bmps\\ocho.png", "..\\bmps\\nueve.png",
-"..\\bmps\\cero.png", "..\\bmps\\teclado.png", "..\\bmps\\backButton.png", "..\\bmps\\pistola.png", "..\\bmps\\Controles.png",
+"..\\bmps\\cero.png", "..\\bmps\\teclado.png", "..\\bmps\\backButton.png", "..\\bmps\\pistola.png", "..\\bmps\\pildora.png","..\\bmps\\BotePildoras.png","..\\bmps\\interruptor.png", "..\\bmps\\Controles.png",
 "..\\bmps\\Keypad.png", "..\\bmps\\enter.png", "..\\bmps\\negro.png" };
 
 std::vector<std::string> JuegoSDL::fontFiles_{ 

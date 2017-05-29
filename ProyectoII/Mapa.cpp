@@ -9,6 +9,8 @@ Mapa::Mapa(MundoVirtual *pM, string mapa) : pMundo(pM), nombreMapa(mapa)
 	buscaSpawn();
 	setCamera();
 	Puerta1Abierta = false;
+	encendido = false;
+	encendido2 = false;
 }
 
 Mapa::~Mapa()
@@ -22,7 +24,13 @@ Mapa::~Mapa()
 		}
 	}
 }
-
+bool Mapa::pulsados()
+{
+	if (encendido && encendido2)
+		return true;
+	else
+		return false;
+}
 bool Mapa::cargarMapa()
 {
 	//Success flag
@@ -361,23 +369,39 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//If the tile is a wall type tile
 			//-----------------------------------------------PUERTAS DE SUMAS----------------------------------
 			//PUERTA ROJA
-			if ((tileMap[indice]->getType() == 150))
+			if (tileMap[indice]->getType() == 150)
 			{
-				felpudo = tileMap[indice]->getBox();
-				felpudo.x = felpudo.x + 10;
-				felpudo.h = felpudo.h - 15;
-				felpudo.w = felpudo.w - 20;
+				if (encendido && pMundo->getIndiceMapa() == 1){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-				if (pMundo->checkCollision(box, felpudo)){
-					pMundo->setNivel(-1);
-					tipo = 150;
-					pMundo->setPasoNivel(true);
-					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
-					return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setNivel(-1);
+						tipo = 150;
+						pMundo->setPasoNivel(true);
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+					}
+				}
+				else if (pMundo->getIndiceMapa() != 1){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setNivel(-1);
+						tipo = 150;
+						pMundo->setPasoNivel(true);
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+					}
 				}
 			}
 			//PUERTA GRIS
-			else if ((tileMap[indice]->getType() == 155))
+			else if (tileMap[indice]->getType() == 155)
 			{
 				felpudo = tileMap[indice]->getBox();
 				felpudo.x = felpudo.x + 10;
@@ -396,7 +420,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 			}
 			//PUERTA MORADA
-			else if ((tileMap[indice]->getType() == 154))
+			else if (tileMap[indice]->getType() == 154)
 			{
 				felpudo = tileMap[indice]->getBox();
 				felpudo.x = felpudo.x + 10;
@@ -414,21 +438,36 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 			}
 			//PUERTA ROSA
-			else if ((tileMap[indice]->getType() == 140))
+			else if (tileMap[indice]->getType() == 140)
 			{
-				felpudo = tileMap[indice]->getBox();
-				felpudo.x = felpudo.x + 10;
-				felpudo.h = felpudo.h - 15;
-				felpudo.w = felpudo.w - 20;
+				if (encendido2 && pMundo->getIndiceMapa() == 2){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
-				if (pMundo->checkCollision(box, felpudo)){
-					pMundo->setNivel(-2);
-					tipo = 140;
-					pMundo->setPasoNivel(true);
-					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
-					return true;
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setNivel(-2);
+						tipo = 140;
+						pMundo->setPasoNivel(true);
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+					}
 				}
+				else if (pMundo->getIndiceMapa() != 2){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setNivel(-2);
+						tipo = 140;
+						pMundo->setPasoNivel(true);
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+					}
+				}
 			}
 			//PUERTA PISTACHO
 			else if (tileMap[indice]->getType() == 158)
@@ -466,7 +505,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				}
 			}
 			//PUERTA AZUL OSCURO
-			else if ((tileMap[indice]->getType() == 165))
+			else if (tileMap[indice]->getType() == 165)
 			{
 				felpudo = tileMap[indice]->getBox();
 				felpudo.x = felpudo.x + 10;
@@ -487,8 +526,23 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//PUERTA BURDEOS
 			else if (tileMap[indice]->getType() == 159)
 			{
-				//Como en la planta 5 esta bloqueada solo miro las demas
-				if (pMundo->getIndiceMapa() != 0) {
+				//Como en la planta 5 esta bloqueada
+				if (pulsados() == true && pMundo->getIndiceMapa() == 0){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setNivel(4);
+						tipo = 159;
+						pMundo->setPasoNivel(true);
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+					}
+				}
+				//Como en la planta 5 esta bloqueada miro las demas
+				else if (pMundo->getIndiceMapa() != 0) {
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;

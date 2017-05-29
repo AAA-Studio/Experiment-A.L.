@@ -29,7 +29,7 @@ public:
 	void cogeArma(Armas* arma);
 	inline void empiezaPerderVida(){ pierdesVida = true; }
 	void move(int x, int y);
-
+	void sumaVida(int vida);
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
 	inline SDL_Rect getHUD() { return rectHUD; };

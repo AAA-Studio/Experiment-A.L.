@@ -52,7 +52,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	//Fuente
 	font_ = pJuego->getResources()->getFuente(JuegoSDL::Fuentes_t::FNormal);
 
-	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'e' para interactuar", { 255, 255, 255, 1 }, *font_);
+	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'E' para interactuar", { 255, 255, 255, 1 }, *font_);
 	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
 
 	textArriba = false;
@@ -76,7 +76,7 @@ void Mundo::cargaObjetos(){
 	}
 	string nombre;
 	int i = 1;
-	int y, x, w, h, lvl, tipo, ancho, alto;
+	int y, x, w, h, lvl, tipo, ancho, alto,salud;
 	alto = 640;
 	while (obj.peek() != EOF){
 
@@ -127,7 +127,22 @@ void Mundo::cargaObjetos(){
 					enemigos.push_back(new Enemigo(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 				}
+				else if (nombre == "SALUD"){
 
+					obj >> x >> y >> w >> h >> salud >> tipo;
+					if (tipo == 1)
+						pildoras.push_back(new Pildoras(pJuego, x + ancho, y + alto*(lvl % 24), w, h, salud, JuegoSDL::TPildora, JuegoSDL::ENull, OPildoras));
+					if (tipo == 2)
+						pildoras.push_back(new Pildoras(pJuego, x + ancho, y + alto*(lvl % 24), w, h, salud, JuegoSDL::TBotePildora, JuegoSDL::ENull, OPildoras));
+				}
+				else if (nombre == "INTERRUPTOR"){
+
+					obj >> x >> y >> w >> h >> tipo;
+					if (tipo == 1)
+						interruptores.push_back(new Interruptor(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInterruptor, JuegoSDL::ENull, OInterruptor1));
+					else if (tipo == 2)
+						interruptores.push_back(new Interruptor(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInterruptor, JuegoSDL::ENull, OInterruptor2));
+				}
 				obj >> nombre;
 
 			}
@@ -196,6 +211,20 @@ void Mundo::freeObjetos(){
 			itArmas = armas.erase(itArmas);
 		}
 
+		list<Pildoras*>::iterator itpil = pildoras.begin();
+		while (!pildoras.empty() && itpil != pildoras.end())
+		{
+			delete(*itpil);
+			itpil = pildoras.erase(itpil);
+		}
+
+		list<Interruptor*>::iterator itInterr = interruptores.begin();
+		while (!interruptores.empty() && itInterr != interruptores.end())
+		{
+			delete(*itInterr);
+			itInterr = interruptores.erase(itInterr);
+		}
+
 	}
 
 void Mundo::draw()const{
@@ -209,9 +238,15 @@ void Mundo::draw()const{
 	for (auto arma : armas)
 		arma->draw(arma->getRect().x - camera.x, arma->getRect().y - camera.y);
 
+	for (auto pildora : pildoras)
+		pildora->draw(pildora->getRect().x - camera.x, pildora->getRect().y - camera.y);
+
 	for (auto objeto: objetos)
 		objeto->draw(objeto->getRect().x - camera.x, objeto->getRect().y - camera.y);
-				
+
+	for (auto inter : interruptores)
+		inter->draw(inter->getRect().x - camera.x, inter->getRect().y - camera.y);
+
 	for (auto llave : llaves)
 		llave->draw(llave->getRect().x - camera.x, llave->getRect().y - camera.y);
 
@@ -365,7 +400,7 @@ void Mundo::update(){
 
 		list<Armas*>::iterator itArma = armas.begin();
 
-		//Update de las llaves
+		//Update de las armas
 		while (!colObjeto && !armas.empty() && itArma != armas.end()){
 			if (checkCollision(camera, (*itArma)->getRect()))
 			{
@@ -383,6 +418,50 @@ void Mundo::update(){
 
 			(*itArma)->update();
 			itArma++;
+		}
+
+		list<Pildoras*>::iterator itPil = pildoras.begin();
+
+		//Update de las pildoras
+		while (!colObjeto && !pildoras.empty() && itPil != pildoras.end()){
+			if (checkCollision(camera, (*itPil)->getRect()))
+			{
+				if (checkCollision(psj->getRect(), (*itPil)->getRect()))
+				{
+					colObjeto = true;
+
+				}
+				else
+				{
+					colObjeto = false;
+				}
+
+			}
+
+			(*itPil)->update();
+			itPil++;
+		}
+
+		list<Interruptor*>::iterator itInter = interruptores.begin();
+
+		//Update de las interruptor
+		while (!colObjeto && !interruptores.empty() && itInter != interruptores.end()){
+			if (checkCollision(camera, (*itInter)->getRect()))
+			{
+				if (checkCollision(psj->getRect(), (*itInter)->getRect()))
+				{
+					colObjeto = true;
+
+				}
+				else
+				{
+					colObjeto = false;
+				}
+
+			}
+
+			(*itInter)->update();
+			itInter++;
 		}
 		//COLISIONES
 		colBalaEnemigo();
@@ -485,7 +564,33 @@ void Mundo::insertaBala(ListaBalas_t lista, EntidadJuego * bala)
 		else
 			balasEnems.push_back(bala);
 	}
+void Mundo::pildoraCogida(){
+	list<Pildoras*>::iterator it = pildoras.begin();
+	while (it != pildoras.end() && !checkCollision((*it)->getRect(), psj->getRect()))//Recorre todas las llaves hasta encontrar la llave que tiene que destruir
+	{
+		it++;
+	}
+	psj->sumaVida((*it)->getSalud());
+	delete (*it);
+	it = pildoras.erase(it);
+}
+void Mundo::setPulsado(){
+	mapa->setPulsado(true);
+}
+void Mundo::setPulsado2(){
+	mapa->setPulsado2(true);
+}
 
+void Mundo::destruyeInterruptor(){
+	list<Interruptor*>::const_iterator itInterrup = interruptores.cbegin();
+
+	while (!interruptores.empty() && itInterrup != interruptores.cend() && !checkCollision(psj->getRect(), (*itInterrup)->getRect()))
+	{
+		itInterrup++;
+	}
+	delete (*itInterrup);
+	itInterrup = interruptores.erase(itInterrup);
+}
 //Colisiones
 EntidadJuego * Mundo::compruebaColisionObjetos(){
 		size_t i = 0;
@@ -519,6 +624,15 @@ EntidadJuego * Mundo::compruebaColisionObjetos(){
 		if (it != llaves.cend())
 			return (*it);
 	
+		list<Pildoras*>::const_iterator itPildora = pildoras.cbegin();
+
+		while (!pildoras.empty() && itPildora != pildoras.cend() && !checkCollision(psj->getRect(), (*itPildora)->getRect()))
+		{
+			itPildora++;
+		}
+		if (itPildora != pildoras.cend())
+			return(*itPildora);
+
 		list<Armas*>::const_iterator itArmas = armas.cbegin();
 
 		while (!armas.empty() && itArmas != armas.cend() && !checkCollision(psj->getRect(), (*itArmas)->getRect()))
@@ -526,6 +640,15 @@ EntidadJuego * Mundo::compruebaColisionObjetos(){
 		
 		if (itArmas != armas.cend())
 			return (*itArmas);
+
+		list<Interruptor*>::const_iterator itInterrup = interruptores.cbegin();
+
+		while (!interruptores.empty() && itInterrup != interruptores.cend() && !checkCollision(psj->getRect(), (*itInterrup)->getRect()))
+		{
+			itInterrup++;
+		}
+		if (itInterrup != interruptores.cend())
+			return (*itInterrup);
 
 		return nullptr;
 	}
