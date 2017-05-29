@@ -28,6 +28,9 @@ private:
 	void pulsaEnter(); //metodo que se llama al pulsar el botón enter
 	void pulsaSalir(); //metodo que se llama al pulsar el boton salir
 	std::vector<JuegoSDL::Texturas_t> texturas;
+
+	TexturasSDL textFuente, textIndicacion;
+	Fuente* font_;
 };
 #endif
 

@@ -116,7 +116,7 @@ private:
 	string nombreObjetos;
 
 	//Combinaciones
-	bool puertasAbiertas[1];
+	bool puertasAbiertas[1];//CAMBIAR
 	vector <string> combinaciones;//Esto debe estar aquí porque combinaciones es un estado aparte, no pertenece a mundo
 	
 	//Salir del juego 

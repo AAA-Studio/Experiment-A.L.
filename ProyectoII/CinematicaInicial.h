@@ -70,7 +70,7 @@ public:
 	virtual void setMundo(Mundo_t m){};
 
 	inline void setTextoArriba(bool text){  };
-	inline TexturasSDL getTextura()const{ return *pJuego->getResources()->getTextura(0); };
+	inline TexturasSDL* getTextura(){ return pJuego->getResources()->getTextura(0); };
 	inline Fuente*  getFuente()const{ return nullptr; };
 
 

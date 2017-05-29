@@ -388,6 +388,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(1);
 					tipo = 155;
+			
 					pMundo->setPasoNivel(true);
 					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
@@ -561,6 +562,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						if (pMundo->checkCollision(box, felpudo)){
 							pMundo->setNivel(5);
 							tipo = 152;
+							
 							pMundo->setPasoNivel(true);
 							pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 							return true;
@@ -578,6 +580,15 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						if (pMundo->checkCollision(box, felpudo)){
 							pMundo->setNivel(5);
 							tipo = 152;
+							//Numero de planta
+							pMundo->setTextoArriba(true);
+							//Comprobacion de en que planta estoy actualmente 
+							if (pMundo->getIndiceMapa() == 17) {//ENTIENDO QUE ESTOY EN LA PLANTA 4
+								pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 2", { 255, 255, 255, 1 }, *pMundo->getFuente());
+							}
+							if (pMundo->getIndiceMapa() == 22) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+								pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *pMundo->getFuente());
+							}
 							pMundo->setPasoNivel(true);
 							pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 							return true;
@@ -599,6 +610,13 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					pMundo->setNivel(-5);
 					tipo = 151;
 					pMundo->setPasoNivel(true);
+					pMundo->setTextoArriba(true);
+					if (pMundo->getIndiceMapa() == 12) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 3", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
+					if (pMundo->getIndiceMapa() == 17) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 2", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
 					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
 
@@ -619,9 +637,13 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					//Numero de planta
 					pMundo->setTextoArriba(true);
 					//Comprobacion de en que planta estoy actualmente 
-					if (pMundo->getIndiceMapa() == 6) {//ENTIENDO QUE ESTOY EN LA PLANTA 2
-						pMundo->getTextura().loadFromText(pJuego->getRender(), "PLANTA 2", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					if (pMundo->getIndiceMapa() == 6) {//ENTIENDO QUE ESTOY EN LA PLANTA 4
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 4", { 255, 255, 255, 1 }, *pMundo->getFuente());
 					}
+					if (pMundo->getIndiceMapa() == 12) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 3", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
+					
 					pMundo->setPasoNivel(true);
 					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
@@ -640,6 +662,16 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-6);
 					tipo = 174;
+					pMundo->setTextoArriba(true);
+					//Comprobacion de en que planta estoy actualmente 
+					if (pMundo->getIndiceMapa() == 0) {//ENTIENDO QUE ESTOY EN LA PLANTA 4
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 5", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
+					if (pMundo->getIndiceMapa() == 6) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 4", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
+
+
 					pMundo->setPasoNivel(true);
 					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
@@ -845,6 +877,15 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					if (pMundo->checkCollision(box, felpudo)){
 						pMundo->setNivel(5);
 						tipo = 497;
+						//Numero de planta
+						pMundo->setTextoArriba(true);
+						//Comprobacion de en que planta estoy actualmente 
+						if (pMundo->getIndiceMapa() == 41) {//ENTIENDO QUE ESTOY EN LA PLANTA 4
+							pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 2", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						}
+						if (pMundo->getIndiceMapa() == 46) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+							pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						}
 						pMundo->setPasoNivel(true);
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
@@ -864,6 +905,13 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-5);
 					tipo = 496;
+					pMundo->setTextoArriba(true);
+					if (pMundo->getIndiceMapa() == 36) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 3", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
+					if (pMundo->getIndiceMapa() == 41) {//ENTIENDO QUE ESTOY EN LA PLANTA 2
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 2", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
 					pMundo->setPasoNivel(true);
 					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
@@ -882,6 +930,14 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(6);
 					tipo = 502;
+					pMundo->setTextoArriba(true);
+					//Comprobacion de en que planta estoy actualmente 
+					if (pMundo->getIndiceMapa() == 30) {//ENTIENDO QUE ESTOY EN LA PLANTA 4
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 4", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
+					if (pMundo->getIndiceMapa() == 36) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 3", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
 					pMundo->setPasoNivel(true);
 					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;
@@ -900,6 +956,14 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-6);
 					tipo = 519;
+					pMundo->setTextoArriba(true);
+					//Comprobacion de en que planta estoy actualmente 
+					if (pMundo->getIndiceMapa() == 24) {//ENTIENDO QUE ESTOY EN LA PLANTA 4
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 5", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
+					if (pMundo->getIndiceMapa() == 30) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 4", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
 					pMundo->setPasoNivel(true);
 					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;

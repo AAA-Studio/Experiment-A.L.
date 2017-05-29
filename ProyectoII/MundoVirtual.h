@@ -40,7 +40,7 @@ public:
 	virtual  Mundo_t getMundo()const = 0;
 	virtual list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const = 0;
 	virtual bool getPasoNivel()const = 0;
-	virtual TexturasSDL getTextura() const = 0;
+	virtual TexturasSDL *getTextura()  = 0;
 	virtual Fuente*  getFuente() const = 0;
 
 

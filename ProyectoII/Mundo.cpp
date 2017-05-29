@@ -46,13 +46,16 @@ Mundo::Mundo(Juego * pJ, string m)
 	nivelCambiado = false;
 	colObjeto =  false;
 
+	for (int i = 0; i < 1; i++)
+		pJuego->setPuerta(i, false);
+
 	//Fuente
 	font_ = pJuego->getResources()->getFuente(JuegoSDL::Fuentes_t::FNormal);
 
 	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'e' para interactuar", { 255, 255, 255, 1 }, *font_);
 	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
 
-	textArriba = true;
+	textArriba = false;
 }
 
 Mundo::~Mundo()
@@ -235,7 +238,6 @@ void Mundo::draw()const{
 	a.h = 200;
 	a.w = 400;
 
-	pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 		
 			
 			
@@ -295,13 +297,17 @@ void Mundo::update(){
 		list<EntidadJuego*>::iterator itBalasEnem = balasEnems.begin();
 		while (!balaDestruida && !balasEnems.empty() && itBalasEnem != balasEnems.end())
 		{
-			if (checkCollision(camera, (*itBalasEnem)->getRect())){
-				balaDestruida = false;
+			balaDestruida = false;
+			if (checkCollision(camera, (*itBalasEnem)->getRect()))
+			{
 				(*itBalasEnem)->update();
-				if (!balaDestruida)//Si no ha sido destruida en el update, avanzo
-					itBalasEnem++;
-				else
+				if (!balaDestruida && mapa->touchesWall((*itBalasEnem)->getRect())){
+					delete (*itBalasEnem);
 					itBalasEnem = balasEnems.erase(itBalasEnem);
+					balaDestruida = true;
+				}
+				else
+					itBalasEnem++;
 			}
 			else
 				itBalasEnem++;

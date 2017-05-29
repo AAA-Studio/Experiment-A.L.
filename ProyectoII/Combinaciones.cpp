@@ -14,7 +14,9 @@ Combinaciones::Combinaciones(Juego* juego, string combinacion, int puerta) : Men
 	combTecleada = "";
 	initObjetos();
 	boton = 1;
-	
+	font_ = juego->getResources()->getFuente(JuegoSDL::FNormal);
+	textFuente.loadFromText(pJuego->getRender(), " ", { 255, 255, 255, 1 }, *font_);
+	textIndicacion.loadFromText(pJuego->getRender(), "Pulsa 'ENTER' para confirmar cada número de la combinación", { 255, 255, 255, 1 }, *font_);
 }
 
 void Combinaciones::update(){
@@ -58,6 +60,8 @@ void Combinaciones::draw() const{
 	//objetos[boton]->draw(objetos[boton]->getRect().x, objetos[boton]->getRect().y);
 	objetos[boton]->draw(objetos[boton]->getRect().x, objetos[boton]->getRect().y);
 	
+	textFuente.renderFont(pJuego->getRender(), pJuego->getWindowWidth() / 2 - 10, 137);
+	textIndicacion.renderFont(pJuego->getRender(), pJuego->getWindowWidth() / 2 - 300, 30);
 }
 
 void Combinaciones::onInput(SDL_Event &e){
@@ -73,6 +77,7 @@ void Combinaciones::onInput(SDL_Event &e){
 			else
 			{
 				combTecleada += to_string(boton);
+				textFuente.loadFromText(pJuego->getRender(),combTecleada, { 255, 255, 255, 1 }, *font_);
 				cout << " intentos: " + intentos;
 				cout << " combinacion: " + combTecleada;
 				intentos++;
