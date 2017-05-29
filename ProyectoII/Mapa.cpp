@@ -183,8 +183,9 @@ void  Mapa::buscaSpawn(){
 			pMundo->getPJ()->getResources()->getMusica(JuegoSDL::Musica_t::MOscuro)->play();
 		}
 		//spawn azul en oscuro
-		else if (pMundo->getNivel() == -5)
+		else if (pMundo->getNivel() == -5){
 			tipo = 527;
+		}
 		//spawn verde en oscuro
 		else if (pMundo->getNivel() == 5)
 			tipo = 526;

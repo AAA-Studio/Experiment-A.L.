@@ -26,8 +26,6 @@ Mundo::Mundo(Juego * pJ, string m)
 	initObjetos();
 	cargaObjetos();
 	
-
-
 	balaDestruida = false;
 	//pausa = false;
 	//abierto = false;
@@ -46,7 +44,15 @@ Mundo::Mundo(Juego * pJ, string m)
 	alfo = 0;
 	pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);
 	nivelCambiado = false;
-	colObjeto = false;
+	colObjeto =  false;
+
+	//Fuente
+	font_ = pJuego->getResources()->getFuente(JuegoSDL::Fuentes_t::FNormal);
+
+	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'e' para interactuar", { 255, 255, 255, 1 }, *font_);
+	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
+
+	textArriba = false;
 }
 
 Mundo::~Mundo()
@@ -242,8 +248,13 @@ void Mundo::draw()const{
 	
 	pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 
+
 	if (colObjeto)
-		pJuego->escribir(psj->getRect().x - camera.x - 20, psj->getRect().y - camera.y + 50);
+	{
+		textCogerObj.renderFont(pJuego->getRender(), psj->getRect().x - camera.x - 20, psj->getRect().y - camera.y + 50);
+	}
+	if (nivelCambiado)
+		textPlanta.renderFont(pJuego->getRender(), 50,  pJuego->getWindowHeight() - 50);
 			
 }
 
@@ -308,9 +319,15 @@ void Mundo::update(){
 		while (!colObjeto && !objetos.empty() && obj != objetos.end()){
 			if (checkCollision(camera, (*obj)->getRect())){
 				if (checkCollision(psj->getRect(), (*obj)->getRect()))
+				{
 					colObjeto = true;
+
+				}
 				else
-					colObjeto = false;
+				{
+					colObjeto =   false;
+				}
+
 			}
 			(*obj)->update();
 
@@ -323,9 +340,16 @@ void Mundo::update(){
 			if (checkCollision(camera, (*itLlave)->getRect()))
 			{
 				if (checkCollision(psj->getRect(), (*itLlave)->getRect()))
+				{
 					colObjeto = true;
+
+				}
 				else
-					colObjeto = false;
+				{
+					colObjeto  = false;
+				}
+
+			
 			}
 
 			(*itLlave)->update();
@@ -340,9 +364,15 @@ void Mundo::update(){
 			if (checkCollision(camera, (*itArma)->getRect()))
 			{
 				if (checkCollision(psj->getRect(), (*itArma)->getRect()))
+				{
 					colObjeto = true;
+
+				}
 				else
+				{
 					colObjeto = false;
+				}
+
 			}
 
 			(*itArma)->update();
@@ -351,13 +381,18 @@ void Mundo::update(){
 		//COLISIONES
 		colBalaEnemigo();
 		colBalaPersonaje();
+
 		
+		//Transicion nivel
 		if (pasoNivel){
-			alfo += 10;
+			alfo += 5;
+			
 			if (alfo > 255){			
 				pasoNivel = false;
 				nivelCambiado = true;
 				mapa->buscaSpawn();
+				//numero planta
+				textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
 
 			}
 			
@@ -368,6 +403,7 @@ void Mundo::update(){
 			{
 				alfo = 0;
 				nivelCambiado = false;
+			
 			}
 		}
 

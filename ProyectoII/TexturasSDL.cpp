@@ -66,7 +66,9 @@ void TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 //Fuentes
 void TexturasSDL::loadFromText(SDL_Renderer * pRender, string const& texto, SDL_Color color, const Fuente& fuente)
 {
-	SDL_Surface* pTempSurface = fuente.textSolid(texto, color);//Puntero a la imagen
+	SDL_Surface* pTempSurface = nullptr;
+
+	pTempSurface = fuente.textSolid(texto, color);//Puntero a la imagen
 
 	//Caso de error
 	if (pTempSurface == nullptr)
@@ -105,7 +107,7 @@ void TexturasSDL::draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect,int x, i
 }
 
 //Que primero genera la textura, a partir del texto y la fuente, y luego la muestra.
-void TexturasSDL::renderFont(SDL_Renderer * pRenderer, int px, int py, Fuente fuente)
+void TexturasSDL::renderFont(SDL_Renderer * pRenderer, int px, int py) const
 {
 	SDL_Rect winRect;// Rectangulo que ocupa en la ventana
 	winRect = { px, py, texRect.w, texRect.h };

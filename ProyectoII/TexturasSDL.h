@@ -30,7 +30,7 @@ public:
 	//UTILIZAR VALORES POR DEFECTO PARA ANIMACIONES O ROTACIONES
 	//void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, int x, int y, SDL_Rect* texRect = NULL)const;
 	void draw(SDL_Renderer* pRenderer, SDL_Rect const& winRect, int x, int y, SDL_Rect const * texRect)const;
-	void renderFont(SDL_Renderer * pRenderer, int px, int py, Fuente fuente);
+	void renderFont(SDL_Renderer * pRenderer, int px, int py) const ;
 
 
 	//-----------TILE----------------------

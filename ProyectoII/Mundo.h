@@ -84,6 +84,11 @@ public:
 	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
 	inline void setLlaveCogida(int indice) { llavesCogidas[indice] = !llavesCogidas[indice]; };
 
+	//Fuente
+	inline void setTextoArriba(bool text){ textArriba = text; };
+	//Metodo para escribir en una parte concreta de la ventana
+
+
 
 	
 private:
@@ -124,6 +129,11 @@ private:
 	Uint32 alfo;
 
 	bool colObjeto;
+	bool textArriba;
+
+	//Fuente
+	Fuente* font_;
+	TexturasSDL textCogerObj, textPlanta;
 	//bool abierto;
 	//vector<bool> cerraduras;
 	//vector<int> puertas;
