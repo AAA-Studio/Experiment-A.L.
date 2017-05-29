@@ -674,8 +674,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 	return false;
 
 }
-
-bool Mapa::touchesWall(SDL_Rect box)
+ bool Mapa::touchesWall(SDL_Rect box)
 {
 	bool salir = false;
 	SDL_Rect camara = pMundo->getCamera();
@@ -786,7 +785,7 @@ bool Mapa::touchesWall(SDL_Rect box)
 	return salir;
 }
 
-bool Mapa::tileColision(Tile * tile){
+/*bool Mapa::tileColision(Tile * tile){
 	return (
 			tile->getType() != 0
 			&& tile->getType() != 1
@@ -861,7 +860,7 @@ bool Mapa::tileColision(Tile * tile){
 		&& tile->getType() != 383
 		&& tile->getType() != 385
 		&& tile->getType() != 386);
-}
+}*/
 
 void Mapa::draw()const{
 	for (int i = 0; i < TOTAL_TILES; ++i)

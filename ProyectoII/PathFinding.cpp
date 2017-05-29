@@ -7,6 +7,9 @@
 
 PathFinding::PathFinding(Mapa * pGameWorld) : pMapa (pGameWorld)
 {
+	m_pathState = NONE;
+	m_startCell = NULL;
+	m_goalCell = NULL;
 	m_initializedStartGoal = false;
 	m_foundGoal = false;
 }
@@ -18,7 +21,7 @@ void PathFinding::Initialize(pair <float, float>  pStartPos, pair <float, float>
 
 	m_openList.clear();
 	m_visitedList.clear();
-	// m_closesPath.clear();
+	//m_closesPath.clear();
 
 	// Celda del enemigo
 	SearchCell start;
@@ -43,28 +46,26 @@ void PathFinding::InitializaStartGoal(SearchCell* pStart, SearchCell* pGoal) {
 		
 		m_startCell = new SearchCell(pStart->GetCellX(), pStart->GetCellY(), NULL);
 	}
-
-	else {// Informacion de las celdas anteriores, coordenadas e id
-		m_startCell->setX((float)pStart->GetCellX());
-		m_startCell->setY((float)pStart->GetCellY());
-		m_startCell->SetID(pStart->GetCellY() * LEVEL_WIDTH + pStart->GetCellX());
-	}
-
 	if (!m_goalCell) {
 
 		m_goalCell = new SearchCell(pGoal->GetCellX(), pGoal->GetCellY(), pGoal);
 	}
 
-	else {
-		m_goalCell->setX((float)pGoal->GetCellX());
-		m_goalCell->setY((float)pGoal->GetCellY());
-		m_goalCell->SetID(pGoal->GetCellY() * LEVEL_WIDTH + pGoal->GetCellX());
+	// Informacion de las celdas anteriores, coordenadas e id
+	m_startCell->setX((float)pStart->GetCellX());
+	m_startCell->setY((float)pStart->GetCellY());
+	m_startCell->SetID(pStart->GetCellY() * LEVEL_WIDTH + pStart->GetCellX());
 
-		// El padre del objetivo es la celda que ocupa
-		m_goalCell->SetParent(pGoal);
-	}
+	m_goalCell->setX((float)pGoal->GetCellX());
+	m_goalCell->setY((float)pGoal->GetCellY());
+	m_goalCell->SetID(pGoal->GetCellY() * LEVEL_WIDTH + pGoal->GetCellX());
+
+	// El padre del objetivo es la celda que ocupa
+	m_goalCell->SetParent(pGoal);
 
 	m_startCell->setH(m_startCell->ManHattanDistance(m_goalCell));
+
+	m_openList.push_back(m_startCell);
 }
 
 void PathFinding::Iterate() {
@@ -79,10 +80,10 @@ void PathFinding::Iterate() {
 	// Justo la celda siguiente a la que estamos es el personaje
 	if (currentCell->GetID() == m_goalCell->GetID()) {
 		m_pathState = FOUND_GOAL;
-
+	
 		m_goalCell->SetParent(currentCell);
-
-		// Movimiento sin algoritmos, el iter es el personaje y guardas el camino hacia el objetivo
+	
+		//Movimiento sin algoritmos, el iter es el personaje y guardas el camino hacia el objetivo
 		for (SearchCell * iter = m_goalCell; iter != m_startCell; iter = iter->GetParent()) {
 			m_closesPaths.push_back(make_pair(iter->GetCellX() * (float)TILE_WIDTH/2.0f, iter->GetCellY() * (float)TILE_HEIGHT/2.0f));
 		}
@@ -94,6 +95,13 @@ void PathFinding::Iterate() {
 		float y = (float)currentCell->GetCellY();
 		float g = (float)currentCell->GetG();
 
+		// Borramos las celdas de la openlist porque hemos generado otros Path.
+		for (int i = 0; i < (int)m_openList.size(); i++) {
+			if (currentCell->GetID() == m_openList[i]->GetID()) {
+				m_openList.erase(m_openList.begin() + i);
+			}
+		}
+
 		// comprueba izq
 		PathOpened(x - 1, y, g + 1, currentCell);
 		// comprueba drcha
@@ -103,12 +111,7 @@ void PathFinding::Iterate() {
 		// comprueba abajo
 		PathOpened(x, y + 1, g + 1, currentCell);
 
-		// Borramos las celdas de la openlist porque hemos generado otros Path.
-		for (int i = 0; i < (int)m_openList.size(); i++) {
-			if (currentCell->GetID() == m_openList[i]->GetID()) {
-				m_openList.erase(m_openList.begin() + i);
-			}
-		}
+		
 	}
 
 }
@@ -139,8 +142,8 @@ void PathFinding::FindPath(pair <float, float> currentPos, pair <float, float> t
 		// Inicializacion del Goal
 		SearchCell goal;
 
-		goal.setX((float)m_GameWorld->GetCellX(currentPos.first));
-		goal.setY((float)m_GameWorld->GetCellY(currentPos.second));
+		goal.setX((float)m_GameWorld->GetCellX(targetPos.first));
+		goal.setY((float)m_GameWorld->GetCellY(targetPos.second));
 
 		m_foundGoal = false;
 		SetStartAndGoal(start, goal);
@@ -162,7 +165,7 @@ void PathFinding::SetStartAndGoal(SearchCell start, SearchCell goal){
 	m_startCell->setG(0);
 	m_startCell->setH(m_startCell->ManHattanDistance(m_goalCell));
 	m_startCell->SetParent(nullptr);
-	m_openList.push_back(m_startCell);
+	m_openList.push_back(m_startCell); //todas las adyacentes
 
 }
 
@@ -173,7 +176,7 @@ SearchCell * PathFinding::GetNextCell(){
 	float bestF = 999999.0f;
 
 	int cellIndex = -1;
-	SearchCell * nextCell = nullptr;
+	SearchCell * nextCell = NULL;
 
     // Se encarga de buscar el indice con mejor distancia de la lista	
 	for (int i = 0; i < (int)m_openList.size(); i++) {
@@ -186,8 +189,9 @@ SearchCell * PathFinding::GetNextCell(){
 	// Mete la informacion de la celda encontrada en el anterior for
 	if (cellIndex >= 0) {
 		nextCell = m_openList[cellIndex];
-		m_visitedList.push_back(nextCell);
 		m_openList.erase(m_openList.begin() + cellIndex);
+		m_visitedList.push_back(nextCell);
+		
 	}
 	return nextCell;
 }
@@ -198,10 +202,14 @@ void PathFinding::PathOpened(float x, float y, float newCost, SearchCell *pPadre
 		return;
 	}
 
-	Tile* tile = pMapa->GetTileAt((int) x, (int) y);
+	// Tile* tile = pMapa->GetTileAt((int) x, (int) y);
 
+	SDL_Rect tile = { x, y, TILE_WIDTH, TILE_HEIGHT };
+	// if (tile == NULL || pMapa->tileColision(tile)) return;
+	if (pMapa->touchesWall(tile)){  
+		return; 
+	}
 
-	if (tile == NULL || pMapa->tileColision(tile)) return;
 	
 	// este id es solo para comprobar, no cambia el id de ninguna celda
 	int id = (int)( y * LEVEL_WIDTH + x);
@@ -227,7 +235,7 @@ void PathFinding::PathOpened(float x, float y, float newCost, SearchCell *pPadre
 
 			if (m_openList[i]->GetF() > newF) {
 
-				m_openList[i]->setG(newChild->GetG() + newCost);
+				m_openList[i]->setG(newF);
 				m_openList[i]->SetParent(newChild);
 			}
 
@@ -284,6 +292,16 @@ void PathFinding::ContinuePath() {
 		m_foundGoal = true;
 	}
 	else {
+
+		for (int i = 0; i < (int)m_openList.size(); i++)
+		{
+			if (currentCell->GetID() == m_openList[i]->GetID()){
+
+				m_openList.erase(m_openList.begin() + i);
+
+			}
+		}
+
 		// Celda derecha
 		PathOpened((float)currentCell->GetCellX() + 1, (float)currentCell->GetCellY(), currentCell->GetG() + 1, currentCell);
 
@@ -308,14 +326,7 @@ void PathFinding::ContinuePath() {
 		// Celda diagonal derecha inferior
 		PathOpened((float)currentCell->GetCellX() + 1, (float)currentCell->GetCellY() + 1, currentCell->GetG() + 1.4f, currentCell);
 		
-		for (int i = 0; i < (int)m_openList.size(); i++)
-		{	
-			if (currentCell->GetID() == m_openList[i]->GetID()){
-				
-				m_openList.erase(m_openList.begin() + i);
-
-			}	
-		}
+		
 	}
 }
 

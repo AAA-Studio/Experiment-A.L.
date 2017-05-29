@@ -22,12 +22,12 @@ public:
 	inline Tile** getTileMap() { return tileMap; };
 	inline int getXSpawn() const{ return x; };
 	inline int getYSpawn() const{ return y; };
-	inline Tile* GetTileAt(int x, int y) {
-		if (tileMap == NULL || x < 0 || x >= LEVEL_WIDTH || y < 0 || y >= LEVEL_HEIGHT)
-			return NULL;
-
-		return tileMap[y * LEVEL_WIDTH + x];
-	}
+	// inline Tile* GetTileAt(int x, int y) {
+	// 	if (tileMap == NULL || x < 0 || x >= LEVEL_WIDTH || y < 0 || y >= LEVEL_HEIGHT)
+	// 		return NULL;
+	// 
+	// 	return tileMap[y * LEVEL_WIDTH + x];
+	// }
 
 
 private:
