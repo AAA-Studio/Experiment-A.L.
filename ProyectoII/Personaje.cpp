@@ -224,8 +224,8 @@ void Personaje::empujeHaciaAtras(){
 	empuje = true;
 	ultimoEmpuje = SDL_GetTicks();
 }
-void Personaje::restaVida(){
-	vida -= 0.005;
+void Personaje::restaVida(float daño){
+	vida -= daño;
 }
 void Personaje::coger(){
 	EntidadJuego * objeto;

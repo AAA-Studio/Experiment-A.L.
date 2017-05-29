@@ -49,7 +49,7 @@ void Enemigo2::ataque(){
 
 	if (pMundo->checkCollision(rectPJ, rect))
 	{
-		pMundo->getPersonaje()->restaVida();
+		pMundo->getPersonaje()->restaVida(0.005);
 	}
 }
 void Enemigo2::perseguir(){
