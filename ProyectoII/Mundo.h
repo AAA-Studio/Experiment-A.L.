@@ -11,7 +11,7 @@
 #include "Enemigo.h"
 #include "Enemigo2.h"
 #include <list>
-
+#include "Enemigo4.h"
 
 using namespace std;
 
@@ -131,7 +131,7 @@ private:
 	//bool pausa;
 
 	//-------------------ATRIBUTOS---------------
-	Enemigo2* enemigo;
+	Enemigo4* enemigo;
 
 	//-------------------METODOS-------------------
 	//Objetos
@@ -140,10 +140,10 @@ private:
 	void freeObjetos();
 
 	//Colisiones
+	void compruebaColsionEnemigo();
 	void compruebaColisionPersonaje();//Colision con muros y puertas
 	void colBalaEnemigo();
 	void colBalaPersonaje();
-	
 	//-------------------METODOS-------------------
 };
 

@@ -74,6 +74,8 @@
     <ClCompile Include="Combinaciones.cpp" />
     <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Enemigo2.cpp" />
+    <ClCompile Include="Enemigo3.cpp" />
+    <ClCompile Include="Enemigo4.cpp" />
     <ClCompile Include="Entidad.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
@@ -100,6 +102,8 @@
     <ClInclude Include="Combinaciones.h" />
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Enemigo2.h" />
+    <ClInclude Include="Enemigo3.h" />
+    <ClInclude Include="Enemigo4.h" />
     <ClInclude Include="Entidad.h" />
     <ClInclude Include="EntidadJuego.h" />
     <ClInclude Include="Error.h" />

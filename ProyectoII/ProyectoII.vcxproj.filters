@@ -141,6 +141,12 @@
     <ClCompile Include="Enemigo2.cpp">
       <Filter>Archivos de código fuente\Entidades\Personajes</Filter>
     </ClCompile>
+    <ClCompile Include="Enemigo3.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemigo4.cpp">
+      <Filter>Archivos de código fuente\Entidades\Personajes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EstadoJuego.h">
@@ -222,6 +228,12 @@
       <Filter>Archivos de encabezado\Estados\Mundo</Filter>
     </ClInclude>
     <ClInclude Include="Enemigo2.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemigo3.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemigo4.h">
       <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
     </ClInclude>
   </ItemGroup>

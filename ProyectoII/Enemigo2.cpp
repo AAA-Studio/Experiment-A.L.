@@ -2,16 +2,20 @@
 #include "Personaje.h"
 using namespace std;
 
-Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) : Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
+Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, char dir) : Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
 {
 	pMundo = pM;
 	this->x = x;
 	this->y = y;
 	vida = 3;
-	maxX = 100;
+	maxX = maxY = 100;
 	direccion = true;
 	pasivo = true;
 	volviendo = false;
+	eje = dir;
+
+	posXAnt = x;
+	posYAnt = y;
 }
 
 void Enemigo2::update(){
@@ -29,17 +33,34 @@ void Enemigo2::update(){
 
 void  Enemigo2::patrulla(){
 	cout << "patrullando";
-	if (direccion) //camina hacia la derecha
-	{
-		rect.x += 1;
-		if (rect.x >= x + maxX)
-			direccion = false;
+	if (eje == 'x'){
+		if (direccion) //camina hacia la derecha
+		{
+			rect.x += 1;
+			if (rect.x >= x + maxX)
+				direccion = false;
+		}
+		else //camina hacia la izquierda
+		{
+			rect.x -= 1;
+			if (rect.x <= x)
+				direccion = true;
+		}
 	}
-	else //camina hacia la izquierda
+	else if (eje == 'y')
 	{
-		rect.x -= 1;
-		if (rect.x <= x)
-			direccion = true;
+		if (direccion) //camina hacia la derecha
+		{
+			rect.y += 1;
+			if (rect.y >= y + maxY)
+				direccion = false;
+		}
+		else //camina hacia la izquierda
+		{
+			rect.y -= 1;
+			if (rect.y <= y)
+				direccion = true;
+		}
 	}
 	
 }
