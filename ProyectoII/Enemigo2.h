@@ -21,15 +21,15 @@ protected:
 	int maxX, maxY;
 	bool direccion; //false = izquierda, true = derecha
 	bool pasivo; //el enemigo patrulla o ataca segun este en modo pasivo o no
-	bool volviendo;
+	bool volviendo; //el enemigo vuelve a su posicion original si tiene que volver
 	MundoVirtual* pMundo;
-	void disparo();
-	const float tiempoBala = 1000;
-	Uint32 ultimaBala;
+	float angulo, incrX, incrY;
+	SDL_Rect rectPJ; // rect del personaje
+
 	void patrulla();
 	void ataque();
+	void perseguir();
 	void checkPersonaje();
-	float angulo, incrX, incrY;
 	void volver();
 };
 
