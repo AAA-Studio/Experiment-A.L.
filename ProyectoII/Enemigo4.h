@@ -6,7 +6,6 @@
 struct Direction2{
 	int x;
 	int y;
-
 };
 class Enemigo4 : public Entidad
 {

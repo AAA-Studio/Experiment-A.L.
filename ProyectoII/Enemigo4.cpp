@@ -1,7 +1,8 @@
 #include "Enemigo4.h"
 #include "Personaje.h"
 
-Enemigo4::Enemigo4(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) : Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
+Enemigo4::Enemigo4(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) 
+: Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
 {
 	pMundo = pM;
 	posXAnt = x;
