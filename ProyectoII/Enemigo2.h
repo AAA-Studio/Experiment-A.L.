@@ -21,6 +21,7 @@ protected:
 	int maxX, maxY;
 	bool direccion; //false = izquierda, true = derecha
 	bool pasivo; //el enemigo patrulla o ataca segun este en modo pasivo o no
+	bool volviendo;
 	MundoVirtual* pMundo;
 	void disparo();
 	const float tiempoBala = 1000;
@@ -29,6 +30,7 @@ protected:
 	void ataque();
 	void checkPersonaje();
 	float angulo, incrX, incrY;
+	void volver();
 };
 
 #endif
