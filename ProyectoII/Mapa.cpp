@@ -226,6 +226,7 @@ void  Mapa::buscaSpawn(){
 	if (pMundo->getIndiceMapa() < 24){
 		x = 0;
 		w = 800;
+		//Planta 5
 		if (pMundo->getIndiceMapa() >= 0 && pMundo->getIndiceMapa() < 6)
 		{
 			// planta de 6
@@ -233,6 +234,7 @@ void  Mapa::buscaSpawn(){
 			h = 3840;
 
 		}
+		//Planta 4
 		else if (pMundo->getIndiceMapa() >= 6 && pMundo->getIndiceMapa() < 12)
 		{
 			// 2 plantas de 6
@@ -240,12 +242,14 @@ void  Mapa::buscaSpawn(){
 			h = 3840 * 2;
 
 		}
+		//Planta 3
 		else if (pMundo->getIndiceMapa() >= 12 && pMundo->getIndiceMapa() < 17)
 		{	// 2 plantas de 6 y 1 planta de 5
 			y = 3840 * 2;
 			h = 3840 * 2 + 3200;
 
 		}
+		//Planta 2
 		else if (pMundo->getIndiceMapa() >= 17 && pMundo->getIndiceMapa() < 22)
 		{
 			// 2 plantas de 6 y 2 plantas de 5
@@ -253,6 +257,7 @@ void  Mapa::buscaSpawn(){
 			h = 3840 * 2 + 3200 * 2;
 
 		}
+		//Planta 1
 		else if (pMundo->getIndiceMapa() >= 22 && pMundo->getIndiceMapa() < 24)
 		{
 			// 2 plantas de 6 y 2 plantas de 5 y 1 planta de 2
@@ -611,6 +616,12 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(6);
 					tipo = 157;
+					//Numero de planta
+					pMundo->setTextoArriba(true);
+					//Comprobacion de en que planta estoy actualmente 
+					if (pMundo->getIndiceMapa() == 6) {//ENTIENDO QUE ESTOY EN LA PLANTA 2
+						pMundo->getTextura().loadFromText(pJuego->getRender(), "PLANTA 2", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
 					pMundo->setPasoNivel(true);
 					pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 					return true;

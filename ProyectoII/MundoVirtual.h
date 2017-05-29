@@ -40,6 +40,9 @@ public:
 	virtual  Mundo_t getMundo()const = 0;
 	virtual list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const = 0;
 	virtual bool getPasoNivel()const = 0;
+	virtual TexturasSDL getTextura() const = 0;
+	virtual Fuente*  getFuente() const = 0;
+
 
 
 	// Setters
@@ -49,6 +52,7 @@ public:
 	virtual void setIndiceMapa(int i) = 0;
 	virtual void setLlaveCogida(int indice) = 0;
 	virtual void setMundo(Mundo_t m) = 0;
+	virtual void setTextoArriba(bool text) = 0;
 };
 
 #endif

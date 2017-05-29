@@ -69,6 +69,10 @@ public:
 	inline void setPasoNivel(bool pNivel){  };
 	virtual void setMundo(Mundo_t m){};
 
+	inline void setTextoArriba(bool text){  };
+	inline TexturasSDL getTextura()const{ return *pJuego->getResources()->getTextura(0); };
+	inline Fuente*  getFuente()const{ return nullptr; };
+
 
 
 private:

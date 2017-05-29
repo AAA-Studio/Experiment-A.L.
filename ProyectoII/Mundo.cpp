@@ -52,7 +52,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'e' para interactuar", { 255, 255, 255, 1 }, *font_);
 	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
 
-	textArriba = false;
+	textArriba = true;
 }
 
 Mundo::~Mundo()
@@ -253,7 +253,7 @@ void Mundo::draw()const{
 	{
 		textCogerObj.renderFont(pJuego->getRender(), psj->getRect().x - camera.x - 20, psj->getRect().y - camera.y + 50);
 	}
-	if (nivelCambiado)
+	if (textArriba)
 		textPlanta.renderFont(pJuego->getRender(), 50,  pJuego->getWindowHeight() - 50);
 			
 }
@@ -392,7 +392,7 @@ void Mundo::update(){
 				nivelCambiado = true;
 				mapa->buscaSpawn();
 				//numero planta
-				textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
+				//textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
 
 			}
 			
@@ -403,7 +403,7 @@ void Mundo::update(){
 			{
 				alfo = 0;
 				nivelCambiado = false;
-			
+				textArriba = false;
 			}
 		}
 

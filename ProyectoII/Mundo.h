@@ -86,6 +86,8 @@ public:
 
 	//Fuente
 	inline void setTextoArriba(bool text){ textArriba = text; };
+	inline TexturasSDL getTextura()const{ return textPlanta; };
+	inline Fuente*  getFuente()const{ return font_; };
 	//Metodo para escribir en una parte concreta de la ventana
 
 
