@@ -9,6 +9,7 @@
 #include "Mapa.h"
 #include "Personaje.h"
 #include "Enemigo.h"
+#include "Enemigo2.h"
 #include <list>
 
 
@@ -130,7 +131,7 @@ private:
 	//bool pausa;
 
 	//-------------------ATRIBUTOS---------------
-
+	Enemigo2* enemigo;
 
 	//-------------------METODOS-------------------
 	//Objetos

@@ -138,6 +138,9 @@
     <ClCompile Include="CinematicaInicial.cpp">
       <Filter>Archivos de código fuente\Estados\Mundo</Filter>
     </ClCompile>
+    <ClCompile Include="Enemigo2.cpp">
+      <Filter>Archivos de código fuente\Entidades\Personajes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EstadoJuego.h">
@@ -217,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="CinematicaInicial.h">
       <Filter>Archivos de encabezado\Estados\Mundo</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemigo2.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

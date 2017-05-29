@@ -8,6 +8,7 @@
 #include <fstream>
 
 
+
 //Metodos ordenadiiiiiiiiiiiiiisimos :D
 
 Mundo::Mundo(Juego * pJ, string m)
@@ -126,6 +127,8 @@ void Mundo::cargaObjetos(){
 		i++;
 	}
 	obj.close();
+	
+	enemigo = new Enemigo2(this, 400, 900, 25, 25, JuegoSDL::TLeon, JuegoSDL::ENull);
 }
 void Mundo::initObjetos()
 {	
@@ -194,7 +197,7 @@ void Mundo::draw()const{
 
 	//DIBUJAR MAPA
 	mapa->draw();
-
+	enemigo->draw(enemigo->getRect().x - camera.x, enemigo->getRect().y - camera.y);
 	//Dibujar objetos del juego
 	//Armas
 	for (auto arma : armas)
@@ -252,7 +255,7 @@ void Mundo::update(){
 		balaDestruida = false;
 		colObjeto = false;
 
-
+		enemigo->update();
 
 
 		//Caso GameOver
