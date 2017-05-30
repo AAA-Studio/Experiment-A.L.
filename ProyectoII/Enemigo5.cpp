@@ -9,6 +9,8 @@ Enemigo5::Enemigo5(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Textu
 	estaEnEmbestida = estabaEmbistiendo = false;
 	m_dirY = no;
 	m_dirX = none;
+
+	rectAntesEmbestida = { x, y, w, h };
 }
 
 
@@ -19,12 +21,11 @@ Enemigo5::~Enemigo5()
 void Enemigo5::update() {
 	
 	rectPJ = pMundo->getPersonaje()->getRect();
-
+	
 	if (EstaEnArea(200.0f)) {
-		estaEnEmbestida != estabaEmbistiendo;
 		if (EstaEnArea(100.0f)) {
 			if (estaEnEmbestida) {
-				embiste();
+				movimiento(rectPJ);
 				if (EstaEnArea(5.0f)) {
 
 					if (m_dirX == izq) rectPJ.x -= 5;
@@ -36,43 +37,42 @@ void Enemigo5::update() {
 			}
 
 			else {
-				recargaEmbestida();
+				movimiento(rectAntesEmbestida);
 			}
 		}
 
 		else {
 			if (estabaEmbistiendo) {
-				embiste();
+				movimiento(rectPJ);
 				estaEnEmbestida = true;
 			}
 		}
 	}
 
+	else {
+		rectAntesEmbestida.x = rect.x; rectAntesEmbestida.y = rect.y;
+	}
+
 }
 
-void Enemigo5::embiste() {
-	if (rect.y > rectPJ.y) { //movimiento en el eje y
+void Enemigo5::movimiento(SDL_Rect target) {
+	if (rect.y > target.y) { //movimiento en el eje y
 		m_dirY = up;
 		rect.y--;
 	}
-	else if (rect.y < rectPJ.y) {
+	else if (rect.y < target.y) {
 		m_dirY = down;
 		rect.y++;
 	}
 
-	if (rect.x > rectPJ.x) { //movimiento en el eje x
+	if (rect.x > target.x) { //movimiento en el eje x
 		m_dirX = izq;
 		rect.x--;
 	}
-	else if (rect.x < rectPJ.x) {
+	else if (rect.x < target.x) {
 		m_dirX = drcha;
 		rect.x++;
 	}
-}
-
-void Enemigo5::recargaEmbestida() {
-	// O deshace el camino recorrido
-	// o sigue hacia adelante hasta salir del area
 }
 
 bool Enemigo5::EstaEnArea(float minDistancia) {

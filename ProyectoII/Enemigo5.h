@@ -26,9 +26,8 @@ public:
 
 	virtual void update();
 	inline void restaVida() { vida--; };
-	inline float getVida()const { return vida; };
-	virtual void embiste();
-	virtual void recargaEmbestida();
+	inline float getVida()const { return vida; }
+	void movimiento(SDL_Rect target);
 	void setPosChocando(int x, int y);
 	
 
@@ -43,12 +42,13 @@ protected:
 	bool chocando, estaEnEmbestida, estabaEmbistiendo;
 
 	//Direccion dir;
-	void embestida();
-	void recargaEmbestida();
+	
 	bool EstaEnArea(float distancia);
 
 	dirY m_dirY;
 	dirX m_dirX;
+
+	SDL_Rect rectAntesEmbestida;
 };
 #endif
 
