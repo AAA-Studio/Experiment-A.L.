@@ -6,7 +6,7 @@
 #include "Bala.h"
 #include "Boton.h"
 #include <fstream>
-
+#include "Enemigo1.h"
 
 
 //Metodos ordenadiiiiiiiiiiiiiisimos :D
@@ -116,7 +116,7 @@ void Mundo::cargaObjetos(){
 				else if (nombre == "ENEMIGO"){
 
 					obj >> x >> y >> w >> h;
-					enemigos.push_back(new Enemigo(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
+					enemigos.push_back(new Enemigo1(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 				}
 

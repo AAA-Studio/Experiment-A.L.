@@ -1,49 +1,30 @@
 #ifndef _H_Enemigo4_H_
 #define _H_Enemigo4_H_
-#include "Entidad.h"
+#include "Enemigo.h"
 #include "MundoVirtual.h"
 
-struct Direction2{
-	int x;
-	int y;
 
-};
-class Enemigo4 : public Entidad
+class Enemigo4 : public Enemigo
 {
 public:
 	Enemigo4(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto);
 	virtual void update();
-	inline void restaVida() { vida--; };
-	inline float getVida()const { return vida; };
+	
 	virtual void mover(int x, int y){}
-	void setPosChocando(int x, int y);
-	void setDir(Direction2 direc){ dir = direc; };
-	inline int DamePosAntX(){ return posXAnt; };
-	inline int DamePosAntY(){ return posYAnt; };
-	void colision(bool chocando){ this->chocando = chocando;}
+	
+	
 	
 	~Enemigo4();
 
 protected:
-	SDL_Rect rectPJ; // rect del personaje
-	MundoVirtual* pMundo;
-	Direction2 dir;
-	int vida;
-	bool chocando;
-	bool ejeY, ejeX;
-	bool rodeado;
-	int posXAnt, posYAnt;
-	int x, y;
-	bool atascadoX, atascadoY;
+	
+	
+	//bool rodeado;
 	bool rodeando;
 
-	bool izquierda;
-	bool deFrente;
-	bool derecha;
-	//Direccion dir;
+
 	void ataque();
-	void perseguir();
-	void rodear();
+	
 };
 
 #endif

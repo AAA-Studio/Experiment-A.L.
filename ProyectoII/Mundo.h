@@ -130,7 +130,7 @@ private:
 	//bool pausa;
 
 	//-------------------ATRIBUTOS---------------
-	Enemigo4* enemigo;
+	Enemigo* enemigo;
 
 	//-------------------METODOS-------------------
 	//Objetos

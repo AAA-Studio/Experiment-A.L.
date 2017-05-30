@@ -17,13 +17,29 @@ public:
 	inline float getVida()const { return vida; };
 	virtual void mover(int x, int y){}
 
-private:
+	virtual void setPosChocando(int x, int y);
+
+	virtual inline int DamePosAntX(){ return posXAnt; };
+	virtual inline int DamePosAntY(){ return posYAnt; };
+	virtual void colision(bool chocando){ this->chocando = chocando; }
+
+protected:
 	MundoVirtual* pMundo;
-	void disparo();
 	int vida;
-	const float tiempoBala = 1000;
-	Uint32 ultimaBala;
-	float angulo;
+	int posXAnt, posYAnt;
+
+	int x, y;
+
+	bool chocando; //si el personaje está chocando con algo
+	bool ejeY, ejeX; //para saber que eje hay que comprobar
+
+	bool atascadoX, atascadoY;
+	SDL_Rect rectPJ; // rect del personaje
+
+
+	virtual void perseguir();
+	virtual void rodear();
+	virtual void ataque(){}
 };
 
 #endif
