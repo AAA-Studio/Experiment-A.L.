@@ -2,11 +2,9 @@
 #include "Personaje.h"
 using namespace std;
 
-Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, char dir) : Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
+Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, char dir) : Enemigo (pM, x, y, w, h, textura, efecto)
 {
-	pMundo = pM;
-	this->x = x;
-	this->y = y;
+	
 	vida = 3;
 	maxX = maxY = 100;
 	direccion = true;
@@ -14,8 +12,7 @@ Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Textu
 	volviendo = false;
 	eje = dir;
 
-	posXAnt = x;
-	posYAnt = y;
+	
 }
 
 void Enemigo2::update(){
@@ -32,7 +29,6 @@ void Enemigo2::update(){
 }
 
 void  Enemigo2::patrulla(){
-	cout << "patrullando";
 	if (eje == 'x'){
 		if (direccion) //camina hacia la derecha
 		{
@@ -73,18 +69,7 @@ void Enemigo2::ataque(){
 		pMundo->getPersonaje()->restaVida(0.005);
 	}
 }
-void Enemigo2::perseguir(){
-	
-	if (rect.y > rectPJ.y) //movimiento en el eje y
-		rect.y -= 1;
-	else if (rect.y < rectPJ.y)
-		rect.y += 1;
 
-	if (rect.x > rectPJ.x) //movimiento en el eje x
-		rect.x -= 1;
-	else if (rect.x < rectPJ.x)
-		rect.x += 1;
-}
 
 void Enemigo2::volver(){
 	cout << "volviendo";
