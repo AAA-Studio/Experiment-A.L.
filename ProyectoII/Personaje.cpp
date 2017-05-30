@@ -38,7 +38,6 @@ void Personaje::update()
 	if (pMundo->getIndiceMapa()  < 24 && !informeCogido && !cinematica && pierdesVida)
 		vida -= 0.001;
 
-
 }
 
 

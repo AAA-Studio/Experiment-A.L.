@@ -294,9 +294,9 @@ void Mundo::draw()const{
 		textCogerObj.renderFont(pJuego->getRender(), psj->getRect().x - camera.x - 20, psj->getRect().y - camera.y + 50);
 	}
 	if (textArriba){
-		a.h = 200;
-		a.w = 600;
-		textPlanta.draw(pJuego->getRender(), a, 100, 200, nullptr);
+		a.h = 80;
+		a.w = 240;
+		textPlanta.draw(pJuego->getRender(), a, 280, 250, nullptr);
 	}
 }
 

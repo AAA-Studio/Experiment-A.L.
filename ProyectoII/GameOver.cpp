@@ -12,7 +12,15 @@ static void goMenu(Juego * pj){
 	pj->setBorraEstado(true);
 	pj->setEstadoEnum(MInicio);
 };
+void GameOver::draw()const{
+	//Dibujo fondo
+	SDL_Rect rect = { 0, 0, pJuego->getWindowWidth(), pJuego->getWindowHeight() };
+	pJuego->getResources()->getTextura(JuegoSDL::TFondoGameOver)->draw(pJuego->getRender(), rect, rect.x, rect.y, nullptr);
 
+	//Dibujar objetos del juego
+	for (int i = objetos.size() - 1; i >= 0; i--)
+		objetos[i]->draw(objetos[i]->getRect().x, objetos[i]->getRect().y);
+}
 void GameOver::initObjetos(){
-	objetos.push_back(new Boton(pJuego, 200, 200, 400, 100, JuegoSDL::TMenu, JuegoSDL::ENull, goMenu));
+	objetos.push_back(new Boton(pJuego, 200, 300, 400, 100, JuegoSDL::TMenu, JuegoSDL::ENull, goMenu));
 }
