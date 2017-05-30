@@ -32,6 +32,7 @@ public:
 	void sumaVida(int vida);
 	//----------------GETTER-------------------------------------------------------
 	inline int getAngulo(){ return angulo; };
+	int getBalas();
 	inline SDL_Rect getHUD() { return rectHUD; };
 	inline Uint8 getAlpha() { return (vida * 255) / MAXVIDA; };
 	inline int DamePosAntX(){ return posXAnt; };

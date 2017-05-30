@@ -245,6 +245,7 @@ void Personaje::coger(){
 			break;
 		case OLlave:
 			pMundo->destruyeLlave(objeto);
+			pJuego->getResources()->getEfecto(9)->play(0);
 			break;
 		case OTeclado:
 			pJuego->setBorraEstado(true);
@@ -252,16 +253,20 @@ void Personaje::coger(){
 			break;
 		case OPistola:
 			pMundo->destruyeArma();
+			pJuego->getResources()->getEfecto(7)->play(0);
 			break;
 		case OPildoras:
 			pMundo->pildoraCogida();
+			pJuego->getResources()->getEfecto(7)->play(0);
 			break;
 		case OInterruptor1:
 			pMundo->setPulsado();
+			pJuego->getResources()->getEfecto(5)->play(0);
 			//pMundo->destruyeInterruptor();
 			break;
 		case OInterruptor2:
 			pMundo->setPulsado2();
+			pJuego->getResources()->getEfecto(5)->play(0);
 			//pMundo->destruyeInterruptor();
 			break;
 		}
@@ -283,6 +288,13 @@ void Personaje::sumaVida(int vida){
 		this->vida = 3;
 	else
 		this->vida += vida;
+}
+int Personaje::getBalas(){
+	if (arma != nullptr){
+		return arma->getBalas();
+	}
+	else
+		return 0;
 }
 
 

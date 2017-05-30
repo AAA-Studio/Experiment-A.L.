@@ -58,6 +58,7 @@ public:
 	virtual void setMundo(Mundo_t m){ mundo = m; };
 	inline bool getPasoNivel()const{ return pasoNivel; };
 	inline void setPasoNivel(bool pNivel){ pasoNivel = pNivel; };
+	inline void setCurapsj(){ psj->sumaVida(3); }
 
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
@@ -141,7 +142,7 @@ private:
 
 	//Fuente
 	Fuente* font_;
-	TexturasSDL textCogerObj, textPlanta;
+	TexturasSDL textCogerObj, textPlanta, textBalas;
 	//bool abierto;
 	//vector<bool> cerraduras;
 	//vector<int> puertas;

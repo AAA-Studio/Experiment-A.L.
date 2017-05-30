@@ -26,6 +26,7 @@ public:
 	void pildoraCogida(){}
 	void setPulsado(){}
 	void setPulsado2(){}
+	void setCurapsj(){}
 	void destruyeInterruptor(){}
 	//------------------GETTERS---------------------
 	inline Mapa* getMapa() const { return mapa; };

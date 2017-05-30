@@ -28,7 +28,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	
 	balaDestruida = false;
 	//pausa = false;
-	//abierto = false;
+	//abierto = false;s
 	//cerraduras[0] = false;
 	//puertas[0] = 0;
 
@@ -51,7 +51,7 @@ Mundo::Mundo(Juego * pJ, string m)
 
 	//Fuente
 	font_ = pJuego->getResources()->getFuente(JuegoSDL::Fuentes_t::FNormal);
-
+	textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
 	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'E' para interactuar", { 255, 255, 255, 1 }, *font_);
 	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
 
@@ -272,34 +272,39 @@ void Mundo::draw()const{
 	SDL_Rect a = getCamera();
 	a.h = 200;
 	a.w = 400;
+	pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
+	//Dibujo las balas restantes si no hay arma este sera 0
+	a.h = 30;
+	a.w = 90;
+	textBalas.draw(pJuego->getRender(), a, 200, 600, nullptr);
 
-		
-			
-			
 	//Dibujar fondo negro
-
 	a.h = 640;
 	a.w = 800;
+
 	if (pasoNivel || nivelCambiado)
 		pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);		
 	
 	pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), a, 0, 0, nullptr);
+	
 
-
+	
 	if (colObjeto)
 	{
 		textCogerObj.renderFont(pJuego->getRender(), psj->getRect().x - camera.x - 20, psj->getRect().y - camera.y + 50);
 	}
-	if (textArriba)
-		textPlanta.renderFont(pJuego->getRender(), 50,  pJuego->getWindowHeight() - 50);
-			
+	if (textArriba){
+		a.h = 200;
+		a.w = 600;
+		textPlanta.draw(pJuego->getRender(), a, 100, 200, nullptr);
+	}
 }
 
 void Mundo::update(){
 		psj->update();//Update de personaje
 		balaDestruida = false;
 		colObjeto = false;
-
+		textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
 
 
 
@@ -466,7 +471,7 @@ void Mundo::update(){
 		//COLISIONES
 		colBalaEnemigo();
 		colBalaPersonaje();
-
+		
 		
 		//Transicion nivel
 		if (pasoNivel){

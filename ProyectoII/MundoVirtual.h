@@ -55,6 +55,7 @@ public:
 	virtual void setIndiceMapa(int i) = 0;
 	virtual void setLlaveCogida(int indice) = 0;
 	virtual void setMundo(Mundo_t m) = 0;
+	virtual void setCurapsj() = 0;
 	virtual void setTextoArriba(bool text) = 0;
 };
 

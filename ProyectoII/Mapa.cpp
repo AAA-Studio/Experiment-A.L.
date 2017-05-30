@@ -743,6 +743,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(24);
+					pMundo->setCurapsj();
 					tipo = 114;
 					pMundo->setPasoNivel(true);
 					pMundo->setMundo(Mundo_t::MOscuro);
@@ -1036,6 +1037,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-24);
+					pMundo->setCurapsj();
 					tipo = 459;
 					pMundo->setMundo(Mundo_t::MReal);
 					pMundo->setPasoNivel(true);
