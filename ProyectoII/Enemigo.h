@@ -27,7 +27,7 @@ protected:
 	MundoVirtual* pMundo;
 	int vida;
 	int posXAnt, posYAnt;
-
+	int velocidad; //velocidad de cada enemigo
 	int x, y;
 
 	bool chocando; //si el personaje está chocando con algo

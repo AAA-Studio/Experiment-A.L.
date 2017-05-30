@@ -3,7 +3,7 @@
 
 Enemigo4::Enemigo4(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) : Enemigo(pM, x, y, w, h, textura, efecto)
 {
-	
+	velocidad = 2;
 	
 }
 

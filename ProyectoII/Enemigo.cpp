@@ -27,7 +27,38 @@ void Enemigo::setPosChocando(int x, int y)
 }
 void Enemigo::rodear()
 {
-	if (ejeX)
+	if (ejeY)
+	{
+		if (rect.y == rectPJ.y)
+		{
+			atascadoY = true;
+		}
+
+		if (atascadoY)
+		{
+			cout << "here";
+			cout << velocidad;
+			rect.y += velocidad;
+		}
+		else if (rect.y > rectPJ.y) //movimiento en el eje y
+		{
+			y = -velocidad;
+			rect.y += y;
+		}
+		else if (rect.y < rectPJ.y)
+		{
+			y = velocidad;
+			rect.y += y;
+		}
+
+
+		/*if (chocando)
+		{
+			ejeY = false;
+			//cout << "no puedo seguir por este camino ";
+		}*/
+	}
+	else if (ejeX)
 	{
 		if (rect.x == rectPJ.x)
 			atascadoX = true;
@@ -39,64 +70,34 @@ void Enemigo::rodear()
 		}
 		else if (rect.x > rectPJ.x) //movimiento en el eje x
 		{
-			x = -1;
+			x = -velocidad;
 			rect.x += x;
 		}
 		else if (rect.x < rectPJ.x)
 		{
-			x = 1;
-			rect.x += 1;
+			x = velocidad;
+			rect.x += x;
 		}
 
 
 		if (chocando)
-			ejeX = false;
+			ejeY = true;
 	}
-	else if (ejeY)
-	{
-		if (rect.y == rectPJ.y)
-		{
-			atascadoY = true;
-		}
-
-		if (atascadoY)
-		{
-			rect.y += y;
-		}
-		else if (rect.y > rectPJ.y) //movimiento en el eje y
-		{
-			y = -1;
-			rect.y += y;
-		}
-		else if (rect.y < rectPJ.y)
-		{
-			y = 1;
-			rect.y += y;
-		}
-
-
-		if (chocando)
-		{
-			ejeX = false;
-			//cout << "no puedo seguir por este camino ";
-		}
-	}
-
-	//else
+	
 }
 
 void Enemigo::perseguir(){
 
 
 	if (rect.y > rectPJ.y) //movimiento en el eje y
-		rect.y -= 1;
+		rect.y -= velocidad;
 	else if (rect.y < rectPJ.y)
-		rect.y += 1;
+		rect.y += velocidad;
 
 	if (rect.x > rectPJ.x) //movimiento en el eje x
-		rect.x -= 1;
+		rect.x -= velocidad;
 	else if (rect.x < rectPJ.x)
-		rect.x += 1;
+		rect.x += velocidad;
 }
 
 Enemigo::~Enemigo()
