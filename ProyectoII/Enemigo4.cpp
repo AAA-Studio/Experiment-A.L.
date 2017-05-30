@@ -16,8 +16,6 @@ void Enemigo4::update(){
 
 }
 
-
-
 void Enemigo4::ataque(){
 	if (!chocando)//si no colisiona con nada persigue al jugador
 	{

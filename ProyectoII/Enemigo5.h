@@ -12,11 +12,13 @@ public:
 
 	// Este enemigo esta estatico cuando dispara al personaje
 	// vuela a la posicion del frame antarior del personaje aleatoriamente
-	void update();
+	virtual void update();
 	
-	
-private:
+	inline int DamePosAntX(){ return posXAnt; };
+	inline int DamePosAntY(){ return posYAnt; };
+protected:
 
+	bool rodeando;
 	pair<float, float> destino;
 	void disparar();
 	void movimiento();

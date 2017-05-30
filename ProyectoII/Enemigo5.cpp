@@ -21,15 +21,22 @@ void Enemigo5::update() {
 	rectPJ = pMundo->getPersonaje()->getRect();
 	srand(time(NULL));
 	int aleatorio = (rand() % 50);
-	
-	if (aleatorio > 42) { // Se mueve a la posicion anterior del jugador
-		movimiento();
-	}
-
-	else {
+	if (!chocando) {
+		if (aleatorio > 42) { // Se mueve a la posicion anterior del jugador
+			movimiento();
+		}
+		else {
 		disparar();
+		}
+	}
+	else { 
+		rodear();
 	}
 
+	// if (pMundo->checkCollision(rectPJ, rect))
+	// {
+	// 	pMundo->getPersonaje()->restaVida(0);
+	// }
 	destino.first = rectPJ.x;
 	destino.second = rectPJ.y;
 }
