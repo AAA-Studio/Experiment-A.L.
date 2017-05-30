@@ -14,7 +14,8 @@ class JuegoSDL {
 public:
 	//Se definen los enums de todos los recursos
 
-	enum  Texturas_t{ TJugador, TBlood, TFondo,TFondoGameOver, TBala, TFuego, TLeon, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2, 
+	enum  Texturas_t{
+		TJugador, TBlood, TFondo, TFondoGameOver, TBala, TFuego, TLeon, TPlay, TMenu, TExit, TTilemap, TLlave, TInforme1, TInforme2, TInforme3, TInforme4, TInforme5, TInforme6, TInforme7,
 		TUno, TDos, TTres, TCuatro, TCinco, TSeis, TSiete, TOcho, TNueve, TCero, TTeclado, TVolver,
 		TPistola, TPildora, TBotePildora, TInterruptor, TControles, TKeypad, TEnter, TNegro,/*TFondoMenu,*/ TFuente, Texturas_t_SIZE };
 	static std::vector<std::string> imageFiles_;

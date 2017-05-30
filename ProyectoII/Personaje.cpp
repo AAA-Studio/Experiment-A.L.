@@ -34,7 +34,6 @@ Personaje::~Personaje()
 void Personaje::update()
 {
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
-
 	if (pMundo->getIndiceMapa()  < 24 && !informeCogido && !cinematica && pierdesVida)
 		vida -= 0.001;
 
@@ -212,7 +211,7 @@ void Personaje::disparo(){
 	if (arma != nullptr && arma->getBalas() > 0 && pMundo->getIndiceMapa() >23){
 		if (SDL_GetTicks() - ultimaBala >= arma->getCadencia() )//Se pide la hora y se compara con la última 
 		{
-			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, rect.w / 15, rect.h / 15, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje));
+			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, rect.w / 13, rect.h / 13, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje));
 			arma->restaBalas();
 			ultimaBala = SDL_GetTicks();
 			pJuego->getResources()->getEfecto(0)->play(0);
@@ -239,6 +238,31 @@ void Personaje::coger(){
 			break;
 		case OInforme2:
 			informe = JuegoSDL::TInforme2;
+			informeCogido = true;
+			pJuego->getResources()->getEfecto(8)->play(0);
+			break;
+		case OInforme3:
+			informe = JuegoSDL::TInforme3;
+			informeCogido = true;
+			pJuego->getResources()->getEfecto(8)->play(0);
+			break;
+		case OInforme4:
+			informe = JuegoSDL::TInforme4;
+			informeCogido = true;
+			pJuego->getResources()->getEfecto(8)->play(0);
+			break;
+		case OInforme5:
+			informe = JuegoSDL::TInforme5;
+			informeCogido = true;
+			pJuego->getResources()->getEfecto(8)->play(0);
+			break;
+		case OInforme6:
+			informe = JuegoSDL::TInforme6;
+			informeCogido = true;
+			pJuego->getResources()->getEfecto(8)->play(0);
+			break;
+		case OInforme7:
+			informe = JuegoSDL::TInforme7;
 			informeCogido = true;
 			pJuego->getResources()->getEfecto(8)->play(0);
 			break;

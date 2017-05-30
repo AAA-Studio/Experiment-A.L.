@@ -105,11 +105,19 @@ void Mundo::cargaObjetos(){
 				else if (nombre == "INFORME"){
 					obj >> x >> y >> w >> h >> tipo;
 					if (tipo == 1)
-
 						objetos.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInforme1, JuegoSDL::ENull, OInforme1));//Informe
-
 					else if (tipo == 2)
 						objetos.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInforme2, JuegoSDL::ENull, OInforme2));//Informe
+					else if (tipo == 3)
+						objetos.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInforme3, JuegoSDL::ENull, OInforme3));//Informe
+					else if (tipo == 4)
+						objetos.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInforme4, JuegoSDL::ENull, OInforme4));//Informe
+					else if (tipo == 5)
+						objetos.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInforme5, JuegoSDL::ENull, OInforme5));//Informe
+					else if (tipo == 6)
+						objetos.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInforme6, JuegoSDL::ENull, OInforme6));//Informe
+					else if (tipo == 7)
+						objetos.push_back(new Entidad(pJuego, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TInforme7, JuegoSDL::ENull, OInforme7));//Informe
 				}
 				else if (nombre == "PANEL"){
 
@@ -123,8 +131,8 @@ void Mundo::cargaObjetos(){
 				}
 				else if (nombre == "ENEMIGO"){
 
-					obj >> x >> y >> w >> h;
-					enemigos.push_back(new Enemigo(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
+					obj >> x >> y >> w >> h >> salud;
+					enemigos.push_back(new Enemigo(this, x + ancho, y + alto*(lvl % 24), w, h, salud, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 				}
 				else if (nombre == "SALUD"){

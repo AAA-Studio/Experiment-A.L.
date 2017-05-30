@@ -3,11 +3,12 @@
 #include <iostream>
 #include "Personaje.h"
 
-Enemigo::Enemigo(MundoVirtual*pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) : Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
+Enemigo::Enemigo(MundoVirtual*pM, int x, int y, int w, int h,int vida, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) : Entidad(pM->getPJ(), x, y, w, h, textura, efecto, ONull)
 {
-	vida = 3;
+	this->vida = vida;
 	angulo = 0;
 	pMundo = pM;
+	primerTiro = 0;
 }
 
 
@@ -17,10 +18,11 @@ Enemigo::~Enemigo()
 
 void Enemigo::update(){
 	disparo();
+	primerTiro++;
 }
 
 void Enemigo::disparo(){
-	if (SDL_GetTicks() - ultimaBala >= tiempoBala)
+	if (SDL_GetTicks() - ultimaBala >= tiempoBala && primerTiro > 50)
 	{
 		SDL_Rect rectPj = pMundo->getPersonaje()->getRect();
 		SDL_Rect rectDisparo = { rect.x + rect.w / 2, rect.y + rect.h / 2, rect.w, rect.h };

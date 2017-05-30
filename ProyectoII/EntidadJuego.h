@@ -4,7 +4,7 @@
 #include <SDL.h>
 
 
-enum Objetos_t{ OInforme1, OInforme2, OLlave, OTeclado, OPistola, OPildoras, OInterruptor1, OInterruptor2, ONull };
+enum Objetos_t{ OInforme1, OInforme2, OInforme3, OInforme4, OInforme5, OInforme6, OInforme7, OLlave, OTeclado, OPistola, OPildoras, OInterruptor1, OInterruptor2, ONull };
 
 class EntidadJuego
 {
