@@ -14,6 +14,7 @@ Enemigo::Enemigo(MundoVirtual*pM, int x, int y, int w, int h, JuegoSDL::Texturas
 	ejeY = true;
 	ejeX = true;
 	atascadoX = atascadoY = false;
+	moveX = moveY = 0;
 }
 
 void Enemigo::update(){
@@ -27,6 +28,8 @@ void Enemigo::setPosChocando(int x, int y)
 }
 void Enemigo::rodear()
 {
+	moveX = moveY = 0;
+
 	if (ejeY)
 	{
 		if (rect.y == rectPJ.y)
@@ -38,17 +41,17 @@ void Enemigo::rodear()
 		{
 			cout << "here";
 			cout << velocidad;
-			rect.y += velocidad;
+			moveY += velocidad;
 		}
 		else if (rect.y > rectPJ.y) //movimiento en el eje y
 		{
 			y = -velocidad;
-			rect.y += y;
+			moveY += y;
 		}
 		else if (rect.y < rectPJ.y)
 		{
 			y = velocidad;
-			rect.y += y;
+			moveY += y;
 		}
 
 
@@ -66,38 +69,54 @@ void Enemigo::rodear()
 		if (atascadoX)
 		{
 			cout << "movimiento x ";
-			rect.x += x;
+			moveX += x;
 		}
 		else if (rect.x > rectPJ.x) //movimiento en el eje x
 		{
 			x = -velocidad;
-			rect.x += x;
+			moveX += x;
 		}
 		else if (rect.x < rectPJ.x)
 		{
 			x = velocidad;
-			rect.x += x;
+			moveX += x;
 		}
 
 
 		if (chocando)
 			ejeY = true;
 	}
-	
+	mover(moveX, moveY);
 }
 
 void Enemigo::perseguir(){
 
+	moveX = moveY = 0;
 
 	if (rect.y > rectPJ.y) //movimiento en el eje y
-		rect.y -= velocidad;
+		moveY -= velocidad;
 	else if (rect.y < rectPJ.y)
-		rect.y += velocidad;
+		moveY += velocidad;
 
 	if (rect.x > rectPJ.x) //movimiento en el eje x
-		rect.x -= velocidad;
+		moveX -= velocidad;
 	else if (rect.x < rectPJ.x)
-		rect.x += velocidad;
+		moveX += velocidad;
+
+	mover(moveX, moveY);
+}
+
+void Enemigo::mover(int x, int y)
+{
+	rect.x += x;
+	rect.y += y;
+}
+void Enemigo::pegar(float daño){
+
+	if (pMundo->checkCollision(rectPJ, rect))
+	{
+		pMundo->getPersonaje()->restaVida(daño);
+	}
 }
 
 Enemigo::~Enemigo()

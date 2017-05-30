@@ -15,7 +15,7 @@ public:
 	virtual void update();
 	inline void restaVida() { vida--; };
 	inline float getVida()const { return vida; };
-	virtual void mover(int x, int y){}
+	virtual void mover(int x, int y);
 
 	virtual void setPosChocando(int x, int y);
 
@@ -29,14 +29,14 @@ protected:
 	int posXAnt, posYAnt;
 	int velocidad; //velocidad de cada enemigo
 	int x, y;
-
+	int moveX, moveY;
 	bool chocando; //si el personaje está chocando con algo
 	bool ejeY, ejeX; //para saber que eje hay que comprobar
 
 	bool atascadoX, atascadoY;
 	SDL_Rect rectPJ; // rect del personaje
 
-
+	virtual void pegar(float daño);
 	virtual void perseguir();
 	virtual void rodear();
 	virtual void ataque(){}

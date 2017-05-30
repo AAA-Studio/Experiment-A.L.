@@ -2,16 +2,16 @@
 #include "Personaje.h"
 using namespace std;
 
-Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, char dir) : Enemigo (pM, x, y, w, h, textura, efecto)
+Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, char dir, int max) : Enemigo (pM, x, y, w, h, textura, efecto)
 {
 	
 	vida = 3;
-	maxX = maxY = 100;
+	maxX = maxY = max;
 	direccion = true;
 	pasivo = true;
 	volviendo = false;
 	eje = dir;
-
+	
 	velocidad = 1;
 }
 
@@ -64,10 +64,7 @@ void  Enemigo2::patrulla(){
 void Enemigo2::ataque(){
 	perseguir();
 
-	if (pMundo->checkCollision(rectPJ, rect))
-	{
-		pMundo->getPersonaje()->restaVida(0.005);
-	}
+	pegar(0.005);
 }
 
 

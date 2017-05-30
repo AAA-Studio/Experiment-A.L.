@@ -8,7 +8,7 @@
 class Enemigo2 : public Enemigo
 {
 public:
-	Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, char dir);
+	Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, char dir, int max);
 
 	inline int DamePosAntX(){ return posXAnt; };
 	inline int DamePosAntY(){ return posYAnt; };
