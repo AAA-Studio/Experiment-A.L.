@@ -36,7 +36,7 @@ void Personaje::update()
 {
 	//pMundo->setCamera(rect.x - SCREEN_WIDTH / 2, rect.y - SCREEN_HEIGHT / 2); 
 	if (pMundo->getIndiceMapa()  < 24 && !informeCogido && !cinematica && pierdesVida)
-		vida -= 0.001;
+		vida -= 0.0003;
 
 }
 

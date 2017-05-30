@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Interruptor" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interruptor.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EstadoJuego" Collapsed="true">
+    <Position X="6.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAKAgAAAEAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>EstadoJuego.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Combinaciones" Collapsed="true">
+    <Position X="5.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAMAABQkgAAAAAKAAEBAAQAAEAAAAACAAAAkGAA=</HashCode>
+      <FileName>Combinaciones.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameOver" Collapsed="true">
+    <Position X="7.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAIAAAAAQAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>GameOver.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Menu" Collapsed="true">
+    <Position X="8.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAgABAAKACAAAAAAIAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Menu.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuInicio" Collapsed="true">
+    <Position X="9.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACACAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>MenuInicio.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pausa" Collapsed="true">
+    <Position X="12" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Pausa.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CinematicaInicial" Collapsed="true">
+    <Position X="0.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQCEIAgsAkACIhIlE0KOCAQApKBAgCAmEAzAMUAEACg=</HashCode>
+      <FileName>CinematicaInicial.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mundo" Collapsed="true">
+    <Position X="3" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQCFICkkAkgCIjIhE4OOCIQBpKEAgKAkEQ7AI8AEAKA=</HashCode>
+      <FileName>Mundo.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MundoVirtual" Collapsed="true">
+    <Position X="1.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAIAgkAEACIBIgEwAOAAQAhKAAgCAEEAxAIUAAAAA=</HashCode>
+      <FileName>MundoVirtual.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Entidad" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAgAACAAAgCBAAKAIAAAAQgBIAAAAAACCAAEAAA=</HashCode>
+      <FileName>Entidad.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EntidadJuego" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACAAQgCAAAKAAAAAAQAAAAAAAAAAEAAEAAA=</HashCode>
+      <FileName>EntidadJuego.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Armas" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAgAAAAAAAIAAAAgIAAAICAAAIAAEAAAAAAAAA=</HashCode>
+      <FileName>Armas.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bala" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACEAAAAADAAQAAAAAAAAAgAAARAgAAAEAAQ=</HashCode>
+      <FileName>Bala.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boton" Collapsed="true">
+    <Position X="9.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAACAAAAAgAAAAAAAAIAABAAAAAA=</HashCode>
+      <FileName>Boton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pildoras" Collapsed="true">
+    <Position X="12" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAEAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pildoras.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemigo" Collapsed="true">
+    <Position X="14.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAEACAAAAAggAMAAAhAAAFAAAAAEAAg=</HashCode>
+      <FileName>Enemigo.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personaje" Collapsed="true">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>LEHIAAEQCCAEAgGIG4KECMIgAMASAwAAfHACAYEMGhE=</HashCode>
+      <FileName>Personaje.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Fuente" Collapsed="true">
+    <Position X="18.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAABJAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAIAA=</HashCode>
+      <FileName>Fuente.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Musica" Collapsed="true">
+    <Position X="16.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAIEAAAAAAAAAAAQAAACAAAAAAIAAAAAAJAA=</HashCode>
+      <FileName>Musica.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Efecto" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAIAAAAAAAAAAAAAAAACAAAACAIBAAAAAIAA=</HashCode>
+      <FileName>Musica.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RecursosSDL" Collapsed="true">
+    <Position X="18.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAAcEAhIABAJAAAAAAQEAABgAAABAAMAAAQCQA=</HashCode>
+      <FileName>RecursosSDL.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TexturasSDL" Collapsed="true">
+    <Position X="20.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIADQAAAAAICAAAAAQAAAAAABIAAABAISAA=</HashCode>
+      <FileName>TexturasSDL.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Error" Collapsed="true">
+    <Position X="2.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEQAAAAAAAAgAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Error.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorImagen" Collapsed="true">
+    <Position X="0.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Error.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorSonido" Collapsed="true">
+    <Position X="2.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Error.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ErrorFuente" Collapsed="true">
+    <Position X="5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Error.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mapa" Collapsed="true">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABGAAAAAAAABAZBAiIAAAwAAAgAQ4AgIQJgIQAAAgg=</HashCode>
+      <FileName>Mapa.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tile" Collapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAABAAAAABAAAQAAACAAAAAAAAAQAQA=</HashCode>
+      <FileName>Tile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Juego" Collapsed="true">
+    <Position X="8.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAAQQgAAAQACRCRAAEQIBIAAAgBAAiAAAEEghCAQBAI=</HashCode>
+      <FileName>Juego.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JuegoSDL" Collapsed="true">
+    <Position X="8.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMACAoAIUAAAAAAgQAIAAAAACgAAAAQIAAAwCgAIABo=</HashCode>
+      <FileName>JuegoSDL.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Direccion" Collapsed="true">
+    <Position X="16.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>Personaje.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="CallBack_t" Collapsed="true">
+    <Position X="16.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Boton.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="Mundo_t" Collapsed="true">
+    <Position X="20.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>MundoVirtual.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Objetos_t" Collapsed="true">
+    <Position X="16.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAQAAAAAAAAAAQAAoABAAAAAAAAIIA=</HashCode>
+      <FileName>EntidadJuego.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Estados_t" Collapsed="true">
+    <Position X="16.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEACAAAAIIAAAAAAAAIAIEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Juego.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ListaBalas_t" Collapsed="true">
+    <Position X="18.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Juego.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

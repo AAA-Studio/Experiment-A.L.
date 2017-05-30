@@ -102,6 +102,7 @@ private:
 	int nivel;
 
 	bool llavesCogidas[TAMAÑO_LLAVES];
+	TexturasSDL textoPsj;
 
 
 

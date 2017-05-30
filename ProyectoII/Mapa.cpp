@@ -453,6 +453,8 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						tipo = 158;
 						pMundo->setPuertaCerrada(true);
 						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						return true;
+
 					}
 					//Caso en el que no colisiono con la puerta
 					else
@@ -573,7 +575,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				}
 
 			}
-			//PUERTA AZUL
+			//PUERTA AZUL CLARO
 			else if (tileMap[indice]->getType() == 152)
 			{
 				//Caso en el que estoy en la planta 5 no he cogido la llave
@@ -585,12 +587,14 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					if (pMundo->checkCollision(box, felpudo)){
 						pMundo->setPuertaCerrada(true);
 						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						return true;
+
 					}
 					//Caso en el que no colisiono con la puerta
 					else
 						pMundo->setPuertaCerrada(false);
 				}
-				//necesitas llave en el nivel 1
+				//necesitas llave en el nivel 1, ya se ha cogido
 				if ((pMundo->getLLavesCogidas(0) || azulCP5R) && pMundo->getIndiceMapa() == 0){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.y = felpudo.y + 25;
@@ -598,7 +602,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.w = felpudo.w - 25;
 
 					if (pMundo->checkCollision(box, felpudo)){
-						//Por si tienes dos
+						//Por si tienes dos ???????????????????????????????
 						if (!azulCP5R && pMundo->getLLavesCogidas(1)){
 							azulCP5R = true;
 							pMundo->setLlaveCogida(0);
@@ -614,7 +618,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						return true;
 					}
 				}
-				//necesitas ambos pulsadores en la planta 3
+				//necesitas ambos pulsadores en la planta 3 (Paso de la planta 3 a la 2)
 				else if (pulsados() && pMundo->getIndiceMapa() == 12){
 					//Si es horizontal ponemos el collider bien
 					felpudo = tileMap[indice]->getBox();
@@ -626,7 +630,11 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					if (pMundo->checkCollision(box, felpudo)){
 						pMundo->setNivel(5);
 						tipo = 152;
-						pMundo->setPasoNivel(true);
+						pMundo->setPasoNivel(true); 
+						pMundo->setTextoArriba(true);
+						if (pMundo->getIndiceMapa() == 17) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+							pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 2", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						}
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
 					}
@@ -705,6 +713,22 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			// PUERTA NARANJA
 			else if ((tileMap[indice]->getType() == 157))
 			{
+				if (pMundo->getIndiceMapa() == 0 && !pMundo->getLLavesCogidas(0)){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+					if (pMundo->checkCollision(box, felpudo)){
+						tipo = 158;
+						pMundo->setPuertaCerrada(true);
+						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						return true;
+
+					}
+					//Caso en el que no colisiono con la puerta
+					else
+						pMundo->setPuertaCerrada(false);
+				}
 				//planta 5 tiene q estar el baño abierto
 				if ((pMundo->getLLavesCogidas(0) || naranajaP5R) && pMundo->getIndiceMapa() == 0 && azulCP5R){
 					felpudo = tileMap[indice]->getBox();
@@ -761,7 +785,8 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						tipo = 157;
 						//Numero de planta
 						pMundo->setTextoArriba(true);
-						//Comprobacion de en que planta estoy actualmente 
+						//Comprobacion de en que planta estoy actualmente
+						//BAJADA
 						if (pMundo->getIndiceMapa() == 6) {//ENTIENDO QUE ESTOY EN LA PLANTA 4
 							pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 4", { 255, 255, 255, 1 }, *pMundo->getFuente());
 						}
@@ -788,6 +813,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					tipo = 174;
 					pMundo->setTextoArriba(true);
 					//Comprobacion de en que planta estoy actualmente 
+					//SUBIDA
 					if (pMundo->getIndiceMapa() == 0) {//ENTIENDO QUE ESTOY EN LA PLANTA 4
 						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 5", { 255, 255, 255, 1 }, *pMundo->getFuente());
 					}

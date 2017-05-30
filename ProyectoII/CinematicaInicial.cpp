@@ -23,6 +23,7 @@ CinematicaInicial::CinematicaInicial(Juego * pJ, string mapa)
 	moverI = false;
 	dibuja = true;
 
+	textoPsj.loadFromText(pJuego->getRender(), "Qué dolor de cabeza tengo....", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
 
 }
@@ -57,6 +58,7 @@ void CinematicaInicial::update(){
 
 		contador++;
 		cinematicaInicial();
+		
 	
 }
 
@@ -80,6 +82,10 @@ void CinematicaInicial::draw() const{
 		a.h = 200;
 		a.w = 400;
 		pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
+		if (contador > 1000){
+			textoPsj.renderFont(pJuego->getRender(), psj->getRect().x - camera.x - 150, psj->getRect().y - camera.y +70);
+		}
+	
 		//pJuego->escribir("Pulsa ESPACIO para saltar",200, 200);
 	}
 }
@@ -115,24 +121,30 @@ void CinematicaInicial::cinematicaInicial(){
 	{
 		dibuja = false;
 	}
-
+	//Se mueve al personaje fuera de la cama
 	if (contador == 800){
 		cambiaPosPSJ(360, 900);
 		dibuja = true;
 		moverI = true;
 	}
-
-	if (moverI && contador >= 900){
+	//Se desliza la carta
+	if (moverI && contador >= 900 && contador < 1000){
 		objetos[0]->setVisible(true);
 		objetos[0]->move(0, 1);
 	}
+	//El informe para y se pasa al estado mundo
+	if (contador >1400){
+		moverI = false;	
 
-	if (objetos[0]->getRect().y >= 950){
-		moverI = false;
 		pJuego->setBorraEstado(true);
 		pJuego->setEstadoEnum(MundoReal);
 	}
+	if (contador > 1100){
+		textoPsj.loadFromText(pJuego->getRender(), "¿Dónde están mis pastillas? ¡Las necesito!", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
+	}
+	if (contador > 1250)
+		textoPsj.loadFromText(pJuego->getRender(), "Voy a lavarme la cara a ver si se me pasa.", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
 }
 

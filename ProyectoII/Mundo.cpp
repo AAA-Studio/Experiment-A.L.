@@ -64,6 +64,9 @@ Mundo::~Mundo()
 {
 	freeObjetos();
 
+	pJuego->getResources()->getMusica(JuegoSDL::MReal)->close();
+	pJuego->getResources()->getMusica(JuegoSDL::MOscuro)->close();
+
 }
 
 //Objetos
@@ -310,7 +313,7 @@ void Mundo::draw()const{
 	}
 	//Compruebo si la puerta esta cerrada y muestro el texto
 	else if (puertaCerrada){
-		textPCerrada.renderFont(pJuego->getRender(), psj->getRect().x - camera.x -20, psj->getRect().y - camera.y - 100);
+		textPCerrada.renderFont(pJuego->getRender(), psj->getRect().x - camera.x -20, psj->getRect().y - camera.y - 70);
 	}
 
 	//Caso en el que has cogido la pistola
