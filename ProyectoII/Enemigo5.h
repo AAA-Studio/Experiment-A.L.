@@ -27,22 +27,28 @@ public:
 	virtual void update();
 	inline void restaVida() { vida--; };
 	inline float getVida()const { return vida; };
-	virtual void mover(int x, int y){}
+	virtual void embiste();
+	virtual void recargaEmbestida();
 	void setPosChocando(int x, int y);
 	
 
 protected:
+
+	enum dirY{ up, down, no };
+	enum dirX{ izq, drcha, none };
 	SDL_Rect rectPJ; // rect del personaje
 	MundoVirtual* pMundo;
 	int vida;
 	char xCol, yCol;
-	bool chocando;
-	int posXAnt, posYAnt;
-	//Direccion dir;
-	void ataque();
-	void perseguir();
-	void rodear();
+	bool chocando, estaEnEmbestida, estabaEmbistiendo;
 
+	//Direccion dir;
+	void embestida();
+	void recargaEmbestida();
+	bool EstaEnArea(float distancia);
+
+	dirY m_dirY;
+	dirX m_dirX;
 };
 #endif
 
