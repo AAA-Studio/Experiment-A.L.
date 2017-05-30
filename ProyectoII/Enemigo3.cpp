@@ -11,7 +11,8 @@ Enemigo3::Enemigo3(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Textu
 
 	rectAntesEmbestida = { x, y, w, h };
 	vida = 3;
-	velocidad = 1;
+	velocidad = 3;
+
 }
 
 
@@ -22,23 +23,26 @@ Enemigo3::~Enemigo3()
 void Enemigo3::update() {
 
 	rectPJ = pMundo->getPersonaje()->getRect();
-	estaEnEmbestida = EstaEnArea(200.0f);
-	estabaEmbistiendo = estaEnEmbestida;
-	if (EstaEnArea(200.0f)) {
-		if (EstaEnArea(100.0f)) {
+	estabaEmbistiendo = estaEnEmbestida = EstaEnArea(200.0f);
+	if (estaEnEmbestida) velocidad = 3;
+	else velocidad = 1;
+	if (EstaEnArea(100.0f)) {
+		if (EstaEnArea(50.0f)) {
 			if (estaEnEmbestida) {
 				movimiento(rectPJ);
-				if (EstaEnArea(5.0f)) {
+				if (EstaEnArea(20.0f)) {
 
 					if (m_dirX == izq) rectPJ.x -= 5;
 					else if (m_dirX == drcha)rectPJ.x += 5;
 					if (m_dirY == up) rectPJ.y -= 5;
 					else if (m_dirY == down) rectPJ.y += 5;
 					estabaEmbistiendo != estaEnEmbestida;
+					velocidad = 1;
 				}
 			}
 
 			else {
+				velocidad = 2;
 				movimiento(rectAntesEmbestida);
 			}
 		}
@@ -60,25 +64,24 @@ void Enemigo3::update() {
 void Enemigo3::movimiento(SDL_Rect target) {
 	if (rect.y > target.y) { //movimiento en el eje y
 		m_dirY = up;
-		rect.y--;
+		rect.y -= velocidad;
 	}
 	else if (rect.y < target.y) {
 		m_dirY = down;
-		rect.y++;
+		rect.y+= velocidad;
 	}
 
 	if (rect.x > target.x) { //movimiento en el eje x
 		m_dirX = izq;
-		rect.x--;
+		rect.x -= velocidad;
 	}
 	else if (rect.x < target.x) {
 		m_dirX = drcha;
-		rect.x++;
+		rect.x += velocidad;
 	}
 }
 
 bool Enemigo3::EstaEnArea(float minDistancia) {
-
 
 	//Vectores auxiliares
 	pair<float, float> targetPosition = make_pair(rectPJ.x, rectPJ.y);

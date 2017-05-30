@@ -10,6 +10,7 @@
 #include "Enemigo2.h"
 #include "Enemigo3.h"
 #include "Enemigo4.h"
+#include "Enemigo5.h"
 
 //Metodos ordenadiiiiiiiiiiiiiisimos :D
 
@@ -130,7 +131,7 @@ void Mundo::cargaObjetos(){
 	}
 	obj.close();
 	
-	enemigo = new Enemigo3(this, 400, 900, 25, 25, JuegoSDL::TLeon, JuegoSDL::ENull);
+	enemigo = new Enemigo5(this, 400, 900, 25, 25, JuegoSDL::TLeon, JuegoSDL::ENull);
 }
 void Mundo::initObjetos()
 {	
