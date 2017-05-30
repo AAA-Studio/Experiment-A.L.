@@ -22,5 +22,5 @@ void GameOver::draw()const{
 		objetos[i]->draw(objetos[i]->getRect().x, objetos[i]->getRect().y);
 }
 void GameOver::initObjetos(){
-	objetos.push_back(new Boton(pJuego, 200, 300, 400, 100, JuegoSDL::TMenu, JuegoSDL::ENull, goMenu));
+	objetos.push_back(new Boton(pJuego, 350, 150, 400, 100, JuegoSDL::TMenu, JuegoSDL::ENull, goMenu));
 }

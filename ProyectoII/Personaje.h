@@ -57,7 +57,7 @@ public:
 
 private:
 	//Atributos
-	//Variablles de tiempo
+	//Variables de tiempo
 	const float tiempoBala = 1000;
 	const float tiempoEmpuje = 500;
 	const float tiempoInput = 500;

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Mundo.h"
 #include "Bala.h"
+#include "Armas.h"
 
 //Constructora
 Personaje::Personaje(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) : Entidad(pM->getPJ(), x, y, 30, 40, textura, efecto, ONull)
@@ -215,6 +216,8 @@ void Personaje::disparo(){
 			arma->restaBalas();
 			ultimaBala = SDL_GetTicks();
 			pJuego->getResources()->getEfecto(0)->play(0);
+			pMundo->getTexturaBala()->loadFromText(pJuego->getRender(), "Balas : " + to_string(getBalas()), { 255, 255, 255, 1 }, *pMundo->getFuente());
+		
 		}
 	}
 }

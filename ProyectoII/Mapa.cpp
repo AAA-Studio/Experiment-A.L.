@@ -9,8 +9,8 @@ Mapa::Mapa(MundoVirtual *pM, string mapa) : pMundo(pM), nombreMapa(mapa)
 	buscaSpawn();
 	setCamera();
 	azulCP4O = naranajaP5R = naranjaP4R = pistachoP3O = azulCP2R = azulCP5R = false;
-	encendido = false;
-	encendido2 = false;
+	encendido = encendido2 = false;
+
 }
 
 Mapa::~Mapa()
@@ -377,8 +377,10 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.w = felpudo.w - 20;
 
 					if (pMundo->checkCollision(box, felpudo)){
+						
 						pMundo->setNivel(-1);
 						tipo = 150;
+						
 						pMundo->setPasoNivel(true);
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
@@ -441,22 +443,42 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			else if (tileMap[indice]->getType() == 158)
 			{
 				//Planta 5 necesitas el codigo
-				if (pJuego->getPuerta(0) && pMundo->getIndiceMapa() == 0){
+				//Caso en el que aun no he metido la combinacion
+				if (pMundo->getIndiceMapa() == 0 && !pJuego->getPuerta(0)){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
 					felpudo.w = felpudo.w - 20;
-
+					if (pMundo->checkCollision(box, felpudo)){
+						tipo = 158;
+						pMundo->setPuertaCerrada(true);
+						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
+					//Caso en el que no colisiono con la puerta
+					else
+						pMundo->setPuertaCerrada(false);
+				}
+				//Caso en el que ya puedo abrir la puerta porque he metido la combinacion
+				if (pJuego->getPuerta(0) && pMundo->getIndiceMapa() == 0){
+					pMundo->setPuertaCerrada(false);//La puerta ya no esta cerrada en este caso
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
 					if (pMundo->checkCollision(box, felpudo)){
 						pMundo->setNivel(3);
 						tipo = 158;
+
 						pMundo->setPasoNivel(true);
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
-					}
+					}					
+				
 				}
 				//En las demas no
 				else if (pMundo->getIndiceMapa() != 0){
+				//	pMundo->setPuertaCerrada(false);//La puerta ya no esta cerrada en este caso
+
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
@@ -504,11 +526,32 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					if (pMundo->checkCollision(box, felpudo)){
 						pMundo->setNivel(4);
 						tipo = 159;
+						
 						pMundo->setPasoNivel(true);
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
 					}
 				}
+				else {
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+					if (pMundo->checkCollision(box, felpudo)){
+						tipo = 159;
+						//Escribo el texto de que la puerta esta cerrada
+						pMundo->setPuertaCerrada(true);
+						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
+
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+					}
+					else
+						pMundo->setPuertaCerrada(false);
+					}
+					
+
+				
 
 			}
 			//PUERTA MARRÓN
@@ -533,6 +576,20 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//PUERTA AZUL
 			else if (tileMap[indice]->getType() == 152)
 			{
+				//Caso en el que estoy en la planta 5 no he cogido la llave
+				if (pMundo->getIndiceMapa() == 0 && !pMundo->getLLavesCogidas(0)){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.y = felpudo.y + 25;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 25;
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setPuertaCerrada(true);
+						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
+					}
+					//Caso en el que no colisiono con la puerta
+					else
+						pMundo->setPuertaCerrada(false);
+				}
 				//necesitas llave en el nivel 1
 				if ((pMundo->getLLavesCogidas(0) || azulCP5R) && pMundo->getIndiceMapa() == 0){
 					felpudo = tileMap[indice]->getBox();
@@ -1022,7 +1079,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 				if (pMundo->checkCollision(box, felpudo)){
 					pMundo->setNivel(-5);
 					tipo = 496;
-					pMundo->setTextoArriba(true);
+					//pMundo->setTextoArriba(true);
 					if (pMundo->getIndiceMapa() == 36) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
 						pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 3", { 255, 255, 255, 1 }, *pMundo->getFuente());
 					}

@@ -31,6 +31,7 @@ public:
 	//------------------GETTERS---------------------
 	inline Mapa* getMapa() const { return mapa; };
 	inline Juego* getPJ() const{ return pJuego; };
+	
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
 			return balasEnems;
@@ -73,8 +74,12 @@ public:
 	virtual void setMundo(Mundo_t m){};
 
 	inline void setTextoArriba(bool text){  };
+	inline void setPuertaCerrada(bool puerta){};
 	inline TexturasSDL* getTextura(){ return pJuego->getResources()->getTextura(0); };
+	inline TexturasSDL * getTexturaBala(){ return pJuego->getResources()->getTextura(0); };
+	inline TexturasSDL * getTexturaPCerrada(){ return pJuego->getResources()->getTextura(0); };
 	inline Fuente*  getFuente()const{ return nullptr; };
+
 
 
 

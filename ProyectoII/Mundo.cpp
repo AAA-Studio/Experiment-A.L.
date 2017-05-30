@@ -8,7 +8,7 @@
 #include <fstream>
 
 
-//Metodos ordenadiiiiiiiiiiiiiisimos :D
+
 
 Mundo::Mundo(Juego * pJ, string m)
 {
@@ -33,6 +33,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	//puertas[0] = 0;
 
 	pasoNivel = false;
+	puertaCerrada = false;
 	//objetos[1]->setVisible(false);
 	pJuego->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->play();
 
@@ -54,6 +55,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
 	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'E' para interactuar", { 255, 255, 255, 1 }, *font_);
 	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
+	textPCerrada.loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *font_);
 
 	textArriba = false;
 }
@@ -280,11 +282,11 @@ void Mundo::draw()const{
 	SDL_Rect a = getCamera();
 	a.h = 200;
 	a.w = 400;
-	pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
+	//pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 	//Dibujo las balas restantes si no hay arma este sera 0
 	a.h = 30;
 	a.w = 90;
-	textBalas.draw(pJuego->getRender(), a, 200, 600, nullptr);
+
 
 	//Dibujar fondo negro
 	a.h = 640;
@@ -306,14 +308,22 @@ void Mundo::draw()const{
 		a.w = 240;
 		textPlanta.draw(pJuego->getRender(), a, 280, 250, nullptr);
 	}
+	//Compruebo si la puerta esta cerrada y muestro el texto
+	else if (puertaCerrada){
+		textPCerrada.renderFont(pJuego->getRender(), psj->getRect().x - camera.x -20, psj->getRect().y - camera.y - 100);
+	}
+
+	//Caso en el que has cogido la pistola
+	else if (psj->getBalas() > 0){
+		textBalas.renderFont(pJuego->getRender(), 400, 600);
+
+	}
 }
 
 void Mundo::update(){
 		psj->update();//Update de personaje
 		balaDestruida = false;
 		colObjeto = false;
-		textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
-
 
 
 		//Caso GameOver
@@ -504,6 +514,7 @@ void Mundo::update(){
 				textArriba = false;
 			}
 		}
+		
 
 	}
 void Mundo::onInput(SDL_Event &e){

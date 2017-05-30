@@ -59,6 +59,8 @@ public:
 	inline bool getPasoNivel()const{ return pasoNivel; };
 	inline void setPasoNivel(bool pNivel){ pasoNivel = pNivel; };
 	inline void setCurapsj(){ psj->sumaVida(3); }
+	inline void setPuertaCerrada(bool puerta){ puertaCerrada = puerta; };
+	
 
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
 	{
@@ -93,6 +95,8 @@ public:
 	inline void setTextoArriba(bool text){ textArriba = text; };
 	inline TexturasSDL *getTextura(){ return &textPlanta; };
 	inline Fuente*  getFuente()const{ return font_; };
+	inline TexturasSDL * getTexturaBala(){ return &textBalas; };
+	inline TexturasSDL * getTexturaPCerrada(){ return &textPCerrada; };
 	//Metodo para escribir en una parte concreta de la ventana
 
 
@@ -135,6 +139,7 @@ private:
 	bool llavesCogidas[TAMAÑO_LLAVES];
 	bool pasoNivel;
 	bool nivelCambiado;
+	bool puertaCerrada;
 	Uint32 alfo;
 
 	bool colObjeto;
@@ -142,7 +147,7 @@ private:
 
 	//Fuente
 	Fuente* font_;
-	TexturasSDL textCogerObj, textPlanta, textBalas;
+	TexturasSDL textCogerObj, textPlanta, textBalas, textPCerrada;
 	//bool abierto;
 	//vector<bool> cerraduras;
 	//vector<int> puertas;

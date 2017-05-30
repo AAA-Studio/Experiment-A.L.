@@ -45,6 +45,8 @@ public:
 	virtual bool getPasoNivel()const = 0;
 	virtual TexturasSDL *getTextura()  = 0;
 	virtual Fuente*  getFuente() const = 0;
+	virtual TexturasSDL * getTexturaBala()= 0;
+	virtual TexturasSDL * getTexturaPCerrada() = 0;
 
 
 
@@ -57,6 +59,7 @@ public:
 	virtual void setMundo(Mundo_t m) = 0;
 	virtual void setCurapsj() = 0;
 	virtual void setTextoArriba(bool text) = 0;
+	virtual void setPuertaCerrada(bool puerta) = 0;
 };
 
 #endif
