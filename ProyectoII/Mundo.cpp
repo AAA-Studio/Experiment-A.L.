@@ -255,8 +255,8 @@ void Mundo::update(){
 		balaDestruida = false;
 		colObjeto = false;
 
-		enemigo->update();
-		compruebaColsionEnemigo();
+		
+		compruebaColisionEnemigo();
 
 		//Caso GameOver
 		if (psj->getVida() <= 0){
@@ -304,7 +304,10 @@ void Mundo::update(){
 			if (checkCollision(camera, enemigo->getRect()))
 				enemigo->update();
 			//COLISIONES ENEMIGO 
+			
 		}
+		if (checkCollision(camera, enemigo->getRect()))
+			enemigo->update();
 
 		//Update de objetos
 		list<EntidadJuego*>::iterator obj = objetos.begin();
@@ -492,7 +495,7 @@ EntidadJuego * Mundo::compruebaColisionObjetos(){
 		return nullptr;
 	}
 
-void Mundo::compruebaColsionEnemigo()
+void Mundo::compruebaColisionEnemigo()
 {
 	SDL_Rect rectEnemigo = enemigo->getRect();
 
@@ -524,17 +527,17 @@ void Mundo::compruebaColsionEnemigo()
 	// comprueba la Y
 	if (mapa->touchesWall(rectEnemigo)){
 		rectEnemigo.y -= y;
-		enemigo->chocarY('y', true);
+		enemigo->colision(true);
 	}
 	else 
-		enemigo->chocarY('n', false);
+		enemigo->colision(false);
 	//comprueba la X
 	if (mapa->touchesWall(rectEnemigo)){
 		rectEnemigo.x -= x;
-		enemigo->chocarX('x', true);
+		enemigo->colision(true);
 	}
 	else 
-		enemigo->chocarX('n', false);
+		enemigo->colision(false);
 
 
 	//Felpudos

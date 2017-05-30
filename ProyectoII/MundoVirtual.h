@@ -18,6 +18,8 @@ public:
 	//Colision
 	virtual bool checkCollision(SDL_Rect a, SDL_Rect b) = 0;
 	virtual EntidadJuego * compruebaColisionObjetos() = 0;
+	virtual bool checkColMapa(SDL_Rect enemigo) = 0;
+
 
 	//Destruccion objetos
 	virtual void destruyeLlave(EntidadJuego * llave) = 0;
@@ -49,6 +51,7 @@ public:
 	virtual void setIndiceMapa(int i) = 0;
 	virtual void setLlaveCogida(int indice) = 0;
 	virtual void setMundo(Mundo_t m) = 0;
+	
 };
 
 #endif

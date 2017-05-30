@@ -85,8 +85,7 @@ public:
 	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
 	inline void setLlaveCogida(int indice) { llavesCogidas[indice] = !llavesCogidas[indice]; };
 
-
-	
+	virtual bool checkColMapa(SDL_Rect enemigo){ if (mapa->touchesWall(enemigo)) return true; else return false; }
 private:
 
 	//-------------------ATRIBUTOS---------------
@@ -140,7 +139,7 @@ private:
 	void freeObjetos();
 
 	//Colisiones
-	void compruebaColsionEnemigo();
+	void compruebaColisionEnemigo();
 	void compruebaColisionPersonaje();//Colision con muros y puertas
 	void colBalaEnemigo();
 	void colBalaPersonaje();

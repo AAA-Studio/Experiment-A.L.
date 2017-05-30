@@ -20,8 +20,8 @@ public:
 	void setDir(Direction2 direc){ dir = direc; };
 	inline int DamePosAntX(){ return posXAnt; };
 	inline int DamePosAntY(){ return posYAnt; };
-	void chocarX(char x, bool chocando){ this->chocando = chocando; xCol = x; }
-	void chocarY(char y, bool chocando){ this->chocando = chocando; yCol = y; }
+	void colision(bool chocando){ this->chocando = chocando;}
+	
 	~Enemigo4();
 
 protected:
@@ -29,9 +29,17 @@ protected:
 	MundoVirtual* pMundo;
 	Direction2 dir;
 	int vida;
-	char xCol, yCol;
 	bool chocando;
+	bool ejeY, ejeX;
+	bool rodeado;
 	int posXAnt, posYAnt;
+	int x, y;
+	bool atascadoX, atascadoY;
+	bool rodeando;
+
+	bool izquierda;
+	bool deFrente;
+	bool derecha;
 	//Direccion dir;
 	void ataque();
 	void perseguir();
