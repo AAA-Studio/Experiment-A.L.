@@ -25,7 +25,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -69,14 +69,15 @@
   <ItemGroup>
     <ClCompile Include="Armas.cpp" />
     <ClCompile Include="Bala.cpp" />
+    <ClCompile Include="BossFinal.cpp" />
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="CinematicaInicial.cpp" />
     <ClCompile Include="Combinaciones.cpp" />
     <ClCompile Include="Enemigo.cpp" />
+    <ClCompile Include="Enemigo1.cpp" />
     <ClCompile Include="Enemigo2.cpp" />
     <ClCompile Include="Enemigo3.cpp" />
     <ClCompile Include="Enemigo4.cpp" />
-    <ClCompile Include="Enemigo5.cpp" />
     <ClCompile Include="Entidad.cpp" />
     <ClCompile Include="Fuente.cpp" />
     <ClCompile Include="GameOver.cpp" />
@@ -97,15 +98,16 @@
   <ItemGroup>
     <ClInclude Include="Armas.h" />
     <ClInclude Include="Bala.h" />
+    <ClInclude Include="BossFinal.h" />
     <ClInclude Include="Boton.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="CinematicaInicial.h" />
     <ClInclude Include="Combinaciones.h" />
     <ClInclude Include="Enemigo.h" />
+    <ClInclude Include="Enemigo1.h" />
     <ClInclude Include="Enemigo2.h" />
     <ClInclude Include="Enemigo3.h" />
     <ClInclude Include="Enemigo4.h" />
-    <ClInclude Include="Enemigo5.h" />
     <ClInclude Include="Entidad.h" />
     <ClInclude Include="EntidadJuego.h" />
     <ClInclude Include="Error.h" />

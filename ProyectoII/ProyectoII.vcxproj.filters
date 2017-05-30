@@ -70,6 +70,12 @@
     <Filter Include="Archivos de encabezado\Juego">
       <UniqueIdentifier>{dc6a6610-d239-4d15-8e35-12734f33f589}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de código fuente\Entidades\Personajes\Enemigos">
+      <UniqueIdentifier>{46dc069e-9d00-4c83-9891-a3e119127037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Entidades\Personajes\Enemigos">
+      <UniqueIdentifier>{4207707d-4131-4f87-ada0-a749ff762fc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -120,9 +126,6 @@
     <ClCompile Include="Entidad.cpp">
       <Filter>Archivos de código fuente\Entidades</Filter>
     </ClCompile>
-    <ClCompile Include="Enemigo.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes</Filter>
-    </ClCompile>
     <ClCompile Include="Armas.cpp">
       <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
     </ClCompile>
@@ -138,16 +141,22 @@
     <ClCompile Include="CinematicaInicial.cpp">
       <Filter>Archivos de código fuente\Estados\Mundo</Filter>
     </ClCompile>
-    <ClCompile Include="Enemigo2.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes</Filter>
+    <ClCompile Include="Enemigo.cpp">
+      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
     </ClCompile>
-    <ClCompile Include="Enemigo3.cpp">
-      <Filter>Archivos de código fuente</Filter>
+    <ClCompile Include="Enemigo1.cpp">
+      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemigo2.cpp">
+      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
     </ClCompile>
     <ClCompile Include="Enemigo4.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes</Filter>
+      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
     </ClCompile>
-    <ClCompile Include="Enemigo5.cpp">
+    <ClCompile Include="Enemigo3.cpp">
+      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
+    </ClCompile>
+    <ClCompile Include="BossFinal.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
@@ -206,9 +215,6 @@
     <ClInclude Include="Personaje.h">
       <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
     </ClInclude>
-    <ClInclude Include="Enemigo.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
-    </ClInclude>
     <ClInclude Include="Combinaciones.h">
       <Filter>Archivos de encabezado\Estados\Menu</Filter>
     </ClInclude>
@@ -230,16 +236,22 @@
     <ClInclude Include="CinematicaInicial.h">
       <Filter>Archivos de encabezado\Estados\Mundo</Filter>
     </ClInclude>
-    <ClInclude Include="Enemigo2.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
+    <ClInclude Include="Enemigo.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
     </ClInclude>
-    <ClInclude Include="Enemigo3.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="Enemigo2.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
     </ClInclude>
     <ClInclude Include="Enemigo4.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
+      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
     </ClInclude>
-    <ClInclude Include="Enemigo5.h">
+    <ClInclude Include="Enemigo1.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemigo3.h">
+      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
+    </ClInclude>
+    <ClInclude Include="BossFinal.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

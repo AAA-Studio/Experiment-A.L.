@@ -6,8 +6,10 @@
 #include "Bala.h"
 #include "Boton.h"
 #include <fstream>
-
-
+#include "Enemigo1.h"
+#include "Enemigo2.h"
+#include "Enemigo3.h"
+#include "Enemigo4.h"
 
 //Metodos ordenadiiiiiiiiiiiiiisimos :D
 
@@ -116,7 +118,7 @@ void Mundo::cargaObjetos(){
 				else if (nombre == "ENEMIGO"){
 
 					obj >> x >> y >> w >> h;
-					enemigos.push_back(new Enemigo(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
+					enemigos.push_back(new Enemigo1(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 				}
 
@@ -128,7 +130,7 @@ void Mundo::cargaObjetos(){
 	}
 	obj.close();
 	
-	enemigo = new Enemigo4(this, 400, 900, 25, 25, JuegoSDL::TLeon, JuegoSDL::ENull);
+	enemigo = new Enemigo3(this, 400, 900, 25, 25, JuegoSDL::TLeon, JuegoSDL::ENull);
 }
 void Mundo::initObjetos()
 {	
@@ -255,8 +257,8 @@ void Mundo::update(){
 		balaDestruida = false;
 		colObjeto = false;
 
-		enemigo->update();
-		compruebaColsionEnemigo();
+		
+		compruebaColisionEnemigo();
 
 		//Caso GameOver
 		if (psj->getVida() <= 0){
@@ -304,7 +306,10 @@ void Mundo::update(){
 			if (checkCollision(camera, enemigo->getRect()))
 				enemigo->update();
 			//COLISIONES ENEMIGO 
+			
 		}
+		if (checkCollision(camera, enemigo->getRect()))
+			enemigo->update();
 
 		//Update de objetos
 		list<EntidadJuego*>::iterator obj = objetos.begin();
@@ -492,7 +497,7 @@ EntidadJuego * Mundo::compruebaColisionObjetos(){
 		return nullptr;
 	}
 
-void Mundo::compruebaColsionEnemigo()
+void Mundo::compruebaColisionEnemigo()
 {
 	SDL_Rect rectEnemigo = enemigo->getRect();
 
@@ -524,17 +529,17 @@ void Mundo::compruebaColsionEnemigo()
 	// comprueba la Y
 	if (mapa->touchesWall(rectEnemigo)){
 		rectEnemigo.y -= y;
-		enemigo->chocarY('y', true);
+		enemigo->colision(true);
 	}
 	else 
-		enemigo->chocarY('n', false);
+		enemigo->colision(false);
 	//comprueba la X
 	if (mapa->touchesWall(rectEnemigo)){
 		rectEnemigo.x -= x;
-		enemigo->chocarX('x', true);
+		enemigo->colision(true);
 	}
 	else 
-		enemigo->chocarX('n', false);
+		enemigo->colision(false);
 
 
 	//Felpudos
