@@ -7,11 +7,12 @@ Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Textu
 	
 	vida = 3;
 	maxX = maxY = max;
+	this->x = x;
+	this->y = y;
 	direccion = true;
 	pasivo = true;
 	volviendo = false;
 	eje = dir;
-	
 	velocidad = 1;
 }
 
@@ -21,7 +22,10 @@ void Enemigo2::update(){
 	checkPersonaje(); //comprobacion de la posicion del personaje
 
 	if (volviendo && !pasivo)
+	{
 		volver();
+		cout << "volviendo";
+	}
 	else if (pasivo)
 		patrulla();
 	else
@@ -32,13 +36,13 @@ void  Enemigo2::patrulla(){
 	if (eje == 'x'){
 		if (direccion) //camina hacia la derecha
 		{
-			rect.x += 1;
+			rect.x += velocidad;
 			if (rect.x >= x + maxX)
 				direccion = false;
 		}
 		else //camina hacia la izquierda
 		{
-			rect.x -= 1;
+			rect.x -= velocidad;
 			if (rect.x <= x)
 				direccion = true;
 		}
@@ -47,13 +51,13 @@ void  Enemigo2::patrulla(){
 	{
 		if (direccion) //camina hacia la derecha
 		{
-			rect.y += 1;
+			rect.y += velocidad;
 			if (rect.y >= y + maxY)
 				direccion = false;
 		}
 		else //camina hacia la izquierda
 		{
-			rect.y -= 1;
+			rect.y -= velocidad;
 			if (rect.y <= y)
 				direccion = true;
 		}
@@ -69,7 +73,6 @@ void Enemigo2::ataque(){
 
 
 void Enemigo2::volver(){
-	cout << "volviendo";
 	if (rect.y > y) //movimiento en el eje y
 		rect.y -= 1;
 	else if (rect.y < y)

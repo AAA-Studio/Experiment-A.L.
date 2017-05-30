@@ -157,7 +157,7 @@
       <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
     </ClCompile>
     <ClCompile Include="BossFinal.cpp">
-      <Filter>Archivos de código fuente</Filter>
+      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,7 +252,7 @@
       <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
     </ClInclude>
     <ClInclude Include="BossFinal.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -90,6 +90,7 @@ void Enemigo::rodear()
 }
 
 void Enemigo::perseguir(){
+	cout << "ataco";
 
 	moveX = moveY = 0;
 
