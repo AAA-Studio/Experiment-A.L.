@@ -56,6 +56,10 @@ Efecto::~Efecto(){
 	pChunk_ = nullptr;
 }
 
+void Efecto::closeAndLoadEffect(){
+	close();
+	load(nombArchivo);
+}
 void Efecto::load(string const& nombArch){
 	pChunk_ = Mix_LoadWAV(nombArch.c_str());//Cargamos el audio
 	if (pChunk_ == nullptr)

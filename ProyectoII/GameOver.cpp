@@ -4,11 +4,12 @@
 
 GameOver::GameOver(Juego * pJ) : Menu(pJ)
 {
+	pJ->getResources()->getMusica(JuegoSDL::MGameOver)->play(1);
 	initObjetos();
 }
 
 static void goMenu(Juego * pj){
-	//pj->nuevoJuego = true; //CAMBIAR
+	
 	pj->setBorraEstado(true);
 	pj->setEstadoEnum(MInicio);
 };
@@ -23,4 +24,8 @@ void GameOver::draw()const{
 }
 void GameOver::initObjetos(){
 	objetos.push_back(new Boton(pJuego, 350, 150, 400, 100, JuegoSDL::TMenu, JuegoSDL::ENull, goMenu));
+}
+GameOver::~GameOver(){
+
+	pJuego->getResources()->getMusica(JuegoSDL::MGameOver)->closeAndLoad();
 }

@@ -33,7 +33,7 @@ const int TAMAÑO_LLAVES = 2;
 
 //------------------ENUMS--------------------------
 
-enum Estados_t{ MInicio, MGameOver, MPausa, MundoReal, MundoOscuro, /*MPasoDeNivel*/ ECombinaciones, CinematicaI };
+enum Estados_t{ MInicio, EGameOver, MPausa, MundoReal, MundoOscuro, /*MPasoDeNivel*/ ECombinaciones, CinematicaI };
 
 enum ListaBalas_t{ LBalasEnemigos, LBalasPersonaje };
 

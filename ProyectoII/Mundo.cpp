@@ -64,8 +64,9 @@ Mundo::~Mundo()
 {
 	freeObjetos();
 
-	pJuego->getResources()->getMusica(JuegoSDL::MReal)->close();
-	pJuego->getResources()->getMusica(JuegoSDL::MOscuro)->close();
+	pJuego->getResources()->getMusica(JuegoSDL::MReal)->closeAndLoad();
+	pJuego->getResources()->getMusica(JuegoSDL::MOscuro)->closeAndLoad();
+
 
 }
 
@@ -331,7 +332,7 @@ void Mundo::update(){
 
 		//Caso GameOver
 		if (psj->getVida() <= 0){
-			pJuego->setEstadoEnum(MGameOver);
+			pJuego->setEstadoEnum(EGameOver);
 			pJuego->setBorraEstado(true);
 		}
 
@@ -376,8 +377,14 @@ void Mundo::update(){
 
 		//Enemigos
 		for (auto enemigo : enemigos){
-			if (checkCollision(camera, enemigo->getRect()))
+			if (checkCollision(camera, enemigo->getRect())){
 				enemigo->update();
+				//Si el personaje choca con el enemigo, resto vida
+				if (checkCollision(psj->getRect(), enemigo->getRect()))
+					psj->restaVida();
+					
+			}
+
 		}
 
 		//Update de objetos
@@ -704,13 +711,6 @@ void Mundo::compruebaColisionPersonaje(){
 	int tipo;
 	mapa->touchesDoor(rectPies, tipo);
 
-	
-	/*if (mapa->touchesDoor(rectPies, tipo))
-	{
-
-		EstadoJuego * aux = new PasoDeNivel(pJuego);
-		pJuego->goToState(aux);
-	}*/
 
 	//comprueba la X
 	if (mapa->touchesWall(rectPies)){

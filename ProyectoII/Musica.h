@@ -35,9 +35,11 @@ public:
 	void play(int repetitions = -1);
 	void pause();
 	void close();
+	void closeAndLoadEffect();
 
 private:
 	Mix_Chunk * pChunk_;
+	string nombArchivo;
 
 };
 

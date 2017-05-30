@@ -545,7 +545,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo->setPuertaCerrada(true);
 						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
 
-						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						return true;
 					}
 					else
@@ -587,6 +587,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					if (pMundo->checkCollision(box, felpudo)){
 						pMundo->setPuertaCerrada(true);
 						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						return true;
 
 					}
@@ -713,6 +714,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			// PUERTA NARANJA
 			else if ((tileMap[indice]->getType() == 157))
 			{
+				//Caso en el que la puerta esta cerrada, no tengo la llave necesaria
 				if (pMundo->getIndiceMapa() == 0 && !pMundo->getLLavesCogidas(0)){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
@@ -722,6 +724,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						tipo = 158;
 						pMundo->setPuertaCerrada(true);
 						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						return true;
 
 					}
@@ -832,6 +835,8 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			// ESPEJO
 			else if ((tileMap[indice]->getType() == 114))
 			{
+				//Aqui poner texto al llegar al baño
+
 				felpudo = tileMap[indice]->getBox();
 				felpudo.x = felpudo.x + 10;
 				felpudo.h = felpudo.h - 15;

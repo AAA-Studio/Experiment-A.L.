@@ -17,7 +17,7 @@ Personaje::Personaje(MundoVirtual * pM, int x, int y, JuegoSDL::Texturas_t textu
 	balaDestruida = false;
 	llaveCogida = false;
 	informeCogido = false;
-	vida = 3;
+	vida = 5;
 	angulo = 90;
 	empuje = false;
 	posXAnt = x;
@@ -221,9 +221,11 @@ void Personaje::disparo(){
 		}
 	}
 }
+//no hace falta
 void Personaje::empujeHaciaAtras(){
 	empuje = true;
 	ultimoEmpuje = SDL_GetTicks();
+	restaVida();
 }
 void Personaje::restaVida(){
 	vida -= 1;
@@ -310,8 +312,8 @@ void Personaje::soltarInforme(){
 }
 
 void Personaje::sumaVida(int vida){
-	if (vida + this->vida > 3)
-		this->vida = 3;
+	if (vida + this->vida > 5)
+		this->vida = 5;
 	else
 		this->vida += vida;
 }

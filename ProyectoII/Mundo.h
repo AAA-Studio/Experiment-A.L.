@@ -58,7 +58,7 @@ public:
 	virtual void setMundo(Mundo_t m){ mundo = m; };
 	inline bool getPasoNivel()const{ return pasoNivel; };
 	inline void setPasoNivel(bool pNivel){ pasoNivel = pNivel; };
-	inline void setCurapsj(){ psj->sumaVida(3); }
+	inline void setCurapsj(){ psj->sumaVida(5); }
 	inline void setPuertaCerrada(bool puerta){ puertaCerrada = puerta; };
 	
 

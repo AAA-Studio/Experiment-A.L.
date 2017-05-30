@@ -25,7 +25,7 @@ public:
 	};
 	static std::vector<std::string> JuegoSDL::fontFiles_;
 
-	enum  Musica_t{ MInicio,MReal,MOscuro, Musica_t_SIZE };
+	enum  Musica_t{ MInicio,MReal,MOscuro, MGameOver, Musica_t_SIZE };
 	static std::vector<std::string> musicFiles_;
 
 	enum  Efectos_t{ EBala, EPuerta, EEspejo, ECerrada, ECorrecto, EPulsar, EIncorrecto, EObjeto, EInforme, ELlave, ENull, Efectos_t_SIZE };
@@ -41,14 +41,16 @@ public:
 	inline int getWindowHeight() const 	{ return height_; };
 	inline const RecursosSDL* getResources() const {return pResources_;}; // returns a pointer to the resources
 
+
 	// abstract methods to be implemented by subclasses
 	virtual void run() = 0; // start the game
+	void initResources();
 	//virtual void stop() = 0;  // stop the game
 
 private:
 	void initSDL(); // initialize SDL (ttf, mixer, image, create window and renderer, etc)
 	void closeSDL(); // close all SDL resources
-	void initResources(); // initialize the SDLResources object with the data at the top of this file
+	//void initResources(); // initialize the SDLResources object with the data at the top of this file
 	void closeResources(); // close the  SDLResources object (frees all memory)
 
 protected:

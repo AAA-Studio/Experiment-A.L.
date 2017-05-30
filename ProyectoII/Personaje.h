@@ -13,7 +13,7 @@ struct Direccion{
 	int y;
 };
 
-static const int MAXVIDA = 3;
+static const int MAXVIDA = 5;
 
 class Personaje : public Entidad
 {

@@ -9,7 +9,7 @@ class GameOver : public Menu
 {
 public:
 	GameOver(Juego * pJ);
-	~GameOver(){};
+	~GameOver();
 	void draw()const;
 private:
 	void initObjetos();

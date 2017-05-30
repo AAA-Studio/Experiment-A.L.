@@ -5,6 +5,7 @@
 MenuInicio::MenuInicio(Juego * pJ) : Menu(pJ)
 {
 	initObjetos();
+
 	pJ->getResources()->getMusica(JuegoSDL::MInicio)->play();
 }
 
