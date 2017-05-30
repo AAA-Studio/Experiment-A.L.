@@ -2,9 +2,9 @@
 #include "Personaje.h"
 using namespace std;
 
-Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, char dir, int max) : Enemigo (pM, x, y, w, h, textura, efecto)
+Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto, char dir, int max) : Enemigo(pM, x, y, w, h, textura, efecto)
 {
-	
+
 	vida = 3;
 	maxX = maxY = max;
 	this->x = x;
@@ -33,16 +33,17 @@ void Enemigo2::update(){
 }
 
 void  Enemigo2::patrulla(){
+	moveX = moveY = 0;
 	if (eje == 'x'){
 		if (direccion) //camina hacia la derecha
 		{
-			rect.x += velocidad;
+			moveX += velocidad;
 			if (rect.x >= x + maxX)
 				direccion = false;
 		}
 		else //camina hacia la izquierda
 		{
-			rect.x -= velocidad;
+			moveX -= velocidad;
 			if (rect.x <= x)
 				direccion = true;
 		}
@@ -51,18 +52,20 @@ void  Enemigo2::patrulla(){
 	{
 		if (direccion) //camina hacia la derecha
 		{
-			rect.y += velocidad;
+			moveY += velocidad;
 			if (rect.y >= y + maxY)
 				direccion = false;
 		}
 		else //camina hacia la izquierda
 		{
-			rect.y -= velocidad;
+			moveY -= velocidad;
 			if (rect.y <= y)
 				direccion = true;
 		}
 	}
-	
+
+	mover(moveX, moveY);
+
 }
 
 void Enemigo2::ataque(){
@@ -73,27 +76,31 @@ void Enemigo2::ataque(){
 
 
 void Enemigo2::volver(){
+	moveX = moveY = 0;
+
 	if (rect.y > y) //movimiento en el eje y
-		rect.y -= 1;
+		moveY -= velocidad;
 	else if (rect.y < y)
-		rect.y += 1;
+		moveY += velocidad;
 
 	if (rect.x > x) //movimiento en el eje x
-		rect.x -= 1;
+		moveX -= velocidad;
 	else if (rect.x < x)
-		rect.x += 1;
+		moveX += velocidad;
 
 	if (rect.y == y && rect.x == x) //posicion original
 	{
-		
+
 		pasivo = true;
 		volviendo = false;
 		cout << "he vuelto";
 	}
+
+	mover(moveX, moveY);
 }
 
 void Enemigo2::checkPersonaje(){
-	
+
 	//si el jugador está dentro de un radio de 100 el enemigo le detecta
 	if (rectPJ.x <= rect.x + 100 && rectPJ.x >= rect.x - 100 && rectPJ.y <= rect.y + 100 && rectPJ.y >= rect.y - 100)
 	{
