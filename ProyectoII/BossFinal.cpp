@@ -1,43 +1,48 @@
 #include "BossFinal.h"
 #include "Personaje.h"
+#include "Bala.h"
 
-BossFinal::BossFinal(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) 
+BossFinal::BossFinal(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto)
 : Enemigo(pM, x, y, w, h, textura, efecto)
 {
 	vida = 10;
 	velocidad = 1;
-	timeR = 5000;
+	timeR = 50;
+	timeE = 2;
+	timeA = 60;
+	timeC = 20;
 	passedTime = 0;
 	comportamiento = EPersigue;
 	estoyCerca = false;
 	dist = rect;
-	rangoDist = 30;
-	embistiendo;
+	rangoDist = 40;
+	embistiendo = false;
+	llegado = false;
+	angulo = 0;
 }
+
 BossFinal::~BossFinal(){}
 
 
 void BossFinal::update()
 {
+
 	rectPJ = pMundo->getPersonaje()->getRect(); //rect del personaje
 	posXAnt = rect.x;
 	posYAnt = rect.y;
+	pegar(0.008);
+	passedTime++;
 
 	switch (comportamiento)
 	{
 	case ERecarga:
-		passedTime++;
 		recargando();
 		break;
 	case EPersigue:
 		perseguir();
 		break;
 	case EEmbiste:
-		passedTime++;
-		//cout << "tengo que embestir";
 		embestir();
-		break;
-	case EDispara1:
 		break;
 	default:
 		break;
@@ -45,71 +50,104 @@ void BossFinal::update()
 }
 
 void BossFinal::recargando(){
-	if (passedTime >= timeR)
+	if (!embistiendo)
 	{
-		comportamiento = EPersigue;
-		passedTime = 0;
+		if (passedTime >= timeR)
+		{
+			passedTime = 0;
+			comportamiento = EPersigue;
+		}
+	}
+	else
+	{
+		if (passedTime >= timeE)
+		{
+			passedTime = 0;
+			velocidad = 5;
+			yPJ = rectPJ.y;
+			xPJ = rectPJ.x;
+			comportamiento = EEmbiste;
+		}
 	}
 }
 
 void BossFinal::perseguir(){
 
-	moveX = moveY = 0;
-	dist = rect;
-
-	if (rect.y > rectPJ.y) //movimiento en el eje y
+	if (passedTime >= timeA)
 	{
-		moveY -= velocidad;
-	}
-	else if (rect.y < rectPJ.y)
-	{
-		moveY += velocidad;
-		
-	}
-
-	if (rect.x > rectPJ.x) //movimiento en el eje x
-		moveX -= velocidad;
-	else if (rect.x < rectPJ.x)
-		moveX += velocidad;
-
-	mover(moveX, moveY);
-
-	/*dist.x += rangoDist * moveX;
-	dist.y += rangoDist * moveY;
-
-	if (!pMundo->checkCollision(dist, rectPJ))
-	{
-		mover(moveX, moveY);
-		cout << "me muevo como una princesa ";
+		passedTime = 0;
+		embistiendo = true;
+		comportamiento = ERecarga;
 	}
 	else
 	{
-		cout << "vamos a joderte un rato ";
-		xPJ = rectPJ.x;
-		yPJ = rectPJ.y;
-		velocidad = 3;
-		embistiendo = true;
-		comportamiento = EEmbiste;
-	}*/
+		if (rand() % 100 <= 25)
+			disparo();
+		if (!chocando)
+			Enemigo::perseguir();
+		else
+			rodear();
+	}
+
+
 }
 
 void BossFinal::embestir(){
 	if (embistiendo)
 	{
 		cout << "hola guapa que llevas puesto";
-		if (rect.x != xPJ && rect.y != yPJ) //si no he llegado a la ultima posicion registrada del jugador por enemigo
+		if (passedTime < timeC)
 		{
-			perseguir(); //le persigo de forma que cargo contra el 
+			//cout << "persigo";
+			cargarContraPJ(); //le persigo de forma que cargo contra el 
 		}
 		else
 		{
-			velocidad = 1; //si he llegado a la posicion, cambio la velocidad y dejo de embestir
+			cout << "ya no persigo";
+			passedTime = 0;
 			embistiendo = false;
 		}
 	}
 	else
+	{
+		velocidad = 1; //si he llegado a la posicion, cambio la velocidad y dejo de embestir
+		cout << velocidad;
 		comportamiento = ERecarga; //cuando acabo de embestir me paro y recargo
-
+	}
 }
 
+void BossFinal::cargarContraPJ(){
 
+	moveX = moveY = 0;
+
+	if (rect.y > yPJ) //movimiento en el eje y
+	{
+		moveY -= velocidad;
+	}
+	else if (rect.y < yPJ)
+		moveY += velocidad;
+
+	if (rect.x > xPJ) //movimiento en el eje x
+		moveX -= velocidad;
+	else if (rect.x < xPJ)
+		moveX += velocidad;
+
+	mover(moveX, moveY);
+}
+
+void BossFinal::disparo(){
+	if (SDL_GetTicks() - ultimaBala >= tiempoBala)
+	{
+		SDL_Rect rectPj = pMundo->getPersonaje()->getRect();
+		SDL_Rect rectDisparo = { rect.x + rect.w / 2, rect.y + rect.h / 2, rect.w, rect.h };
+
+		//Hallamos el angulo entre el personaje y el enemigo
+		if ((rectPj.x - rect.x) != 0)
+			angulo = atan2((float)(rectDisparo.y - (rectPj.y + rectPj.h)), -(float)(rectDisparo.x - (rectPj.x + rectPj.w / 2))) * 180 / 3.14;
+
+		//Instanciamos la bala
+		pMundo->insertaBala(LBalasEnemigos, new Bala(pMundo, rectDisparo.x, rectDisparo.y, rect.w / 5, rect.h / 5, JuegoSDL::TFuego, JuegoSDL::ENull, angulo, LBalasEnemigos));
+
+		ultimaBala = SDL_GetTicks();
+	}
+}

@@ -133,7 +133,7 @@ void Mundo::cargaObjetos(){
 	
 	//enemigo = new Enemigo2(this, 400, 900, 25, 25, JuegoSDL::TEnemigo2, JuegoSDL::ENull, 'x', 100);
 	//enemigo = new Enemigo4(this, 400, 900, 25, 25, JuegoSDL::TEnemigo4, JuegoSDL::ENull);
-	enemigo = new Enemigo5(this, 400, 900, 25, 25, JuegoSDL::TEnemigo5, JuegoSDL::ENull);
+	enemigo = new BossFinal(this, 400, 900, 25, 25, JuegoSDL::TLeon, JuegoSDL::ENull);
 
 }
 void Mundo::initObjetos()
