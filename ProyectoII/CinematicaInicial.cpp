@@ -22,6 +22,7 @@ CinematicaInicial::CinematicaInicial(Juego * pJ, string mapa)
 	objetos[0]->setVisible(false);
 	moverI = false;
 	dibuja = true;
+	comienzo = true;
 
 	textoPsj.loadFromText(pJuego->getRender(), "Qué dolor de cabeza tengo....", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
@@ -31,6 +32,8 @@ CinematicaInicial::CinematicaInicial(Juego * pJ, string mapa)
 void CinematicaInicial::cargaObjetos(){
 
 	objetos.push_back(new Entidad(pJuego, 580 + 6, 800 + 40, 25, 25, JuegoSDL::TInforme1, JuegoSDL::ENull, OInforme1));//Informe
+	objetos.push_back(new Entidad(pJuego, 0, 750, 800, 500, JuegoSDL::TInvitacion, JuegoSDL::ENull, OInvitacion));//Invitacion
+
 
 }
 
@@ -63,7 +66,11 @@ void CinematicaInicial::update(){
 }
 
 void CinematicaInicial::draw() const{
-	if (dibuja)
+	if (comienzo)
+	{
+		objetos[1]->draw(objetos[1]->getRect().x - camera.x, objetos[1]->getRect().y - camera.y);
+	}
+	else if (dibuja)
 	{
 
 		//Render level
@@ -94,6 +101,13 @@ void CinematicaInicial::draw() const{
 void CinematicaInicial::cinematicaInicial(){
 	if (contador == 50)
 		pJuego->getResources()->getEfecto(12)->play(0);
+
+
+	if (contador == 200){
+		comienzo = false;
+		objetos[1]->setVisible(false);
+
+	}
 	//comienza la cinematica, el jugador se encuentra en la cama y se deja de dibujar
 	if (contador == 300){
 		dibuja = false;
@@ -114,6 +128,7 @@ void CinematicaInicial::cinematicaInicial(){
 		dibuja = false;
 		setCamera(0, indiceMapa % 6 * 640);
 		cambiaPosPSJ(320, 830);
+		objetos[1]->setVisible(false);
 	}
 
 	//se vuelve a dibujar, el jugador esta en la cama en el mundo real

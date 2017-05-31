@@ -104,6 +104,8 @@ private:
 
 	bool llavesCogidas[TAMAÑO_LLAVES];
 	TexturasSDL textoPsj;
+	bool comienzo;
+
 
 
 
