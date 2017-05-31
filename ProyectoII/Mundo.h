@@ -123,6 +123,7 @@ private:
 
 	//Entidades
 	Personaje * psj;
+	EntidadJuego* doctorT;
 
 	list <Enemigo*> enemigos;
 	list <EntidadJuego*> objetos;

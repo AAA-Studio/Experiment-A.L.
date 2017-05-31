@@ -8,6 +8,13 @@ Mapa::Mapa(MundoVirtual *pM, string mapa) : pMundo(pM), nombreMapa(mapa)
 	cargarMapa();
 	buscaSpawn();
 	setCamera();
+
+	//Esta es la posicion de la camara en la sala final del mundo real para la cinematica con el doctor T
+	//pMundo->setCamera(0, 3840 *2 + 3200 * 2 + 640 );
+
+	//Tengo que llevar la camara a esta posicion, que es la sala final del mundo oscuro
+	//pMundo->setCamera(800, 3840 * 2 + 3200 * 2 + 640);
+
 	azulCP4O = naranajaP5R = naranjaP4R = pistachoP3O = azulCP2R = azulCP5R = false;
 	encendido = encendido2 = false;
 
@@ -344,6 +351,8 @@ void Mapa::setCamera()
 	else
 		ancho = 1;
 	pMundo->setCamera(800 * ancho, pMundo->getIndiceMapa() % 24 * 640);
+	
+
 }
 
 bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
@@ -450,8 +459,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.h = felpudo.h - 15;
 					felpudo.w = felpudo.w - 20;
 					if (pMundo->checkCollision(box, felpudo)){
-						tipo = 158;
-						pMundo->setPuertaCerrada(true);
+						tipo = 158;				
 						if (contadorParaSonido4 > 100){//NICE
 							contadorParaSonido4 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
@@ -461,13 +469,10 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						return true;
 
 					}
-					//Caso en el que no colisiono con la puerta
-					else
-						pMundo->setPuertaCerrada(false);
+
 				}
 				//Caso en el que ya puedo abrir la puerta porque he metido la combinacion
 				if (pJuego->getPuerta(0) && pMundo->getIndiceMapa() == 0){
-					pMundo->setPuertaCerrada(false);//La puerta ya no esta cerrada en este caso
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
@@ -546,9 +551,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.w = felpudo.w - 20;
 					if (pMundo->checkCollision(box, felpudo)){
 						tipo = 159;
-						//Escribo el texto de que la puerta esta cerrada
-						pMundo->setPuertaCerrada(true);
-						if (contadorParaSonido1 > 100){//NICE
+						if (contadorParaSonido1 > 50){//NICE
 							contadorParaSonido1 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						}
@@ -556,8 +559,6 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 							contadorParaSonido1++;
 						return true;
 					}
-					else
-						pMundo->setPuertaCerrada(false);
 					}
 					
 
@@ -593,8 +594,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.h = felpudo.h - 15;
 					felpudo.w = felpudo.w - 25;
 					if (pMundo->checkCollision(box, felpudo)){
-						pMundo->setPuertaCerrada(true);
-						if (contadorParaSonido2 > 100){//NICE LVL 2
+						if (contadorParaSonido2 > 50){//NICE LVL 2
 							contadorParaSonido2 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						}
@@ -603,9 +603,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						return true;
 
 					}
-					//Caso en el que no colisiono con la puerta
-					else
-						pMundo->setPuertaCerrada(false);
+
 				}
 				//necesitas llave en el nivel 1, ya se ha cogido
 				if ((pMundo->getLLavesCogidas(0) || azulCP5R) && pMundo->getIndiceMapa() == 0){
@@ -642,7 +640,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					if (pMundo->checkCollision(box, felpudo)){
 						//Escribo el texto de que la puerta esta cerrada
 						pMundo->setPuertaCerrada(true);
-						if (contadorParaSonido5 > 100){//NICE
+						if (contadorParaSonido5 > 50){//NICE
 							contadorParaSonido5 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						}
@@ -682,7 +680,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 					if (pMundo->checkCollision(box, felpudo)){
 						pMundo->setPuertaCerrada(true);
-						if (contadorParaSonido6 > 100){//NICE LVL 2
+						if (contadorParaSonido6 > 50){//NICE LVL 2
 							contadorParaSonido6 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						}
@@ -774,7 +772,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					if (pMundo->checkCollision(box, felpudo)){
 						tipo = 158;
 						pMundo->setPuertaCerrada(true);
-						if (contadorParaSonido3 > 100){
+						if (contadorParaSonido3 > 50){
 							contadorParaSonido3 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						}
@@ -865,8 +863,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.w = felpudo.w - 20;
 
 					if (pMundo->checkCollision(box, felpudo)){
-						pMundo->setPuertaCerrada(true);
-						if (contadorParaSonido7 > 100){//NICE LVL 2
+						if (contadorParaSonido7 > 50){//NICE LVL 2
 							contadorParaSonido7 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						}

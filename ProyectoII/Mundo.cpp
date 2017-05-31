@@ -191,8 +191,12 @@ void Mundo::initObjetos()
 {	
 	int x = 360;
 	int y = 900;
+
+	//Esta posicion es para mover al personaje a la sala final del mundo real para hacer la cinematica con el doctor T
+	//psj = new Personaje(this, 400, 3840 * 2 + 3200 * 2 + 800, JuegoSDL::TJugador, JuegoSDL::ENull);
+
 	psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
-		
+	doctorT = new Entidad(pJuego, 400, 3840 * 2 + 3200 * 2 + 900, 30, 50, JuegoSDL::TDoctorT, JuegoSDL::ENull, Objetos_t::ONull);
 	//x = mapa->getXSpawn();
 	//y = mapa->getYSpawn();
 	//psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
@@ -290,6 +294,7 @@ void Mundo::draw()const{
 
 
 	psj->draw(psj->getRect().x - camera.x, psj->getRect().y - camera.y);
+	doctorT->draw(doctorT->getRect().x - camera.x, doctorT->getRect().y - camera.y);
 	
 			//Balas personaje
 	for (auto bala : balasPsj) 
@@ -414,7 +419,15 @@ void Mundo::update(){
 			
 		}
 
+		//Colision del personaje con el malo final
+		if (checkCollision(camera, doctorT->getRect())){
+			if (checkCollision(doctorT->getRect(), psj->getRect())){
+				//Se muestra el texto con el malo final
 
+			}
+
+
+		}
 		//Update de objetos
 		list<EntidadJuego*>::iterator obj = objetos.begin();
 
@@ -422,6 +435,7 @@ void Mundo::update(){
 			if (checkCollision(camera, (*obj)->getRect())){
 				if (checkCollision(psj->getRect(), (*obj)->getRect()))
 				{
+					
 					colObjeto = true;
 
 				}
@@ -908,6 +922,7 @@ void Mundo::compruebaColisionPersonaje(){
 
 	//comprueba la X
 	if (mapa->touchesWall(rectPies)){
+	
 		rectPersonaje.x -= x;
 	}
 	// comprueba la Y

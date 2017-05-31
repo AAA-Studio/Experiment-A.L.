@@ -89,7 +89,7 @@ void CinematicaInicial::draw() const{
 		a.h = 200;
 		a.w = 400;
 
-		if (contador > 1400){
+		if (contador > 2200){
 			pJuego->getResources()->getTextura(JuegoSDL::TControles)->draw(pJuego->getRender(), a, 0, pJuego->getWindowHeight() - 150, nullptr);
 			textoPsj.renderFont(pJuego->getRender(), psj->getRect().x - camera.x - 150, psj->getRect().y - camera.y +70);
 		}
@@ -99,23 +99,23 @@ void CinematicaInicial::draw() const{
 }
 
 void CinematicaInicial::cinematicaInicial(){
-	if (contador == 50)
+	if (contador == 1000)
 		pJuego->getResources()->getEfecto(12)->play(0);
 
 
-	if (contador == 200){
+	if (contador == 1000){
 		comienzo = false;
 		objetos[1]->setVisible(false);
 
 	}
 	//comienza la cinematica, el jugador se encuentra en la cama y se deja de dibujar
-	if (contador == 300){
+	if (contador == 1100){
 		dibuja = false;
 		
 	}
 
 	//se vuelve a dibujar, y aparece el jugador en el mundo oscuro
-	if (contador == 400){
+	if (contador == 1200){
 		pJuego->getResources()->getEfecto(10)->play(0);
 		setCamera(800 * 1, indiceMapa % 6 * 640);
 		cambiaPosPSJ(1120, 830);
@@ -123,7 +123,7 @@ void CinematicaInicial::cinematicaInicial(){
 	}
 
 	//se deja de dibujar y se cambia al mundo real
-	if (contador == 700)
+	if (contador == 1500)
 	{
 		dibuja = false;
 		setCamera(0, indiceMapa % 6 * 640);
@@ -132,38 +132,38 @@ void CinematicaInicial::cinematicaInicial(){
 	}
 
 	//se vuelve a dibujar, el jugador esta en la cama en el mundo real
-	if (contador == 800)
+	if (contador == 1600)
 	{
 		dibuja = true;
 	}
 
-	if (contador == 900)
+	if (contador == 1700)
 	{
 		dibuja = false;
 	}
 	//Se mueve al personaje fuera de la cama
-	if (contador == 1100){
+	if (contador == 1900){
 		cambiaPosPSJ(360, 900);
 		dibuja = true;
 		moverI = true;
 	}
 	//Se desliza la carta
-	if (moverI && contador >= 1200 && contador < 1300){
+	if (moverI && contador >= 2000 && contador < 2100){
 		objetos[0]->setVisible(true);
 		objetos[0]->move(0, 1);
 	}
 	//El informe para y se pasa al estado mundo
-	if (contador >2000){
+	if (contador >2800){
 		moverI = false;	
 
 		pJuego->setBorraEstado(true);
 		pJuego->setEstadoEnum(MundoReal);
 	}
-	if (contador > 1600){
+	if (contador > 2400){
 		textoPsj.loadFromText(pJuego->getRender(), "¿Dónde están mis pastillas? ¡Las necesito!", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
 	}
-	if (contador > 1800)
+	if (contador > 2600)
 		textoPsj.loadFromText(pJuego->getRender(), "Voy a lavarme la cara a ver si se me pasa.", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
 }

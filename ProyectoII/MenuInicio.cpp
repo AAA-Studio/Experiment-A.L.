@@ -18,8 +18,8 @@ static void goSalir(Juego * pj){
 }
 
 void MenuInicio::initObjetos(){
-	objetos.push_back(new Boton(pJuego, 200, 400, 400, 100, JuegoSDL::TExit, JuegoSDL::ENull, goSalir));
-	objetos.push_back(new Boton(pJuego, 200, 200, 400, 100, JuegoSDL::TPlay, JuegoSDL::ENull, goControles));
+	objetos.push_back(new Boton(pJuego, 40, 300, 300, 70, JuegoSDL::TExit, JuegoSDL::ENull, goSalir));
+	objetos.push_back(new Boton(pJuego, 40, 150, 300, 70, JuegoSDL::TPlay, JuegoSDL::ENull, goControles));
 }
 
 
