@@ -10,6 +10,7 @@
 #include "Enemigo2.h"
 #include "Enemigo3.h"
 #include "Enemigo4.h"
+#include "Enemigo5.h"
 #include "BossFinal.h"
 
 Mundo::Mundo(Juego * pJ, string m)
@@ -129,7 +130,7 @@ void Mundo::cargaObjetos(){
 	}
 	obj.close();
 	
-	enemigo = new BossFinal(this, 400, 900, 50, 50, JuegoSDL::TLeon, JuegoSDL::ENull);
+	enemigo = new Enemigo5(this, 400, 900, 25, 25, JuegoSDL::TLeon, JuegoSDL::ENull);
 }
 void Mundo::initObjetos()
 {	
@@ -256,7 +257,7 @@ void Mundo::update(){
 		balaDestruida = false;
 		colObjeto = false;
 
-		
+		cout << getIndiceMapa();
 		compruebaColisionEnemigo();
 
 		//Caso GameOver
