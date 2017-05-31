@@ -15,6 +15,10 @@ Enemigo::Enemigo(MundoVirtual*pM, int x, int y, int w, int h, JuegoSDL::Texturas
 	ejeX = true;
 	atascadoX = atascadoY = false;
 	moveX = moveY = 0;
+
+	rect = { x, y, 59, 75 };
+	rectAn = { 0, 0, 59, 75 };	//medidas del rect de la animacion
+	retardo = 0;
 }
 
 void Enemigo::update(){
@@ -112,6 +116,33 @@ void Enemigo::mover(int x, int y)
 {
 	rect.x += x;
 	rect.y += y;
+
+	if (moveX == 0 && moveY > 0)
+	{
+		animacion(abajo);
+	}
+	else if (moveX == 0 && moveY < 0)
+	{
+		animacion(arriba);
+	}
+	else if (moveX > 0 && moveY == 0){
+		animacion(derecha);
+	}
+	else if (moveX < 0 && moveY == 0){
+		animacion(izquierda);
+	}
+	else if (moveX < 0 && moveY < 0){
+		animacion(izquierda);
+	}
+	else if (moveX > 0 && moveY < 0){
+		animacion(derecha);
+	}
+	else if (moveX < 0 && moveY > 0){
+		animacion(izquierda);
+	}
+	else if (moveX > 0 && moveY > 0){
+		animacion(derecha);
+	}
 }
 void Enemigo::pegar(float daño){
 
@@ -125,6 +156,52 @@ Enemigo::~Enemigo()
 {
 }
 
+//El rect de animación va recorriendo la Y del spritesheet
+void Enemigo::animacion(animar currentFrame){
+	retardo++;
+	if (retardo == 7){
+		switch (currentFrame){
+		case Enemigo::derecha:
+			rectAn.y = enemigoDcha;
+			retardo = 0;
+			break;
+		case Enemigo::izquierda:
+			rectAn.y = enemigoIzq;
+			retardo = 0;
+			break;
+		case Enemigo::arriba:
+			rectAn.y = enemigoArr;
+			retardo = 0;
+			break;
+		case Enemigo::abajo:
+			rectAn.y = 0;
+			retardo = 0;
+			break;
+		default:
+			break;
+		}
+		frames();
 
+	}
+
+}
+
+//El rect de animación va recorriendo la X del spritesheet
+void Enemigo::frames(){
+	if (rectAn.x >= limiteX){
+		rectAn.x = 0;
+	}
+	else{
+		rectAn.x += sumaAnimX;
+	}
+}
+
+//Dibujado con la textura de la animación
+void Enemigo::draw(int x, int y)const
+{
+	//Tiene animación, sobrescribe la herencia
+	pJuego->getResources()->getTextura(textura)->draw(pJuego->getRender(), rect, x, y, &rectAn);//Dibujamos la textura
+
+}
 
 

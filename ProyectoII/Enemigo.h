@@ -22,6 +22,7 @@ public:
 	virtual inline int DamePosAntX(){ return posXAnt; };
 	virtual inline int DamePosAntY(){ return posYAnt; };
 	virtual void colision(bool chocando){ this->chocando = chocando; }
+	virtual void draw(int x, int y)const;
 
 protected:
 	MundoVirtual* pMundo;
@@ -40,6 +41,18 @@ protected:
 	virtual void perseguir();
 	virtual void rodear();
 	virtual void ataque(){}
+
+	//anim
+	SDL_Rect  rectAn;
+	enum animar { derecha, izquierda, arriba, abajo };
+	virtual void animacion(animar currentFrame);
+	virtual void frames();
+	int retardo;
+	int enemigoDcha;
+	int enemigoIzq;
+	int enemigoArr;
+	int sumaAnimX;
+	int limiteX;
 };
 
 #endif

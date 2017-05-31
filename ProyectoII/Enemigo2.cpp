@@ -14,6 +14,11 @@ Enemigo2::Enemigo2(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Textu
 	volviendo = false;
 	eje = dir;
 	velocidad = 1;
+	enemigoDcha = 197;
+	enemigoArr = 298;
+	enemigoIzq = 94;
+	sumaAnimX = 114;
+	limiteX = 227;
 }
 
 void Enemigo2::update(){

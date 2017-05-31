@@ -5,6 +5,15 @@ Enemigo4::Enemigo4(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Textu
 {
 	velocidad = 2;
 	vida = 3;
+
+	rect = { x, y, 87, 70 };
+	rectAn = { 0, 0, 87, 70 };	//medidas del rect de la animacion
+
+	enemigoDcha = 194;
+	enemigoArr = 292;
+	enemigoIzq = 94;
+	sumaAnimX = 101;
+	limiteX = 187;
 }
 
 void Enemigo4::update(){

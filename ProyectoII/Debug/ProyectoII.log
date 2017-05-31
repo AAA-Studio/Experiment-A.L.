@@ -1,21 +1,13 @@
-﻿Compilación iniciada a las 31/05/2017 3:20:46.
-     1>Proyecto "C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
+﻿Compilación iniciada a las 31/05/2017 3:59:51.
+     1>Proyecto "C:\Users\Javi\Documents\UCM\Experiment-A.L.-enemigoPatrulla\Experiment-A.L.-enemigoPatrulla\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Enemigo5.cpp Mundo.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mundo.cpp
          Mundo.cpp
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\personaje.h(36): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\mundo.cpp(900): warning C4305: 'argumento' : truncamiento de 'double' a 'float'
-         Enemigo5.cpp
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\personaje.h(36): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\enemigo5.cpp(26): warning C4244: 'argumento' : conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\enemigo5.cpp(45): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\enemigo5.cpp(46): warning C4244: '=' : conversión de 'int' a 'float'; posible pérdida de datos
-     1>c:\users\blanca\documents\universidad\segundo\proyectoii\experiment-a.l\proyectoii\enemigo5.cpp(80): warning C4244: '=' : conversión de 'double' a 'float'; posible pérdida de datos
-         Generando código...
+     1>c:\users\javi\documents\ucm\experiment-a.l.-enemigopatrulla\experiment-a.l.-enemigopatrulla\proyectoii\personaje.h(36): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>c:\users\javi\documents\ucm\experiment-a.l.-enemigopatrulla\experiment-a.l.-enemigopatrulla\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\users\javi\documents\ucm\experiment-a.l.-enemigopatrulla\experiment-a.l.-enemigopatrulla\proyectoii\mundo.cpp(904): warning C4305: 'argumento' : truncamiento de 'double' a 'float'
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Armas.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Javi\Documents\UCM\Experiment-A.L.-enemigoPatrulla\Experiment-A.L.-enemigoPatrulla\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Javi\Documents\UCM\Experiment-A.L.-enemigoPatrulla\Experiment-A.L.-enemigoPatrulla\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Javi\Documents\UCM\Experiment-A.L.-enemigoPatrulla\Experiment-A.L.-enemigoPatrulla\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Armas.obj
          Debug\Bala.obj
          Debug\BossFinal.obj
          Debug\Boton.obj
@@ -43,15 +35,9 @@
          Debug\RecursosSDL.obj
          Debug\TexturasSDL.obj
          Debug\Tile.obj
-     1>Tile.obj : warning LNK4099: no se encontr¾ PDB 'vc120.pdb' con 'Tile.obj' o en 'C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\vc120.pdb'; se vincularß el objeto sin tener en cuenta informaci¾n de depuraci¾n
-     1>RecursosSDL.obj : warning LNK4099: no se encontr¾ PDB 'vc120.pdb' con 'RecursosSDL.obj' o en 'C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\vc120.pdb'; se vincularß el objeto sin tener en cuenta informaci¾n de depuraci¾n
-     1>MenuInicio.obj : warning LNK4099: no se encontr¾ PDB 'vc120.pdb' con 'MenuInicio.obj' o en 'C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\vc120.pdb'; se vincularß el objeto sin tener en cuenta informaci¾n de depuraci¾n
-     1>Combinaciones.obj : warning LNK4099: no se encontr¾ PDB 'vc120.pdb' con 'Combinaciones.obj' o en 'C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\vc120.pdb'; se vincularß el objeto sin tener en cuenta informaci¾n de depuraci¾n
-     1>Bala.obj : warning LNK4099: no se encontr¾ PDB 'vc120.pdb' con 'Bala.obj' o en 'C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\vc120.pdb'; se vincularß el objeto sin tener en cuenta informaci¾n de depuraci¾n
-     1>Armas.obj : warning LNK4099: no se encontr¾ PDB 'vc120.pdb' con 'Armas.obj' o en 'C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\vc120.pdb'; se vincularß el objeto sin tener en cuenta informaci¾n de depuraci¾n
-         ProyectoII.vcxproj -> C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\bin\ProyectoIIDebug.exe
-     1>Compilación del proyecto terminada "C:\Users\Blanca\Documents\Universidad\Segundo\ProyectoII\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos).
+         ProyectoII.vcxproj -> C:\Users\Javi\Documents\UCM\Experiment-A.L.-enemigoPatrulla\Experiment-A.L.-enemigoPatrulla\bin\ProyectoIIDebug.exe
+     1>Compilación del proyecto terminada "C:\Users\Javi\Documents\UCM\Experiment-A.L.-enemigoPatrulla\Experiment-A.L.-enemigoPatrulla\ProyectoII\ProyectoII.vcxproj" (Build destinos).
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:02.08
+Tiempo transcurrido 00:00:02.48
