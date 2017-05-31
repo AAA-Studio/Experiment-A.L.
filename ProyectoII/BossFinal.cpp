@@ -6,12 +6,12 @@ BossFinal::BossFinal(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Tex
 {
 	vida = 10;
 	velocidad = 1;
-	timeR = 500;
+	timeR = 5000;
 	passedTime = 0;
 	comportamiento = EPersigue;
 	estoyCerca = false;
 	dist = rect;
-	rangoDist = 10;
+	rangoDist = 30;
 	embistiendo;
 }
 BossFinal::~BossFinal(){}
@@ -20,6 +20,8 @@ BossFinal::~BossFinal(){}
 void BossFinal::update()
 {
 	rectPJ = pMundo->getPersonaje()->getRect(); //rect del personaje
+	posXAnt = rect.x;
+	posYAnt = rect.y;
 
 	switch (comportamiento)
 	{
@@ -32,7 +34,7 @@ void BossFinal::update()
 		break;
 	case EEmbiste:
 		passedTime++;
-		cout << "tengo que embestir";
+		//cout << "tengo que embestir";
 		embestir();
 		break;
 	case EDispara1:
@@ -64,27 +66,49 @@ void BossFinal::perseguir(){
 		moveY += velocidad;
 		
 	}
+
 	if (rect.x > rectPJ.x) //movimiento en el eje x
 		moveX -= velocidad;
 	else if (rect.x < rectPJ.x)
 		moveX += velocidad;
 
-	dist.x += rangoDist * moveX;
+	mover(moveX, moveY);
+
+	/*dist.x += rangoDist * moveX;
 	dist.y += rangoDist * moveY;
 
 	if (!pMundo->checkCollision(dist, rectPJ))
+	{
 		mover(moveX, moveY);
+		cout << "me muevo como una princesa ";
+	}
 	else
 	{
-		comportamiento = EEmbiste;
+		cout << "vamos a joderte un rato ";
 		xPJ = rectPJ.x;
 		yPJ = rectPJ.y;
+		velocidad = 3;
 		embistiendo = true;
-	}
+		comportamiento = EEmbiste;
+	}*/
 }
 
 void BossFinal::embestir(){
-	
+	if (embistiendo)
+	{
+		cout << "hola guapa que llevas puesto";
+		if (rect.x != xPJ && rect.y != yPJ) //si no he llegado a la ultima posicion registrada del jugador por enemigo
+		{
+			perseguir(); //le persigo de forma que cargo contra el 
+		}
+		else
+		{
+			velocidad = 1; //si he llegado a la posicion, cambio la velocidad y dejo de embestir
+			embistiendo = false;
+		}
+	}
+	else
+		comportamiento = ERecarga; //cuando acabo de embestir me paro y recargo
 
 }
 
