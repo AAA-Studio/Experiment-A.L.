@@ -40,6 +40,14 @@ private:
 	int contadorParaSonido1 = 100;//cosas del nivel
 	int contadorParaSonido2 = 100;//cosas del nivel
 	int contadorParaSonido3 = 100;//cosas del nivel
+	int contadorParaSonido4 = 100;//cosas del nivel
+	int contadorParaSonido5 = 100;//cosas del nivel
+	int contadorParaSonido6 = 100;//cosas del nivel
+	int contadorParaSonido7 = 100;//cosas del nivel
+	int contadorParaSonido8 = 100;//cosas del nivel
+	int contadorParaSonido9 = 100;//cosas del nivel
+	int contadorParaSonido10 = 100;//cosas del nivel
+
 	int x, y;//Variables en las que se guarda la pos del Spawn del personaje
 	//int nivel;
 

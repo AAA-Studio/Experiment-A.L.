@@ -452,7 +452,12 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					if (pMundo->checkCollision(box, felpudo)){
 						tipo = 158;
 						pMundo->setPuertaCerrada(true);
-						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						if (contadorParaSonido4 > 100){//NICE
+							contadorParaSonido4 = 0;
+							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
+						}
+						else
+							contadorParaSonido4++;
 						return true;
 
 					}
@@ -543,7 +548,6 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						tipo = 159;
 						//Escribo el texto de que la puerta esta cerrada
 						pMundo->setPuertaCerrada(true);
-						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
 						if (contadorParaSonido1 > 100){//NICE
 							contadorParaSonido1 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
@@ -590,7 +594,6 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					felpudo.w = felpudo.w - 25;
 					if (pMundo->checkCollision(box, felpudo)){
 						pMundo->setPuertaCerrada(true);
-						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
 						if (contadorParaSonido2 > 100){//NICE LVL 2
 							contadorParaSonido2 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
@@ -628,6 +631,26 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						return true;
 					}
 				}
+				else if (!pulsados() && pMundo->getIndiceMapa() == 12){
+					//Si es horizontal ponemos el collider bien
+					felpudo = tileMap[indice]->getBox();
+					felpudo.y = felpudo.y - 5;
+					felpudo.x = felpudo.x + 7;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 25;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						//Escribo el texto de que la puerta esta cerrada
+						pMundo->setPuertaCerrada(true);
+						if (contadorParaSonido5 > 100){//NICE
+							contadorParaSonido5 = 0;
+							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
+						}
+						else
+							contadorParaSonido5++;
+						return true;
+					}
+				}
 				//necesitas ambos pulsadores en la planta 3 (Paso de la planta 3 a la 2)
 				else if (pulsados() && pMundo->getIndiceMapa() == 12){
 					//Si es horizontal ponemos el collider bien
@@ -646,6 +669,25 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 							pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 2", { 255, 255, 255, 1 }, *pMundo->getFuente());
 						}
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+					}
+				}
+				else if (!pMundo->getLLavesCogidas(0) && !azulCP2R && pMundo->getIndiceMapa() == 17){
+					//Si es horizontal ponemos el collider bien
+					felpudo = tileMap[indice]->getBox();
+					felpudo.y = felpudo.y - 5;
+					felpudo.x = felpudo.x + 7;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 25;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setPuertaCerrada(true);
+						if (contadorParaSonido6 > 100){//NICE LVL 2
+							contadorParaSonido6 = 0;
+							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
+						}
+						else
+							contadorParaSonido6++;
 						return true;
 					}
 				}
@@ -732,7 +774,6 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					if (pMundo->checkCollision(box, felpudo)){
 						tipo = 158;
 						pMundo->setPuertaCerrada(true);
-						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
 						if (contadorParaSonido3 > 100){
 							contadorParaSonido3 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
@@ -747,7 +788,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo->setPuertaCerrada(false);
 				}
 				//planta 5 tiene q estar el baño abierto
-				if ((pMundo->getLLavesCogidas(0) || naranajaP5R) && pMundo->getIndiceMapa() == 0 && azulCP5R){
+				else if ((pMundo->getLLavesCogidas(0) || naranajaP5R) && pMundo->getIndiceMapa() == 0 && azulCP5R){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
@@ -782,7 +823,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 					}
 				}
 				//planta 4
-				if ((pMundo->getLLavesCogidas(0) || naranjaP4R) && pMundo->getIndiceMapa() == 6){
+				else if ((pMundo->getLLavesCogidas(0) || naranjaP4R) && pMundo->getIndiceMapa() == 6){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
@@ -813,6 +854,24 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 
 						pMundo->setPasoNivel(true);
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+					}
+				}
+				//planta 4
+				else if (!pMundo->getLLavesCogidas(0) && !naranjaP4R && pMundo->getIndiceMapa() == 6){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setPuertaCerrada(true);
+						if (contadorParaSonido7 > 100){//NICE LVL 2
+							contadorParaSonido7 = 0;
+							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
+						}
+						else
+							contadorParaSonido7++;
 						return true;
 					}
 				}
@@ -957,6 +1016,23 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						tipo = 157;
 						pMundo->setPasoNivel(true);
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+					}
+				}
+				else if (!pMundo->getLLavesCogidas(0) && !pistachoP3O && pMundo->getIndiceMapa() == 36){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setPuertaCerrada(true);
+						if (contadorParaSonido8 > 100){//NICE LVL 2
+							contadorParaSonido8 = 0;
+							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
+						}
+						else
+							contadorParaSonido8++;
 						return true;
 					}
 				}
@@ -1105,7 +1181,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			// PUERTA NARANJA (OSCURO)
 			else if (tileMap[indice]->getType() == 502)
 			{
-				if ((pMundo->getIndiceMapa() == 24 && naranajaP5R) || (pMundo->getIndiceMapa() != 24 && pMundo->getIndiceMapa() != 30)){
+				if (pMundo->getIndiceMapa() == 24 && naranajaP5R){
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
@@ -1124,6 +1200,65 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						}
 						pMundo->setPasoNivel(true);
 						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+
+					}
+				}
+				else if (pMundo->getIndiceMapa() != 30 && pMundo->getIndiceMapa() != 24){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setNivel(6);
+						tipo = 502;
+						pMundo->setTextoArriba(true);
+						//Comprobacion de en que planta estoy actualmente 
+						if (pMundo->getIndiceMapa() == 30) {//ENTIENDO QUE ESTOY EN LA PLANTA 4
+							pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 4", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						}
+						if (pMundo->getIndiceMapa() == 36) {//ENTIENDO QUE ESTOY EN LA PLANTA 3
+							pMundo->getTextura()->loadFromText(pJuego->getRender(), "PLANTA 3", { 255, 255, 255, 1 }, *pMundo->getFuente());
+						}
+						pMundo->setPasoNivel(true);
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
+						return true;
+
+					}
+				}
+				else if (pMundo->getIndiceMapa() == 30){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setPuertaCerrada(true);
+						if (contadorParaSonido10 > 100){//NICE LVL 2
+							contadorParaSonido10 = 0;
+							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
+						}
+						else
+							contadorParaSonido10++;
+						return true;
+
+					}
+				}
+				else if (pMundo->getIndiceMapa() == 24 && !naranajaP5R){
+					felpudo = tileMap[indice]->getBox();
+					felpudo.x = felpudo.x + 10;
+					felpudo.h = felpudo.h - 15;
+					felpudo.w = felpudo.w - 20;
+
+					if (pMundo->checkCollision(box, felpudo)){
+						pMundo->setPuertaCerrada(true);
+						if (contadorParaSonido9 > 100){//NICE LVL 2
+							contadorParaSonido9 = 0;
+							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
+						}
+						else
+							contadorParaSonido9++;
 						return true;
 
 					}
