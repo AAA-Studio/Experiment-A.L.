@@ -19,9 +19,14 @@ Enemigo5::~Enemigo5()
 void Enemigo5::update() {
 
 	rectPJ = pMundo->getPersonaje()->getRect();
+
+	posXAnt = rect.x;
+	posYAnt = rect.y;
+
 	srand(time(NULL));
 	int aleatorio = (rand() % 50);
 	if (!chocando) {
+		atascadoX = atascadoY = false;
 		if (aleatorio > 42) { // Se mueve a la posicion anterior del jugador
 			movimiento();
 		}
