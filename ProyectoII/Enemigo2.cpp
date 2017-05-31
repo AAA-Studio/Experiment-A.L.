@@ -20,11 +20,12 @@ void Enemigo2::update(){
 
 	rectPJ = pMundo->getPersonaje()->getRect(); //rect del personaje
 	checkPersonaje(); //comprobacion de la posicion del personaje
+	posXAnt = rect.x;
+	posYAnt = rect.y;
 
 	if (volviendo && !pasivo)
 	{
 		volver();
-		cout << "volviendo";
 	}
 	else if (pasivo)
 		patrulla();
@@ -69,8 +70,10 @@ void  Enemigo2::patrulla(){
 }
 
 void Enemigo2::ataque(){
-	perseguir();
-
+	if (!chocando)
+		perseguir();
+	else
+		rodear();
 	pegar(0.005);
 }
 
@@ -93,10 +96,11 @@ void Enemigo2::volver(){
 
 		pasivo = true;
 		volviendo = false;
-		cout << "he vuelto";
 	}
 
 	mover(moveX, moveY);
+
+	
 }
 
 void Enemigo2::checkPersonaje(){
@@ -105,7 +109,6 @@ void Enemigo2::checkPersonaje(){
 	if (rectPJ.x <= rect.x + 100 && rectPJ.x >= rect.x - 100 && rectPJ.y <= rect.y + 100 && rectPJ.y >= rect.y - 100)
 	{
 		pasivo = false;
-		cout << "pillado";
 		volviendo = false;
 	}
 	else

@@ -4,7 +4,7 @@
 Enemigo4::Enemigo4(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto) : Enemigo(pM, x, y, w, h, textura, efecto)
 {
 	velocidad = 2;
-	
+	vida = 3;
 }
 
 void Enemigo4::update(){
@@ -29,10 +29,7 @@ void Enemigo4::ataque(){
 		rodear();
 	}
 
-	if (pMundo->checkCollision(rectPJ, rect))
-	{
-		pMundo->getPersonaje()->restaVida(0);
-	}
+	pegar(0.005);
 }
 
 

@@ -9,10 +9,7 @@ class Enemigo4 : public Enemigo
 public:
 	Enemigo4(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Texturas_t textura, JuegoSDL::Efectos_t efecto);
 	virtual void update();
-	
-	virtual void mover(int x, int y){}
-	
-	
+		
 	
 	~Enemigo4();
 
@@ -23,7 +20,7 @@ protected:
 	bool rodeando;
 
 
-	void ataque();
+	virtual void ataque();
 	
 };
 

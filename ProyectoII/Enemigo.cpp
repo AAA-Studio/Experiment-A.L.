@@ -90,12 +90,13 @@ void Enemigo::rodear()
 }
 
 void Enemigo::perseguir(){
-	cout << "ataco";
 
 	moveX = moveY = 0;
 
 	if (rect.y > rectPJ.y) //movimiento en el eje y
+	{
 		moveY -= velocidad;
+	}
 	else if (rect.y < rectPJ.y)
 		moveY += velocidad;
 
