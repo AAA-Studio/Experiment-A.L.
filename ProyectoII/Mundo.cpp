@@ -87,6 +87,8 @@ void Mundo::cargaObjetos(){
 	string nombre;
 	int i = 1;
 	int y, x, w, h, lvl, tipo, ancho, alto,salud;
+	char xar;
+	int max;
 	alto = 640;
 	while (obj.peek() != EOF){
 
@@ -142,14 +144,22 @@ void Mundo::cargaObjetos(){
 				//IMPORTANTE: Enemigo2 usa TEnemigo2, Enemigo4 usa TEnemigo4.
 				else if (nombre == "ENEMIGO"){
 
-					obj >> x >> y >> w >> h >> salud;
-					enemigos.push_back(new Enemigo1(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
+					obj >> x >> y >> w >> h >> tipo;
 
+					if (tipo == 1)
+						enemigos.push_back(new Enemigo1(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
+					else if (tipo == 2){ //ESTO ES TU TRABAJO BLANCA NO TOCAR
+						obj >> xar >> max;
+						enemigos.push_back(new Enemigo2(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TEnemigo2, JuegoSDL::ENull, xar, max));
+					}
+					else if (tipo == 3)
+						enemigos.push_back(new Enemigo3(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TEnemigo3, JuegoSDL::ENull));
+					else if (tipo == 4)
+						enemigos.push_back(new Enemigo4(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TEnemigo4, JuegoSDL::ENull));
+					else if (tipo == 5)
+						enemigos.push_back(new Enemigo5(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TEnemigo5, JuegoSDL::ENull));
 				}
 				else if (nombre == "SALUD"){
-
-					obj >> x >> y >> w >> h;
-					enemigos.push_back(new Enemigo1(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 					obj >> x >> y >> w >> h >> salud >> tipo;
 					if (tipo == 1)
@@ -175,7 +185,6 @@ void Mundo::cargaObjetos(){
 	
 	//enemigo = new Enemigo2(this, 400, 900, 25, 25, JuegoSDL::TEnemigo2, JuegoSDL::ENull, 'x', 100);
 	//enemigo = new Enemigo4(this, 400, 900, 25, 25, JuegoSDL::TEnemigo4, JuegoSDL::ENull);
-	enemigo = new Enemigo5(this, 400, 900, 25, 25, JuegoSDL::TEnemigo5, JuegoSDL::ENull);
 
 }
 void Mundo::initObjetos()
@@ -259,7 +268,6 @@ void Mundo::draw()const{
 
 	//DIBUJAR MAPA
 	mapa->draw();
-	enemigo->draw(enemigo->getRect().x - camera.x, enemigo->getRect().y - camera.y);
 	//Dibujar objetos del juego
 	//Armas
 	for (auto arma : armas)
@@ -347,15 +355,11 @@ void Mundo::update(){
 		////////////////
 		
 
-		
-		compruebaColisionEnemigo();
-
 		//Caso GameOver
 		if (psj->getVida() <= 0){
 			pJuego->setEstadoEnum(EGameOver);
 			pJuego->setBorraEstado(true);
 		}
-
 		//Balas personaje
 		list<EntidadJuego*>::const_iterator itBalasPsj = balasPsj.cbegin();
 		while (!balaDestruida && !balasPsj.empty() && itBalasPsj != balasPsj.cend())
@@ -394,12 +398,11 @@ void Mundo::update(){
 			else
 				itBalasEnem++;
 		}
-
 		//Enemigos
 		for (auto enemigo : enemigos){
 			if (checkCollision(camera, enemigo->getRect())){
 				enemigo->update();
-
+				compruebaColisionEnemigo(enemigo);
 				//Si el personaje choca con el enemigo, resto vida
 				if (checkCollision(psj->getRect(), enemigo->getRect()))
 					psj->restaVida(0.005);
@@ -410,8 +413,7 @@ void Mundo::update(){
 			//COLISIONES ENEMIGO 
 			
 		}
-		if (checkCollision(camera, enemigo->getRect()))
-			enemigo->update();
+
 
 		//Update de objetos
 		list<EntidadJuego*>::iterator obj = objetos.begin();
@@ -713,7 +715,7 @@ EntidadJuego * Mundo::compruebaColisionObjetos(){
 		return nullptr;
 	}
 
-void Mundo::compruebaColisionEnemigo()
+void Mundo::compruebaColisionEnemigo(Enemigo* enemigo)
 {
 	SDL_Rect rectEnemigo = enemigo->getRect();
 
@@ -727,21 +729,9 @@ void Mundo::compruebaColisionEnemigo()
 
 	//Movemos el rectangulo de colision a los pies
 
-	/*Direction2 dir;
-	dir.x = x;
-	dir.y = y;
-	enemigo->setDir(dir);*/
-
 	int tipo;
 	mapa->touchesDoor(rectEnemigo, tipo);
 
-
-	/*if (mapa->touchesDoor(rectPies, tipo))
-	{
-
-	EstadoJuego * aux = new PasoDeNivel(pJuego);
-	pJuego->goToState(aux);
-	}*/
 	// comprueba la Y
 	if (mapa->touchesWall(rectEnemigo)){
 		rectEnemigo.y -= y;
@@ -1103,12 +1093,8 @@ void Mundo::colBalaPersonaje(){
 			//Si el psj colisiona con el enemigo
 			if (checkCollision(psj->getRect(), (*itBalasEnems)->getRect())){
 				//Se pide la hora y se compara con la última 
-				if (SDL_GetTicks() - time >= duracion)
-				{
-					time = SDL_GetTicks();
-					psj->restaVida(0.001);
-				}
-
+				time = SDL_GetTicks();
+				psj->restaVida(1);
 				destruyeBala(balasEnems, itBalasEnems);
 			}
 			else

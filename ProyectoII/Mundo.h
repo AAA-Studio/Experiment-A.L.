@@ -159,7 +159,6 @@ private:
 	//bool pausa;
 
 	//-------------------ATRIBUTOS---------------
-	Enemigo* enemigo;
 
 	//-------------------METODOS-------------------
 	//Objetos
@@ -168,7 +167,7 @@ private:
 	void freeObjetos();
 
 	//Colisiones
-	void compruebaColisionEnemigo();
+	void compruebaColisionEnemigo(Enemigo* enemigo);
 	void compruebaColisionPersonaje();//Colision con muros y puertas
 	void colBalaEnemigo();
 	void colBalaPersonaje();

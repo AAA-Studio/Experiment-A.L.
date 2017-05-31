@@ -39,6 +39,7 @@ private:
 	bool pulsados(); //metodo que comprueba si los 2 botones han sido pulsados
 	int contadorParaSonido1 = 100;//cosas del nivel
 	int contadorParaSonido2 = 100;//cosas del nivel
+	int contadorParaSonido3 = 100;//cosas del nivel
 	int x, y;//Variables en las que se guarda la pos del Spawn del personaje
 	//int nivel;
 

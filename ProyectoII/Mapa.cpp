@@ -733,7 +733,12 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						tipo = 158;
 						pMundo->setPuertaCerrada(true);
 						pMundo->getTexturaPCerrada()->loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *pMundo->getFuente());
-						pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
+						if (contadorParaSonido3 > 100){
+							contadorParaSonido3 = 0;
+							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
+						}
+						else
+							contadorParaSonido3++;
 						return true;
 
 					}
