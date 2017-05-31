@@ -24,7 +24,7 @@ CinematicaInicial::CinematicaInicial(Juego * pJ, string mapa)
 	dibuja = true;
 	comienzo = true;
 
-	textoPsj.loadFromText(pJuego->getRender(), "Qué dolor de cabeza tengo....", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
+	textoPsj.loadFromText(pJuego->getRender(), "Esa pesadilla me ha afectado demasiado, menudo dolor de cabeza.", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
 
 }
@@ -160,11 +160,11 @@ void CinematicaInicial::cinematicaInicial(){
 		pJuego->setEstadoEnum(MundoReal);
 	}
 	if (contador > 2400){
-		textoPsj.loadFromText(pJuego->getRender(), "¿Dónde están mis pastillas? ¡Las necesito!", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
+		textoPsj.loadFromText(pJuego->getRender(), "Necesito tomarme las pastillas lo antes que pueda o me encontraré peor.", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
 	}
 	if (contador > 2600)
-		textoPsj.loadFromText(pJuego->getRender(), "Voy a lavarme la cara a ver si se me pasa.", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
+		textoPsj.loadFromText(pJuego->getRender(), "Espera, ¿Y esa nota? ¿Quién la ha dejado ahí?", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
 }
 

@@ -31,13 +31,13 @@ Mundo::Mundo(Juego * pJ, string m)
 	cargaObjetos();
 	
 	balaDestruida = false;
-	//pausa = false;
-	//abierto = false;s
-	//cerraduras[0] = false;
-	//puertas[0] = 0;
+	contCinematFinal = 0;
+	muestraTexto = false;
+	decremNegro = false;
 
 	pasoNivel = false;
 	puertaCerrada = false;
+	psjMovidos = false;
 	//objetos[1]->setVisible(false);
 	pJuego->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->play();
 
@@ -58,10 +58,15 @@ Mundo::Mundo(Juego * pJ, string m)
 	font_ = pJuego->getResources()->getFuente(JuegoSDL::Fuentes_t::FNormal);
 	textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
 	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'E' para interactuar", { 255, 255, 255, 1 }, *font_);
-	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 5", { 255, 255, 255, 1 }, *font_);//de nada
+	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 5", { 255, 255, 255, 1 }, *font_);
 	textPCerrada.loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *font_);
-
+	textConversDocT.loadFromText(pJuego->getRender(), "Parece que finalmente lo has comprendido todo.. ¿o no?", { 255, 255, 255, 1 }, *font_);
+	rectEspejo = { 0, 0, pJuego->getResources()->getTextura(JuegoSDL::TAnimacionEspejo)->getW() / 4, pJuego->getResources()->getTextura(JuegoSDL::TAnimacionEspejo)->getH() };
+	rectColDoctorT = { doctorT->getRect().x + 10, doctorT->getRect().y + 40, doctorT->getRect().w - 10, doctorT->getRect().h - 40 };
 	textArriba = false;
+
+	contadorEspejo = 0;
+	cinematicaFinal = false;
 }
 
 Mundo::~Mundo()
@@ -195,11 +200,11 @@ void Mundo::initObjetos()
 	//Esta posicion es para mover al personaje a la sala final del mundo real para hacer la cinematica con el doctor T
 	//psj = new Personaje(this, 400, 3840 * 2 + 3200 * 2 + 800, JuegoSDL::TJugador, JuegoSDL::ENull);
 
-	psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
+	//psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
 	doctorT = new Entidad(pJuego, 400, 3840 * 2 + 3200 * 2 + 900, 30, 50, JuegoSDL::TDoctorT, JuegoSDL::ENull, Objetos_t::ONull);
 	//x = mapa->getXSpawn();
 	//y = mapa->getYSpawn();
-	//psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
+	psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
 	
 }
 
@@ -269,9 +274,15 @@ void Mundo::freeObjetos(){
 
 void Mundo::draw()const{
 
+	SDL_Rect winRectEspejo = { 0, 0, 32, 32 };
+
 
 	//DIBUJAR MAPA
 	mapa->draw();
+
+	pJuego->getResources()->getTextura(JuegoSDL::TAnimacionEspejo)->draw(pJuego->getRender(), winRectEspejo, 382 - camera.x, 3392 - camera.y, &rectEspejo);
+	pJuego->getResources()->getTextura(JuegoSDL::TAnimacionEspejo)->draw(pJuego->getRender(), winRectEspejo, 480 - camera.x, 10336 - camera.y, &rectEspejo);
+
 	//Dibujar objetos del juego
 	//Armas
 	for (auto arma : armas)
@@ -294,7 +305,9 @@ void Mundo::draw()const{
 
 
 	psj->draw(psj->getRect().x - camera.x, psj->getRect().y - camera.y);
-	doctorT->draw(doctorT->getRect().x - camera.x, doctorT->getRect().y - camera.y);
+	//Si el doctorT existe se dibuja
+	if (doctorT != nullptr)
+		doctorT->draw(doctorT->getRect().x - camera.x, doctorT->getRect().y - camera.y);
 	
 			//Balas personaje
 	for (auto bala : balasPsj) 
@@ -322,7 +335,7 @@ void Mundo::draw()const{
 	a.h = 640;
 	a.w = 800;
 
-	if (pasoNivel || nivelCambiado)
+	if (pasoNivel || nivelCambiado || cinematicaFinal)
 		pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);		
 	
 	pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), a, 0, 0, nullptr);
@@ -347,6 +360,12 @@ void Mundo::draw()const{
 	else if (psj->getBalas() > 0){
 		textBalas.renderFont(pJuego->getRender(), 400, 600);
 	}
+	if (muestraTexto){
+		textConversDocT.renderFont(pJuego->getRender(), doctorT->getRect().x - camera.x - 280, doctorT->getRect().y - camera.y - 90);
+
+		
+	}
+	
 }
 
 void Mundo::update(){
@@ -354,7 +373,13 @@ void Mundo::update(){
 		balaDestruida = false;
 		colObjeto = false;
 
-
+		if (contadorEspejo == 5)
+		{
+			rectEspejo.x = (rectEspejo.x + pJuego->getResources()->getTextura(JuegoSDL::TAnimacionEspejo)->getW() / 4) % pJuego->getResources()->getTextura(JuegoSDL::TAnimacionEspejo)->getW();
+			contadorEspejo = 0;
+		}
+		else
+			contadorEspejo++;
 		//NO SE TOCA
 		textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
 		////////////////
@@ -420,158 +445,204 @@ void Mundo::update(){
 		}
 
 		//Colision del personaje con el malo final
-		if (checkCollision(camera, doctorT->getRect())){
+		if (doctorT!=nullptr && checkCollision(camera, doctorT->getRect())){
 			if (checkCollision(doctorT->getRect(), psj->getRect())){
 				//Se muestra el texto con el malo final
+				//El personaje no se mueve
+				psj->setRect({ psj->getRect().x, psj->getRect().y - 1, psj->getRect().w, psj->getRect().h });
+				cinematicaFinal = true;
+				muestraTexto = true;
 
 			}
 
+			}
+			if (cinematicaFinal)
+				contCinematFinal++;
 
-		}
-		//Update de objetos
-		list<EntidadJuego*>::iterator obj = objetos.begin();
 
-		while (!colObjeto && !objetos.empty() && obj != objetos.end()){
-			if (checkCollision(camera, (*obj)->getRect())){
-				if (checkCollision(psj->getRect(), (*obj)->getRect()))
+			//Update de objetos
+			list<EntidadJuego*>::iterator obj = objetos.begin();
+
+			while (!colObjeto && !objetos.empty() && obj != objetos.end()){
+				if (checkCollision(camera, (*obj)->getRect())){
+					if (checkCollision(psj->getRect(), (*obj)->getRect()))
+					{
+
+						colObjeto = true;
+
+					}
+					else
+					{
+						colObjeto = false;
+					}
+
+				}
+				(*obj)->update();
+
+				obj++;
+			}
+			list<EntidadJuego*>::iterator itLlave = llaves.begin();
+
+			//Update de las llaves
+			while (!colObjeto && !llaves.empty() && itLlave != llaves.end()){
+				if (checkCollision(camera, (*itLlave)->getRect()))
 				{
+					if (checkCollision(psj->getRect(), (*itLlave)->getRect()))
+					{
+						colObjeto = true;
+
+					}
+					else
+					{
+						colObjeto = false;
+					}
+
+
+				}
+
+				(*itLlave)->update();
+				itLlave++;
+			}
+
+
+			list<Armas*>::iterator itArma = armas.begin();
+
+			//Update de las armas
+			while (!colObjeto && !armas.empty() && itArma != armas.end()){
+				if (checkCollision(camera, (*itArma)->getRect()))
+				{
+					if (checkCollision(psj->getRect(), (*itArma)->getRect()))
+					{
+						colObjeto = true;
+
+					}
+					else
+					{
+						colObjeto = false;
+					}
+
+				}
+
+				(*itArma)->update();
+				itArma++;
+			}
+
+			list<Pildoras*>::iterator itPil = pildoras.begin();
+
+			//Update de las pildoras
+			while (!colObjeto && !pildoras.empty() && itPil != pildoras.end()){
+				if (checkCollision(camera, (*itPil)->getRect()))
+				{
+					if (checkCollision(psj->getRect(), (*itPil)->getRect()))
+					{
+						colObjeto = true;
+
+					}
+					else
+					{
+						colObjeto = false;
+					}
+
+				}
+
+				(*itPil)->update();
+				itPil++;
+			}
+
+			list<Interruptor*>::iterator itInter = interruptores.begin();
+
+			//Update de las interruptor
+			while (!colObjeto && !interruptores.empty() && itInter != interruptores.end()){
+				if (checkCollision(camera, (*itInter)->getRect()))
+				{
+					if (checkCollision(psj->getRect(), (*itInter)->getRect()))
+					{
+						colObjeto = true;
+
+					}
+					else
+					{
+						colObjeto = false;
+					}
+
+				}
+
+				(*itInter)->update();
+				itInter++;
+			}
+			//COLISIONES
+			colBalaEnemigo();
+			colBalaPersonaje();
+			//Transicion nivel
+			if (pasoNivel){
+				alfo += 5;
+
+				if (alfo > 255){
+					pasoNivel = false;
+					nivelCambiado = true;
+					mapa->buscaSpawn();
+				}
+
+			}
+			if (nivelCambiado){
+				alfo -= 10;
+				if (alfo == 0)//Se pide la hora y se compara con la última 
+				{
+					alfo = 0;
+					nivelCambiado = false;
+					textArriba = false;
+				}
+
+			}
+			//Caso de transicion a negro en la cinematica final
+			if (contCinematFinal == 200){
+				muestraTexto = false;
+			}
+			if (contCinematFinal > 200 && contCinematFinal < 350){
+				if (!decremNegro)//Caso en el que incremento el alfa
+					alfo += 5;
+
+				if (alfo == 255){
+					//Mover la camara, jugador, y doctor al mundo oscuro
+					camera.x = 800;
+					psj->setRect({ psj->getRect().x + 800, psj->getRect().y, psj->getRect().w, psj->getRect().h });
+					doctorT->setRect({ doctorT->getRect().x + 800, doctorT->getRect().y + 200, doctorT->getRect().w, doctorT->getRect().h });
+					psjMovidos = true;
+				}
+				if (psjMovidos){//Cuando he movido la camara y lo demas, decremento el alfa
+					alfo -= 5;
+					decremNegro = true;
 					
-					colObjeto = true;
-
 				}
-				else
+				if (alfo <= 0)//Se termina la transicion de negro
 				{
-					colObjeto =   false;
+					psjMovidos = false;
+					alfo = 0;
+
 				}
 
 			}
-			(*obj)->update();
-
-			obj++;
-		}
-		list<EntidadJuego*>::iterator itLlave = llaves.begin();
+			if (contCinematFinal == 350){
+				textConversDocT.loadFromText(pJuego->getRender(), "                                 ¡ENFRENTATE A TUS MIEDOS!", { 255, 255, 255, 1 }, *font_);
+				muestraTexto = true;
+			}
+			if (contCinematFinal == 450){
+				muestraTexto = false;
+				//Creo el boss
+				cinematicaFinal = false;
+				enemigos.push_back(new BossFinal(this, doctorT->getRect().x, doctorT->getRect().y, doctorT->getRect().w, doctorT->getRect().h, JuegoSDL::TBoss, JuegoSDL::ENull));
+				//Destruyo al doctor T
+				delete(doctorT);
+				doctorT = nullptr;
 			
-		//Update de las llaves
-		while (!colObjeto && !llaves.empty() && itLlave != llaves.end()){
-			if (checkCollision(camera, (*itLlave)->getRect()))
-			{
-				if (checkCollision(psj->getRect(), (*itLlave)->getRect()))
-				{
-					colObjeto = true;
 
-				}
-				else
-				{
-					colObjeto  = false;
-				}
-
-			
-			}
-
-			(*itLlave)->update();
-			itLlave++;
-		}
-
-
-		list<Armas*>::iterator itArma = armas.begin();
-
-		//Update de las armas
-		while (!colObjeto && !armas.empty() && itArma != armas.end()){
-			if (checkCollision(camera, (*itArma)->getRect()))
-			{
-				if (checkCollision(psj->getRect(), (*itArma)->getRect()))
-				{
-					colObjeto = true;
-
-				}
-				else
-				{
-					colObjeto = false;
-				}
-
-			}
-
-			(*itArma)->update();
-			itArma++;
-		}
-
-		list<Pildoras*>::iterator itPil = pildoras.begin();
-
-		//Update de las pildoras
-		while (!colObjeto && !pildoras.empty() && itPil != pildoras.end()){
-			if (checkCollision(camera, (*itPil)->getRect()))
-			{
-				if (checkCollision(psj->getRect(), (*itPil)->getRect()))
-				{
-					colObjeto = true;
-
-				}
-				else
-				{
-					colObjeto = false;
-				}
-
-			}
-
-			(*itPil)->update();
-			itPil++;
-		}
-
-		list<Interruptor*>::iterator itInter = interruptores.begin();
-
-		//Update de las interruptor
-		while (!colObjeto && !interruptores.empty() && itInter != interruptores.end()){
-			if (checkCollision(camera, (*itInter)->getRect()))
-			{
-				if (checkCollision(psj->getRect(), (*itInter)->getRect()))
-				{
-					colObjeto = true;
-
-				}
-				else
-				{
-					colObjeto = false;
-				}
-
-			}
-
-			(*itInter)->update();
-			itInter++;
-		}
-		//COLISIONES
-		colBalaEnemigo();
-		colBalaPersonaje();
-		
-		
-		//Transicion nivel
-		if (pasoNivel){
-			alfo += 5;
-			
-			if (alfo > 255){			
-				pasoNivel = false;
-				nivelCambiado = true;
-				mapa->buscaSpawn();
-				//numero planta
-				//textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
-
-			}
-			
-		}
-		if (nivelCambiado){
-			alfo -= 10;
-			if(alfo ==0)//Se pide la hora y se compara con la última 
-			{
-				alfo = 0;
-				nivelCambiado = false;
-				textArriba = false;
 			}
 		}
 		
-
-	}
-void Mundo::onInput(SDL_Event &e){
-
-		if (!nivelCambiado && !pasoNivel) // NO PLS
+	
+void Mundo::onInput(SDL_Event &e)
+{
+		if (!nivelCambiado && !pasoNivel && !cinematicaFinal) // NO PLS
 		{
 			//Declaramos el array con los estados de teclado
 			const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
@@ -582,15 +653,14 @@ void Mundo::onInput(SDL_Event &e){
 			
 			//Personaje
 			psj->onInput();
-			if (!pasoNivel && !nivelCambiado)
-				compruebaColisionPersonaje();
-
-
+			compruebaColisionPersonaje();
 
 		}
 		
 
 	}
+
+
 
 
 //Destruir objetos
@@ -921,12 +991,13 @@ void Mundo::compruebaColisionPersonaje(){
 
 
 	//comprueba la X
+	//Si choca con la pared o con el doctor T, va hacia atras
 	if (mapa->touchesWall(rectPies)){
 	
 		rectPersonaje.x -= x;
 	}
 	// comprueba la Y
-	if (mapa->touchesWall(rectPies)){
+	if (mapa->touchesWall(rectPies) ){
 		rectPersonaje.y -= y;
 	}
 

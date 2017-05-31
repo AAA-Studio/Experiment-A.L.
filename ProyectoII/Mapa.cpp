@@ -906,7 +906,6 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			else if ((tileMap[indice]->getType() == 114))
 			{
 				//Aqui poner texto al llegar al baño
-
 				felpudo = tileMap[indice]->getBox();
 				felpudo.x = felpudo.x + 10;
 				felpudo.h = felpudo.h - 15;

@@ -150,10 +150,13 @@ private:
 
 	bool colObjeto;
 	bool textArriba;
+	bool cinematicaFinal, muestraTexto, psjMovidos, decremNegro;
 
 	//Fuente
 	Fuente* font_;
-	TexturasSDL textCogerObj, textPlanta, textBalas, textPCerrada;
+	TexturasSDL textCogerObj, textPlanta, textBalas, textPCerrada, textConversDocT;
+	SDL_Rect rectEspejo, rectColDoctorT;
+	int contadorEspejo, contCinematFinal;
 	//bool abierto;
 	//vector<bool> cerraduras;
 	//vector<int> puertas;
@@ -172,6 +175,8 @@ private:
 	void compruebaColisionPersonaje();//Colision con muros y puertas
 	void colBalaEnemigo();
 	void colBalaPersonaje();
+	//Transicion
+	void TransicionANegro();
 	//-------------------METODOS-------------------
 };
 

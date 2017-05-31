@@ -1,55 +1,8 @@
-﻿Build started 31/05/2017 13:33:24.
-     1>Project "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mapa.cpp Mundo.cpp
-         Mundo.cpp
-     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(37): warning C4244: 'return' : conversion from 'float' to 'Uint8', possible loss of data
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversion from 'const int' to 'float', possible loss of data
-     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(166): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(168): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(413): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(649): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         Mapa.cpp
-     1>c:\software\programacion\msvstudio2013\vc\include\crtdbg.h(586): warning C4005: '_malloca' : macro redefinition
-                 c:\software\programacion\msvstudio2013\vc\include\malloc.h(224) : see previous definition of '_malloca'
-     1>c:\hlocal\experiment-a.l\proyectoii\personaje.h(37): warning C4244: 'return' : conversion from 'float' to 'Uint8', possible loss of data
-     1>c:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversion from 'const int' to 'float', possible loss of data
-     1>c:\hlocal\experiment-a.l\proyectoii\mapa.cpp(363): warning C4101: 'j' : unreferenced local variable
-         Generating Code...
-       Link:
-         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Armas.obj
-         Debug\Bala.obj
-         Debug\BossFinal.obj
-         Debug\Boton.obj
-         Debug\CinematicaInicial.obj
-         Debug\Combinaciones.obj
-         Debug\Enemigo.obj
-         Debug\Enemigo1.obj
-         Debug\Enemigo2.obj
-         Debug\Enemigo3.obj
-         Debug\Enemigo4.obj
-         Debug\Enemigo5.obj
-         Debug\Entidad.obj
-         Debug\Fuente.obj
-         Debug\GameOver.obj
-         Debug\Interruptor.obj
-         Debug\Juego.obj
-         Debug\JuegoSDL.obj
-         Debug\main.obj
-         Debug\Mapa.obj
-         Debug\Menu.obj
-         Debug\MenuInicio.obj
-         Debug\Mundo.obj
-         Debug\Musica.obj
-         Debug\Pausa.obj
-         Debug\Personaje.obj
-         Debug\Pildoras.obj
-         Debug\RecursosSDL.obj
-         Debug\TexturasSDL.obj
-         Debug\Tile.obj
-         ProyectoII.vcxproj -> C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe
-     1>Done Building Project "C:\hlocal\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:01.59
+﻿  Mundo.cpp
+c:\hlocal\experiment-a.l\proyectoii\personaje.h(37): warning C4244: 'return' : conversion from 'float' to 'Uint8', possible loss of data
+c:\hlocal\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversion from 'const int' to 'float', possible loss of data
+c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(171): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(173): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(438): warning C4305: 'argument' : truncation from 'double' to 'float'
+c:\hlocal\experiment-a.l\proyectoii\mundo.cpp(719): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+  ProyectoII.vcxproj -> C:\hlocal\Experiment-A.L\bin\ProyectoIIDebug.exe
