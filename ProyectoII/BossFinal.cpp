@@ -13,6 +13,15 @@ BossFinal::BossFinal(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Tex
 	dist = rect;
 	rangoDist = 30;
 	embistiendo;
+
+	rect = { x, y, 85, 76 };
+	rectAn = { 0, 0, 85, 76 };	//medidas del rect de la animacion
+
+	enemigoDcha = 193;
+	enemigoArr = 288;
+	enemigoIzq = 98;
+	sumaAnimX = 105;
+	limiteX = 183;
 }
 BossFinal::~BossFinal(){}
 
