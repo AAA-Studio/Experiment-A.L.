@@ -72,6 +72,7 @@ public:
 	inline bool getPasoNivel()const{ return true; };
 	inline void setPasoNivel(bool pNivel){  };
 	virtual void setMundo(Mundo_t m){};
+	virtual bool checkColMapa(SDL_Rect enemigo){ return false; }
 
 	inline void setTextoArriba(bool text){  };
 	inline void setPuertaCerrada(bool puerta){};

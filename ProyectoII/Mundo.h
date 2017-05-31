@@ -11,8 +11,9 @@
 #include "Pildoras.h"
 #include "Interruptor.h"
 #include "Enemigo.h"
+#include "Enemigo2.h"
 #include <list>
-
+#include "Enemigo4.h"
 
 using namespace std;
 
@@ -91,6 +92,7 @@ public:
 	inline bool getLLavesCogidas(int indice) const{ return llavesCogidas[indice]; };
 	inline void setLlaveCogida(int indice) { llavesCogidas[indice] = !llavesCogidas[indice]; };
 
+
 	//Fuente
 	inline void setTextoArriba(bool text){ textArriba = text; };
 	inline TexturasSDL *getTextura(){ return &textPlanta; };
@@ -102,6 +104,9 @@ public:
 
 
 	
+
+	virtual bool checkColMapa(SDL_Rect enemigo){ if (mapa->touchesWall(enemigo)) return true; else return false; }
+
 private:
 
 	//-------------------ATRIBUTOS---------------
@@ -154,7 +159,7 @@ private:
 	//bool pausa;
 
 	//-------------------ATRIBUTOS---------------
-
+	Enemigo* enemigo;
 
 	//-------------------METODOS-------------------
 	//Objetos
@@ -163,10 +168,10 @@ private:
 	void freeObjetos();
 
 	//Colisiones
+	void compruebaColisionEnemigo();
 	void compruebaColisionPersonaje();//Colision con muros y puertas
 	void colBalaEnemigo();
 	void colBalaPersonaje();
-	
 	//-------------------METODOS-------------------
 };
 

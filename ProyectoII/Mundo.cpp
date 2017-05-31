@@ -6,8 +6,12 @@
 #include "Bala.h"
 #include "Boton.h"
 #include <fstream>
-
-
+#include "Enemigo1.h"
+#include "Enemigo2.h"
+#include "Enemigo3.h"
+#include "Enemigo4.h"
+#include "Enemigo5.h"
+#include "BossFinal.h"
 
 
 Mundo::Mundo(Juego * pJ, string m)
@@ -135,13 +139,17 @@ void Mundo::cargaObjetos(){
 					obj >> x >> y >> w >> h >> balas >> cadencia;
 					armas.push_back(new Armas(pJuego, x + ancho, y + alto*(lvl % 24), w, h, balas, cadencia, JuegoSDL::TPistola, JuegoSDL::ENull, OPistola));
 				}
+				//IMPORTANTE: Enemigo2 usa TEnemigo2, Enemigo4 usa TEnemigo4.
 				else if (nombre == "ENEMIGO"){
 
 					obj >> x >> y >> w >> h >> salud;
-					enemigos.push_back(new Enemigo(this, x + ancho, y + alto*(lvl % 24), w, h, salud, JuegoSDL::TLeon, JuegoSDL::ENull));
+					enemigos.push_back(new Enemigo1(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 				}
 				else if (nombre == "SALUD"){
+
+					obj >> x >> y >> w >> h;
+					enemigos.push_back(new Enemigo1(this, x + ancho, y + alto*(lvl % 24), w, h, JuegoSDL::TLeon, JuegoSDL::ENull));
 
 					obj >> x >> y >> w >> h >> salud >> tipo;
 					if (tipo == 1)
@@ -164,6 +172,11 @@ void Mundo::cargaObjetos(){
 		i++;
 	}
 	obj.close();
+	
+	//enemigo = new Enemigo2(this, 400, 900, 25, 25, JuegoSDL::TEnemigo2, JuegoSDL::ENull, 'x', 100);
+	//enemigo = new Enemigo4(this, 400, 900, 25, 25, JuegoSDL::TEnemigo4, JuegoSDL::ENull);
+	enemigo = new Enemigo5(this, 400, 900, 25, 25, JuegoSDL::TEnemigo5, JuegoSDL::ENull);
+
 }
 void Mundo::initObjetos()
 {	
@@ -246,7 +259,7 @@ void Mundo::draw()const{
 
 	//DIBUJAR MAPA
 	mapa->draw();
-
+	enemigo->draw(enemigo->getRect().x - camera.x, enemigo->getRect().y - camera.y);
 	//Dibujar objetos del juego
 	//Armas
 	for (auto arma : armas)
@@ -328,10 +341,15 @@ void Mundo::update(){
 		balaDestruida = false;
 		colObjeto = false;
 
+
 		//NO SE TOCA
 		textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
 		////////////////
 		
+
+		
+		compruebaColisionEnemigo();
+
 		//Caso GameOver
 		if (psj->getVida() <= 0){
 			pJuego->setEstadoEnum(EGameOver);
@@ -381,13 +399,19 @@ void Mundo::update(){
 		for (auto enemigo : enemigos){
 			if (checkCollision(camera, enemigo->getRect())){
 				enemigo->update();
+
 				//Si el personaje choca con el enemigo, resto vida
 				if (checkCollision(psj->getRect(), enemigo->getRect()))
-					psj->restaVida();
+					psj->restaVida(0.005);
 					
 			}
 
+
+			//COLISIONES ENEMIGO 
+			
 		}
+		if (checkCollision(camera, enemigo->getRect()))
+			enemigo->update();
 
 		//Update de objetos
 		list<EntidadJuego*>::iterator obj = objetos.begin();
@@ -688,6 +712,184 @@ EntidadJuego * Mundo::compruebaColisionObjetos(){
 
 		return nullptr;
 	}
+
+void Mundo::compruebaColisionEnemigo()
+{
+	SDL_Rect rectEnemigo = enemigo->getRect();
+
+	int x, y;
+
+
+	//Reducimos el ancho y alto del rectangulo de colision
+
+	x = rectEnemigo.x - enemigo->DamePosAntX();
+	y = rectEnemigo.y - enemigo->DamePosAntY();
+
+	//Movemos el rectangulo de colision a los pies
+
+	/*Direction2 dir;
+	dir.x = x;
+	dir.y = y;
+	enemigo->setDir(dir);*/
+
+	int tipo;
+	mapa->touchesDoor(rectEnemigo, tipo);
+
+
+	/*if (mapa->touchesDoor(rectPies, tipo))
+	{
+
+	EstadoJuego * aux = new PasoDeNivel(pJuego);
+	pJuego->goToState(aux);
+	}*/
+	// comprueba la Y
+	if (mapa->touchesWall(rectEnemigo)){
+		rectEnemigo.y -= y;
+		enemigo->colision(true);
+	}
+	else 
+		enemigo->colision(false);
+	//comprueba la X
+	if (mapa->touchesWall(rectEnemigo)){
+		rectEnemigo.x -= x;
+		enemigo->colision(true);
+	}
+	else 
+		enemigo->colision(false);
+
+
+	//Felpudos
+	if (tipo != 0
+		&& tipo != 1
+		&& tipo != 2
+		&& tipo != 3
+		&& tipo != 4
+		&& tipo != 5
+		&& tipo != 6
+		&& tipo != 7
+		&& tipo != 16
+		&& tipo != 17
+		&& tipo != 18
+		&& tipo != 19
+		&& tipo != 20
+		&& tipo != 21
+		&& tipo != 22
+		&& tipo != 27
+		&& tipo != 28
+		&& tipo != 29
+		&& tipo != 30
+		&& tipo != 31
+		&& tipo != 32
+		&& tipo != 33
+		&& tipo != 42
+		&& tipo != 43
+		&& tipo != 44
+		&& tipo != 54
+		&& tipo != 55
+		&& tipo != 57
+		&& tipo != 58
+		&& tipo != 59
+		&& tipo != 114
+		&& tipo != 140
+		&& tipo != 150
+		&& tipo != 151
+		&& tipo != 152
+		&& tipo != 153
+		&& tipo != 154
+		&& tipo != 155
+		&& tipo != 157
+		&& tipo != 158
+		&& tipo != 159
+		&& tipo != 165
+		&& tipo != 169
+		&& tipo != 174
+		&& tipo != 180
+		&& tipo != 181
+		&& tipo != 182
+		&& tipo != 183
+		&& tipo != 184
+		&& tipo != 185
+		&& tipo != 186
+		&& tipo != 187
+		&& tipo != 188
+		&& tipo != 189
+		&& tipo != 190
+		&& tipo != 191
+		&& tipo != 281
+		&& tipo != 282
+		&& tipo != 338
+		&& tipo != 339
+		&& tipo != 340
+		//------------------------------------------------------------------------------------//
+		//                                      MUNDO OSCURO								  //
+		//------------------------------------------------------------------------------------//
+
+		&& tipo != 345
+		&& tipo != 346
+		&& tipo != 347
+		&& tipo != 348
+		&& tipo != 349
+		&& tipo != 350
+		&& tipo != 351
+		&& tipo != 352
+		&& tipo != 361
+		&& tipo != 362
+		&& tipo != 363
+		&& tipo != 364
+		&& tipo != 365
+		&& tipo != 366
+		&& tipo != 367
+		&& tipo != 372
+		&& tipo != 373
+		&& tipo != 374
+		&& tipo != 375
+		&& tipo != 376
+		&& tipo != 377
+		&& tipo != 378
+		&& tipo != 387
+		&& tipo != 388
+		&& tipo != 389
+		&& tipo != 399
+		&& tipo != 400
+		&& tipo != 402
+		&& tipo != 403
+		&& tipo != 404
+		&& tipo != 459
+		&& tipo != 485
+		&& tipo != 495
+		&& tipo != 496
+		&& tipo != 497
+		&& tipo != 498
+		&& tipo != 499
+		&& tipo != 500
+		&& tipo != 501
+		&& tipo != 502
+		&& tipo != 503
+		&& tipo != 504
+		&& tipo != 510
+		&& tipo != 514
+		&& tipo != 519
+		&& tipo != 525
+		&& tipo != 526
+		&& tipo != 527
+		&& tipo != 528
+		&& tipo != 529
+		&& tipo != 530
+		&& tipo != 531
+		&& tipo != 532
+		&& tipo != 533
+		&& tipo != 534
+		&& tipo != 535
+		&& tipo != 536
+		&& tipo != 626
+		&& tipo != 627
+		&& tipo != 683
+		&& tipo != 684
+		&& tipo != 685)
+		enemigo->setPosChocando(rectEnemigo.x, rectEnemigo.y);
+		
+}
+
 void Mundo::compruebaColisionPersonaje(){
 	SDL_Rect rectPersonaje = psj->getRect(), rectPies;
 
@@ -904,7 +1106,7 @@ void Mundo::colBalaPersonaje(){
 				if (SDL_GetTicks() - time >= duracion)
 				{
 					time = SDL_GetTicks();
-					psj->restaVida();
+					psj->restaVida(0.001);
 				}
 
 				destruyeBala(balasEnems, itBalasEnems);

@@ -9,8 +9,6 @@
 #include "MundoVirtual.h"
 #include "Combinaciones.h"
 #include "CinematicaInicial.h"
-
-
 #include <iostream>
 #include <conio.h>
 #include <windows.h>

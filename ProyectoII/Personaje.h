@@ -45,7 +45,7 @@ public:
 	//-----------------------------------------------------------------------------
 
 	//-------MÉTODOS QUE VIENEN DE LA CLASE INTERFAZ PERSONAJE VIRTUAL-------------
-	void restaVida();
+	void restaVida(float daño);
 	inline float getVida()const { return vida; };
 	//-----------------------------------------------------------------------------
 
