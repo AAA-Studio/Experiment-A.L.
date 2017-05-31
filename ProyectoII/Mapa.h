@@ -32,12 +32,13 @@ private:
 	string nombreMapa;
 	Tile* tileMap[TOTAL_TILES];
 	//booleanos para las puertas con llaves
-	bool azulCP5R,azulCP2R, naranajaP5R, naranjaP4R, pistachoP3O, azulCP4O;
+	bool azulCP5R, azulCP2R, naranajaP5R, naranjaP4R, pistachoP3O, azulCP4O;
 	//booleanos para las puertas con iterruptores
 	bool encendido = false;	//para abrir la primera puerta 
 	bool encendido2 = false; //para abrir la segunda puerta
 	bool pulsados(); //metodo que comprueba si los 2 botones han sido pulsados
-
+	int contadorParaSonido1 = 100;//cosas del nivel
+	int contadorParaSonido2 = 100;//cosas del nivel
 	int x, y;//Variables en las que se guarda la pos del Spawn del personaje
 	//int nivel;
 

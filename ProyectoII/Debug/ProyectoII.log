@@ -1,14 +1,15 @@
-﻿Compilación iniciada a las 31/05/2017 0:26:09.
-     1>Proyecto "D:\UNI\P2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
+﻿Compilación iniciada a las 31/05/2017 2:51:38.
+     1>Proyecto "C:\Users\usuario\Desktop\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
-         D:\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Personaje.cpp
-         Personaje.cpp
-     1>d:\uni\p2\experiment-a.l\proyectoii\personaje.h(37): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
-     1>d:\uni\p2\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
-     1>d:\uni\p2\experiment-a.l\proyectoii\personaje.cpp(39): warning C4305: '-=' : truncamiento de 'double' a 'float'
-     1>d:\uni\p2\experiment-a.l\proyectoii\personaje.cpp(215): warning C4244: 'argumento' : conversión de 'int' a 'float'; posible pérdida de datos
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Mapa.cpp
+         Mapa.cpp
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\crtdbg.h(586): warning C4005: '_malloca' : redefinición de macro
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\malloc.h(224) : vea la definición anterior de '_malloca'
+     1>c:\users\usuario\desktop\experiment-a.l\proyectoii\personaje.h(37): warning C4244: 'return' : conversión de 'float' a 'Uint8'; posible pérdida de datos
+     1>c:\users\usuario\desktop\experiment-a.l\proyectoii\enemigo.h(17): warning C4244: 'return' : conversión de 'const int' a 'float'; posible pérdida de datos
+     1>c:\users\usuario\desktop\experiment-a.l\proyectoii\mapa.cpp(354): warning C4101: 'j' : variable local sin referencia
        Link:
-         D:\Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\UNI\P2\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\UNI\P2\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\UNI\P2\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Armas.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\usuario\Desktop\Experiment-A.L\bin\ProyectoIIDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\usuario\Desktop\Experiment-A.L\bin\ProyectoIIDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\usuario\Desktop\Experiment-A.L\bin\ProyectoIIDebug.lib" /MACHINE:X86 Debug\Armas.obj
          Debug\Bala.obj
          Debug\Boton.obj
          Debug\CinematicaInicial.obj
@@ -32,9 +33,9 @@
          Debug\RecursosSDL.obj
          Debug\TexturasSDL.obj
          Debug\Tile.obj
-         ProyectoII.vcxproj -> D:\UNI\P2\Experiment-A.L\bin\ProyectoIIDebug.exe
-     1>Compilación del proyecto terminada "D:\UNI\P2\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos).
+         ProyectoII.vcxproj -> C:\Users\usuario\Desktop\Experiment-A.L\bin\ProyectoIIDebug.exe
+     1>Compilación del proyecto terminada "C:\Users\usuario\Desktop\Experiment-A.L\ProyectoII\ProyectoII.vcxproj" (Build destinos).
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:00.74
+Tiempo transcurrido 00:00:00.95

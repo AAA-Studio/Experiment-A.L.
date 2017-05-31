@@ -212,7 +212,7 @@ void Personaje::disparo(){
 	if (arma != nullptr && arma->getBalas() > 0 && pMundo->getIndiceMapa() >23){
 		if (SDL_GetTicks() - ultimaBala >= arma->getCadencia() )//Se pide la hora y se compara con la última 
 		{
-			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x, rect.y, rect.w / 13, rect.h / 13, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje));
+			pMundo->insertaBala(LBalasPersonaje, new Bala(pMundo, rect.x + 5, rect.y + 20, rect.w / 10, rect.h / 10, JuegoSDL::TBala, JuegoSDL::ENull, angulo, LBalasPersonaje));
 			arma->restaBalas();
 			ultimaBala = SDL_GetTicks();
 			pJuego->getResources()->getEfecto(0)->play(0);

@@ -54,7 +54,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	font_ = pJuego->getResources()->getFuente(JuegoSDL::Fuentes_t::FNormal);
 	textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
 	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'E' para interactuar", { 255, 255, 255, 1 }, *font_);
-	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 1", { 255, 255, 255, 1 }, *font_);
+	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 5", { 255, 255, 255, 1 }, *font_);//de nada
 	textPCerrada.loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *font_);
 
 	textArriba = false;
@@ -320,7 +320,6 @@ void Mundo::draw()const{
 	//Caso en el que has cogido la pistola
 	else if (psj->getBalas() > 0){
 		textBalas.renderFont(pJuego->getRender(), 400, 600);
-
 	}
 }
 
@@ -329,7 +328,10 @@ void Mundo::update(){
 		balaDestruida = false;
 		colObjeto = false;
 
-
+		//NO SE TOCA
+		textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
+		////////////////
+		
 		//Caso GameOver
 		if (psj->getVida() <= 0){
 			pJuego->setEstadoEnum(EGameOver);
