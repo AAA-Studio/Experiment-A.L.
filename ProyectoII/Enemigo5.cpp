@@ -42,25 +42,26 @@ void Enemigo5::update() {
 }
 
 void Enemigo5::movimiento() {
-
+	moveX = moveY = 0;
 	if (rect.y > destino.second) { //movimiento en el eje y
 		
-		rect.y -= velocidad;
+		moveY -= velocidad;
 	}
 	else if (rect.y < destino.second) {
 		
-		rect.y += velocidad;
+		moveY += velocidad;
 	}
 
 	if (rect.x > destino.first) { //movimiento en el eje x
 		
-		rect.x -= velocidad;
+		moveX -= velocidad;
 	}
 	else if (rect.x < destino.first) {
 		
-		rect.x += velocidad;
+		moveX += velocidad;
 	}
 
+	mover(moveX, moveY);
 }
 
 void Enemigo5::disparar() {
