@@ -197,13 +197,13 @@ void Mundo::initObjetos()
 	int y = 900;
 
 	//Esta posicion es para mover al personaje a la sala final del mundo real para hacer la cinematica con el doctor T
-	psj = new Personaje(this, 400, 3840 * 2 + 3200 * 2 + 800, JuegoSDL::TJugador, JuegoSDL::ENull);
+	//psj = new Personaje(this, 400, 3840 * 2 + 3200 * 2 + 800, JuegoSDL::TJugador, JuegoSDL::ENull);
 
 	//psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
 	doctorT = new DoctorT(pJuego, 400, 3840 * 2 + 3200 * 2 + 900, 30, 50, JuegoSDL::TDoctorT, JuegoSDL::ENull);
 	//x = mapa->getXSpawn();
 	//y = mapa->getYSpawn();
-	//psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
+	psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
 	
 }
 

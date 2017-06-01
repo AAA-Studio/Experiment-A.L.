@@ -6,7 +6,7 @@ Mapa::Mapa(MundoVirtual *pM, string mapa) : pMundo(pM), nombreMapa(mapa)
 {
 	pJuego = pM->getPJ();
 	cargarMapa();
-	pMundo->setNivel(22);
+	//pMundo->setNivel(22);
 
 	buscaSpawn();
 	setCamera();
