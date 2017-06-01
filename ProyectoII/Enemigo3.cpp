@@ -20,65 +20,74 @@ Enemigo3::~Enemigo3()
 }
 
 void Enemigo3::update() {
-
 	rectPJ = pMundo->getPersonaje()->getRect();
+	posXAnt = rect.x;
+	posYAnt = rect.y;
 	estaEnEmbestida = EstaEnArea(200.0f);
 	estabaEmbistiendo = estaEnEmbestida;
-	if (EstaEnArea(200.0f)) {
-		if (EstaEnArea(100.0f)) {
-			if (estaEnEmbestida) {
-				movimiento(rectPJ);
-				if (EstaEnArea(5.0f)) {
+	if (!chocando) {
+		if (EstaEnArea(200.0f)) {
+			if (EstaEnArea(100.0f)) {
+				if (estaEnEmbestida) {
+					movimiento(rectPJ);
+					if (EstaEnArea(5.0f)) {
 
-					if (m_dirX == izq) rectPJ.x -= 5;
-					else if (m_dirX == drcha)rectPJ.x += 5;
-					if (m_dirY == up) rectPJ.y -= 5;
-					else if (m_dirY == down) rectPJ.y += 5;
-					estabaEmbistiendo != estaEnEmbestida;
+						if (m_dirX == izq) rectPJ.x -= 5;
+						else if (m_dirX == drcha)rectPJ.x += 5;
+						if (m_dirY == up) rectPJ.y -= 5;
+						else if (m_dirY == down) rectPJ.y += 5;
+						estabaEmbistiendo != estaEnEmbestida;
+					}
+				}
+
+				else {
+					movimiento(rectAntesEmbestida);
 				}
 			}
 
 			else {
-				movimiento(rectAntesEmbestida);
+				if (estabaEmbistiendo) {
+					movimiento(rectPJ);
+					estaEnEmbestida = true;
+				}
 			}
 		}
 
 		else {
-			if (estabaEmbistiendo) {
-				movimiento(rectPJ);
-				estaEnEmbestida = true;
-			}
+			rectAntesEmbestida.x = rect.x; rectAntesEmbestida.y = rect.y;
 		}
 	}
 
 	else {
-		rectAntesEmbestida.x = rect.x; rectAntesEmbestida.y = rect.y;
+		rodear();
 	}
 
 }
 
 void Enemigo3::movimiento(SDL_Rect target) {
+	moveX = moveY = 0;
 	if (rect.y > target.y) { //movimiento en el eje y
-		m_dirY = up;
-		rect.y--;
+
+		moveY -= velocidad;
 	}
 	else if (rect.y < target.y) {
-		m_dirY = down;
-		rect.y++;
+
+		moveY += velocidad;
 	}
 
-	if (rect.x > target.x) { //movimiento en el eje x
-		m_dirX = izq;
-		rect.x--;
+	if (rect.x > target.y) { //movimiento en el eje x
+
+		moveX -= velocidad;
 	}
-	else if (rect.x < target.x) {
-		m_dirX = drcha;
-		rect.x++;
+	else if (rect.x < target.y) {
+
+		moveX += velocidad;
 	}
+
+	mover(moveX, moveY);
 }
 
 bool Enemigo3::EstaEnArea(float minDistancia) {
-
 
 	//Vectores auxiliares
 	pair<float, float> targetPosition = make_pair(rectPJ.x, rectPJ.y);

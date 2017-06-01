@@ -46,10 +46,7 @@ void Enemigo5::update() {
 		rodear();
 	}
 
-	// if (pMundo->checkCollision(rectPJ, rect))
-	// {
-	// 	pMundo->getPersonaje()->restaVida(0);
-	// }
+	
 	destino.first = rectPJ.x;
 	destino.second = rectPJ.y;
 }
