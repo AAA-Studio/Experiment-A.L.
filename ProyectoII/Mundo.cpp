@@ -36,8 +36,7 @@ Mundo::Mundo(Juego * pJ, string m)
 	decremNegro = false;
 
 	pasoNivel = false;
-	puertaCerrada = false;
-	psjMovidos = false;
+	psjMovidos = batallaBoss = bossMuerto =false;
 	//objetos[1]->setVisible(false);
 	pJuego->getResources()->getMusica(JuegoSDL::Musica_t::MReal)->play();
 
@@ -59,14 +58,14 @@ Mundo::Mundo(Juego * pJ, string m)
 	textBalas.loadFromText(pJuego->getRender(), "Balas : " + to_string(psj->getBalas()), { 255, 255, 255, 1 }, *font_);
 	textCogerObj.loadFromText(pJuego->getRender(), "Pulsa 'E' para interactuar", { 255, 255, 255, 1 }, *font_);
 	textPlanta.loadFromText(pJuego->getRender(), "PLANTA 5", { 255, 255, 255, 1 }, *font_);
-	textPCerrada.loadFromText(pJuego->getRender(), "Cerrada.", { 255, 255, 255, 1 }, *font_);
 	textConversDocT.loadFromText(pJuego->getRender(), "Parece que finalmente lo has comprendido todo.. ¿o no?", { 255, 255, 255, 1 }, *font_);
 	rectEspejo = { 0, 0, pJuego->getResources()->getTextura(JuegoSDL::TAnimacionEspejo)->getW() / 4, pJuego->getResources()->getTextura(JuegoSDL::TAnimacionEspejo)->getH() };
 	rectColDoctorT = { doctorT->getRect().x + 10, doctorT->getRect().y + 40, doctorT->getRect().w - 10, doctorT->getRect().h - 40 };
 	textArriba = false;
 
 	contadorEspejo = 0;
-	cinematicaFinal = false;
+	cinematicaEncuentroBoss = false;
+	periodicoPuesto = false;
 }
 
 Mundo::~Mundo()
@@ -198,13 +197,13 @@ void Mundo::initObjetos()
 	int y = 900;
 
 	//Esta posicion es para mover al personaje a la sala final del mundo real para hacer la cinematica con el doctor T
-	//psj = new Personaje(this, 400, 3840 * 2 + 3200 * 2 + 800, JuegoSDL::TJugador, JuegoSDL::ENull);
+	psj = new Personaje(this, 400, 3840 * 2 + 3200 * 2 + 800, JuegoSDL::TJugador, JuegoSDL::ENull);
 
 	//psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
-	doctorT = new Entidad(pJuego, 400, 3840 * 2 + 3200 * 2 + 900, 30, 50, JuegoSDL::TDoctorT, JuegoSDL::ENull, Objetos_t::ONull);
+	doctorT = new DoctorT(pJuego, 400, 3840 * 2 + 3200 * 2 + 900, 30, 50, JuegoSDL::TDoctorT, JuegoSDL::ENull);
 	//x = mapa->getXSpawn();
 	//y = mapa->getYSpawn();
-	psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
+	//psj = new Personaje(this, x, y, JuegoSDL::TJugador, JuegoSDL::ENull);
 	
 }
 
@@ -335,8 +334,7 @@ void Mundo::draw()const{
 	a.h = 640;
 	a.w = 800;
 
-	if (pasoNivel || nivelCambiado || cinematicaFinal)
-		pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);		
+
 	
 	pJuego->getResources()->getTextura(JuegoSDL::TNegro)->draw(pJuego->getRender(), a, 0, 0, nullptr);
 	
@@ -351,19 +349,23 @@ void Mundo::draw()const{
 		a.w = 240;
 		textPlanta.draw(pJuego->getRender(), a, 280, 250, nullptr);
 	}
-	//Compruebo si la puerta esta cerrada y muestro el texto
-	else if (puertaCerrada){
-		textPCerrada.renderFont(pJuego->getRender(), psj->getRect().x - camera.x -20, psj->getRect().y - camera.y - 70);
-	}
 
 	//Caso en el que has cogido la pistola
 	else if (psj->getBalas() > 0){
 		textBalas.renderFont(pJuego->getRender(), 400, 600);
 	}
 	if (muestraTexto){
-		textConversDocT.renderFont(pJuego->getRender(), doctorT->getRect().x - camera.x - 280, doctorT->getRect().y - camera.y - 90);
+		textConversDocT.renderFont(pJuego->getRender(), 150, 500);
 
 		
+	}
+
+	if (pasoNivel || nivelCambiado || cinematicaEncuentroBoss || bossMuerto)
+		pJuego->getResources()->getTextura(JuegoSDL::TNegro)->setAlpha(alfo);
+
+	if (periodicoPuesto){
+		pJuego->getResources()->getTextura(JuegoSDL::TPeriodico)->draw(pJuego->getRender(), { 0, 0, 850, 640 }, -30, 0,nullptr);
+		textConversDocT.renderFont(pJuego->getRender(), 40, pJuego->getWindowHeight() - 30);
 	}
 	
 }
@@ -449,14 +451,17 @@ void Mundo::update(){
 			if (checkCollision(doctorT->getRect(), psj->getRect())){
 				//Se muestra el texto con el malo final
 				//El personaje no se mueve
+				setNivel(24);
+				setCurapsj();
+				setMundo(Mundo_t::MOscuro);
 				psj->setRect({ psj->getRect().x, psj->getRect().y - 1, psj->getRect().w, psj->getRect().h });
-				cinematicaFinal = true;
+				cinematicaEncuentroBoss = true;
 				muestraTexto = true;
 
 			}
 
 			}
-			if (cinematicaFinal)
+			if (cinematicaEncuentroBoss || batallaBoss)
 				contCinematFinal++;
 
 
@@ -466,16 +471,11 @@ void Mundo::update(){
 			while (!colObjeto && !objetos.empty() && obj != objetos.end()){
 				if (checkCollision(camera, (*obj)->getRect())){
 					if (checkCollision(psj->getRect(), (*obj)->getRect()))
-					{
-
 						colObjeto = true;
-
-					}
-					else
-					{
+				
+					else				
 						colObjeto = false;
-					}
-
+				
 				}
 				(*obj)->update();
 
@@ -594,11 +594,13 @@ void Mundo::update(){
 				}
 
 			}
+
+			//-------------------------CINEMATICA BOSS----------------------------------
 			//Caso de transicion a negro en la cinematica final
 			if (contCinematFinal == 200){
 				muestraTexto = false;
 			}
-			if (contCinematFinal > 200 && contCinematFinal < 350){
+			else if (contCinematFinal > 200 && contCinematFinal < 350){
 				if (!decremNegro)//Caso en el que incremento el alfa
 					alfo += 5;
 
@@ -607,9 +609,10 @@ void Mundo::update(){
 					camera.x = 800;
 					psj->setRect({ psj->getRect().x + 800, psj->getRect().y, psj->getRect().w, psj->getRect().h });
 					doctorT->setRect({ doctorT->getRect().x + 800, doctorT->getRect().y + 200, doctorT->getRect().w, doctorT->getRect().h });
+					doctorT->setRectAnim();
 					psjMovidos = true;
 				}
-				if (psjMovidos){//Cuando he movido la camara y lo demas, decremento el alfa
+				 if (psjMovidos){//Cuando he movido la camara y lo demas, decremento el alfa
 					alfo -= 5;
 					decremNegro = true;
 					
@@ -622,14 +625,15 @@ void Mundo::update(){
 				}
 
 			}
-			if (contCinematFinal == 350){
+			else if (contCinematFinal == 350){
 				textConversDocT.loadFromText(pJuego->getRender(), "                                 ¡ENFRENTATE A TUS MIEDOS!", { 255, 255, 255, 1 }, *font_);
 				muestraTexto = true;
 			}
-			if (contCinematFinal == 450){
+			else if (contCinematFinal == 450){
 				muestraTexto = false;
 				//Creo el boss
-				cinematicaFinal = false;
+				cinematicaEncuentroBoss = false;
+				batallaBoss = true;
 				enemigos.push_back(new BossFinal(this, doctorT->getRect().x, doctorT->getRect().y, doctorT->getRect().w, doctorT->getRect().h, JuegoSDL::TBoss, JuegoSDL::ENull));
 				//Destruyo al doctor T
 				delete(doctorT);
@@ -637,15 +641,47 @@ void Mundo::update(){
 			
 
 			}
+
+			//-------------------------CINEMATICA BOSS----------------------------------
+
+			//-------------------------CINEMATICA FINAL----------------------------------
+			if (bossMuerto && contCinematFinal >= 700){
+				muestraTexto = false;
+				//Transicion a negro
+				if (!decremNegro)//Caso en el que incremento el alfa
+					alfo += 5;
+
+				if (alfo == 255){
+					//Mostrar el periodico
+								
+					periodicoPuesto = true;
+				}
+				if (periodicoPuesto){//Cuando he movido la camara y lo demas, decremento el alfa
+					textConversDocT.loadFromText(pJuego->getRender(), "Pulsa ESPACIO para salir", { 0, 0, 0, 1 }, *font_);
+	
+					alfo -= 5;
+					decremNegro = true;
+
+				}
+				if (alfo <= 0)//Se termina la transicion de negro
+				{
+					psjMovidos = false;
+					alfo = 0;
+
+				}
+			}
+			//-------------------------CINEMATICA FINAL----------------------------------
+
 		}
 		
 	
 void Mundo::onInput(SDL_Event &e)
 {
-		if (!nivelCambiado && !pasoNivel && !cinematicaFinal) // NO PLS
+	const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
+		if (!nivelCambiado && !pasoNivel && !cinematicaEncuentroBoss && !bossMuerto) // NO PLS
 		{
 			//Declaramos el array con los estados de teclado
-			const Uint8 * keyStatesActuales = SDL_GetKeyboardState(NULL);
+			
 
 			//Pausa
 			if (keyStatesActuales[SDL_SCANCODE_ESCAPE])
@@ -656,6 +692,14 @@ void Mundo::onInput(SDL_Event &e)
 			compruebaColisionPersonaje();
 
 		}
+		//Caso para salir de la escena del periodico al menu de Inicio
+		else if (periodicoPuesto){
+			if (keyStatesActuales[SDL_SCANCODE_SPACE]){
+				pJuego->setEstadoEnum(MInicio);
+				pJuego->setBorraEstado(true);
+			}
+		}
+
 		
 
 	}
@@ -818,7 +862,9 @@ void Mundo::compruebaColisionEnemigo(Enemigo* enemigo)
 
 	// comprueba la Y
 	if (mapa->touchesWall(rectEnemigo)){
+		
 		rectEnemigo.y -= y;
+
 		enemigo->colision(true);
 	}
 	else 
@@ -1162,7 +1208,7 @@ void Mundo::colBalaEnemigo(){
 						it++;
 				}
 				//Incrementamos el iterador si la lista de enemigos no está vacía
-				if (!enemigos.empty())
+				if (!enemigos.empty() && !(itEnemigo == enemigos.end()))
 					itEnemigo++;
 			}
 			else

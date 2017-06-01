@@ -73,6 +73,7 @@
     <ClCompile Include="Boton.cpp" />
     <ClCompile Include="CinematicaInicial.cpp" />
     <ClCompile Include="Combinaciones.cpp" />
+    <ClCompile Include="DoctorT.cpp" />
     <ClCompile Include="Enemigo.cpp" />
     <ClCompile Include="Enemigo1.cpp" />
     <ClCompile Include="Enemigo2.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="checkML.h" />
     <ClInclude Include="CinematicaInicial.h" />
     <ClInclude Include="Combinaciones.h" />
+    <ClInclude Include="DoctorT.h" />
     <ClInclude Include="Enemigo.h" />
     <ClInclude Include="Enemigo1.h" />
     <ClInclude Include="Enemigo2.h" />

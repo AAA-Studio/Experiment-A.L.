@@ -23,7 +23,9 @@ BossFinal::BossFinal(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Tex
 	sumaAnimX = 105;
 	limiteX = 183;
 }
-BossFinal::~BossFinal(){}
+BossFinal::~BossFinal(){
+	pMundo->setBossMuerto();
+}
 
 
 void BossFinal::update()

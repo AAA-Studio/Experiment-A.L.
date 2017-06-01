@@ -1,284 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Archivos de encabezado">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Archivos de recursos">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Archivos de código fuente">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Estados">
-      <UniqueIdentifier>{bd5a0e92-1ce0-4b1c-ace0-2fa46303b690}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Estados">
-      <UniqueIdentifier>{8ffc2eeb-72ea-476c-890b-e815e521f681}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Entidades">
-      <UniqueIdentifier>{956a8015-de11-4153-8c8b-4d2f838c4d3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Entidades">
-      <UniqueIdentifier>{6deeee89-f058-4549-bb58-0ca1a1ca8376}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Media">
-      <UniqueIdentifier>{212d8423-dc43-4208-8202-e6e75fdf97bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Media">
-      <UniqueIdentifier>{f784dec1-26ae-4c56-bb09-ad7074d095c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Errores">
-      <UniqueIdentifier>{5263f787-128c-450d-bf66-81e66fefea8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Mapa">
-      <UniqueIdentifier>{d8e37ec1-a928-42dc-9bee-c4ca566ef5d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Mapa">
-      <UniqueIdentifier>{9a4d6594-c831-4060-9f65-b81d2cea3c6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Estados\Menu">
-      <UniqueIdentifier>{421c3335-fd0f-4fa3-820b-e80c2362bc4f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Estados\Mundo">
-      <UniqueIdentifier>{39566681-d55a-40f1-994c-37c61ebafa73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Estados\Menu">
-      <UniqueIdentifier>{775c98df-b1fd-4dd0-abdd-1b47d2edfb95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Estados\Mundo">
-      <UniqueIdentifier>{bb9e9f7d-16c7-4043-8962-816dbdd72f30}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Entidades\Objetos">
-      <UniqueIdentifier>{93fdde42-088c-4753-999f-d254a0352257}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Entidades\Personajes">
-      <UniqueIdentifier>{748b7ea1-9935-44a4-91cf-ee9e414a6955}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Entidades\Objetos">
-      <UniqueIdentifier>{685c41bc-7116-4c1a-b264-c55c806fa0c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Entidades\Personajes">
-      <UniqueIdentifier>{110a910a-6907-43d3-898d-6f9f083152c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Juego">
-      <UniqueIdentifier>{92fb7524-6841-4d58-81bc-7c62fd2b6bb3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Juego">
-      <UniqueIdentifier>{dc6a6610-d239-4d15-8e35-12734f33f589}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de código fuente\Entidades\Personajes\Enemigos">
-      <UniqueIdentifier>{46dc069e-9d00-4c83-9891-a3e119127037}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Archivos de encabezado\Entidades\Personajes\Enemigos">
-      <UniqueIdentifier>{4207707d-4131-4f87-ada0-a749ff762fc0}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Armas.cpp" />
+    <ClCompile Include="Bala.cpp" />
+    <ClCompile Include="BossFinal.cpp" />
+    <ClCompile Include="Boton.cpp" />
+    <ClCompile Include="CinematicaInicial.cpp" />
+    <ClCompile Include="Combinaciones.cpp" />
+    <ClCompile Include="Enemigo.cpp" />
+    <ClCompile Include="Enemigo1.cpp" />
+    <ClCompile Include="Enemigo2.cpp" />
+    <ClCompile Include="Enemigo3.cpp" />
+    <ClCompile Include="Enemigo4.cpp" />
+    <ClCompile Include="Enemigo5.cpp" />
+    <ClCompile Include="Entidad.cpp" />
+    <ClCompile Include="Fuente.cpp" />
+    <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Interruptor.cpp" />
+    <ClCompile Include="Juego.cpp" />
+    <ClCompile Include="JuegoSDL.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mapa.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuInicio.cpp" />
+    <ClCompile Include="Mundo.cpp" />
+    <ClCompile Include="Musica.cpp" />
+    <ClCompile Include="Pausa.cpp" />
+    <ClCompile Include="Personaje.cpp" />
+    <ClCompile Include="Pildoras.cpp" />
+    <ClCompile Include="RecursosSDL.cpp" />
+    <ClCompile Include="TexturasSDL.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="DoctorT.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
-    <ClCompile Include="Fuente.cpp">
-      <Filter>Archivos de código fuente\Media</Filter>
-    </ClCompile>
-    <ClCompile Include="Musica.cpp">
-      <Filter>Archivos de código fuente\Media</Filter>
-    </ClCompile>
-    <ClCompile Include="TexturasSDL.cpp">
-      <Filter>Archivos de código fuente\Media</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Archivos de código fuente\Mapa</Filter>
-    </ClCompile>
-    <ClCompile Include="Mapa.cpp">
-      <Filter>Archivos de código fuente\Mapa</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOver.cpp">
-      <Filter>Archivos de código fuente\Estados\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Archivos de código fuente\Estados\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuInicio.cpp">
-      <Filter>Archivos de código fuente\Estados\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Pausa.cpp">
-      <Filter>Archivos de código fuente\Estados\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Mundo.cpp">
-      <Filter>Archivos de código fuente\Estados\Mundo</Filter>
-    </ClCompile>
-    <ClCompile Include="Bala.cpp">
-      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
-    </ClCompile>
-    <ClCompile Include="Boton.cpp">
-      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
-    </ClCompile>
-    <ClCompile Include="Personaje.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes</Filter>
-    </ClCompile>
-    <ClCompile Include="Combinaciones.cpp">
-      <Filter>Archivos de código fuente\Estados\Menu</Filter>
-    </ClCompile>
-    <ClCompile Include="Entidad.cpp">
-      <Filter>Archivos de código fuente\Entidades</Filter>
-    </ClCompile>
-    <ClCompile Include="Armas.cpp">
-      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
-    </ClCompile>
-    <ClCompile Include="RecursosSDL.cpp">
-      <Filter>Archivos de código fuente\Media</Filter>
-    </ClCompile>
-    <ClCompile Include="Juego.cpp">
-      <Filter>Archivos de código fuente\Juego</Filter>
-    </ClCompile>
-    <ClCompile Include="JuegoSDL.cpp">
-      <Filter>Archivos de código fuente\Juego</Filter>
-    </ClCompile>
-    <ClCompile Include="CinematicaInicial.cpp">
-      <Filter>Archivos de código fuente\Estados\Mundo</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Pildoras.cpp">
-      <Filter>Archivos de código fuente\Entidades\Objetos</Filter>
-    </ClCompile>
-    <ClCompile Include="Interruptor.cpp">
-      <Filter>Archivos de código fuente</Filter>
-=======
-    <ClCompile Include="Enemigo.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemigo1.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemigo2.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemigo4.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemigo3.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
-    </ClCompile>
-    <ClCompile Include="BossFinal.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemigo5.cpp">
-      <Filter>Archivos de código fuente\Entidades\Personajes\Enemigos</Filter>
->>>>>>> enemigoPatrulla
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="EstadoJuego.h">
-      <Filter>Archivos de encabezado\Estados</Filter>
-    </ClInclude>
-    <ClInclude Include="Fuente.h">
-      <Filter>Archivos de encabezado\Media</Filter>
-    </ClInclude>
-    <ClInclude Include="Musica.h">
-      <Filter>Archivos de encabezado\Media</Filter>
-    </ClInclude>
-    <ClInclude Include="TexturasSDL.h">
-      <Filter>Archivos de encabezado\Media</Filter>
-    </ClInclude>
-    <ClInclude Include="checkML.h">
-      <Filter>Archivos de encabezado\Errores</Filter>
-    </ClInclude>
-    <ClInclude Include="EntidadJuego.h">
-      <Filter>Archivos de encabezado\Entidades</Filter>
-    </ClInclude>
-    <ClInclude Include="Error.h">
-      <Filter>Archivos de encabezado\Errores</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Archivos de encabezado\Mapa</Filter>
-    </ClInclude>
-    <ClInclude Include="Mapa.h">
-      <Filter>Archivos de encabezado\Mapa</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOver.h">
-      <Filter>Archivos de encabezado\Estados\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Archivos de encabezado\Estados\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuInicio.h">
-      <Filter>Archivos de encabezado\Estados\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Pausa.h">
-      <Filter>Archivos de encabezado\Estados\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Mundo.h">
-      <Filter>Archivos de encabezado\Estados\Mundo</Filter>
-    </ClInclude>
-    <ClInclude Include="MundoVirtual.h">
-      <Filter>Archivos de encabezado\Estados\Mundo</Filter>
-    </ClInclude>
-    <ClInclude Include="Bala.h">
-      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
-    </ClInclude>
-    <ClInclude Include="Boton.h">
-      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
-    </ClInclude>
-    <ClInclude Include="Personaje.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes</Filter>
-    </ClInclude>
-    <ClInclude Include="Combinaciones.h">
-      <Filter>Archivos de encabezado\Estados\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Entidad.h">
-      <Filter>Archivos de encabezado\Entidades</Filter>
-    </ClInclude>
-    <ClInclude Include="Armas.h">
-      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
-    </ClInclude>
-    <ClInclude Include="RecursosSDL.h">
-      <Filter>Archivos de encabezado\Media</Filter>
-    </ClInclude>
-    <ClInclude Include="Juego.h">
-      <Filter>Archivos de encabezado\Juego</Filter>
-    </ClInclude>
-    <ClInclude Include="JuegoSDL.h">
-      <Filter>Archivos de encabezado\Juego</Filter>
-    </ClInclude>
-    <ClInclude Include="CinematicaInicial.h">
-      <Filter>Archivos de encabezado\Estados\Mundo</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Pildoras.h">
-      <Filter>Archivos de encabezado\Entidades\Objetos</Filter>
-    </ClInclude>
-    <ClInclude Include="Interruptor.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
+    <ClInclude Include="Armas.h" />
+    <ClInclude Include="Bala.h" />
+    <ClInclude Include="BossFinal.h" />
+    <ClInclude Include="Boton.h" />
+    <ClInclude Include="checkML.h" />
+    <ClInclude Include="CinematicaInicial.h" />
+    <ClInclude Include="Combinaciones.h" />
+    <ClInclude Include="Enemigo.h" />
+    <ClInclude Include="Enemigo1.h" />
+    <ClInclude Include="Enemigo2.h" />
+    <ClInclude Include="Enemigo3.h" />
+    <ClInclude Include="Enemigo4.h" />
+    <ClInclude Include="Enemigo5.h" />
+    <ClInclude Include="Entidad.h" />
+    <ClInclude Include="EntidadJuego.h" />
+    <ClInclude Include="Error.h" />
+    <ClInclude Include="EstadoJuego.h" />
+    <ClInclude Include="Fuente.h" />
+    <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Interruptor.h" />
+    <ClInclude Include="Juego.h" />
+    <ClInclude Include="JuegoSDL.h" />
+    <ClInclude Include="Mapa.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuInicio.h" />
+    <ClInclude Include="Mundo.h" />
+    <ClInclude Include="MundoVirtual.h" />
+    <ClInclude Include="Musica.h" />
+    <ClInclude Include="Pausa.h" />
+    <ClInclude Include="Personaje.h" />
+    <ClInclude Include="Pildoras.h" />
+    <ClInclude Include="RecursosSDL.h" />
+    <ClInclude Include="TexturasSDL.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="DoctorT.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
-=======
-    <ClInclude Include="Enemigo.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemigo2.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemigo4.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemigo1.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemigo3.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
-    </ClInclude>
-    <ClInclude Include="BossFinal.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemigo5.h">
-      <Filter>Archivos de encabezado\Entidades\Personajes\Enemigos</Filter>
-    </ClInclude>
->>>>>>> enemigoPatrulla
   </ItemGroup>
 </Project>

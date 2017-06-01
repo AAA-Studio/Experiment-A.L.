@@ -14,6 +14,7 @@
 #include "Enemigo2.h"
 #include <list>
 #include "Enemigo4.h"
+#include "DoctorT.h"
 
 using namespace std;
 
@@ -50,6 +51,13 @@ public:
 	void pildoraCogida();
 	virtual void setPulsado();
 	virtual void setPulsado2();
+	void setBossMuerto() { 
+		bossMuerto = true;
+		textConversDocT.loadFromText(pJuego->getRender(), "                       Al fin y al cabo, eres como yo..", { 255, 255, 255, 1 }, *font_); 
+		muestraTexto = true;
+		contCinematFinal = 500;
+		decremNegro = false;
+	};
 
 
 	//------------------GETTERS Y SETTER---------------------
@@ -60,7 +68,6 @@ public:
 	inline bool getPasoNivel()const{ return pasoNivel; };
 	inline void setPasoNivel(bool pNivel){ pasoNivel = pNivel; };
 	inline void setCurapsj(){ psj->sumaVida(5); }
-	inline void setPuertaCerrada(bool puerta){ puertaCerrada = puerta; };
 	
 
 	list<EntidadJuego*> getListaBalas(ListaBalas_t lista) const
@@ -98,7 +105,6 @@ public:
 	inline TexturasSDL *getTextura(){ return &textPlanta; };
 	inline Fuente*  getFuente()const{ return font_; };
 	inline TexturasSDL * getTexturaBala(){ return &textBalas; };
-	inline TexturasSDL * getTexturaPCerrada(){ return &textPCerrada; };
 	//Metodo para escribir en una parte concreta de la ventana
 
 
@@ -123,7 +129,7 @@ private:
 
 	//Entidades
 	Personaje * psj;
-	EntidadJuego* doctorT;
+	DoctorT* doctorT;
 
 	list <Enemigo*> enemigos;
 	list <EntidadJuego*> objetos;
@@ -145,16 +151,15 @@ private:
 	bool llavesCogidas[TAMAÑO_LLAVES];
 	bool pasoNivel;
 	bool nivelCambiado;
-	bool puertaCerrada;
 	Uint32 alfo;
 
 	bool colObjeto;
 	bool textArriba;
-	bool cinematicaFinal, muestraTexto, psjMovidos, decremNegro;
+	bool cinematicaEncuentroBoss, muestraTexto, psjMovidos, decremNegro, batallaBoss, cinematicaFinal, bossMuerto, periodicoPuesto;
 
 	//Fuente
 	Fuente* font_;
-	TexturasSDL textCogerObj, textPlanta, textBalas, textPCerrada, textConversDocT;
+	TexturasSDL textCogerObj, textPlanta, textBalas, textConversDocT;
 	SDL_Rect rectEspejo, rectColDoctorT;
 	int contadorEspejo, contCinematFinal;
 	//bool abierto;

@@ -23,5 +23,6 @@ void Entidad::draw(int x, int y)const
 {
 	if (visible)
 		pJuego->getResources()->getTextura(textura)->draw(pJuego->getRender(), rect,x,y,nullptr);//Dibujamos la textura
+
 }
 

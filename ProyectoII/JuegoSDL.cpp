@@ -11,7 +11,7 @@ std::vector<std::string> JuegoSDL::imageFiles_{ "..\\bmps\\AL.png", "..\\bmps\\b
 "..\\bmps\\cuatro.png", "..\\bmps\\cinco.png", "..\\bmps\\seis.png", "..\\bmps\\siete.png", "..\\bmps\\ocho.png", "..\\bmps\\nueve.png",
 "..\\bmps\\cero.png", "..\\bmps\\teclado.png", "..\\bmps\\backButton.png", "..\\bmps\\pistola.png", "..\\bmps\\pildora.png", "..\\bmps\\BotePildoras.png", "..\\bmps\\interruptor.png", "..\\bmps\\Controles.png",
 "..\\bmps\\Keypad.png", "..\\bmps\\enter.png", "..\\bmps\\negro.png", "..\\bmps\\enemigo1.png", "..\\bmps\\enemigo2.png", "..\\bmps\\enemigo3.png", "..\\bmps\\enemigo4.png",
-"..\\bmps\\enemigo5.png", "..\\bmps\\invitacion.png", "..\\bmps\\doctorT.png","..\\bmps\\animacionEspejo.png", "..\\bmps\\boss.png" };
+"..\\bmps\\enemigo5.png", "..\\bmps\\invitacion.png", "..\\bmps\\DRT.png","..\\bmps\\animacionEspejo.png", "..\\bmps\\boss.png","..\\bmps\\hoja.png" };
 
 std::vector<std::string> JuegoSDL::fontFiles_{ 
 	"..\\bmps\\selawk.ttf" };
