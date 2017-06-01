@@ -37,7 +37,7 @@ private:
 	bool encendido = false;	//para abrir la primera puerta 
 	bool encendido2 = false; //para abrir la segunda puerta
 	bool pulsados(); //metodo que comprueba si los 2 botones han sido pulsados
-	//ESTO QUE PUTA MIERDA ES
+	
 	int contadorParaSonido1 = 100;//cosas del nivel
 	int contadorParaSonido2 = 100;//cosas del nivel
 	int contadorParaSonido3 = 100;//cosas del nivel

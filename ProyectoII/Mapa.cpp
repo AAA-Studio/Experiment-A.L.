@@ -6,7 +6,7 @@ Mapa::Mapa(MundoVirtual *pM, string mapa) : pMundo(pM), nombreMapa(mapa)
 {
 	pJuego = pM->getPJ();
 	cargarMapa();
-	//pMundo->setNivel(22);
+	//pMundo->setNivel(0);
 
 	buscaSpawn();
 	setCamera();
@@ -997,13 +997,22 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 			//PUERTA PISTACHO (OSCURO)
 			else if ((tileMap[indice]->getType() == 503))
 			{
-				if ((pMundo->getLLavesCogidas(0) || pistachoP3O) && pMundo->getIndiceMapa() == 36){
+				if ((pMundo->getLLavesCogidas(0) || pistachoP3O) && pMundo->getIndiceMapa() == 36) {
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
 					felpudo.w = felpudo.w - 20;
 
-					if (pMundo->checkCollision(box, felpudo)){
+					if (pMundo->checkCollision(box, felpudo)) {
+						//Por si tienes dos
+						if (!pistachoP3O&& pMundo->getLLavesCogidas(1)) {
+							pistachoP3O = true;
+							pMundo->setLlaveCogida(1);
+						}
+						else if (!pistachoP3O&& pMundo->getLLavesCogidas(0)) {
+							pistachoP3O = true;
+							pMundo->setLlaveCogida(0);
+						}
 						pMundo->setNivel(3);
 						tipo = 157;
 						pMundo->setPasoNivel(true);
@@ -1011,14 +1020,14 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						return true;
 					}
 				}
-				else if (!pMundo->getLLavesCogidas(0) && !pistachoP3O && pMundo->getIndiceMapa() == 36){
+				else if (!pMundo->getLLavesCogidas(0) && !pistachoP3O && pMundo->getIndiceMapa() == 36) {
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
 					felpudo.w = felpudo.w - 20;
 
-					if (pMundo->checkCollision(box, felpudo)){
-						if (contadorParaSonido8 > 100){//NICE LVL 2
+					if (pMundo->checkCollision(box, felpudo)) {
+						if (contadorParaSonido8 > 100) {//NICE LVL 2
 							contadorParaSonido8 = 0;
 							pMundo->getPJ()->getResources()->getEfecto(3)->play(0);
 						}
@@ -1027,13 +1036,13 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						return true;
 					}
 				}
-				else if (pMundo->getIndiceMapa() != 36){
+				else if (pMundo->getIndiceMapa() != 36) {
 					felpudo = tileMap[indice]->getBox();
 					felpudo.x = felpudo.x + 10;
 					felpudo.h = felpudo.h - 15;
 					felpudo.w = felpudo.w - 20;
 
-					if (pMundo->checkCollision(box, felpudo)){
+					if (pMundo->checkCollision(box, felpudo)) {
 						pMundo->setNivel(3);
 						tipo = 157;
 						pMundo->setPasoNivel(true);
@@ -1112,6 +1121,7 @@ bool Mapa::touchesDoor(SDL_Rect box, int& tipo)
 						pMundo->setNivel(5);
 						tipo = 497;
 						pMundo->setPasoNivel(true);
+						pMundo->getPJ()->getResources()->getEfecto(1)->play(0);
 						return true;
 
 					}
