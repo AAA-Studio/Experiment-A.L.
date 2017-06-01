@@ -9,17 +9,16 @@ class Enemigo3 : public Enemigo
 	virtual void update();
 
 protected: 
-	enum dirY{ up, down, no }; 
-	enum dirX{ izq, drcha, none }; 
-	SDL_Rect rectPJ; // rect del personaje
-	
-	bool estaEnEmbestida, estabaEmbistiendo; //Direccion dir;
-	bool EstaEnArea(float distancia); 
-	dirY m_dirY; 
-	dirX m_dirX; 
-	SDL_Rect rectAntesEmbestida; 
+	float passedTime;
+	float timeA; //timepo antes de atacar
+	float timeC; //tiempo de carga
 
-	void movimiento(SDL_Rect target);
+	bool embistiendo; //para saber si estoy cargando contra el jugador y cuando he acabado
+	int xPJ, yPJ; //donde guardamos las coordenadas del jugador para embestirle
+
+	virtual void perseguir();
+	void embestir();
+	void cargarContraPJ();
 }; 
 
 #endif
