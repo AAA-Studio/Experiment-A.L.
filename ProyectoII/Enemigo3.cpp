@@ -10,6 +10,12 @@ Enemigo3::Enemigo3(MundoVirtual* pM, int x, int y, int w, int h, JuegoSDL::Textu
 	passedTime = 0;
 	timeA = 60;
 	embistiendo = false;
+
+	enemigoDcha = 197;
+	enemigoArr = 298;
+	enemigoIzq = 94;
+	sumaAnimX = 114;
+	limiteX = 227;
 }
 
 
