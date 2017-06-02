@@ -685,7 +685,10 @@ void Mundo::onInput(SDL_Event &e)
 
 			//Pausa
 			if (keyStatesActuales[SDL_SCANCODE_ESCAPE])
-				pJuego->setEstadoEnum (MPausa);
+			{
+				pJuego->setEstadoEnum(MPausa);
+				pJuego->setBorraEstado(true);
+			}
 			
 			//Personaje
 			psj->onInput();
