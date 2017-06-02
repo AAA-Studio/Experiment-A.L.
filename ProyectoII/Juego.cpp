@@ -28,8 +28,8 @@ Juego::Juego() : JuegoSDL(" ", SCREEN_WIDTH, SCREEN_HEIGHT)
 
 
 	estadoEnum = Estados_t::MInicio;
-	vectorEstados.push_back(new Mundo(this, nombreMapa));//Primer estado de la pila
-
+	//vectorEstados.push_back(new Mundo(this, nombreMapa));//Primer estado de la pila
+	vectorEstados.push_back(new MenuInicio(this));
 	combinaciones.reserve(1);
 	combinaciones.emplace_back("3412");
 	

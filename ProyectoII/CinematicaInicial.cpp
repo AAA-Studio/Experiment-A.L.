@@ -25,7 +25,7 @@ CinematicaInicial::CinematicaInicial(Juego * pJ, string mapa)
 	comienzo = true;
 
 	textoPsj.loadFromText(pJuego->getRender(), "Esa pesadilla me ha afectado demasiado, menudo dolor de cabeza.", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
-
+	textoSaltar.loadFromText(pJuego->getRender(), "Pulsa ESPACIO para saltar", { 255, 255, 255, 1 }, *pJuego->getResources()->getFuente(JuegoSDL::FNormal));
 
 }
 
@@ -66,6 +66,7 @@ void CinematicaInicial::update(){
 }
 
 void CinematicaInicial::draw() const{
+
 	if (comienzo)
 	{
 		objetos[1]->draw(objetos[1]->getRect().x - camera.x, objetos[1]->getRect().y - camera.y);
@@ -96,6 +97,9 @@ void CinematicaInicial::draw() const{
 	
 		//pJuego->escribir("Pulsa ESPACIO para saltar",200, 200);
 	}
+
+	textoSaltar.renderFont(pJuego->getRender(), 0, 0);
+
 }
 
 void CinematicaInicial::cinematicaInicial(){
@@ -174,8 +178,15 @@ CinematicaInicial::~CinematicaInicial()
 }
 
 void CinematicaInicial::onInput(SDL_Event &e){
-	if (e.type == SDL_KEYUP){ //si se pulsa una tecla comprueba que es p
-		if (e.key.keysym.sym == SDLK_SPACE){
+	if (e.type == SDL_KEYUP){ 
+		if (e.key.keysym.sym == SDLK_SPACE && comienzo)
+		{
+			comienzo = false;
+			contador = 999;
+			objetos[1]->setVisible(false);
+
+		}
+		else if (e.key.keysym.sym == SDLK_SPACE){
 			pJuego->setBorraEstado(true);
 			pJuego->setEstadoEnum(MundoReal);
 		}
