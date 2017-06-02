@@ -78,8 +78,8 @@ void Combinaciones::onInput(SDL_Event &e){
 			{
 				combTecleada += to_string(boton);
 				textFuente.loadFromText(pJuego->getRender(),combTecleada, { 255, 255, 255, 1 }, *font_);
-				cout << " intentos: " + intentos;
-				cout << " combinacion: " + combTecleada;
+				//cout << " intentos: " + intentos;
+				//cout << " combinacion: " + combTecleada;
 				intentos++;
 			}
 		}
